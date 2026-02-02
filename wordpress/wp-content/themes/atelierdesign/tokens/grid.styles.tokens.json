@@ -1,0 +1,16 @@
+{
+  "Default": {
+    "$type": "grid",
+    "$value": [
+      {
+        "pattern": "columns",
+        "visible": true,
+        "alignment": "stretch",
+        "color": "#ff00001a",
+        "gutterSize": "{grid.default.gap}",
+        "count": "{grid.default.count}",
+        "offset": "{grid.default.margin}"
+      }
+    ]
+  }
+}

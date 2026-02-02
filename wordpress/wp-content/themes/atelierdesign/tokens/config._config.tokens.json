@@ -1,0 +1,76 @@
+{
+  "config": {
+    "breakpoints": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "600px"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "1025px"
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "1440px"
+      }
+    },
+    "screenSizes": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "384px"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "768px"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "1260px"
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "1512px"
+      }
+    },
+    "grid": {
+      "sm": {
+        "count": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "gap": {
+          "$type": "dimension",
+          "$value": "8px"
+        }
+      },
+      "lg": {
+        "count": {
+          "$type": "dimension",
+          "$value": "24px"
+        },
+        "gap": {
+          "$type": "dimension",
+          "$value": "12px"
+        }
+      }
+    },
+    "container": {
+      "sm": {
+        "margin": {
+          "$type": "dimension",
+          "$value": "16px"
+        }
+      },
+      "lg": {
+        "margin": {
+          "$type": "dimension",
+          "$value": "60px"
+        }
+      }
+    }
+  }
+}

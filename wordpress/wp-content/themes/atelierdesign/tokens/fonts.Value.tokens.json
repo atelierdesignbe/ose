@@ -1,0 +1,394 @@
+{
+  "font": {
+    "foundations": {
+      "body-fontFamily": {
+        "$type": "string",
+        "$value": "Bricolage Grotesque"
+      },
+      "body-fontWeight": {
+        "$type": "string",
+        "$value": "Regular"
+      },
+      "body-bold-fontWeight": {
+        "$type": "string",
+        "$value": "SemiBold"
+      },
+      "body-link-fontWeight": {
+        "$type": "string",
+        "$value": "Regular"
+      },
+      "heading-fontFamily": {
+        "$type": "string",
+        "$value": "Bricolage Grotesque"
+      },
+      "heading-fontWeight": {
+        "$type": "string",
+        "$value": "Regular"
+      },
+      "heading-mark-fontFamily": {
+        "$type": "string",
+        "$value": "Bricolage Grotesque"
+      },
+      "heading-mark-fontWeight": {
+        "$type": "string",
+        "$value": "Regular"
+      },
+      "label-fontFamily": {
+        "$type": "string",
+        "$value": "Bricolage Grotesque"
+      },
+      "label-fontWeight": {
+        "$type": "string",
+        "$value": "Regular"
+      }
+    },
+    "paragraph": {
+      "XL": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "ITC Garamond Std"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "Light Narrow"
+        },
+        "boldFontFamily": {
+          "$type": "string",
+          "$value": "ITC Garamond Std"
+        },
+        "boldFontWeight": {
+          "$type": "string",
+          "$value": "Bold Narrow"
+        },
+        "linkFontFamily": {
+          "$type": "string",
+          "$value": "ITC Garamond Std"
+        },
+        "linkFontWeight": {
+          "$type": "string",
+          "$value": "LIght Narrow"
+        }
+      },
+      "LG": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontFamily}"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontWeight}"
+        },
+        "boldFontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontFamily}"
+        },
+        "boldFontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.body-bold-fontWeight}"
+        },
+        "linkFontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontFamily}"
+        },
+        "linkFontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.body-link-fontWeight}"
+        }
+      },
+      "MD": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontFamily}"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontWeight}"
+        },
+        "boldFontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontFamily}"
+        },
+        "boldFontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.body-bold-fontWeight}"
+        },
+        "linkFontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontFamily}"
+        },
+        "linkFontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.body-link-fontWeight}"
+        }
+      },
+      "SM": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontFamily}"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontWeight}"
+        },
+        "boldFontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontFamily}"
+        },
+        "boldFontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.body-bold-fontWeight}"
+        },
+        "linkFontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontFamily}"
+        },
+        "linkFontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.body-link-fontWeight}"
+        }
+      }
+    },
+    "heading": {
+      "2XL": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.heading-fontFamily}"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.heading-fontWeight}"
+        },
+        "markFontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.heading-mark-fontFamily}"
+        },
+        "markFontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.heading-mark-fontWeight}"
+        }
+      },
+      "XL": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.heading-fontFamily}"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.heading-fontWeight}"
+        },
+        "markFontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.heading-mark-fontFamily}"
+        },
+        "markFontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.heading-mark-fontWeight}"
+        }
+      },
+      "LG": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "ITC Garamond Std"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "Light Narrow"
+        },
+        "markFontFamily": {
+          "$type": "string",
+          "$value": "ITC Garamond Std"
+        },
+        "markFontWeight": {
+          "$type": "string",
+          "$value": "Light Narrow"
+        }
+      },
+      "MD": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "ITC Garamond Std"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "Light Narrow"
+        },
+        "markFontFamily": {
+          "$type": "string",
+          "$value": "ITC Garamond Std"
+        },
+        "markFontWeight": {
+          "$type": "string",
+          "$value": "Light Narrow"
+        }
+      },
+      "SM": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "ITC Garamond Std"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "Light Narrow"
+        },
+        "markFontFamily": {
+          "$type": "string",
+          "$value": "ITC Garamond Std"
+        },
+        "markFontWeight": {
+          "$type": "string",
+          "$value": "Light Narrow"
+        }
+      }
+    },
+    "keyNumbers": {
+      "number": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "Bricolage Grotesque"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "Regular"
+        }
+      },
+      "prefix": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "ITC Garamond Std"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "Light Narrow"
+        }
+      },
+      "suffix": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "ITC Garamond Std"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "Light Narrow"
+        }
+      }
+    },
+    "badge": {
+      "fill": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.label-fontFamily}"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.label-fontWeight}"
+        }
+      },
+      "outline": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.label-fontFamily}"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.label-fontWeight}"
+        }
+      },
+      "normal": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.label-fontFamily}"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.label-fontWeight}"
+        }
+      }
+    },
+    "button": {
+      "fontFamily": {
+        "$type": "string",
+        "$value": "{font.foundations.body-fontFamily}"
+      },
+      "fontWeight": {
+        "$type": "string",
+        "$value": "{font.foundations.body-fontWeight}"
+      }
+    },
+    "accordion": {
+      "title": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "{font.heading.MD.fontFamily}"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "{font.heading.MD.fontWeight}"
+        }
+      }
+    },
+    "quote": {
+      "content": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "ITC Garamond Std"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "Light Narrow"
+        }
+      },
+      "primaryLabel": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "{font.heading.MD.fontFamily}"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "{font.heading.MD.fontWeight}"
+        }
+      },
+      "secondaryLabel": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontFamily}"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontWeight}"
+        }
+      }
+    },
+    "form": {
+      "label": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontFamily}"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontWeight}"
+        }
+      },
+      "block": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontFamily}"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontWeight}"
+        }
+      },
+      "inline": {
+        "fontFamily": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontFamily}"
+        },
+        "fontWeight": {
+          "$type": "string",
+          "$value": "{font.foundations.body-fontWeight}"
+        }
+      }
+    }
+  }
+}

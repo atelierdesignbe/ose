@@ -1,0 +1,44 @@
+{
+  "primitives": {
+    "dark-green": {
+      "$type": "color",
+      "$value": "#081c11"
+    },
+    "dark-green-cover": {
+      "$type": "color",
+      "$value": "#000000"
+    },
+    "green": {
+      "$type": "color",
+      "$value": "#154229"
+    },
+    "vert-sup": {
+      "$type": "color",
+      "$value": "#3bab02"
+    },
+    "electric-green": {
+      "$type": "color",
+      "$value": "#a7ff7a"
+    },
+    "vert-plus": {
+      "$type": "color",
+      "$value": "#d0f7ba"
+    },
+    "soft-green": {
+      "$type": "color",
+      "$value": "#e9ffd6"
+    },
+    "beige": {
+      "$type": "color",
+      "$value": "#ffeae3"
+    },
+    "beige-orange": {
+      "$type": "color",
+      "$value": "#fff6f3"
+    },
+    "white": {
+      "$type": "color",
+      "$value": "#ffffff"
+    }
+  }
+}

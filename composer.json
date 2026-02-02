@@ -1,0 +1,37 @@
+{
+  "name": "atelierdesign/wordpress-boilerplate",
+  "description": "WordPress boilerplate with Docker",
+  "type": "project",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org",
+      "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
+    }
+  ],
+  "require": {
+    "composer/installers": "^2.0",
+    "wpackagist-plugin/formidable": "^6.0",
+    "wpackagist-plugin/polylang": "^3.6",    
+    "wpackagist-plugin/cookie-law-info": "^3.3",
+    "wpackagist-plugin/duplicate-post": "^4.5",
+    "wpackagist-plugin/google-site-kit": "^1.170",
+    "wpackagist-plugin/litespeed-cache": "^7.7",
+    "wpackagist-plugin/query-monitor": "^3.20",
+    "wpackagist-plugin/redirection": "^5.6",
+    "wpackagist-plugin/webp-converter-for-media": "^6.5"
+  },
+  "extra": {
+    "installer-paths": {
+      "wordpress/wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
+      "wordpress/wp-content/themes/{$name}/": ["type:wordpress-theme"]
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    },
+    "optimize-autoloader": true,
+    "sort-packages": true
+  }
+}

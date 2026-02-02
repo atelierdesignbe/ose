@@ -1,0 +1,27 @@
+{
+  "name": "atelierdesign",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "plugin:install": "chmod +x install-plugins.sh && ./install-plugins.sh",
+    "ui:init": "node setup-ui.js init",
+    "ui:update": "node setup-ui.js update",
+    "ui:tokens": "node setup-ui.js tokens",
+    "adui:init": "cd wordpress/wp-content/themes/atelierdesign/ui/core && pnpm install",
+    "adui:dev": "cd wordpress/wp-content/themes/atelierdesign/ui/core && pnpm dev",
+    "adui:build": "cd wordpress/wp-content/themes/atelierdesign/ui/core && pnpm build",
+    "postinstall": "npm run plugin:install && npm run ui:init && npm run adui:init"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "@vitejs/plugin-vue": "^6.0.3",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "sass": "^1.70.0",
+    "tailwindcss": "^3.4.1",
+    "vite": "^7.3.1"
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+}

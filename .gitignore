@@ -1,0 +1,23 @@
+# Node
+node_modules/
+
+# Composer
+vendor/
+
+# WordPress
+wordpress/wp-content/*
+!wordpress/wp-content/themes
+wordpress/wp-content/themes/*
+!wordpress/wp-content/themes/atelierdesign
+wordpress/wp-content/themes/atelierdesign/ui
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env
+.env
+
+# OS
+.DS_Store
+Thumbs.db
