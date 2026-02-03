@@ -23,12 +23,12 @@ function display_lang() {
 
 
   echo '<div class="lang autoscale">';
-    echo '<button type="button" class="lang-btn" js-expand-button><span class="button-title">'. $current_lang. '</span></button>';
+    echo '<button type="button" class="lang-btn button button-none" js-expand-button><span class="button-title">'. $current_lang. '</span></button>';
     echo '<div class="modal">';
     echo '<ul class="lang-list modal-expand" js-expand>';
     foreach($languages as $lang): 
       $isActive = $lang['current_lang'] ? 'is-active' : '';
-      echo '<li js-expand-item><a href="'.$lang['url'].'" class="text-menu uppercase '.$isActive.'">'.$lang['slug'].'</a></li>';
+      echo '<li js-expand-item><a href="'.$lang['url'].'" class="button button-none '.$isActive.'"><span class="button-title">'.$lang['slug'].'</span></a></li>';
     endforeach;
     echo '</ul>';
     echo '</div>';

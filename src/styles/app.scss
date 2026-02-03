@@ -1,5 +1,8 @@
 @use 'core';
 @use 'fonts';
+@use 'partials';
+@use 'menu';
+@use 'lang';
 
 body {
   @apply min-h-screen font-sans;
