@@ -41,6 +41,26 @@ acf_add_local_field_group([
       'required' => 0,
       'conditional_logic' => 0,
     ],
+    // Tab: CTA FOOTER
+    [
+      'key' => 'field-cta-footer-tab',
+      'label' => 'CTA Footer',
+      'type' => 'tab',
+      'no_preference' => 0,
+    ],
+    [
+      'key' => 'field-cta-footer-clone',
+      'label' => '',
+      'name' => 'cta',
+      'type' => 'clone',
+      'clone' => [
+        0 => 'field-group-cta-footer',
+      ],
+      'display' => 'seamless',
+      'layout' => 'block',
+      'required' => 0,
+      'conditional_logic' => 0,
+    ],
     // Tab: Footer
     [
       'key' => 'field-footer-tab',
