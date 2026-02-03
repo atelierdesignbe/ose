@@ -1,5 +1,5 @@
 .header {
-  @apply absolute top-0 left-0 w-full;
+  @apply absolute top-0 left-0 w-full z-[99];
 
   &-wrapper {
     @apply relative @sm:py-[10px] @md/lg:py-[24px];

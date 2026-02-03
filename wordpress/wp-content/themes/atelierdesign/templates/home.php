@@ -11,7 +11,7 @@
 <?php get_template_part('/components/header/markup', 'header', get_field('header', 'acf-options-global-fields')); ?>
 <main id="home">
   <?php $fields = get_fields(); ?>
-  <?php get_template_part('/components/home-hero/markup', 'home-hero', $field['hero']); ?>
+  <?php get_template_part('/components/home-hero/markup', 'home-hero', $fields['hero']); ?>
 
   <!-- <article class="article">
   </article> -->

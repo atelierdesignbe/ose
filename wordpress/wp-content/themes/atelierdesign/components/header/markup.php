@@ -5,13 +5,13 @@
 
 <header class="header" js-header>
   <div class="px-container">
-    <div class="header-wrapper flex items-center justify-between">
+    <div class="header-wrapper flex items-center justify-between autoscale-children">
       <!--  logo  -->
       <div class="logo">
         <?php echo get_template_part('/components/logo', null, ['logo' => get_field('logo', 'acf-options-global-fields')]); ?>
       </div>
       <nav class="flex flex-wrap items-center">
-        <button type="button" class="button button-flat button-primary menu-btn btn-animation autoscale" js-menu-button>
+        <button type="button" class="button button-flat button-primary menu-btn btn-animation" js-menu-button>
           <span class="button-title">Menu</span>
           <span class="menu-btn-lines">
             <span class="menu-btn-line"></span>
@@ -19,7 +19,7 @@
             <span class="menu-btn-line"></span>
           </span>
         </button>
-        <div class="menu">
+        <div class="menu ">
           <?php if($nav): ?>
             <ul class="menu-nav">
               <?php foreach($nav as $item): ?>

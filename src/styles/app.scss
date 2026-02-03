@@ -7,3 +7,7 @@
 body {
   @apply min-h-screen font-sans;
 }
+
+.grid-base {
+  @apply grid grid-cols-12 md:grid-cols-24;
+}
