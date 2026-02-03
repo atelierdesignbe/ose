@@ -1,3 +1,6 @@
+@use 'core';
+@use 'fonts';
+
 body {
-  min-height: 100vh;
+  @apply min-h-screen font-sans;
 }

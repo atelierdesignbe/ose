@@ -11,8 +11,26 @@ export default twWithADUI({
   theme: {
     extend: {
       fontFamily: {
-        // serif: ['var(--font-serif)'],
-        // sans: ['var(--font-sans)'],
+        serif: [
+          'Ivy Journal',
+          'ui-serif',
+          'Georgia',
+          'Cambria',
+          'Times New Roman',
+          'Times',
+          'serif',
+        ],
+        sans: [
+          'Manrope',
+          'ui-sans-serif',
+          'system-ui',
+          'sans-serif',
+        ],
+        
+        fontWeight: {
+          light: '300',    // Ivy Journal Light
+          normal: '400',   // Ivy Journal Regular
+        },
       },
     },
   },

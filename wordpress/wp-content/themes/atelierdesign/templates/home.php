@@ -10,10 +10,8 @@
 <?php get_header(); ?>
 <?php get_template_part('/components/header/markup', 'header', get_field('header', 'acf-options-global-fields')); ?>
 <main id="home">
-  <?php $fields = get_fields();
-  var_dump($fields);
-  ?>
-  <?php get_template_part('/components/home-hero/markup', 'home-hero', []); ?>
+  <?php $fields = get_fields(); ?>
+  <?php get_template_part('/components/home-hero/markup', 'home-hero', $field['hero']); ?>
 
   <!-- <article class="article">
   </article> -->

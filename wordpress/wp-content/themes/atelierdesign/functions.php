@@ -329,3 +329,16 @@ function disable_unused_image_sizes($sizes) {
 add_filter('intermediate_image_sizes_advanced', 'disable_unused_image_sizes');
 
 add_filter('show_admin_bar', '__return_false');
+
+
+function enqueue_fonts()
+{
+  wp_enqueue_style('fonts',  get_template_directory_uri() . '/fonts/fonts.css', [], null, 'all');
+}
+add_action('wp_enqueue_scripts', 'enqueue_fonts');
+
+function add_custom_editor_styles() {
+  add_editor_style('fonts/fonts.css');
+}
+add_action('admin_init', 'add_custom_editor_styles');
+// add_editor_style();
