@@ -29,7 +29,45 @@ acf_add_local_field_group([
           'name' => 'hero',
           'type' => 'clone',
           'clone' => [
-            0 => 'field-group-hero',
+            0 => 'field-group-home-hero',
+          ],
+        ],
+      ],
+    ],
+    [
+      'key' => 'field-home-cta-footer-tab',
+      'label' => 'CTA Footer',
+      'type' => 'tab',
+      'no_preference' => 0,
+    ],
+    [
+      'key' => 'field-home-cta-footer-override',
+      'label' => '',
+      // 'instructions' => 'Enabled it if you want to override CTA footer from "General Options"',
+      'name' => 'cta-override',
+      'type' => 'true_false',
+      'ui' => 1,
+      'ui_on_text' => 'Override',
+      'ui_off_text' => 'Auto',
+      'default_value' => 0,
+    ],
+    [
+      'key' => 'field-home-cta-footer-clone',
+      'label' => '',
+      'name' => 'cta',
+      'type' => 'clone',
+      'clone' => [
+        0 => 'field-group-cta-footer',
+      ],
+      'display' => 'group',
+      'layout' => 'block',
+      'required' => 0,
+      'conditional_logic' => [
+        [
+          [
+            'field' => 'field-home-cta-footer-override',
+            'operator' => '==',
+            'value' => 1,
           ],
         ],
       ],
