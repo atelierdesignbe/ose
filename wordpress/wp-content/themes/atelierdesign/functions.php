@@ -3,8 +3,16 @@
 /**
  * AD UI
  */
+// @ini_set('display_errors', 1);
+// @ini_set('display_startup_errors', 1);
+// @error_reporting(E_ALL);
 
- 
+// // Forcer l'affichage même si WordPress le désactive
+// add_action('init', function() {
+//     ini_set('display_errors', 1);
+//     error_reporting(E_ALL);
+// });
+
 // Core functions & styles
 $ui_dir = get_template_directory() . '/ui';
 $ui_init_file = $ui_dir . '/wp/init.php';
@@ -17,7 +25,7 @@ if (file_exists($ui_init_file)) {
     'packageFolder' => get_template_directory() . '/ui',
     'packageUrl' => get_template_directory_uri() . '/ui',
     'customFlexibleComponentPath' => get_template_directory() . '/components',
-    'disableEnqueueStyles' => true,
+    // 'disableEnqueueStyles' => true,
   ]);
 
   // Advanced Custom Fields modules
@@ -295,3 +303,29 @@ function load_acf_files($pattern) {
 // Charger les fichiers
 load_acf_files(__DIR__ . '/components/**/fields.php');
 load_acf_files(__DIR__ . '/fieldGroups/*.php');
+
+
+function setup_custom_image_sizes() {
+    // Modifier les tailles par défaut
+    update_option('thumbnail_crop', 0); // 0 = pas de crop, garde les proportions
+    update_option('medium_size_w', 640);
+    update_option('medium_size_h', 0); // 0 = hauteur proportionnelle
+    
+    
+    update_option('large_size_w', 1280);
+    update_option('large_size_h', 0);
+    
+    // Ou utiliser add_image_size pour des tailles custom
+    add_image_size('medium', 640, 0, false); // largeur 640px, hauteur auto
+    add_image_size('large', 1280, 0, false);   // largeur 1280px, hauteur auto
+}
+add_action('after_setup_theme', 'setup_custom_image_sizes');
+
+// Désactiver les tailles d'images par défaut non utilisées (optionnel)
+function disable_unused_image_sizes($sizes) {
+    // Garde seulement les tailles que tu utilises
+    return array_intersect_key($sizes, array_flip(['thumbnail', 'medium', 'large', 'full']));
+}
+add_filter('intermediate_image_sizes_advanced', 'disable_unused_image_sizes');
+
+add_filter('show_admin_bar', '__return_false');

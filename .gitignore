@@ -10,6 +10,7 @@ wordpress/wp-content/*
 wordpress/wp-content/themes/*
 !wordpress/wp-content/themes/atelierdesign
 wordpress/wp-content/themes/atelierdesign/ui
+wordpress/wp-content/themes/atelierdesign/.vite-dev-mode
 
 npm-debug.log*
 yarn-debug.log*

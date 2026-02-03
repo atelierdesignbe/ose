@@ -1,5 +1,7 @@
-<footer>
-  <pre>
-    <?php print_r($args); ?>
-  </pre>
+<?php
+global $partials;
+
+?>
+<footer class="footer">
+
 </footer>

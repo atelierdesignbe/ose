@@ -3,7 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "touch wordpress/wp-content/themes/atelierdesign/.vite-dev-mode",
     "dev": "vite",
+    "postdev": "rm -f wordpress/wp-content/themes/atelierdesign/.vite-dev-mode",
+    "prebuild": "rm -f wordpress/wp-content/themes/atelierdesign/.vite-dev-mode",
     "build": "vite build",
     "plugin:install": "chmod +x install-plugins.sh && ./install-plugins.sh",
     "ui:init": "node setup-ui.js init",

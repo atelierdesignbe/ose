@@ -1,3 +1,4 @@
+import './styles/tailwind.scss'
 import './styles/app.scss'
 console.log('🎨 Atelier Design Theme loaded');
 console.log('HERE NEW')

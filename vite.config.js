@@ -32,7 +32,7 @@ export default defineConfig({
     },
   },
   
- server: {
+  server: {
     host: true,  // Écoute sur 0.0.0.0
     port: 5173,
     strictPort: true,

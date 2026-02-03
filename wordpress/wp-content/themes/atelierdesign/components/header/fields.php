@@ -2,45 +2,21 @@
 
 $headerFields = [
   [
-    'key' => 'field-header-nav',
-    'label' => 'Navigation',
-    'name' => 'header_nav',
-    'type' => 'group',
-    'layout' => 'block',
-    'sub_fields' => [
-      [
-        'key' => 'field-header-nav-items',
-        'label' => 'Items',
-        'name' => 'items',
-        'type' => 'repeater',
-        'layout' => 'block',
-        'button_label' => 'Add link',
-        'sub_fields' => [
-          [
-            'key' => 'field-header-nav-item-link',
-            'label' => 'Select a link',
-            'name' => 'link',
-            'type' => 'link',
-            'required' => 1,
-          ],
-        ],
-      ],
-    ],
+    'key' => 'field-header-menu-nav',
+    'label' => 'Menu',
+    'type' => 'link',
+    'name' => 'header-nav',
+    'type' => 'relationship',
+    'post_type' => ['page'], // tu peux mettre ce que tu veux ici
+    'filters' => ['search'], // filtres dans l’UI ACF
+    'return_format' => 'object',
   ],
   [
-    'key' => 'field-header-cta',
-    'label' => 'CTA Button (optional)',
-    'name' => 'header_cta',
-    'type' => 'group',
-    'sub_fields' => [
-      [
-        'key' => 'field-header-cta-link',
-        'label' => '',
-        'name' => 'link',
-        'type' => 'link',
-      ],
-    ],
-  ],
+    'key' => 'field-header-contact',
+    'label' => 'Contact link',
+    'type' => 'link',
+    'name' => 'header-contact'
+  ]
 ];
 
 $headerFieldGroup = [

@@ -4,18 +4,17 @@
  */
 
 if (!function_exists('atelierdesign_is_vite_development')) {
+    /**
+     * Détecte automatiquement si le serveur Vite est actif
+     * @return bool TRUE si yarn dev tourne, FALSE sinon
+     */
     function atelierdesign_is_vite_development() {
-        // Lire depuis la variable d'environnement
-        // $env_dev = getenv('ATELIERDESIGN_VITE_DEV');
-        
-        // if ($env_dev !== false) {
-        //     return filter_var($env_dev, FILTER_VALIDATE_BOOLEAN);
-        // }
-        
-        // Fallback
-        return true;
+        // Cache la vérification pour 5 secondes (performance)
+        $flag_file = get_template_directory() . '/.vite-dev-mode';
+        return file_exists($flag_file);
     }
 }
+
 if (!function_exists('atelierdesign_enqueue_vite_assets')) {
     function atelierdesign_enqueue_vite_assets() {
         $theme_dir = get_template_directory();
@@ -111,3 +110,21 @@ if (!function_exists('atelierdesign_enqueue_vite_assets')) {
 }
 
 add_action('wp_enqueue_scripts', 'atelierdesign_enqueue_vite_assets');
+
+add_action('admin_bar_menu', function($wp_admin_bar) {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+    
+    $is_dev = atelierdesign_is_vite_development();
+    
+    $wp_admin_bar->add_node([
+        'id' => 'vite-mode',
+        'title' => $is_dev ? '🔥 MODE DEV' : '🚀 MODE PROD',
+        'meta' => [
+            'title' => $is_dev 
+                ? 'Hot Reload actif - yarn dev tourne' 
+                : 'Assets buildés - yarn dev arrêté',
+        ],
+    ]);
+}, 100);

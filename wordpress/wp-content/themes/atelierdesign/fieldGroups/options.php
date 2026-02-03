@@ -6,6 +6,22 @@ acf_add_local_field_group([
   'fields' => [
     // Tab: Header
     [
+      'key' => 'field-global-tab',
+      'label' => 'Global',
+      'type' => 'tab',
+      'no_preference' => 0,
+    ],
+    [
+      'key' => 'field-global-logo',
+      'label' => 'Logo',
+      'name' => 'logo',
+      'type' => 'image',
+      'preview_size' => 'thumbnail',
+      'library' => 'all',
+      'mime_types' => 'jpg,jpeg,png,svg,webp',
+      'required' => 1
+    ],
+    [
       'key' => 'field-header-tab',
       'label' => 'Header',
       'type' => 'tab',
@@ -45,6 +61,31 @@ acf_add_local_field_group([
       'layout' => 'block',
       'required' => 0,
       'conditional_logic' => 0,
+    ],
+    [
+      'key' => 'field-social-tab',
+      'label' => 'Social',
+      'type' => 'tab',
+      'no_preference' => 0,
+    ],
+    [
+      'key' => 'field-social-clone',
+      'label' => '',
+      'name' => 'social',
+      'type' => 'clone',
+      'clone' => [
+        0 => 'field-group-social',
+      ],
+      'display' => 'seamless',
+      'layout' => 'block',
+      'required' => 0,
+      'conditional_logic' => 0,
+    ],
+    [
+      'key' => 'field-related-tab',
+      'label' => 'Related News',
+      'type' => 'tab',
+      'no_preference' => 0,
     ],
   ],
   'location' => array(
