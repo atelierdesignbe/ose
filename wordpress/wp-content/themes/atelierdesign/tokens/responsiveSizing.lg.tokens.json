@@ -316,15 +316,15 @@
       "2XL": {
         "fontSize": {
           "$type": "dimension",
-          "$value": "52px"
+          "$value": "48px"
         },
         "lineHeight": {
           "$type": "dimension",
-          "$value": "49.4px"
+          "$value": "52.8px"
         },
         "letterSpacing": {
           "$type": "dimension",
-          "$value": "-3.64px"
+          "$value": "0px"
         },
         "mark": {
           "fontSize": {
@@ -344,15 +344,15 @@
       "XL": {
         "fontSize": {
           "$type": "dimension",
-          "$value": "48px"
+          "$value": "34px"
         },
         "lineHeight": {
           "$type": "dimension",
-          "$value": "45.6px"
+          "$value": "39.44px"
         },
         "letterSpacing": {
           "$type": "dimension",
-          "$value": "-3px"
+          "$value": "0px"
         },
         "mark": {
           "fontSize": {
@@ -372,11 +372,11 @@
       "LG": {
         "fontSize": {
           "$type": "dimension",
-          "$value": "38px"
+          "$value": "26px"
         },
         "lineHeight": {
           "$type": "dimension",
-          "$value": "32.3px"
+          "$value": "31.2px"
         },
         "letterSpacing": {
           "$type": "dimension",
@@ -400,11 +400,11 @@
       "MD": {
         "fontSize": {
           "$type": "dimension",
-          "$value": "28px"
+          "$value": "20px"
         },
         "lineHeight": {
           "$type": "dimension",
-          "$value": "26.6px"
+          "$value": "23px"
         },
         "letterSpacing": {
           "$type": "dimension",
@@ -428,7 +428,7 @@
       "SM": {
         "fontSize": {
           "$type": "dimension",
-          "$value": "24px"
+          "$value": "18px"
         },
         "lineHeight": {
           "$type": "dimension",
@@ -458,11 +458,11 @@
       "XL": {
         "fontSize": {
           "$type": "dimension",
-          "$value": "30px"
+          "$value": "28px"
         },
         "lineHeight": {
           "$type": "dimension",
-          "$value": "31.5px"
+          "$value": "43.4px"
         },
         "letterSpacing": {
           "$type": "dimension",
@@ -472,15 +472,15 @@
       "LG": {
         "fontSize": {
           "$type": "dimension",
-          "$value": "24px"
+          "$value": "18px"
         },
         "lineHeight": {
           "$type": "dimension",
-          "$value": "37.2px"
+          "$value": "26px"
         },
         "letterSpacing": {
           "$type": "dimension",
-          "$value": "-1px"
+          "$value": "0px"
         }
       },
       "MD": {
@@ -490,7 +490,7 @@
         },
         "lineHeight": {
           "$type": "dimension",
-          "$value": "21.6px"
+          "$value": "22.88px"
         },
         "letterSpacing": {
           "$type": "dimension",
@@ -500,11 +500,11 @@
       "SM": {
         "fontSize": {
           "$type": "dimension",
-          "$value": "13px"
+          "$value": "14px"
         },
         "lineHeight": {
           "$type": "dimension",
-          "$value": "20px"
+          "$value": "21px"
         },
         "letterSpacing": {
           "$type": "dimension",
@@ -516,29 +516,29 @@
       "prefix": {
         "fontSize": {
           "$type": "dimension",
-          "$value": "{typography.heading.MD.fontSize}"
+          "$value": "14px"
         },
         "lineHeight": {
           "$type": "dimension",
-          "$value": "{typography.heading.MD.lineHeight}"
+          "$value": "20px"
         },
         "letterSpacing": {
           "$type": "dimension",
-          "$value": "{typography.heading.MD.letterSpacing}"
+          "$value": "1px"
         }
       },
       "number": {
         "fontSize": {
           "$type": "dimension",
-          "$value": "82px"
+          "$value": "76px"
         },
         "lineHeight": {
           "$type": "dimension",
-          "$value": "91.44px"
+          "$value": "72.2px"
         },
         "letterSpacing": {
           "$type": "dimension",
-          "$value": "-5.74px"
+          "$value": "0px"
         }
       },
       "suffix": {
@@ -560,34 +560,34 @@
       "title": {
         "fontSize": {
           "$type": "dimension",
-          "$value": "16px"
+          "$value": "13px"
         },
         "lineHeight": {
           "$type": "dimension",
-          "$value": "17.4px"
+          "$value": "20px"
         },
         "letterSpacing": {
           "$type": "dimension",
-          "$value": "0px"
+          "$value": "1px"
         }
       }
     },
     "accordion": {
       "fontSize": {
         "$type": "dimension",
-        "$value": "{typography.heading.MD.fontSize}"
+        "$value": "{typography.heading.LG.fontSize}"
       },
       "lineHeight": {
         "$type": "dimension",
-        "$value": "{typography.heading.MD.lineHeight}"
+        "$value": "{typography.heading.LG.lineHeight}"
       },
       "letterSpacing": {
         "$type": "dimension",
-        "$value": "{typography.heading.MD.letterSpacing}"
+        "$value": "{typography.heading.LG.letterSpacing}"
       },
       "iconSize": {
         "$type": "dimension",
-        "$value": "16px"
+        "$value": "14px"
       },
       "iconMargin": {
         "$type": "dimension",
@@ -788,7 +788,7 @@
     },
     "borderRadius": {
       "$type": "dimension",
-      "$value": "20px"
+      "$value": "12px"
     },
     "shadowX": {
       "$type": "dimension",
@@ -810,7 +810,7 @@
   "media": {
     "borderRadius": {
       "$type": "dimension",
-      "$value": "20px"
+      "$value": "0px"
     },
     "borderWidth": {
       "$type": "dimension",
@@ -834,7 +834,7 @@
     },
     "iconHolderSize": {
       "$type": "dimension",
-      "$value": "105px"
+      "$value": "92px"
     },
     "iconHolderBorderWidth": {
       "$type": "dimension",
@@ -842,7 +842,7 @@
     },
     "iconHolderBorderRadius": {
       "$type": "dimension",
-      "$value": "20px"
+      "$value": "9999px"
     },
     "iconHolderShadowX": {
       "$type": "dimension",
@@ -893,11 +893,11 @@
     "content": {
       "fontSize": {
         "$type": "dimension",
-        "$value": "37px"
+        "$value": "32px"
       },
       "lineHeight": {
         "$type": "dimension",
-        "$value": "39.59px"
+        "$value": "44.8px"
       },
       "letterSpacing": {
         "$type": "dimension",
@@ -921,28 +921,28 @@
     "secondaryLabel": {
       "fontSize": {
         "$type": "dimension",
-        "$value": "{typography.paragraph.MD.fontSize}"
+        "$value": "{typography.paragraph.SM.fontSize}"
       },
       "lineHeight": {
         "$type": "dimension",
-        "$value": "{typography.paragraph.MD.lineHeight}"
+        "$value": "{typography.paragraph.SM.lineHeight}"
       },
       "letterSpacing": {
         "$type": "dimension",
-        "$value": "{typography.paragraph.MD.letterSpacing}"
+        "$value": "{typography.paragraph.SM.letterSpacing}"
       }
     },
     "iconSize": {
       "$type": "dimension",
-      "$value": "57px"
+      "$value": "52px"
     },
     "avatarSize": {
       "$type": "dimension",
-      "$value": "112px"
+      "$value": "100px"
     },
     "borderWidth": {
       "$type": "dimension",
-      "$value": "0px"
+      "$value": "1px"
     },
     "paddingX": {
       "$type": "dimension",
@@ -954,7 +954,7 @@
     },
     "gapY": {
       "$type": "dimension",
-      "$value": "36px"
+      "$value": "24px"
     },
     "avatarMarginRight": {
       "$type": "dimension",
@@ -962,182 +962,26 @@
     },
     "avatarBorderRadius": {
       "$type": "dimension",
-      "$value": "20px"
+      "$value": "0px"
     },
     "labelsGapY": {
       "$type": "dimension",
-      "$value": "6px"
+      "$value": "12px"
     }
   },
   "badge": {
-    "fill": {
-      "fontSize": {
-        "$type": "dimension",
-        "$value": "11px"
-      },
-      "lineHeight": {
-        "$type": "dimension",
-        "$value": "12.1px"
-      },
-      "letterSpacing": {
-        "$type": "dimension",
-        "$value": "0px"
-      },
-      "paddingLeft": {
-        "$type": "dimension",
-        "$value": "12px"
-      },
-      "paddingRight": {
-        "$type": "dimension",
-        "$value": "12px"
-      },
-      "paddingTop": {
-        "$type": "dimension",
-        "$value": "6px"
-      },
-      "paddingBottom": {
-        "$type": "dimension",
-        "$value": "6px"
-      },
-      "borderTopLeftRadius": {
-        "$type": "dimension",
-        "$value": "8px"
-      },
-      "borderTopRightRadius": {
-        "$type": "dimension",
-        "$value": "8px"
-      },
-      "borderBottomLeftRadius": {
-        "$type": "dimension",
-        "$value": "8px"
-      },
-      "borderBottomRightRadius": {
-        "$type": "dimension",
-        "$value": "8px"
-      },
-      "borderLeftWidth": {
-        "$type": "dimension",
-        "$value": "1px"
-      },
-      "borderRightWidth": {
-        "$type": "dimension",
-        "$value": "1px"
-      },
-      "borderTopWidth": {
-        "$type": "dimension",
-        "$value": "1px"
-      },
-      "borderBottomWidth": {
-        "$type": "dimension",
-        "$value": "1px"
-      },
-      "shadowPositionX": {
-        "$type": "dimension",
-        "$value": "0px"
-      },
-      "shadowPositionY": {
-        "$type": "dimension",
-        "$value": "0px"
-      },
-      "shadowBlur": {
-        "$type": "dimension",
-        "$value": "0px"
-      },
-      "shadowSpread": {
-        "$type": "dimension",
-        "$value": "0px"
-      }
-    },
-    "outline": {
-      "fontSize": {
-        "$type": "dimension",
-        "$value": "{badge.fill.fontSize}"
-      },
-      "lineHeight": {
-        "$type": "dimension",
-        "$value": "{badge.fill.lineHeight}"
-      },
-      "letterSpacing": {
-        "$type": "dimension",
-        "$value": "{badge.fill.letterSpacing}"
-      },
-      "paddingLeft": {
-        "$type": "dimension",
-        "$value": "{badge.fill.paddingLeft}"
-      },
-      "paddingRight": {
-        "$type": "dimension",
-        "$value": "{badge.fill.paddingRight}"
-      },
-      "paddingTop": {
-        "$type": "dimension",
-        "$value": "{badge.fill.paddingTop}"
-      },
-      "paddingBottom": {
-        "$type": "dimension",
-        "$value": "{badge.fill.paddingBottom}"
-      },
-      "borderTopLeftRadius": {
-        "$type": "dimension",
-        "$value": "{badge.fill.borderTopLeftRadius}"
-      },
-      "borderTopRightRadius": {
-        "$type": "dimension",
-        "$value": "{badge.fill.borderTopRightRadius}"
-      },
-      "borderBottomLeftRadius": {
-        "$type": "dimension",
-        "$value": "{badge.fill.borderBottomLeftRadius}"
-      },
-      "borderBottomRightRadius": {
-        "$type": "dimension",
-        "$value": "{badge.fill.borderBottomRightRadius}"
-      },
-      "borderLeftWidth": {
-        "$type": "dimension",
-        "$value": "{badge.fill.borderLeftWidth}"
-      },
-      "borderRightWidth": {
-        "$type": "dimension",
-        "$value": "{badge.fill.borderRightWidth}"
-      },
-      "borderTopWidth": {
-        "$type": "dimension",
-        "$value": "{badge.fill.borderTopWidth}"
-      },
-      "borderBottomWidth": {
-        "$type": "dimension",
-        "$value": "{badge.fill.borderBottomWidth}"
-      },
-      "shadowPositionX": {
-        "$type": "dimension",
-        "$value": "0px"
-      },
-      "shadowPositionY": {
-        "$type": "dimension",
-        "$value": "0px"
-      },
-      "shadowBlur": {
-        "$type": "dimension",
-        "$value": "0px"
-      },
-      "shadowSpread": {
-        "$type": "dimension",
-        "$value": "0px"
-      }
-    },
     "normal": {
       "fontSize": {
         "$type": "dimension",
-        "$value": "{badge.outline.fontSize}"
+        "$value": "14px"
       },
       "lineHeight": {
         "$type": "dimension",
-        "$value": "{badge.outline.lineHeight}"
+        "$value": "14px"
       },
       "letterSpacing": {
         "$type": "dimension",
-        "$value": "{badge.outline.letterSpacing}"
+        "$value": "0px"
       },
       "paddingLeft": {
         "$type": "dimension",
@@ -1173,35 +1017,191 @@
       },
       "borderLeftWidth": {
         "$type": "dimension",
-        "$value": "{badge.outline.borderLeftWidth}"
+        "$value": "0px"
       },
       "borderRightWidth": {
         "$type": "dimension",
-        "$value": "{badge.outline.borderRightWidth}"
+        "$value": "0px"
       },
       "borderTopWidth": {
         "$type": "dimension",
-        "$value": "{badge.outline.borderTopWidth}"
+        "$value": "0px"
       },
       "borderBottomWidth": {
         "$type": "dimension",
-        "$value": "{badge.outline.borderBottomWidth}"
+        "$value": "0px"
       },
       "shadowPositionX": {
         "$type": "dimension",
-        "$value": "{badge.outline.shadowPositionX}"
+        "$value": "0px"
       },
       "shadowPositionY": {
         "$type": "dimension",
-        "$value": "{badge.outline.shadowPositionY}"
+        "$value": "0px"
       },
       "shadowBlur": {
         "$type": "dimension",
-        "$value": "{badge.outline.shadowBlur}"
+        "$value": "0px"
       },
       "shadowSpread": {
         "$type": "dimension",
-        "$value": "{badge.outline.shadowSpread}"
+        "$value": "0px"
+      }
+    },
+    "filled": {
+      "fontSize": {
+        "$type": "dimension",
+        "$value": "14px"
+      },
+      "lineHeight": {
+        "$type": "dimension",
+        "$value": "14px"
+      },
+      "letterSpacing": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "paddingLeft": {
+        "$type": "dimension",
+        "$value": "14px"
+      },
+      "paddingRight": {
+        "$type": "dimension",
+        "$value": "14px"
+      },
+      "paddingTop": {
+        "$type": "dimension",
+        "$value": "10px"
+      },
+      "paddingBottom": {
+        "$type": "dimension",
+        "$value": "10px"
+      },
+      "borderTopLeftRadius": {
+        "$type": "dimension",
+        "$value": "9999px"
+      },
+      "borderTopRightRadius": {
+        "$type": "dimension",
+        "$value": "9999px"
+      },
+      "borderBottomLeftRadius": {
+        "$type": "dimension",
+        "$value": "9999px"
+      },
+      "borderBottomRightRadius": {
+        "$type": "dimension",
+        "$value": "9999px"
+      },
+      "borderLeftWidth": {
+        "$type": "dimension",
+        "$value": "1px"
+      },
+      "borderRightWidth": {
+        "$type": "dimension",
+        "$value": "1px"
+      },
+      "borderTopWidth": {
+        "$type": "dimension",
+        "$value": "1px"
+      },
+      "borderBottomWidth": {
+        "$type": "dimension",
+        "$value": "1px"
+      },
+      "shadowPositionX": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowPositionY": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowBlur": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowSpread": {
+        "$type": "dimension",
+        "$value": "0px"
+      }
+    },
+    "outlined": {
+      "fontSize": {
+        "$type": "dimension",
+        "$value": "13px"
+      },
+      "lineHeight": {
+        "$type": "dimension",
+        "$value": "18px"
+      },
+      "letterSpacing": {
+        "$type": "dimension",
+        "$value": "3px"
+      },
+      "paddingLeft": {
+        "$type": "dimension",
+        "$value": "15.5px"
+      },
+      "paddingRight": {
+        "$type": "dimension",
+        "$value": "15.5px"
+      },
+      "paddingTop": {
+        "$type": "dimension",
+        "$value": "4px"
+      },
+      "paddingBottom": {
+        "$type": "dimension",
+        "$value": "4px"
+      },
+      "borderTopLeftRadius": {
+        "$type": "dimension",
+        "$value": "{badge.filled.borderTopLeftRadius}"
+      },
+      "borderTopRightRadius": {
+        "$type": "dimension",
+        "$value": "{badge.filled.borderTopRightRadius}"
+      },
+      "borderBottomLeftRadius": {
+        "$type": "dimension",
+        "$value": "{badge.filled.borderBottomLeftRadius}"
+      },
+      "borderBottomRightRadius": {
+        "$type": "dimension",
+        "$value": "{badge.filled.borderBottomRightRadius}"
+      },
+      "borderLeftWidth": {
+        "$type": "dimension",
+        "$value": "{badge.filled.borderLeftWidth}"
+      },
+      "borderRightWidth": {
+        "$type": "dimension",
+        "$value": "{badge.filled.borderRightWidth}"
+      },
+      "borderTopWidth": {
+        "$type": "dimension",
+        "$value": "{badge.filled.borderTopWidth}"
+      },
+      "borderBottomWidth": {
+        "$type": "dimension",
+        "$value": "{badge.filled.borderBottomWidth}"
+      },
+      "shadowPositionX": {
+        "$type": "dimension",
+        "$value": "{badge.filled.shadowPositionX}"
+      },
+      "shadowPositionY": {
+        "$type": "dimension",
+        "$value": "{badge.filled.shadowPositionY}"
+      },
+      "shadowBlur": {
+        "$type": "dimension",
+        "$value": "{badge.filled.shadowBlur}"
+      },
+      "shadowSpread": {
+        "$type": "dimension",
+        "$value": "{badge.filled.shadowSpread}"
       }
     }
   },
@@ -1209,15 +1209,15 @@
     "flat": {
       "paddingX": {
         "$type": "dimension",
-        "$value": "25px"
+        "$value": "28px"
       },
       "paddingY": {
         "$type": "dimension",
-        "$value": "15px"
+        "$value": "10px"
       },
       "gap": {
         "$type": "dimension",
-        "$value": "19px"
+        "$value": "16px"
       },
       "borderWidth": {
         "$type": "dimension",
@@ -1229,7 +1229,7 @@
       },
       "iconSize": {
         "$type": "dimension",
-        "$value": "16px"
+        "$value": "33px"
       },
       "shadowX": {
         "$type": "dimension",
@@ -1347,7 +1347,7 @@
       },
       "borderRadius": {
         "$type": "dimension",
-        "$value": "20px"
+        "$value": "5px"
       },
       "shadowX": {
         "$type": "dimension",
@@ -1437,11 +1437,11 @@
     "primaryFlat": {
       "paddingX": {
         "$type": "dimension",
-        "$value": "50px"
+        "$value": "32px"
       },
       "paddingY": {
         "$type": "dimension",
-        "$value": "50px"
+        "$value": "32px"
       },
       "borderWidth": {
         "$type": "dimension",
@@ -1449,7 +1449,7 @@
       },
       "borderRadius": {
         "$type": "dimension",
-        "$value": "20px"
+        "$value": "0px"
       },
       "shadowX": {
         "$type": "dimension",

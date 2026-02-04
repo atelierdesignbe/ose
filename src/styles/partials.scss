@@ -5,17 +5,17 @@
     @apply relative @sm:py-[10px] @md/lg:py-[24px];
 
     &-line {
-      @apply absolute bottom-0 left-0 w-full h-[1px] opacity-20 bg-black;
+      @apply absolute bottom-0 left-0 w-full h-[1px] opacity-20 bg-dark-blue;
     }
 
   }
 
-  .logo {
+  .logo-brand {
     @apply relative z-[99];
   }
 }
 
-.logo {
+.logo-brand {
   img {
     @apply @sm:w-[106px] @sm:h-[70px] @md/lg:w-[125px] @md/lg:h-[82px];
   }

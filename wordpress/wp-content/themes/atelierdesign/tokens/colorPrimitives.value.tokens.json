@@ -1,40 +1,28 @@
 {
   "primitives": {
-    "dark-green": {
-      "$type": "color",
-      "$value": "#081c11"
-    },
-    "dark-green-cover": {
+    "black": {
       "$type": "color",
       "$value": "#000000"
     },
-    "green": {
+    "dark-blue": {
       "$type": "color",
-      "$value": "#154229"
+      "$value": "#021d4c"
     },
-    "vert-sup": {
+    "yellow": {
       "$type": "color",
-      "$value": "#3bab02"
+      "$value": "#ffd65a"
     },
-    "electric-green": {
+    "light-yellow": {
       "$type": "color",
-      "$value": "#a7ff7a"
+      "$value": "#ffeea3"
     },
-    "vert-plus": {
+    "light-blue": {
       "$type": "color",
-      "$value": "#d0f7ba"
+      "$value": "#cde0f6"
     },
-    "soft-green": {
+    "light-grey": {
       "$type": "color",
-      "$value": "#e9ffd6"
-    },
-    "beige": {
-      "$type": "color",
-      "$value": "#ffeae3"
-    },
-    "beige-orange": {
-      "$type": "color",
-      "$value": "#fff6f3"
+      "$value": "#f7f7f7"
     },
     "white": {
       "$type": "color",

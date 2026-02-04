@@ -23,26 +23,20 @@
         "white": [
           "colorSystem.white.tokens.json"
         ],
-        "beige-orange": [
-          "colorSystem.beige-orange.tokens.json"
+        "light-grey": [
+          "colorSystem.light-grey.tokens.json"
         ],
-        "beige": [
-          "colorSystem.beige.tokens.json"
+        "light-blue": [
+          "colorSystem.light-blue.tokens.json"
         ],
-        "soft-green": [
-          "colorSystem.soft-green.tokens.json"
+        "light-yellow": [
+          "colorSystem.light-yellow.tokens.json"
         ],
-        "vert-plus": [
-          "colorSystem.vert-plus.tokens.json"
+        "yellow": [
+          "colorSystem.yellow.tokens.json"
         ],
-        "green": [
-          "colorSystem.green.tokens.json"
-        ],
-        "dark-green": [
-          "colorSystem.dark-green.tokens.json"
-        ],
-        "dark-green-cover": [
-          "colorSystem.dark-green-cover.tokens.json"
+        "dark-blue": [
+          "colorSystem.dark-blue.tokens.json"
         ]
       }
     },

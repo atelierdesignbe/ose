@@ -4,11 +4,11 @@ $menu = $args['menu'];
 $newsletter = $args['newsletter'];
 $privacyNav = $args['bottom-nav'];
 ?>
-<footer class="footer @sm:pt-[50px] md:pt-0 bg-gray-50 relative">
+<footer class="footer @sm:pt-[50px] md:pt-0 theme-light-grey bg-layout-main relative">
   <div class="footer-top">
     <div class="px-container grid grid-base">
       <div class="flex flex-col @@:gap-y-[32px] col-span-12 md:col-span-15 @md/lg:pt-[64px] @md/lg:pb-[180px] md:flex-row md:justify-between @md/lg:gap-x-[50px]">
-        <div class="logo aos animate-fadeinup flex-none">
+        <div class="logo-brand aos animate-fadeinup flex-none">
           <?php echo get_template_part('/components/logo', null, ['logo' => get_field('logo', 'acf-options-global-fields')]); ?>
         </div>
         <!-- ADDR -->
@@ -16,7 +16,7 @@ $privacyNav = $args['bottom-nav'];
           <?php if($contact['link']): ?>
             <a href="<?= $contact['link']['url'] ?>" target="<?= $contact['url']['target'] ?? '_self' ?>" class="heading heading-2xl heading-primary aos animate-fadeinup animate-delay-100 autoscale"><?= $contact['link']['title'] ?></a>
           <?php endif; ?>
-          <?php if($contact['title']): ?><p class="subtitle mm-sm:hidden @md/lg:mt-[32px] aos animate-fadeinup animate-delay-200"><?= $contact['title'] ?></p><?php endif;?>
+          <?php if($contact['title']): ?><p class="subtitle mm-sm:hidden @md/lg:mt-[32px] aos animate-fadeinup animate-delay-200 text-dark-blue"><?= $contact['title'] ?></p><?php endif;?>
           <?php if($contact['addr']): ?>
             <a href="#" class="heading-lg heading-primary heading aos animate-fadeinup animate-delay-200 autoscale">
               <?= $contact['addr'] ?>
@@ -43,7 +43,7 @@ $privacyNav = $args['bottom-nav'];
         <div class="flex flex-col md:flex-row @@:gap-[50px] md:items-end md:justify-between">
           <?php if($menu && sizeof($menu) > 0): ?>
             <div class="footer-menu flex flex-col @@:gap-y-[24px]">
-              <p class="subtitle autoscale aos animate-fadeinup">Ose</p>
+              <p class="subtitle autoscale aos animate-fadeinup text-dark-blue">Ose</p>
               <ul class="flex flex-col @@:gap-y-[12px] autoscale-children aos animate-fadeinup animate-delay-200">
                 <?php foreach($menu as $item): ?>
                   <li>
@@ -54,7 +54,7 @@ $privacyNav = $args['bottom-nav'];
             </div>
           <?php endif;  ?>
 
-          <div class="social">
+          <div class="social text-dark-blue">
             <?php echo get_template_part('/components/social/markup', 'social', ['social' => get_field('social', 'acf-options-global-fields')['social']]); ?>
           </div>
         </div>

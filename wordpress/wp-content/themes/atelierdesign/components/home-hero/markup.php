@@ -10,11 +10,11 @@ $cover = $args['cover'];
   <div class="hero-wrapper px-container z-[1] relative">
     <div class="flex flex-col @sm:gap-y-[42px] @md/lg:gap-y-[68px]">
       <div class="grid-base">
-        <h1 class="heading heading-primary @sm:text-[46px] @md/lg:text-[72px] @sm:leading-[48px] @md/lg:leading-[69px] col-span-12 md:col-span-18 md:col-start-4 autoscale aos animate-fadeinup"><?= $title ?></h1>
+        <h1 class="heading heading-primary @sm:text-[46px] @md/lg:text-[72px] font-serif font-light @sm:leading-[48px] @md/lg:leading-[69px] col-span-12 md:col-span-18 md:col-start-4 autoscale aos animate-fadeinup"><?= $title ?></h1>
       </div>
       <div class="grid-base">
         <?php if($content): ?>
-          <p class="paragraph paragraph-primary @md/lg:text-[18px] @@:pl-[28px] border-l border-black col-span-12 md:col-start-16 md:col-span-8 autoscale aos animate-fadeinup animate-delay-200"><?= $content ?></p>
+          <p class="paragraph paragraph-primary @md/lg:text-[18px] @@:pl-[28px] border-l border-dark-blue col-span-12 md:col-start-16 md:col-span-8 autoscale aos animate-fadeinup animate-delay-200 @@:tracking-[1px]"><?= $content ?></p>
         <?php endif;?>
       </div>
     </div>

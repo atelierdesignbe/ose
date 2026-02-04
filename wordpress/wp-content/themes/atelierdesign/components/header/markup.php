@@ -5,9 +5,9 @@
 
 <header class="header" js-header>
   <div class="px-container">
-    <div class="header-wrapper flex items-center justify-between autoscale-children">
+    <div class="header-wrapper flex items-center justify-between autoscale-children text-dark-blue theme-white">
       <!--  logo  -->
-      <div class="logo">
+      <div class="logo-brand">
         <?php echo get_template_part('/components/logo', null, ['logo' => get_field('logo', 'acf-options-global-fields')]); ?>
       </div>
       <nav class="flex flex-wrap items-center">
@@ -33,7 +33,7 @@
           <?php endif; ?>
 
           <?php if($link): ?>
-            <a href="<?= $link['url'] ?>" target="<?= $link['target'] ?? '_self' ?>" class="button button-outline button-primary">
+            <a href="<?= $link['url'] ?>" target="<?= $link['target'] ?? '_self' ?>" class="button button-outline button-secondary">
               <span class="button-title"><?= $link['title'] ?></span>
             </a>
           <?php endif; ?>

@@ -276,7 +276,7 @@
         "fontWeight": "{font.keyNumbers.prefix.fontWeight}",
         "letterSpacing": "{typography.keyNumbers.prefix.letterSpacing}",
         "lineHeight": "{typography.keyNumbers.prefix.lineHeight}",
-        "textTransform": "none",
+        "textTransform": "uppercase",
         "textDecoration": "none"
       }
     },
@@ -300,7 +300,7 @@
         "fontWeight": "{font.keyNumbers.suffix.fontWeight}",
         "letterSpacing": "{typography.keyNumbers.suffix.letterSpacing}",
         "lineHeight": "{typography.keyNumbers.suffix.lineHeight}",
-        "textTransform": "none",
+        "textTransform": "uppercase",
         "textDecoration": "none"
       }
     }
@@ -410,38 +410,38 @@
     }
   },
   "Badge": {
-    "Fill": {
-      "$type": "typography",
-      "$value": {
-        "fontFamily": "{font.badge.fill.fontFamily}",
-        "fontSize": "{badge.fill.fontSize}",
-        "fontWeight": "{font.badge.fill.fontWeight}",
-        "letterSpacing": "{badge.fill.letterSpacing}",
-        "lineHeight": "{badge.fill.lineHeight}",
-        "textTransform": "uppercase",
-        "textDecoration": "none"
-      }
-    },
-    "Outline": {
-      "$type": "typography",
-      "$value": {
-        "fontFamily": "{font.badge.outline.fontFamily}",
-        "fontSize": "{badge.outline.fontSize}",
-        "fontWeight": "{font.badge.outline.fontWeight}",
-        "letterSpacing": "{badge.outline.letterSpacing}",
-        "lineHeight": "{badge.outline.lineHeight}",
-        "textTransform": "uppercase",
-        "textDecoration": "none"
-      }
-    },
     "Normal": {
       "$type": "typography",
       "$value": {
         "fontFamily": "{font.badge.normal.fontFamily}",
-        "fontSize": "{badge.outline.fontSize}",
+        "fontSize": "{badge.normal.fontSize}",
         "fontWeight": "{font.badge.normal.fontWeight}",
-        "letterSpacing": "{badge.outline.letterSpacing}",
-        "lineHeight": "{badge.outline.lineHeight}",
+        "letterSpacing": "{badge.normal.letterSpacing}",
+        "lineHeight": "{badge.normal.lineHeight}",
+        "textTransform": "none",
+        "textDecoration": "none"
+      }
+    },
+    "Filled": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.badge.filled.fontFamily}",
+        "fontSize": "{badge.filled.fontSize}",
+        "fontWeight": "{font.badge.filled.fontWeight}",
+        "letterSpacing": "{badge.filled.letterSpacing}",
+        "lineHeight": "{badge.filled.lineHeight}",
+        "textTransform": "none",
+        "textDecoration": "none"
+      }
+    },
+    "Outlined": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.badge.outlined.fontFamily}",
+        "fontSize": "{badge.outlined.fontSize}",
+        "fontWeight": "{font.badge.outlined.fontWeight}",
+        "letterSpacing": "{badge.outlined.letterSpacing}",
+        "lineHeight": "{badge.outlined.lineHeight}",
         "textTransform": "uppercase",
         "textDecoration": "none"
       }

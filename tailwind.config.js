@@ -12,7 +12,7 @@ export default twWithADUI({
     extend: {
       fontFamily: {
         serif: [
-          'Ivy Journal',
+          'IvyJournal',
           'ui-serif',
           'Georgia',
           'Cambria',

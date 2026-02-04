@@ -1,5 +1,7 @@
 :root {
   --pl-margin: calc((var(--container-margin) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+  --dark-blue-20: rgba(2, 29, 76, .2);
 }
 
 @screen md {

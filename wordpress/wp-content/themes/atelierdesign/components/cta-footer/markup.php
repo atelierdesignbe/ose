@@ -16,7 +16,7 @@ else $cols = 'grid-cols-1 md:grid-cols-2';
 
 <div class="grid <?= $cols ?> cta">
   <?php foreach($cta['items'] as $i => $item):?>
-    <div class="col-span-1 <?= $i ? 'bg-gray-100' : 'bg-gray-200' ?> @sm:py-[70px] @sm:px-[30px] @md/lg:p-[100px] flex flex-col justify-between items-center text-center">
+    <div class="col-span-1 bg-layout-main <?= $i == 0 ? 'theme-light-blue' : 'theme-white' ?> @sm:py-[70px] @sm:px-[30px] @md/lg:p-[100px] flex flex-col justify-between items-center text-center">
       <?php $adwp->get_template_part('_wysiwyg',  array('content' => $item['content'], 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
       <a href="<?= $item['link']['url'] ?>" class="button button-flat button-primary aos animate-fadeinup animate-delay-100">
         <span class="button-title">
