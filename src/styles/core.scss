@@ -1,2 +1,9 @@
 :root {
+  --pl-margin: calc((var(--container-margin) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+}
+
+@screen md {
+  :root {
+    --pl-margin: calc((var(--container-margin) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+  }
 }

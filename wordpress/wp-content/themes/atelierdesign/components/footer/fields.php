@@ -29,7 +29,8 @@ $footerFields = [
         'key' => 'field-footer-contact-addr',
         'label' => 'Address',
         'name' => 'addr',
-        'type' => 'text',
+        'type' => 'textarea',
+        'new_lines' => 'br',
       ],
       [
         'key' => 'field-footer-contact-email',
@@ -49,7 +50,7 @@ $footerFields = [
     'key' => 'field-footer-newsletter',
     'label' => 'Newsletter',
     'name' => 'newsletter',
-    'text' => 'text',
+    'type' => 'text',
     'instructions' => 'Form id from Formidable Form',
   ],
   [

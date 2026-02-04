@@ -12,9 +12,27 @@
 
   .logo {
     @apply relative z-[99];
+  }
+}
 
-    img {
-      @apply @sm:w-[106px] @sm:h-[70px] @md/lg:w-[125px] @md/lg:h-[82px];
+.logo {
+  img {
+    @apply @sm:w-[106px] @sm:h-[70px] @md/lg:w-[125px] @md/lg:h-[82px];
+  }
+}
+
+.social {
+  @apply flex flex-row @@:gap-x-[32px];
+
+  svg {
+    @apply @@:h-[18px] w-auto;
+  }
+}
+
+.footer {
+  &-bottom {
+    @screen md {
+      width: calc((15 / 24 * (100% - (var(--pl-margin) * 2))) + var(--pl-margin));
     }
   }
 }

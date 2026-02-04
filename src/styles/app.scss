@@ -3,6 +3,7 @@
 @use 'partials';
 @use 'menu';
 @use 'lang';
+@use 'typo';
 
 body {
   @apply min-h-screen font-sans;
