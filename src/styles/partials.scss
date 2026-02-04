@@ -36,3 +36,13 @@
     }
   }
 }
+
+.cta {
+  .wysiwyg {
+    @apply mt-0;
+    
+    & > * {
+      @apply text-center text-balance;
+    }
+  }
+}

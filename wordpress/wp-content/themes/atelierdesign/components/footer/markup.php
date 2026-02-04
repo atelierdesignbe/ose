@@ -14,9 +14,9 @@ $privacyNav = $args['bottom-nav'];
         <!-- ADDR -->
         <div class="contact flex flex-col @@:gap-y-[24px] items-start @md/lg:pr-[6.66%]">
           <?php if($contact['link']): ?>
-            <a href="<?= $contact['link']['url'] ?>" target="<?= $contact['url']['target'] ?? '_self' ?>" class="heading heading-2xl heading-primary aos animate-delay-100 autoscale"><?= $contact['link']['title'] ?></a>
+            <a href="<?= $contact['link']['url'] ?>" target="<?= $contact['url']['target'] ?? '_self' ?>" class="heading heading-2xl heading-primary aos animate-fadeinup animate-delay-100 autoscale"><?= $contact['link']['title'] ?></a>
           <?php endif; ?>
-          <?php if($contact['title']): ?><p class="subtitle mm-sm:hidden @md/lg:mt-[32px]"><?= $contact['title'] ?></p><?php endif;?>
+          <?php if($contact['title']): ?><p class="subtitle mm-sm:hidden @md/lg:mt-[32px] aos animate-fadeinup animate-delay-200"><?= $contact['title'] ?></p><?php endif;?>
           <?php if($contact['addr']): ?>
             <a href="#" class="heading-lg heading-primary heading aos animate-fadeinup animate-delay-200 autoscale">
               <?= $contact['addr'] ?>

@@ -41,15 +41,18 @@ acf_add_local_field_group([
       'no_preference' => 0,
     ],
     [
-      'key' => 'field-home-cta-footer-override',
-      'label' => '',
-      // 'instructions' => 'Enabled it if you want to override CTA footer from "General Options"',
-      'name' => 'cta-override',
-      'type' => 'true_false',
-      'ui' => 1,
-      'ui_on_text' => 'Override',
-      'ui_off_text' => 'Auto',
-      'default_value' => 0,
+      'key' => 'field-home-cta-footer-state',
+      'label' => 'CTA status',
+      'name' => 'cta_status',
+      'type' => 'button_group',
+      'choices' => [
+          'default'     => 'Default',
+          'override'  => 'Override',
+          'disabled'  => 'Disabled',
+      ],
+      'default_value' => 'default',
+      'layout' => 'horizontal', // Options : 'horizontal' ou 'vertical'
+      'return_format' => 'value',
     ],
     [
       'key' => 'field-home-cta-footer-clone',
@@ -65,9 +68,9 @@ acf_add_local_field_group([
       'conditional_logic' => [
         [
           [
-            'field' => 'field-home-cta-footer-override',
+            'field' => 'field-home-cta-footer-state',
             'operator' => '==',
-            'value' => 1,
+            'value' => 'override',
           ],
         ],
       ],
