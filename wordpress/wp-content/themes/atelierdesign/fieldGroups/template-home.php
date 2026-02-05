@@ -34,6 +34,199 @@ acf_add_local_field_group([
         ],
       ],
     ],
+    // AREAS
+    [
+      'key' => 'field-home-intro-tab',
+      'label' => 'Areas',
+      'type' => 'tab',
+      'no_preference' => 0,
+    ],
+    [
+      'key' => 'field-home-intro-title',
+      'label' => 'Title',
+      'name' => 'intro-title',
+      'type' => 'text',
+      'required' => 1,
+    ],
+    [
+      'key' => 'field-home-intro-link',
+      'label' => 'Link',
+      'name' => 'intro-link',
+      'type' => 'link',
+      'required' => 1,
+    ],
+    [
+      ...wysiwyg('field-home-intro-content', ['heading-xl'], ['paragraph-md', 'paragraph-lg'], 'intro-content'),
+      'label' => 'Content',
+      'required' => 1
+    ],
+    [
+      'key' => 'field-home-intro-areas',
+      'label' => 'Areas',
+      'type' => 'repeater',
+      'name' => 'intro-areas',
+      'sub_fields' => [
+        wysiwyg('field-home-intro-area', ['heading-xl'], ['paragraph-md']),
+      ]
+    ],
+
+    // LAST PUBLICATION
+    [
+      'key' => 'field-home-publication-tab',
+      'label' => 'Last Publications',
+      'type' => 'tab',
+      'no_preference' => 0,
+    ],
+    [
+      'key' => 'field-home-group-last-publications',
+      'label' => '',
+      'name' => 'publications',
+      'type' => 'group',
+      'sub_fields' => [
+        [
+          'key' => 'field-home-clone-fieldgroup-publications',
+          'label' => 'Publications',
+          'name' => 'hero',
+          'type' => 'clone',
+          'clone' => [
+            0 => 'field-group-publications',
+          ],
+        ],
+      ],
+    ],
+
+    // GRID
+    [
+      'key' => 'field-home-grid-tab',
+      'label' => 'Grid',
+      'type' => 'tab',
+      'no_preference' => 0,
+    ],
+    [
+      'key' => 'field-home-group-last-grid',
+      'label' => '',
+      'name' => 'grid',
+      'type' => 'group',
+      'sub_fields' => [
+        [
+          'key' => 'field-home-clone-fieldgroup-grid',
+          'label' => 'Grid',
+          'name' => 'hero',
+          'type' => 'clone',
+          'clone' => [
+            0 => 'field-group-grid',
+          ],
+        ],
+      ],
+    ],
+
+    // LAST EVENTS 
+    [
+      'key' => 'field-home-event-tab',
+      'label' => 'Last Events',
+      'type' => 'tab',
+      'no_preference' => 0,
+    ],
+
+    [
+      'key' => 'field-home-group-last-events',
+      'label' => '',
+      'name' => 'events',
+      'type' => 'group',
+      'sub_fields' => [
+        [
+          'key' => 'field-home-clone-fieldgroup-events',
+          'label' => 'Events',
+          'name' => 'hero',
+          'type' => 'clone',
+          'clone' => [
+            0 => 'field-group-events',
+          ],
+        ],
+      ],
+    ],
+
+    // LAST PROJECTS
+    [
+      'key' => 'field-home-project-tab',
+      'label' => 'Last Projects',
+      'type' => 'tab',
+      'no_preference' => 0,
+    ],
+    [
+      'key' => 'field-home-group-last-projects',
+      'label' => '',
+      'name' => 'projects',
+      'type' => 'group',
+      'sub_fields' => [
+        [
+          'key' => 'field-home-clone-fieldgroup-projects',
+          'label' => 'Projects',
+          'name' => 'hero',
+          'type' => 'clone',
+          'clone' => [
+            0 => 'field-group-projects',
+          ],
+        ],
+      ],
+    ],
+
+    // INSIGHTS
+    [
+      'key' => 'field-home-insights-tab',
+      'label' => 'Insights',
+      'type' => 'tab',
+      'no_preference' => 0,
+    ],
+    [
+      ...wysiwyg('field-home-insights-left'),
+      'label' => 'Content',
+      'required' => 1,
+      'name' => 'insights-content'
+    ],
+    [
+      'key' => 'field-home-insights-items',
+      'label' => 'Items',
+      'name' => 'insights',
+      'type' => 'repeater',
+      'layout' => 'block',
+      'sub_fields' => [
+        [
+          'key' => 'field-home-insights-items-cover',
+          'label' => 'Cover',
+          'type' => 'image',
+          'name' => 'cover',
+          'preview_size' => 'thumbnail',
+          'library' => 'all',
+          'mime_types' => 'jpg,jpeg,png,svg,webp',
+          'required' => 1,
+        ],
+        [
+          'key' => 'field-home-insights-items-content',
+          'label' => 'Content',
+          'type' => 'textarea',
+          'name' => 'content',
+          'rows' => 2,
+        ],
+        [
+          'key' => 'field-home-insights-items-date',
+          'label' => 'Date',
+          'type' => 'date_picker',
+          'name' => 'date',
+          'display_format' => 'd-m-Y',      // Format d'affichage dans l'admin
+          'return_format' => 'd-m-Y',
+
+        ],
+        [
+          'key' => 'field-home-insights-items-link',
+          'name' => 'link',
+          'label' => 'Link',
+          'type' => 'link',
+          'required' => 1
+        ]
+      ]
+    ],
+    // CTA
     [
       'key' => 'field-home-cta-footer-tab',
       'label' => 'CTA Footer',

@@ -66,7 +66,7 @@ function icon($type, $class) {
 }
 
 
-function wysiwyg($key, $headingKey = null, $paragraphKey = null) {
+function wysiwyg($key, $headingKey = null, $paragraphKey = null, $name = 'content') {
   $heading = [
         [
           'key' => 'heading-2xl',
@@ -141,7 +141,7 @@ function wysiwyg($key, $headingKey = null, $paragraphKey = null) {
   return array(
     'key' => $key,  
     'label' => '',
-    'name' => 'content',
+    'name' => $name,
     'type' => 'wysiwyg',
     'media_upload' => 0,
     'tabs' => 'visual',
