@@ -125,7 +125,49 @@ function cpt_projects() {
 add_action( 'init', 'cpt_projects');
 
 
+// AUTHOR
 
+function cpt_authors() {
+    $labels = array(
+        'name'               => 'Authors',
+        'singular_name'      => 'Author',
+        'menu_name'          => 'Authors',
+        'name_admin_bar'     => 'Author',
+        'add_new'            => 'Add New',
+        'add_new_item'       => 'Add New Author',
+        'new_item'           => 'New Author',
+        'edit_item'          => 'Edit Author',
+        'view_item'          => 'View Author',
+        'all_items'          => 'All Authors',
+        'search_items'       => 'Search Authors',
+        'not_found'          => 'No Authors found',
+        'not_found_in_trash' => 'No Authors found in Trash'
+    );
+    
+    $args = array(
+        'labels'              => $labels,
+        'public'              => false,              // ❌ Pas accessible publiquement
+        'publicly_queryable'  => false,              // ❌ Pas d'accès via URL
+        'show_ui'             => true,               // ✅ Interface admin visible
+        'show_in_menu'        => true,               // ✅ Affiché dans le menu
+        'menu_icon'           => 'dashicons-businessman', // Icône représentant un auteur
+        'query_var'           => false,              // ❌ Pas de query var
+        'rewrite'             => false,              // ❌ Pas de réécriture URL
+        'capability_type'     => 'post',
+        'has_archive'         => false,              // ❌ Pas de page d'archive
+        'hierarchical'        => false,
+        'menu_position'       => 22,                 // Position après Events
+        'show_in_rest'        => true,               // ✅ Actif pour Gutenberg/ACF
+        'supports'            => array( 'title', 'thumbnail' ), // Titre + Image seulement
+        'exclude_from_search' => true,               // ❌ Exclu des recherches
+        'show_in_nav_menus'   => false,              // ❌ Pas dans les menus de navigation
+        'can_export'          => true,               // ✅ Peut être exporté
+        'taxonomies'          => array()
+    );
+    
+    register_post_type( 'author', $args );
+}
+add_action( 'init', 'cpt_authors' );
 
 // function create_taxonomies() {
 //     // Services

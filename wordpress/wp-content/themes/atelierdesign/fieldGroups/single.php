@@ -94,13 +94,13 @@ add_action('acf/include_fields', function () {
       ],
     ],
     'location' => [
-      [
-        [
-          'param' => 'post_type',
-          'operator' => '==',
-          'value' => 'event',
-        ],
-      ],
+      // [
+      //   [
+      //     'param' => 'post_type',
+      //     'operator' => '!=',
+      //     'value' => 'event',
+      //   ],
+      // ],
     ],
     'menu_order' => 0,
     'position' => 'normal',

@@ -16,7 +16,40 @@ add_action('acf/include_fields', function () {
         'type' => 'tab',
         'no_preference' => 0,
       ],
-      
+      [
+        'key' => 'field-single-event-template-cover',
+        'label' => 'Cover',
+        'type' => 'image',
+        'name' => 'cover',
+        'preview_size' => 'thumbnail',
+        'library' => 'all',
+        'mime_types' => 'jpg,jpeg,png,svg,webp',
+      ],
+      [
+        'key' => 'field-single-event-template-description',
+        'label' => 'Description',
+        'type' => 'textarea',
+        'name' => 'description',
+        'rows' => 2,
+      ],
+      [
+        'key' => 'field-single-event-template-date-start',
+        'label' => 'Start date',
+        'type' => 'date_picker',
+        'name' => 'date_start',
+        'required' => 1,
+        'display_format' => 'd-m-Y',      // Format d'affichage dans l'admin
+        'return_format' => 'd-m-Y',
+      ],
+      [
+        'key' => 'field-single-event-template-date-end',
+        'label' => 'End date',
+        'type' => 'date_picker',
+        'name' => 'date_end',
+        'display_format' => 'd-m-Y',      // Format d'affichage dans l'admin
+        'return_format' => 'd-m-Y',
+        // 'required' => 1,
+      ],
       [
         'key' => 'field-single-event-template-tab-hero',
         'label' => 'Hero',
