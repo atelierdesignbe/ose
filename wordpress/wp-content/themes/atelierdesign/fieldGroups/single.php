@@ -6,44 +6,44 @@
 
 add_action('acf/include_fields', function () {
   acf_add_local_field_group([
-    'key' => 'field-group-custom-default-template',
+    'key' => 'field-group-single-template',
     'title' => 'Custom Flexible Fields',
     'fields' => [
-      // // Tab: Hero
+
       [
-        'key' => 'field-custom-default-template-tab-hero',
+        'key' => 'field-single-template-tab-hero',
         'label' => 'Hero',
         'type' => 'tab',
         'no_preference' => 0,
       ],
       // // Hero section
       [
-        'key' => 'field-custom-default-template-group-hero',
+        'key' => 'field-single-template-group-hero',
         'label' => 'Hero',
         'name' => 'hero',
         'type' => 'group',
         'sub_fields' => [
           [
-            'key' => 'field-custom-default-template-clone-fieldgroup-hero',
+            'key' => 'field-single-template-clone-fieldgroup-hero',
             'label' => 'Hero',
             'name' => 'hero',
             'type' => 'clone',
             'clone' => [
-              0 => 'field-group-hero',
+              0 => 'field-group-hero-cpt',
             ],
           ],
         ],
       ],
       // Tab: Flexible Content
       [
-        'key' => 'field-custom-default-template-tab-flexible',
+        'key' => 'field-single-template-tab-flexible',
         'label' => 'Flexible Content',
         'type' => 'tab',
         'no_preference' => 0,
       ],
       // Flexible content section
       [
-        'key' => 'field-custom-default-template-clone-fieldgroup-flexible',
+        'key' => 'field-single-template-clone-fieldgroup-flexible',
         'label' => 'Flexible Content',
         'name' => 'flexible_content',
         'type' => 'clone',
@@ -52,13 +52,13 @@ add_action('acf/include_fields', function () {
         ],
       ],
       [
-        'key' => 'field-custom-default-cta-footer-tab',
+        'key' => 'field-single-cta-footer-tab',
         'label' => 'CTA Footer',
         'type' => 'tab',
         'no_preference' => 0,
       ],
       [
-        'key' => 'field-custom-default-cta-footer-state',
+        'key' => 'field-single-cta-footer-state',
         'label' => 'CTA status',
         'name' => 'cta_status',
         'type' => 'button_group',
@@ -72,7 +72,7 @@ add_action('acf/include_fields', function () {
         'return_format' => 'value',
       ],
       [
-        'key' => 'field-custom-default-cta-footer-clone',
+        'key' => 'field-single-cta-footer-clone',
         'label' => '',
         'name' => 'cta',
         'type' => 'clone',
@@ -85,7 +85,7 @@ add_action('acf/include_fields', function () {
         'conditional_logic' => [
           [
             [
-              'field' => 'field-custom-default-cta-footer-state',
+              'field' => 'field-single-cta-footer-state',
               'operator' => '==',
               'value' => 'override',
             ],
@@ -96,9 +96,9 @@ add_action('acf/include_fields', function () {
     'location' => [
       [
         [
-          'param' => 'page_template',
+          'param' => 'post_type',
           'operator' => '==',
-          'value' => 'default',
+          'value' => 'event',
         ],
       ],
     ],

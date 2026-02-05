@@ -1,9 +1,9 @@
 <?php
 
-$heroFields = [
+$heroHomeFields = [
 
   [
-    'key' => 'field-hero-title',
+    'key' => 'field-home-hero-title',
     'label' => 'Title',
     'name' => 'title',
     'type' => 'textarea',
@@ -12,14 +12,14 @@ $heroFields = [
     'new_lines' => 'br'
   ],
   [
-    'key' => 'field-hero-content',
+    'key' => 'field-home-hero-content',
     'label' => 'Content',
     'name' => 'content',
     'type' => 'textarea',
     'rows' => 2,
   ],
   [
-    'key' => 'field-hero-media-image',
+    'key' => 'field-home-hero-media-image',
     'label' => 'Cover',
     'name' => 'cover',
     'type' => 'image',
@@ -30,10 +30,10 @@ $heroFields = [
   ],
 ];
 
-$heroFieldGroup = [
+$heroHomeFieldGroup = [
   'key' => 'field-group-home-hero',
   'title' => 'Hero',
-  'fields' => $heroFields,
+  'fields' => $heroHomeFields,
 ];
 
-acf_add_local_field_group($heroFieldGroup);
+acf_add_local_field_group($heroHomeFieldGroup);
