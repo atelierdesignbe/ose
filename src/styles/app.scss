@@ -28,8 +28,21 @@ body {
   }
 }
 
+.hero-fit,
+.hero-fill {
+  @apply flex mm-sm:flex-col;
+  
+  .hero-cover {
+    @apply w-full;
+
+    @screen md {
+      width: calc(((9 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin))
+    }
+  }
+}
+
 .hero {
-  .social {
+  &-social {
     @screen md {
       width: calc(((8 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin))
     }
@@ -38,6 +51,22 @@ body {
       svg {
         @apply @@:h-[18px] w-auto;
       }
+    }
+  }
+}
+
+.hero-page {
+  
+  &-gradient {
+    background: linear-gradient(125deg, #FFD65A 7.56%, rgba(205, 224, 246, 0.00) 72.31%);
+  }
+  &-gradient-2 {
+    background: linear-gradient(180deg, #021D4C 0%, rgba(218, 232, 234, 0.00) 100%);
+  }
+
+  .social {
+    svg {
+      @apply fill-dark-blue;
     }
   }
 }

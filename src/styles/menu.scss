@@ -12,14 +12,14 @@
   }
 
   &-btn {
-    @apply flex items-center @@:gap-x-[10px] z-[99] md:hidden;
+    @apply flex items-center @@:gap-x-[10px] z-[99] md:hidden border-0;
 
     &-lines {
       @apply bg-[--color-electric-green] @sm:size-12 @md/lg:size-12 rounded-full relative;
     }
 
     &-line {
-      @apply  @@:w-[20px] h-[1px] transition-all duration-200 bg-[--color-dark-green] absolute top-[50%] left-[50%] -translate-x-[50%];
+      @apply  @@:w-[20px] h-[1px] transition-all duration-200 bg-current absolute top-[50%] left-[50%] -translate-x-[50%];
 
       &:nth-child(1) {
         @apply -translate-x-[50%] @@:-translate-y-[6px];

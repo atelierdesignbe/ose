@@ -1,8 +1,12 @@
 <?php global $adwp; ?>
+<?php
+// cover-status
+?>
+<?php $fields = get_fields(); ?>
 <?php get_header(); ?>
-<?php get_template_part('/components/header/markup', 'header', get_field('header', 'acf-options-global-fields')); ?>
+<?php get_template_part('/components/header/markup', 'header', [...get_field('header', 'acf-options-global-fields'), 'theme' => $fields['hero']['cover-status'] === 'default' ? 'text-white' : 'text-dark-blue']); ?>
 <main id="index">
-  <?php $fields = get_fields(); ?>
+  <?php get_template_part('/components/hero/markup', 'hero', $fields['hero']); ?>
   <article class="article">
     <?php $adwp->render_flexible_layout($fields['flexible-layout']); ?>
   </article>

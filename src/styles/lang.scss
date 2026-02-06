@@ -2,7 +2,15 @@
   @apply relative; 
 
   &-btn {
-    @apply mm-sm:hidden border-l border-dark-blue @md/lg:pl-[32px];
+    @apply mm-sm:hidden border-l  @md/lg:pl-[32px];
+
+    .text-dark-blue & {
+      @apply border-dark-blue;
+    }
+
+    .text-white & {
+      @apply border-white;
+    }
   }
 
   &-list {

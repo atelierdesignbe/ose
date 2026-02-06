@@ -5,7 +5,7 @@
     @apply relative @sm:py-[10px] md:py-0 @md/lg:h-[92px] items-center flex;
 
     &-line {
-      @apply absolute bottom-0 left-0 w-full h-[1px] opacity-20 bg-dark-blue;
+      @apply absolute bottom-0 left-0 w-full h-[1px] opacity-20;
     }
 
   }
