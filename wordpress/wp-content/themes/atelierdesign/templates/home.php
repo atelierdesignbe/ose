@@ -47,8 +47,44 @@
     </div>
   </div>
 
-    <?php get_template_part('/components/grid/markup', 'grid', $fields['grid']); ?>
-
+  <?php get_template_part('/components/grid/markup', 'grid', $fields['grid']); ?>
+  
+  <!-- LAST  -->
+  <?php 
+    $insightContent = $fields['insights-content'];
+    $insights = $fields['insights'];
+  ?>
+  <div class="py-section theme-white bg-layout-main">
+    <div class="px-container">
+      <div class="grid grid-cols-1 md:grid-cols-3 @md/lg:gap-x-[60px]">
+        <div class="col-span-1 text-balance">
+          <?php $adwp->get_template_part('_wysiwyg',  array('content' => $insightContent, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+        </div>
+        <div class="col-span-1 md:col-span-2">
+            <div class="flex flex-col @@:gap-y-[32px]">
+              <?php foreach($insights as $item): ?>
+                <div class="flex flex-col md:flex-row items-center aos animate-fadein">
+                  <div class="w-full @sm:h-[260px] @md/lg:w-[248px] @md/lg:h-[268px]  flex-none">
+                    <?php echo wp_get_attachment_image($item['cover']['ID'], "full", null, ["class" => 'object-cover  h-full w-full']); ?>
+                  </div>
+                  <div class="flex-auto flex flex-col w-full @@:gap-y-2 items-start @@:py-[30px] @md/lg:px-[20px]">
+                    <?php if($item['date']): ?>
+                      <span class="badge badge-primary badge-outlined"><?= $item['date'] ?></span>
+                    <?php endif; ?>
+                    <?php if($item['content']): ?>
+                      <p class="paragraph paragraph-md paragraph-primary"><?= $item['content'] ?></p>
+                    <?php endif; ?>
+                    <?php if($item['link']): ?>
+                      <a href="<?= $item['link']['url']; ?>" class="button button-underline button-primary"> <span class="button-title"><?= $item['link']['title'] ?></span> </a>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- <article class="article">
   </article> -->
