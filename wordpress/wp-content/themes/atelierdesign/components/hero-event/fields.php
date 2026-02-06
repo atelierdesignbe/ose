@@ -69,11 +69,15 @@ $heroEventFields = [
     'key' => 'field-hero-event-image-state',
     'label' => 'Cover style',
     'name' => 'cover-status',
-    'type' => 'true_false',
-    'default_value' => "1",
-    'ui' => 1,
-    'ui_on_text' => 'Fit',
-    'ui_off_text' => 'None',
+    'type' => 'button_group',
+    'choices' => [
+        'fit'  => 'Fit',
+        'fill'  => 'Fill',
+        'none'  => 'None',
+    ],
+    'default_value' => 'fill',
+    'layout' => 'horizontal',
+    'return_format' => 'value',
     'conditional_logic' => [
       [
         [

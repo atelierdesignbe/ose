@@ -14,7 +14,7 @@ $cover = $args['cover'];
       </div>
       <div class="grid-base">
         <?php if($content): ?>
-          <p class="paragraph paragraph-primary @md/lg:text-[18px] @@:pl-[28px] border-l border-dark-blue col-span-12 md:col-start-16 md:col-span-8 autoscale aos animate-fadeinup animate-delay-200 @@:tracking-[1px]"><?= $content ?></p>
+          <p class="paragraph paragraph-primary @md/lg:text-[18px] @@:pl-[28px] border-l border-dark-blue col-span-12 md:col-start-16 md:col-span-7 autoscale aos animate-fadeinup animate-delay-200 @@:tracking-[1px]"><?= $content ?></p>
         <?php endif;?>
       </div>
     </div>
@@ -23,5 +23,9 @@ $cover = $args['cover'];
     <div class="parallax-image-wrapper h-full">
       <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'parallax-image object-cover w-full h-full']); ?>
     </div>
+  </div>
+  <?php echo get_template_part('/components/scroll'); ?>
+  <div class="social theme-dark-blue bg-layout-main px-container absolute bottom-0 left-0 z-10 text-light-blue @md/lg:h-[96px] flex items-center mm-sm:hidden">
+    <?php echo get_template_part('/components/social/markup', 'social', ['social' => get_field('social', 'acf-options-global-fields')['social']]); ?>
   </div>
 </div>

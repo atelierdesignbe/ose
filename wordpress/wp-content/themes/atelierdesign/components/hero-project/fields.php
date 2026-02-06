@@ -1,9 +1,9 @@
 <?php
 
-$heroPublicationFields = [
+$heroProjectFields = [
 
   [
-    'key' => 'field-hero-publication-auto',
+    'key' => 'field-hero-project-auto',
     'label' => '',
     'name' => 'hero-override',
     'type' => 'true_false',
@@ -13,7 +13,7 @@ $heroPublicationFields = [
     'ui_off_text' => 'Auto',
   ],
   [
-    'key' => 'field-hero-publication-date',
+    'key' => 'field-hero-project-date',
     'label' => 'Date',
     'name' => 'hero-date',
     'type' => 'true_false',
@@ -22,7 +22,7 @@ $heroPublicationFields = [
     'conditional_logic' => [
       [
         [
-          'field' => 'field-hero-publication-auto',
+          'field' => 'field-hero-project-auto',
           'operator' => '==',
           'value' => '1',
         ]
@@ -30,41 +30,7 @@ $heroPublicationFields = [
     ]
   ],
   [
-    'key' => 'field-hero-publication-category',
-    'label' => 'Category',
-    'name' => 'hero-category',
-    'type' => 'true_false',
-    'default_value' => 1,
-    'ui' => 1,
-    'conditional_logic' => [
-      [
-        [
-          'field' => 'field-hero-publication-auto',
-          'operator' => '==',
-          'value' => '1',
-        ]
-      ]
-    ]
-  ],
-  [
-    'key' => 'field-hero-publication-project',
-    'label' => 'Project',
-    'name' => 'hero-project',
-    'type' => 'true_false',
-    'default_value' => 1,
-    'ui' => 1,
-    'conditional_logic' => [
-      [
-        [
-          'field' => 'field-hero-publication-auto',
-          'operator' => '==',
-          'value' => '1',
-        ]
-      ]
-    ]
-  ],
-  [
-    'key' => 'field-hero-publication-title',
+    'key' => 'field-hero-project-title',
     'label' => 'Edit Title',
     'instructions' => 'Only for the hero section',
     'name' => 'title',
@@ -75,7 +41,7 @@ $heroPublicationFields = [
     'conditional_logic' => [
       [
         [
-          'field' => 'field-hero-publication-auto',
+          'field' => 'field-hero-project-auto',
           'operator' => '==',
           'value' => '1',
         ]
@@ -83,7 +49,7 @@ $heroPublicationFields = [
     ]
   ],
   [
-    'key' => 'field-hero-publication-description',
+    'key' => 'field-hero-project-description',
     'label' => 'Description',
     'name' => 'hero-description',
     'type' => 'true_false',
@@ -92,7 +58,7 @@ $heroPublicationFields = [
     'conditional_logic' => [
       [
         [
-          'field' => 'field-hero-publication-auto',
+          'field' => 'field-hero-project-auto',
           'operator' => '==',
           'value' => '1',
         ]
@@ -100,7 +66,7 @@ $heroPublicationFields = [
     ]
   ],
   [
-    'key' => 'field-hero-publication-type',
+    'key' => 'field-hero-project-type',
     'label' => 'Type',
     'name' => 'hero-type',
     'type' => 'true_false',
@@ -109,7 +75,7 @@ $heroPublicationFields = [
     'conditional_logic' => [
       [
         [
-          'field' => 'field-hero-publication-auto',
+          'field' => 'field-hero-project-auto',
           'operator' => '==',
           'value' => '1',
         ]
@@ -117,7 +83,7 @@ $heroPublicationFields = [
     ]
   ],
   [
-    'key' => 'field-hero-publication-theme',
+    'key' => 'field-hero-project-theme',
     'label' => 'Theme',
     'name' => 'hero-theme',
     'type' => 'true_false',
@@ -126,7 +92,7 @@ $heroPublicationFields = [
     'conditional_logic' => [
       [
         [
-          'field' => 'field-hero-publication-auto',
+          'field' => 'field-hero-project-auto',
           'operator' => '==',
           'value' => '1',
         ]
@@ -134,18 +100,21 @@ $heroPublicationFields = [
     ]
   ],
   [
-    'key' => 'field-hero-publication-image-state',
-    'label' => 'Cover style',
+    'key' => 'field-hero-project-image-state',
     'name' => 'cover-status',
-    'type' => 'true_false',
-    'default_value' => "1",
-    'ui' => 1,
-    'ui_on_text' => 'Fit',
-    'ui_off_text' => 'None',
+    'type' => 'button_group',
+    'choices' => [
+        'fit'  => 'Fit',
+        'fill'  => 'Fill',
+        'none'  => 'None',
+    ],
+    'default_value' => 'fill',
+    'layout' => 'horizontal',
+    'return_format' => 'value',
     'conditional_logic' => [
       [
         [
-          'field' => 'field-hero-publication-auto',
+          'field' => 'field-hero-project-auto',
           'operator' => '==',
           'value' => '1',
         ]
@@ -154,10 +123,10 @@ $heroPublicationFields = [
   ],
 ];
 
-$heroPublicationFieldGroup = [
-  'key' => 'field-group-hero-publication',
+$heroProjectFieldGroup = [
+  'key' => 'field-group-hero-project',
   'title' => 'Hero',
-  'fields' => $heroPublicationFields,
+  'fields' => $heroProjectFields,
 ];
 
-acf_add_local_field_group($heroPublicationFieldGroup);
+acf_add_local_field_group($heroProjectFieldGroup);

@@ -1,5 +1,6 @@
 :root {
   --pl-margin: calc((var(--container-margin) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+  // --hero-h: calc((var(92) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
 
   --dark-blue-20: rgba(2, 29, 76, .2);
 }
@@ -7,5 +8,6 @@
 @screen md {
   :root {
     --pl-margin: calc((var(--container-margin) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    --hero-h: calc(100% - (92 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
   }
 }

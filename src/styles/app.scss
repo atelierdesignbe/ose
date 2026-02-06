@@ -12,3 +12,32 @@ body {
 .grid-base {
   @apply grid grid-cols-12 md:grid-cols-24;
 }
+
+.hero-cpt {
+  .hero-cover {
+    @apply w-full;
+
+    @screen md {
+      width: calc(((9 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin))
+    }
+
+    &.hero-fit, 
+    &.hero-none {
+      // background: var(--Light-Blue, #CDE0F6);
+    }
+  }
+}
+
+.hero {
+  .social {
+    @screen md {
+      width: calc(((8 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin))
+    }
+
+    li {
+      svg {
+        @apply @@:h-[18px] w-auto;
+      }
+    }
+  }
+}

@@ -58,7 +58,7 @@ $heroFields = [
         'fill'  => 'Fill',
         'none'  => 'None',
     ],
-    'default_value' => 'default',
+    'default_value' => 'fullsize',
     'layout' => 'horizontal',
     'return_format' => 'value',
   ],
