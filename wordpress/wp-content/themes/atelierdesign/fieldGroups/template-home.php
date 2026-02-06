@@ -56,7 +56,7 @@ acf_add_local_field_group([
       'required' => 1,
     ],
     [
-      ...wysiwyg('field-home-intro-content', ['heading-xl'], ['paragraph-md', 'paragraph-lg'], 'intro-content'),
+      ...wysiwyg('field-home-intro-content', ['heading-xl'], ['paragraph-md', 'paragraph-lg', 'paragraph-xl'], 'intro-content'),
       'label' => 'Content',
       'required' => 1
     ],
