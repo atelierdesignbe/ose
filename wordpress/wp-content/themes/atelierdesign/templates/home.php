@@ -48,7 +48,7 @@
   </div>
   <?php get_template_part('/components/publications/markup', 'publications', $fields['publications']); ?>
   <?php get_template_part('/components/grid/markup', 'grid', $fields['grid']); ?>
-  <?php get_template_part('/components/events/markup', 'events', []); ?>
+  <?php get_template_part('/components/events/markup', 'events', $fields['events']); ?>
   <?php get_template_part('/components/projects/markup', 'projects',  $fields['projects']); ?>
 
   <!-- LAST  -->

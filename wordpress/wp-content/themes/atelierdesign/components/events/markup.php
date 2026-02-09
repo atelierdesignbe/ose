@@ -1,40 +1,54 @@
 <?php
-  $args = array(
-  'post_type' => 'event',
-  'post_status' => 'publish',
-  'posts_per_page' => 2,
-  'meta_key' => 'date_start',
-  'orderby' => 'meta_value',
-  'order' => 'ASC', // Du plus proche au plus éloigné
-  // 'meta_query' => array(
-  //   array(
-  //     'key' => 'date_start',
-  //     'value' => $today,
-  //     'compare' => '>=', // Date >= aujourd'hui
-  //     'type' => 'DATE'
-  //   )
-  // )
-);
+  global $adwp;
+  $content = $args['content'];
+  $link = $args['link'];
+  $isCustom = $args['isCustom'];
+  $items = $args['items'];
 
-  $events = new WP_Query($args);
+  $queryArgs = array(
+    'post_type' => 'event',
+    'post_status' => 'publish',
+    'posts_per_page' => 2,
+    'meta_key' => 'date_start',
+    'orderby' => 'meta_value',
+    'order' => 'ASC',
+    'meta_query' => array(
+      array(
+        'key' => 'date_start',
+        'value' => date('Ymd'), // Date d'aujourd'hui au format YYYYMMDD
+        'compare' => '>=',      // Supérieur ou égal à aujourd'hui
+        'type' => 'NUMERIC',
+      ),
+    ),
+  );
+
+
+  $events_query = new WP_Query($queryArgs);
+  $events = $events_query->posts; // Tableau de posts
+
+  if ($isCustom) {
+    $events = $items;
+  }
 ?>
 <div class="py-section bg-layout-main theme-dark-blue">
   <div class="px-container">
-      <div class="flex flex-col @@:gap-y-[24px] md:flex-row justify-between items-start">
-        <h2 class="heading heading-2xl heading-primary @md/lg:max-w-[638px] text-balance">Where to connect and exchange</h2>
-        <a href="/events" class="button button-primary button-flat">
-          <span class="button-title">See all events</span>
-        </a>
+      <div class="flex flex-col md:flex-row @@:gap-y-[24px] justify-between items-start autoscale-children">
+        <div class="flex flex-col @@:gap-y-[24px] items-start  @md/lg:max-w-[638px]">
+          <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+        </div>
+        <?php if($link): ?>
+          <a href="<?= $link['url'] ?>" class="button button-primary button-flat aos animate-fadeinup animate-delay-200">
+            <span class="button-title"><?= $link['title'] ?></span>
+          </a>
+        <?php endif; ?>
       </div>
-      <?php if ( $events->have_posts() ) : ?>
-        <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px] @@:mt-[44px]">
-          <?php 
-            $i = 0;
-            while ( $events->have_posts() ) : $i++; $events->the_post(); ?>
-            <div class="col-span-1 <?php if($i === 1): ?> md:col-start-2 <?php endif; ?>">
+      <?php if ( $events ) : ?>
+        <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px] @@:mt-[44px] *:md:stagger-2">
+          <?php foreach ($events as $i => $post) : setup_postdata($post); ?>
+            <div class="col-span-1 <?php if($i === 0): ?> md:col-start-2 <?php endif; ?>">
               <?php echo get_template_part('/components/event', null, array('id' => get_the_ID())); ?>
             </div>
-          <?php endwhile?>
+          <?php endforeach; ?>
         </div>
       <?php endif; ?>
     
