@@ -1,32 +1,70 @@
 <?php
-  $args = array(
-  'post_type' => 'project',
-  'post_status' => 'publish',
-  'posts_per_page' => 3,
-);
+  global $adwp;
+  $content = $args['content'];
+  $link = $args['link'];
+  $isCustom = $args['isCustom'];
+  $items = $args['items'];
+  $themes = $args['themes'];
+  $types = $args['types'];
 
-  $events = new WP_Query($args);
+  $queryArgs = array(
+    'post_type' => 'project',
+    'post_status' => 'publish',
+    'posts_per_page' => 3,
+    'meta_key' => 'date_start',
+    'orderby' => 'meta_value',
+    'order' => 'DESC',
+  );
+
+  $tax = array();
+
+  if(!$isCustom && $themes) {
+    $tax[] = array(
+      'taxonomy' => 'themes', // Le slug de ta taxonomie
+      'field' => 'term_id', // ou 'slug', 'name'
+      'terms' => $themes, // L'ID du terme (ou array d'IDs)
+    );
+  }
+
+  if(!$isCustom && $types) {
+    $tax[] = array(
+      'taxonomy' => 'types', // Le slug de ta taxonomie
+      'field' => 'term_id', // ou 'slug', 'name'
+      'terms' => $types, // L'ID du terme (ou array d'IDs)
+    );
+  }
+  
+  if(sizeof($tax) > 0) {
+    $queryArgs['tax_query'] = $tax;
+  }
+
+  $projects_query = new WP_Query($queryArgs);
+  $projects = $projects_query->posts; // Tableau de posts
+
+  if ($isCustom) {
+    $projects = $items;
+  }
+
 ?>
 <div class="py-section bg-layout-main theme-yellow">
   <div class="px-container">
       <div class="flex flex-col md:flex-row @@:gap-y-[24px] justify-between items-start">
         <div class="flex flex-col @@:gap-y-[24px] items-start  @md/lg:max-w-[638px]">
-          <h2 class="heading heading-2xl heading-primary text-balance">From evidence to impact</h2>
-          <p class="paragraph paragraph-primary paragraph-md">Our projects are collaborative and often transnational. They aim to deliver concrete outcomes while building bridges between research and policy implementation. Discover the initiatives shaping tomorrow’s public action.</p>
+          <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
         </div>
-        <a href="/projects" class="button button-primary button-flat">
-          <span class="button-title">See all projects</span>
-        </a>
+        <?php if($link): ?>
+          <a href="<?= $link['url'] ?>" class="button button-primary button-flat aos animate-fadeinup animate-delay-200">
+            <span class="button-title"><?= $link['title'] ?></span>
+          </a>
+        <?php endif; ?>
       </div>
-      <?php if ( $events->have_posts() ) : ?>
-        <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px] @@:mt-[44px]">
-          <?php 
-            $i = 0;
-            while ( $events->have_posts() ) : $i++; $events->the_post(); ?>
-            <div class="col-span-1">
+      <?php if ( $projects ) : ?>
+        <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px] @@:mt-[44px] *:md:stagger-3">
+          <?php foreach ($projects as $post) : setup_postdata($post); ?>            
+            <div class="col-span-1 aos animate-fadeinup stagger-delay-200">
               <?php echo get_template_part('/components/project', null, array('id' => get_the_ID())); ?>
             </div>
-          <?php endwhile?>
+          <?php endforeach; ?>
         </div>
       <?php endif; ?>
     

@@ -254,7 +254,7 @@ require_once get_template_directory() . '/functions/vite.php';
 add_action('wp_enqueue_scripts', function () {
   if (isset($_GET['preview']) && $_GET['preview'] === 'true') return; // Skip if preview mode is active
 
-  $bugherd_api_key = 'xxvwkcu0vexiwpftkcudlq';
+  $bugherd_api_key = '4tnquyad55druh3ooehkta';
   wp_enqueue_script('bugherd', "https://www.bugherd.com/sidebarv2.js?apikey=$bugherd_api_key", [], false, false);
 }, 1);
 

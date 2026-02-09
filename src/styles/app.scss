@@ -74,3 +74,18 @@ body {
     }
   }
 }
+
+@function vw($size) {
+  @return calc(($size / var(--tw-screen-current)) * var(--tw-screen-max) * var(--tw-scale));
+}
+
+.image-shadow {
+  box-shadow: 0px 8px 16px rgba(1, 27, 72, 0.30);
+}
+
+.last-publication {
+  &-cover {
+    @apply absolute top-0 left-0 z-[0] w-full @sm:h-[488px] md:h-full md:w-[50%] bg-dark-blue ;
+    background: linear-gradient(137deg, #021D4C 4.65%, #043790 91.21%);
+  }
+}

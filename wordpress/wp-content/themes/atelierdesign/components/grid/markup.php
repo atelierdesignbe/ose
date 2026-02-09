@@ -14,7 +14,7 @@ $link = $args['grid-link'];
 <div class="block-grid">
   <div class="grid md:grid-cols-6 ">
     <div class="col-span-1 md:col-span-4 bg-layout-main theme-white px-container @@:py-[40px] flex items-center">
-      <div class="flex flex-col md:flex-row md:justify-between md:items-start w-full">
+      <div class="flex flex-col md:flex-row md:justify-between items-start w-full">
         <div class="@md/lg:max-w-[494px]">
           <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
         </div>

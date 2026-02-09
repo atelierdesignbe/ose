@@ -46,10 +46,10 @@
       </div>
     </div>
   </div>
-  <!-- <?php get_template_part('/components/publications/markup', 'publications', []); ?> -->
+  <?php get_template_part('/components/publications/markup', 'publications', $fields['publications']); ?>
   <?php get_template_part('/components/grid/markup', 'grid', $fields['grid']); ?>
   <?php get_template_part('/components/events/markup', 'events', []); ?>
-  <?php get_template_part('/components/projects/markup', 'projects', []); ?>
+  <?php get_template_part('/components/projects/markup', 'projects',  $fields['projects']); ?>
 
   <!-- LAST  -->
   <?php 
@@ -69,7 +69,7 @@
                   <div class="w-full @sm:h-[260px] @md/lg:w-[248px] @md/lg:h-[268px]  flex-none">
                     <?php echo wp_get_attachment_image($item['cover']['ID'], "full", null, ["class" => 'object-cover  h-full w-full']); ?>
                   </div>
-                  <div class="flex-auto flex flex-col w-full @@:gap-y-2 items-start @@:py-[30px] @md/lg:px-[20px]">
+                  <div class="flex-auto flex flex-col w-full @@:gap-y-4 items-start @@:py-[30px] @md/lg:px-[20px] autoscale-children">
                     <?php if($item['date']): ?>
                       <span class="badge badge-primary badge-outlined"><?= $item['date'] ?></span>
                     <?php endif; ?>
@@ -86,6 +86,7 @@
         </div>
       </div>
     </div>
+    
   </div>
 
   <!-- <article class="article">
