@@ -1,5 +1,5 @@
 .menu {
-  @apply mm-sm:fixed mm-sm:inset-0 mm-sm:bg-dark-blue mm-sm:text-white mm-sm:hidden flex flex-col items-center justify-center @@:gap-[32px] md:flex-row ;
+  @apply mm-sm:fixed mm-sm:inset-0 mm-sm:bg-dark-blue mm-sm:text-white mm-sm:hidden flex flex-col items-center justify-center @@:gap-y-[16px] @@:gap-x-[32px] md:flex-row ;
 
   &-nav {
     @apply flex flex-col @@:gap-[32px] items-center md:flex-row ;

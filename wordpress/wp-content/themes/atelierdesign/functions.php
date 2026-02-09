@@ -25,7 +25,7 @@ if (file_exists($ui_init_file)) {
     'packageFolder' => get_template_directory() . '/ui',
     'packageUrl' => get_template_directory_uri() . '/ui',
     'customFlexibleComponentPath' => get_template_directory() . '/components',
-    // 'disableEnqueueStyles' => true,
+    'disableEnqueueStyles' => true,
   ]);
 
   // Advanced Custom Fields modules

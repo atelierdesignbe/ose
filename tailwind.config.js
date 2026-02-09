@@ -34,4 +34,7 @@ export default twWithADUI({
       },
     },
   },
+  corePlugins: {
+    preflight: true,
+  },
 });

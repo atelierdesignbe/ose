@@ -1,3 +1,4 @@
+@use 'tailwind';
 @use 'core';
 @use 'fonts';
 @use 'partials';
@@ -53,10 +54,13 @@ body {
       }
     }
   }
+
+  &-gradient-home {
+    background: linear-gradient(107deg, #FFD65A 3.43%, #CDE0F6 97.42%);
+  }
 }
 
 .hero-page {
-  
   &-gradient {
     background: linear-gradient(125deg, #FFD65A 7.56%, rgba(205, 224, 246, 0.00) 72.31%);
   }

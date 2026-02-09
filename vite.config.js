@@ -1,27 +1,19 @@
 import { defineConfig } from 'vite';
-// import liveReload from 'vite-plugin-live-reload';
 import { resolve } from 'path';
 
 export default defineConfig({
-
-  
-  // Dossier racine
-  root: '',
+  // Pas de root défini = racine du projet (là où est vite.config.js)
   base: './',
   
-  // Configuration du build
   build: {
-    // Dossier de sortie
+    // Build directement dans le thème
     outDir: 'wordpress/wp-content/themes/atelierdesign/dist',
     emptyOutDir: true,
+    manifest: "manifest.json",
     
-    // Générer le manifest pour WordPress
-    manifest: 'manifest.json',  
-    
-    // Désactiver le code splitting pour simplifier
     rollupOptions: {
       input: {
-        // Point d'entrée unique
+        // ✅ Chemin depuis la racine du projet
         app: resolve(__dirname, 'src/app.js'),
       },
       output: {
@@ -33,13 +25,12 @@ export default defineConfig({
   },
   
   server: {
-    host: true,  // Écoute sur 0.0.0.0
+    host: true,
     port: 5173,
     strictPort: true,
     cors: true,
   },
   
-  // Alias pour faciliter les imports
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),

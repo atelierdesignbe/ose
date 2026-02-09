@@ -2,7 +2,7 @@
   @apply relative; 
 
   &-btn {
-    @apply mm-sm:hidden border-l  @md/lg:pl-[32px];
+    @apply mm-sm:hidden border-l  @md/lg:pl-[16px];
 
     .text-dark-blue & {
       @apply border-dark-blue;

@@ -322,7 +322,7 @@
     }
   },
   "badge": {
-    "normal": {
+    "outlined": {
       "text": {
         "$type": "color",
         "$value": "{foundations.text}"
@@ -333,7 +333,7 @@
       },
       "border": {
         "$type": "color",
-        "$value": "{tailwindcss.colors.transparent}"
+        "$value": "{foundations.stroke-primary}"
       },
       "shadow": {
         "$type": "color",
@@ -358,7 +358,7 @@
         "$value": "{tailwindcss.colors.transparent}"
       }
     },
-    "outlined": {
+    "normal": {
       "text": {
         "$type": "color",
         "$value": "{foundations.text}"
@@ -369,7 +369,7 @@
       },
       "border": {
         "$type": "color",
-        "$value": "{foundations.stroke-primary}"
+        "$value": "{tailwindcss.colors.transparent}"
       },
       "shadow": {
         "$type": "color",
@@ -483,7 +483,7 @@
           },
           "border": {
             "$type": "color",
-            "$value": "{foundations.stroke-secondary}"
+            "$value": "{foundations.decorative-fill-primary}"
           },
           "shadow": {
             "$type": "color",
@@ -581,20 +581,6 @@
         "$type": "color",
         "$value": "{tailwindcss.colors.transparent}"
       }
-    },
-    "tertiaryOutline": {
-      "background": {
-        "$type": "color",
-        "$value": "{tailwindcss.colors.transparent}"
-      },
-      "border": {
-        "$type": "color",
-        "$value": "{foundations.stroke-tertiary}"
-      },
-      "shadow": {
-        "$type": "color",
-        "$value": "{tailwindcss.colors.transparent}"
-      }
     }
   },
   "quote": {
@@ -642,7 +628,7 @@
         },
         "border": {
           "$type": "color",
-          "$value": "{foundations.text}"
+          "$value": "{foundations.text-muted}"
         },
         "text": {
           "$type": "color",

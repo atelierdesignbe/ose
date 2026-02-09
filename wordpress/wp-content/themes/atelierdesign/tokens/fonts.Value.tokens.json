@@ -254,33 +254,33 @@
       "prefix": {
         "fontFamily": {
           "$type": "string",
-          "$value": "{font.foundations.label-fontFamily}"
+          "$value": "{font.heading.XL.fontFamily}"
         },
         "fontWeight": {
           "$type": "string",
-          "$value": "{font.foundations.label-fontWeight}"
+          "$value": "{font.heading.XL.fontWeight}"
         }
       },
       "suffix": {
         "fontFamily": {
           "$type": "string",
-          "$value": "{font.foundations.label-fontFamily}"
+          "$value": "{font.heading.XL.fontFamily}"
         },
         "fontWeight": {
           "$type": "string",
-          "$value": "{font.foundations.label-fontWeight}"
+          "$value": "{font.heading.2XL.fontWeight}"
         }
       }
     },
     "badge": {
-      "normal": {
+      "outlined": {
         "fontFamily": {
           "$type": "string",
-          "$value": "{font.foundations.label-fontFamily}"
+          "$value": "Manrope"
         },
         "fontWeight": {
           "$type": "string",
-          "$value": "{font.foundations.label-fontWeight}"
+          "$value": "Medium"
         }
       },
       "filled": {
@@ -293,14 +293,14 @@
           "$value": "{font.foundations.label-fontWeight}"
         }
       },
-      "outlined": {
+      "normal": {
         "fontFamily": {
           "$type": "string",
-          "$value": "Manrope"
+          "$value": "{font.foundations.label-fontFamily}"
         },
         "fontWeight": {
           "$type": "string",
-          "$value": "Medium"
+          "$value": "{font.foundations.label-fontWeight}"
         }
       }
     },
@@ -362,11 +362,11 @@
       "label": {
         "fontFamily": {
           "$type": "string",
-          "$value": "{font.foundations.body-fontFamily}"
+          "$value": "{font.foundations.label-fontFamily}"
         },
         "fontWeight": {
           "$type": "string",
-          "$value": "{font.foundations.body-fontWeight}"
+          "$value": "{font.foundations.label-fontWeight}"
         }
       },
       "block": {

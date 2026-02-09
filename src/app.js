@@ -1,5 +1,5 @@
-import './styles/tailwind.scss'
 import './styles/app.scss'
+// import './styles/tailwind.scss'
 console.log('🎨 Atelier Design Theme loaded');
 console.log('HERE NEW')
 
