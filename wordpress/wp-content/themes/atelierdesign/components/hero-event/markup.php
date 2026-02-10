@@ -28,7 +28,7 @@ else if ($coverState === 'fit') $heroClass = 'absolute bottom-0 right-0 md:h-[--
 
 ?>
 <div class="hero hero-page md:h-screen @md/lg:max-h-[720px] relative overflow-hidden flex md:items-center relative hero-fill">
-  <div class="px-container relative z-10">
+  <div class="px-container relative z-10 w-full">
     <div class="grid grid-base">
       <div class="hero-wrapper z-[1] relative col-span-12  @md/lg:py-[130px] flex flex-col @@:gap-y-[16px] <?= $wrapperClass ?>">
         <div class="flex items-center @@:gap-x-2">

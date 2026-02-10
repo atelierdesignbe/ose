@@ -4,7 +4,6 @@ $title = get_the_title();
 $cover = get_field('cover');
 $description = get_field('description');
 $date = get_field('date_start');
-var_dump(get_fields());
 
 // $dateStart = get_field('date_start');
 // $dateEnd = get_field('date_end');
@@ -34,7 +33,7 @@ $types = get_the_terms( get_the_ID(), 'types' );
 
 ?>
 <div class="hero hero-page md:h-screen @md/lg:max-h-[720px] relative overflow-hidden flex md:items-center relative hero-fill">
-  <div class="px-container relative z-10">
+  <div class="px-container relative z-10 w-full">
     <div class="grid grid-base">
       <div class="hero-wrapper z-[1] relative col-span-12  @md/lg:py-[130px] flex flex-col @@:gap-y-[16px] <?= $wrapperClass ?>">
         <div class="flex items-center @@:gap-x-2">

@@ -342,3 +342,29 @@ function add_custom_editor_styles() {
 }
 add_action('admin_init', 'add_custom_editor_styles');
 // add_editor_style();
+
+
+add_filter('acf/load_field/key=field-form-formidable', 'load_formidable_forms_into_select');
+function load_formidable_forms_into_select($field) {
+
+    // Réinitialiser les choix
+    $field['choices'] = [];
+
+    // Vérifier que Formidable Forms est actif
+    if ( class_exists( 'FrmForm' ) ) {
+
+        // Récupérer tous les formulaires Formidable
+        $forms = FrmForm::getAll();
+
+        // Boucler sur les formulaires pour remplir les choix
+        if ( !empty($forms) ) {
+            foreach ($forms as $form) {
+                $field['choices'][$form->id] = $form->name;
+            }
+        }
+    } else {
+        $field['choices'][''] = '⚠️ Formidable Forms non détecté';
+    }
+
+    return $field;
+}

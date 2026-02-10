@@ -19,7 +19,7 @@ if ($coverStatus === 'fill') $heroClass = 'absolute bottom-0 right-0 md:h-[--her
 else if ($coverStatus === 'fit') $heroClass = 'absolute bottom-0 right-0 md:h-[--hero-h] @md/lg:pr-[--pl-margin] @md/lg:py-[--pl-margin]';
 ?>
 <div class="hero hero-page md:h-screen @md/lg:max-h-[720px] relative overflow-hidden flex md:items-center relative hero-<?= $coverStatus ?>">
-  <div class="px-container relative z-10">
+  <div class="px-container relative z-10 w-full">
     <div class="grid grid-base">
       <div class="hero-wrapper z-[1] relative col-span-12  @md/lg:py-[130px] flex flex-col @@:gap-y-[16px] <?= $wrapperClass ?>">
         <?php if($hasLabel): ?> <span class="subtitle paragraph-primary aos animate-fadeinup"><?= $label ?></span><?php endif; ?>
@@ -51,6 +51,10 @@ else if ($coverStatus === 'fit') $heroClass = 'absolute bottom-0 right-0 md:h-[-
         <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'object-cover w-full h-full parallax-image']); ?>
       </div>
     </div>
+  <?php endif; ?>
+
+  <?php if($coverStatus === 'fill'): ?>
+    <!-- <div class="absolute gradient-hero-fill"></div> -->
   <?php endif; ?>
     
   <?php echo get_template_part('/components/scroll'); ?>

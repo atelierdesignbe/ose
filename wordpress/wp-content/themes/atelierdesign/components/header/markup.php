@@ -36,7 +36,7 @@
           <?php endif; ?>
           <div class="flex flex-col @@:gap-y-4 @@:gap-x-4 md:flex-row items-center">
             <?php if($link): ?>
-              <a href="<?= $link['url'] ?>" target="<?= $link['target'] ?? '_self' ?>" class="button button-outline button-primary <?php if($theme === 'text-dark-blue'): ?>border-dark-blue<?php endif; ?>">
+              <a href="<?= $link['url'] ?>" target="<?= $link['target'] ?? '_self' ?>" class="button button-outline button-primary <?php if($theme === 'text-dark-blue'): ?>border-dark-blue <?php else: ?> border-white text-white <?php endif; ?>">
                 <span class="button-title"><?= $link['title'] ?></span>
               </a>
             <?php endif; ?>
