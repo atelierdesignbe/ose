@@ -1,7 +1,10 @@
 import './styles/app.scss'
+
+import './scripts/expand'
+import './scripts/menu'
+import './scripts/ajax'
 // import './styles/tailwind.scss'
 console.log('🎨 Atelier Design Theme loaded');
-console.log('HERE NEW')
 
 // HMR Vite (pour JS/CSS uniquement)
 if (import.meta.hot) {

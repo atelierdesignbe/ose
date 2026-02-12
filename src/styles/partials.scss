@@ -16,7 +16,7 @@
 }
 
 .logo-brand {
-  img {
+  img, svg {
     @apply @sm:w-[106px] @sm:h-[70px] @md/lg:w-[125px] @md/lg:h-[82px];
   }
 }

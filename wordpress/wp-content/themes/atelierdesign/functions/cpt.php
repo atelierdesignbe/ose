@@ -77,7 +77,7 @@ function cpt_publications() {
         'menu_position'      => 22,
         'show_in_rest'       => true,
         'supports'           => array( 'title', 'editor', 'thumbnail' ),
-        'taxonomies'         => array( 'themes', 'types' )
+        'taxonomies'         => array( 'themes', 'types', 'projects' )
     );
 
     register_post_type( 'publication', $args );
@@ -295,3 +295,35 @@ function custom_taxonomy_types() {
     register_taxonomy( 'types', array( 'publication', 'project' ), $args );
 }
 add_action( 'init', 'custom_taxonomy_types' );
+
+// Taxonomy: PROJECT
+function custom_taxonomy_projects() {
+    $labels = array(
+        'name'              => 'Projects',
+        'singular_name'     => 'Project',
+        'search_items'      => 'Search Projects',
+        'all_items'         => 'All Projects',
+        'parent_item'       => 'Parent Project',
+        'parent_item_colon' => 'Parent Project:',
+        'edit_item'         => 'Edit Project',
+        'update_item'       => 'Update Project',
+        'add_new_item'      => 'Add New Project',
+        'new_item_name'     => 'New Project Name',
+        'menu_name'         => 'Projects',
+    );
+
+    $args = array(
+        'labels'            => $labels,
+        'hierarchical'      => true,
+        'public'            => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_nav_menus' => true,
+        'show_tagcloud'     => true,
+        'show_in_rest'      => true,
+        'rewrite'           => array( 'slug' => 'projects' ),
+    );
+
+    register_taxonomy( 'projects', array( 'publication' ), $args );
+}
+add_action( 'init', 'custom_taxonomy_projects' );

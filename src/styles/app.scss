@@ -6,6 +6,7 @@
 @use 'lang';
 @use 'typo';
 @use 'form';
+@use 'expand';
 
 body {
   @apply min-h-screen font-sans;
@@ -68,7 +69,7 @@ body {
   &-gradient-2 {
     background: linear-gradient(180deg, #021D4C 0%, rgba(218, 232, 234, 0.00) 100%);
   }
-
+  
   .social {
     svg {
       @apply fill-dark-blue;
@@ -99,14 +100,77 @@ body {
   }
 }
 
-.material-symbols-outlined {
-  font-family: 'Material Symbol Outlined', sans-serif; /* doit correspondre à @font-face */
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 100,
-    'GRAD' 0,
-    'opsz' 24;
-  display: inline-block;
-  font-feature-settings: "liga" 1, "ss01" 1;
-  text-rendering: optimizeLegibility;
+.filter {
+  .is-active {
+    @apply text-yellow;
+  }
+
+  .is-disabled {
+    pointer-events: none;
+    span {
+      opacity: .25;
+    }
+  }
+
+  &-button {
+    &.is-active {
+      @apply border-dark-blue;
+    }
+    
+  }
+
+  .reset-label {
+    @apply flex items-center @@:gap-x-[14px];
+
+    svg {
+      @apply @@:size-[12px] stroke-current stroke-[1px];
+    }
+
+    font-size: calc((var(--badge-filled-font-size) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    font-family: var(--font-badge-filled-font-family);
+    --tw-shadow-color: var(--color-badge-filled-shadow);
+    --tw-shadow: var(--tw-shadow-colored);
+    background-color: var(--color-badge-filled-background);
+    border-color: var(--color-badge-filled-border);
+    color: var(--color-badge-filled-text);
+    padding-left: calc((var(--badge-filled-padding-left) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    padding-right: calc((var(--badge-filled-padding-right) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    padding-top: calc((var(--badge-filled-padding-top) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    padding-bottom: calc((var(--badge-filled-padding-bottom) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    border-top-left-radius: calc((var(--badge-filled-border-top-left-radius) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    border-top-right-radius: calc((var(--badge-filled-border-top-right-radius) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    border-bottom-left-radius: calc((var(--badge-filled-border-bottom-left-radius) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    border-bottom-right-radius: calc((var(--badge-filled-border-bottom-right-radius) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    border-left-width: calc((var(--badge-filled-border-left-width) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    border-right-width: calc((var(--badge-filled-border-right-width) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    border-top-width: calc((var(--badge-filled-border-top-width) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    border-bottom-width: calc((var(--badge-filled-border-bottom-width) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    box-shadow: calc((var(--badge-filled-shadow-position-x) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale)) calc((var(--badge-filled-shadow-position-y) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale)) calc((var(--badge-filled-shadow-blur) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale)) calc((var(--badge-filled-shadow-spread) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale)) var(--tw-shadow-color, rgba(0, 0, 0, 0.25));
+    letter-spacing: calc((var(--badge-filled-letter-spacing) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    line-height: calc((var(--badge-filled-line-height) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+
+    @screen md {
+      padding-left: calc((var(--badge-filled-padding-left) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      padding-right: calc((var(--badge-filled-padding-right) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      padding-top: calc((var(--badge-filled-padding-top) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      padding-bottom: calc((var(--badge-filled-padding-bottom) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      border-top-left-radius: calc((var(--badge-filled-border-top-left-radius) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      border-top-right-radius: calc((var(--badge-filled-border-top-right-radius) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      border-bottom-left-radius: calc((var(--badge-filled-border-bottom-left-radius) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      border-bottom-right-radius: calc((var(--badge-filled-border-bottom-right-radius) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      border-left-width: calc((var(--badge-filled-border-left-width) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      border-right-width: calc((var(--badge-filled-border-right-width) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      border-top-width: calc((var(--badge-filled-border-top-width) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      border-bottom-width: calc((var(--badge-filled-border-bottom-width) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      box-shadow: calc((var(--badge-filled-shadow-position-x) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale)) calc((var(--badge-filled-shadow-position-y) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale)) calc((var(--badge-filled-shadow-blur) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale)) calc((var(--badge-filled-shadow-spread) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale)) var(--tw-shadow-color, rgba(0, 0, 0, 0.25));
+
+      letter-spacing: calc((var(--badge-filled-letter-spacing) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      line-height: calc((var(--badge-filled-line-height) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    }
+  }
+}
+
+.gradient-pattern-1 {
+  background: linear-gradient(90deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%);
 }

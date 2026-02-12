@@ -13,7 +13,7 @@ $link = $args['grid-link'];
 
 <div class="block-grid">
   <div class="grid md:grid-cols-6 ">
-    <div class="col-span-1 md:col-span-4 bg-layout-main theme-white px-container @@:py-[40px] flex items-center">
+    <div class="col-span-1 md:col-span-4 bg-layout-main theme-white px-container @@:py-[40px] flex items-center @sm:h-[256px] md:h-auto">
       <div class="flex flex-col md:flex-row md:justify-between items-start w-full">
         <div class="@md/lg:max-w-[494px]">
           <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
@@ -32,7 +32,7 @@ $link = $args['grid-link'];
         </div>
       </div>
     </div>
-    <div class="col-span-1 md:col-span-2 bg-layout-main theme-light-blue px-container @@:py-[40px] flex items-center">
+    <div class="col-span-1 md:col-span-2 bg-layout-main theme-light-blue px-container @@:py-[40px] flex items-center @sm:h-[256px] md:h-auto">
       <?php $adwp->get_template_part('_wysiwyg',  array('content' => $contentMiddleLeft, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
     </div>
     <div class="col-span-1 md:col-span-2 @sm:h-[290px] md:h-auto @md/lg:min-h-[398px] relative overflow-hidden">
@@ -42,7 +42,7 @@ $link = $args['grid-link'];
         </div>
       </div>
     </div>
-    <div class="col-span-1 md:col-span-2 bg-layout-main theme-dark-blue px-container @@:py-[40px] flex items-center">
+    <div class="col-span-1 md:col-span-2 bg-layout-main theme-dark-blue px-container @@:py-[40px] flex items-center @sm:h-[256px] md:h-auto">
       <?php $adwp->get_template_part('_wysiwyg',  array('content' => $contentMiddleRight, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
     </div>
     <div class="col-span-1 md:col-span-2 @sm:h-[290px] md:h-auto @md/lg:min-h-[398px] relative overflow-hidden">
@@ -52,10 +52,10 @@ $link = $args['grid-link'];
         </div>
       </div>
     </div>
-    <div class="col-span-1 md:col-span-2 bg-layout-main theme-yellow px-container @@:py-[40px] flex items-center">
+    <div class="col-span-1 md:col-span-2 bg-layout-main theme-yellow px-container @@:py-[40px] flex items-center @sm:h-[256px] md:h-auto">
       <?php $adwp->get_template_part('_wysiwyg',  array('content' => $contentBottomCenter, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
     </div>
-    <div class="col-span-1 md:col-span-2 bg-layout-main theme-light-grey px-container @@:py-[40px] flex items-center">
+    <div class="col-span-1 md:col-span-2 bg-layout-main theme-light-grey px-container @@:py-[40px] flex items-center @sm:h-[256px] md:h-auto">
       <?php $adwp->get_template_part('_wysiwyg',  array('content' => $contentBottomRight, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
     </div>
     

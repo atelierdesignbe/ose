@@ -30,7 +30,7 @@
     $events = $items;
   }
 ?>
-<div class="py-section bg-layout-main theme-dark-blue">
+<div class="py-section bg-layout-main theme-dark-blue relative">
   <div class="px-container">
       <div class="flex flex-col md:flex-row @@:gap-y-[24px] justify-between items-start autoscale-children">
         <div class="flex flex-col @@:gap-y-[24px] items-start  @md/lg:max-w-[638px]">
@@ -43,7 +43,7 @@
         <?php endif; ?>
       </div>
       <?php if ( $events ) : ?>
-        <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px] @@:mt-[44px] *:md:stagger-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[54px] @@:mt-[44px] *:md:stagger-2">
           <?php foreach ($events as $i => $post) : setup_postdata($post); ?>
             <div class="col-span-1 <?php if($i === 0): ?> md:col-start-2 <?php endif; ?>">
               <?php echo get_template_part('/components/event', null, array('id' => get_the_ID())); ?>
@@ -52,5 +52,8 @@
         </div>
       <?php endif; ?>
     
+  </div>
+  <div class="absolute mm-sm:hidden bottom-0 left-0 z-[1]">
+    <img src="<?php echo get_template_directory_uri() ?>/assets/events.svg" alt="Event Background" class="@sm:w-[354px] @md/lg:w-[480px] h-auto"/>
   </div>
 </div>

@@ -26,9 +26,10 @@ $cover = $args['cover'];
     </div>
   </div>
   <?php echo get_template_part('/components/scroll'); ?>
-  <div class="hero-social theme-dark-blue bg-layout-main px-container absolute bottom-0 left-0 z-10 text-light-blue @md/lg:h-[96px] hidden md:flex items-center">
-    <div class="aos animate-fadeinup">
+  <div class="hero-social theme-dark-blue bg-layout-main px-container absolute bottom-0 left-0 z-10 text-light-blue @md/lg:h-[96px] hidden md:flex items-center @@:gap-x-[42px]">
+    <div class="aos animate-fadeinup flex-none">
       <?php echo get_template_part('/components/social/markup', 'social', ['social' => get_field('social', 'acf-options-global-fields')['social']]); ?>
     </div>
+    <div class="bg-white w-full flex-auto h-[1px] opacity-20"></div>
   </div>
 </div>

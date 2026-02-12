@@ -106,6 +106,11 @@ if (!function_exists('atelierdesign_enqueue_vite_assets')) {
                 }
             }
         }
+
+        wp_localize_script('atelierdesign-app', 'ajax', [
+          'url' => admin_url('admin-ajax.php'),
+          'nonce' => wp_create_nonce('my_nonce')
+        ]);
     }
 }
 

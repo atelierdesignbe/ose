@@ -12,7 +12,7 @@
         <?php echo get_template_part('/components/logo', null, ['logo' => get_field('logo', 'acf-options-global-fields')]); ?>
       </div>
       <nav class="flex flex-wrap items-center">
-        <div class="md:hidden">
+        <div class="md:hidden z-[99] relative">
           <button type="button" class="button button-flat button-primary menu-btn btn-animation <?php if($theme === 'text-dark-blue'): ?> bg-dark-blue text-white <?php else: ?> bg-white text-dark-blue <?php endif; ?>" js-menu-button>
             <span class="button-title">Menu</span>
             <span class="menu-btn-lines">
@@ -22,28 +22,28 @@
             </span>
           </button>
         </div>
-        <div class="menu ">
+        <div class="menu " js-menu>
           <?php if($nav): ?>
-            <ul class="menu-nav">
+            <ul class="menu-nav mm-sm:opacity-0 mm-sm:translate-y-[20px]" js-menu-item>
               <?php foreach($nav as $item): ?>
                 <li>
-                  <a href="<?= get_permalink($item->ID); ?>" class="button button-none">
+                  <a href="<?= get_permalink($item->ID); ?>" class="button button-none button-primary">
                     <span class="button-title"><?= get_the_title($item->ID); ?></span>
                   </a>
                 </li>
               <?php endforeach;?>
             </ul>
           <?php endif; ?>
-          <div class="flex flex-col @@:gap-y-4 @@:gap-x-4 md:flex-row items-center">
+          <div class="flex flex-col @sm:gap-y-8 @md/lg:gap-y-4 @@:gap-x-4 md:flex-row items-start md:items-center mm-sm:w-full mm-sm:opacity-0 mm-sm:translate-y-[20px]" js-menu-item>
             <?php if($link): ?>
-              <a href="<?= $link['url'] ?>" target="<?= $link['target'] ?? '_self' ?>" class="button button-outline button-primary <?php if($theme === 'text-dark-blue'): ?>border-dark-blue <?php else: ?> border-white text-white <?php endif; ?>">
+              <a href="<?= $link['url'] ?>" target="<?= $link['target'] ?? '_self' ?>" class="button button-flat md:button-outline button-primary mm-sm:w-full mm-sm:justify-center <?php if($theme === 'text-dark-blue'): ?>md:border-dark-blue <?php else: ?> border-white text-white <?php endif; ?>">
                 <span class="button-title"><?= $link['title'] ?></span>
               </a>
             <?php endif; ?>
 
             <?php
               if (function_exists('pll_current_language')) {
-                  display_lang();
+                display_lang();
               }
             ?>
           </div>

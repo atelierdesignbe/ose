@@ -5,6 +5,7 @@
   $isCustom = $args['isCustom'];
   $items = $args['items'];
   $themes = $args['themes'];
+  $cover = $args['cover'];
   $types = $args['types'];
 
   $queryArgs = array(
@@ -46,8 +47,8 @@
   }
 
 ?>
-<div class="py-section bg-layout-main theme-yellow">
-  <div class="px-container">
+<div class="py-section bg-layout-main theme-yellow relative">
+  <div class="px-container relative z-[2]">
       <div class="flex flex-col md:flex-row @@:gap-y-[24px] justify-between items-start">
         <div class="flex flex-col @@:gap-y-[24px] items-start  @md/lg:max-w-[638px]">
           <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
@@ -69,4 +70,10 @@
       <?php endif; ?>
     
   </div>
+  <?php if($cover): ?>
+    <div class="absolute inset-0 parallax-image-wrapper z-[1]">
+      <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'parallax-image object-cover w-full h-full mix-blend-hard-light z-[1] relative']) ?>
+      <div class="absolute inset-0 z-[0] bg-yellow"></div>
+    </div>
+  <?php endif; ?>
 </div>

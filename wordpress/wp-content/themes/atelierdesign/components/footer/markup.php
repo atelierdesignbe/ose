@@ -4,11 +4,11 @@ $menu = $args['menu'];
 $newsletter = $args['newsletter'];
 $privacyNav = $args['bottom-nav'];
 ?>
-<footer class="footer @sm:pt-[50px] md:pt-0 theme-light-grey bg-layout-main relative">
-  <div class="footer-top">
+<footer class="footer @sm:pt-[50px] md:pt-0 theme-light-grey bg-layout-main relative overflow-hidden">
+  <div class="footer-top relative z-[1]">
     <div class="px-container grid grid-base">
       <div class="flex flex-col @@:gap-y-[32px] col-span-12 md:col-span-15 @md/lg:pt-[64px] @md/lg:pb-[180px] md:flex-row md:justify-between @md/lg:gap-x-[50px]">
-        <div class="logo-brand aos animate-fadeinup flex-none">
+        <div class="logo-brand aos animate-fadeinup flex-none text-dark-blue">
           <?php echo get_template_part('/components/logo', null, ['logo' => get_field('logo', 'acf-options-global-fields')]); ?>
         </div>
         <!-- ADDR -->
@@ -63,7 +63,7 @@ $privacyNav = $args['bottom-nav'];
   </div>
 
   <!-- BOTTOM -->
-  <div class="footer-bottom md:absolute md:bottom-0 md:left-0">
+  <div class="footer-bottom md:absolute md:bottom-0 md:left-0 z-[1]">
     <div class="mm-sm:px-container">
       <div class="border-t border-gray-200 @sm:py-[50px] @md/lg:py-[32px] @sm:mt-[50px] md:mt-0 @md/lg:pl-[--pl-margin]">
         <?php if($privacyNav && sizeof($privacyNav) > 0):  ?>
@@ -75,7 +75,9 @@ $privacyNav = $args['bottom-nav'];
             <?php endforeach; ?>
           </ul>
         <?php endif; ?>
-      <div>
+      </div>
     </div>
   </div>
+  <?php echo get_template_part('/components/gradient', null, ['class' => 'absolute bottom-0 left-0 z-[0] scale-y-[-1] mix-blend-color']); ?>
+
 </footer>

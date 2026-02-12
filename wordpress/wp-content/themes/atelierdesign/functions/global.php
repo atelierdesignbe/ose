@@ -24,8 +24,8 @@ function display_lang() {
 
   echo '<div class="lang autoscale">';
     echo '<button type="button" class="lang-btn button button-none" js-expand-button><span class="button-title">'. $current_lang. '</span></button>';
-    echo '<div class="modal">';
-    echo '<ul class="lang-list modal-expand" js-expand>';
+    echo '<div class="expand" js-expand="desktop">';
+    echo '<ul class="lang-list modal-expand">';
     foreach($languages as $lang): 
       $isActive = $lang['current_lang'] ? 'is-active' : '';
       echo '<li js-expand-item><a href="'.$lang['url'].'" class="button button-none '.$isActive.'"><span class="button-title">'.$lang['slug'].'</span></a></li>';
@@ -57,6 +57,9 @@ function icon($type, $class) {
     case 'arrow': 
       // $icon = '<svg class="'.$class.'" viewBox="0 0 17 21" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16.2803 15.5303C16.5732 15.2374 16.5732 14.7626 16.2803 14.4697L11.5074 9.6967C11.2145 9.40381 10.7396 9.40381 10.4467 9.6967C10.1538 9.98959 10.1538 10.4645 10.4467 10.7574L14.6893 15L10.4467 19.2426C10.1538 19.5355 10.1538 20.0104 10.4467 20.3033C10.7396 20.5962 11.2145 20.5962 11.5074 20.3033L16.2803 15.5303ZM0.75 15H0V15.75H0.75V15ZM15.75 15V14.25H0.75V15V15.75H15.75V15ZM0.75 15H1.5V0H0.75H0V15H0.75Z" /></svg>'; 
       $icon = '<svg class="'.$class.'" viewBox="0 0 47 16" xmlns="http://www.w3.org/2000/svg"><path d="M46.7071 8.70711C47.0976 8.31658 47.0976 7.68342 46.7071 7.29289L40.3431 0.928932C39.9526 0.538408 39.3195 0.538408 38.9289 0.928932C38.5384 1.31946 38.5384 1.95262 38.9289 2.34315L44.5858 8L38.9289 13.6569C38.5384 14.0474 38.5384 14.6805 38.9289 15.0711C39.3195 15.4616 39.9526 15.4616 40.3431 15.0711L46.7071 8.70711ZM0 8V9H46V8V7H0V8Z" /></svg>'; 
+      break;
+    case 'close': 
+      $icon = '<svg class="'.$class.'" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><path d="M8.04289 0.5L0.5 8.04289M0.542893 0.5L8.08579 8.04289" stroke-linecap="round"/></svg>'; 
       break;
     default: 
       $icon = '';

@@ -170,7 +170,6 @@ acf_add_local_field_group([
         ],
       ],
     ],
-
     // INSIGHTS
     [
       'key' => 'field-home-insights-tab',

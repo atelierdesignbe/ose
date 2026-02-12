@@ -9,6 +9,16 @@ $projectsFields = [
     'type' => 'link',
   ],
   [
+    'key' => 'field-related-project-cover',
+    'name' => 'cover',
+    'label' => 'Cover',
+    'type' => 'image',
+    'preview_size' => 'thumbnail',
+    'library' => 'all',
+    'mime_types' => 'jpg,jpeg,png,svg,webp',
+    // 'required' => 1,
+  ],
+  [
     'key' => 'field-related-project-auto',
     'label' => '',
     'name' => 'isCustom',
