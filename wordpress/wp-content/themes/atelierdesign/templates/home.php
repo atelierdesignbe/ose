@@ -64,9 +64,9 @@
           <?php $adwp->get_template_part('_wysiwyg',  array('content' => $insightContent, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
         </div>
         <div class="col-span-1 md:col-span-2">
-            <div class="flex flex-col @@:gap-y-[32px]">
+            <div class="flex flex-col @@:gap-y-[32px] *:md:stagger-2">
               <?php foreach($insights as $item): ?>
-                <div class="flex flex-col md:flex-row items-center aos animate-fadein">
+                <div class="flex flex-col md:flex-row items-center aos animate-fadeinup stagger-delay-200">
                   <div class="w-full @sm:h-[260px] @md/lg:w-[248px] @md/lg:h-[268px]  flex-none">
                     <?php echo wp_get_attachment_image($item['cover']['ID'], "full", null, ["class" => 'object-cover  h-full w-full']); ?>
                   </div>
@@ -75,7 +75,7 @@
                       <span class="badge badge-primary badge-outlined"><?= $item['date'] ?></span>
                     <?php endif; ?>
                     <?php if($item['content']): ?>
-                      <p class="paragraph paragraph-md paragraph-primary"><?= $item['content'] ?></p>
+                      <?php $adwp->get_template_part('_wysiwyg',  array('content' => $item['content'], 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
                     <?php endif; ?>
                     <?php if($item['link']): ?>
                       <a href="<?= $item['link']['url']; ?>" class="button button-underline button-primary"> <span class="button-title"><?= $item['link']['title'] ?></span> </a>

@@ -74,7 +74,7 @@ $types = get_the_terms( get_the_ID(), 'types' );
   <?php elseif($coverState === 'fit'): ?>
     <div class="hero-cover mm-sm:px-container z-[0] mm-sm:w-full md:absolute md:bottom-0 md:right-0 md:h-[--hero-h] @md/lg:pr-[--pl-margin] @md/lg:py-[--pl-margin] @sm:pb-[80px] flex items-center md:pt-0">
       <div class="w-full h-full @md/lg:max-h-[320px]">
-        <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'object-cover w-full h-full']); ?>
+        <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'object-contain w-full h-full']); ?>
       </div>
     </div>
   <?php elseif($coverState === 'fill'): ?>
@@ -86,9 +86,5 @@ $types = get_the_terms( get_the_ID(), 'types' );
   <?php endif; ?>
     
   <?php echo get_template_part('/components/scroll'); ?>
-  <div class="theme-white bg-layout-main px-container absolute bottom-0 left-0 z-10 text-light-blue @md/lg:h-[96px] hidden md:flex items-center">
-    <div class="aos animate-fadeinup">
-      <?php echo get_template_part('/components/social/markup', 'social', ['social' => get_field('social', 'acf-options-global-fields')['social']]); ?>
-    </div>
-  </div>
+
 </div>

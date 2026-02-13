@@ -6,7 +6,7 @@ $cover = get_field('cover', $id);
 $catgory = get_field('category', $id);
 ?>
 
-<a href="<?= get_permalink($id) ?>" class="flex flex-col items-start @@:gap-y-[16px] @sm:pt-[20px] @md/lg:pt-[32px] justify-between  border-t border-yellow h-full">
+<a href="<?= get_permalink($id) ?>" class="flex flex-col items-start @@:gap-y-[16px] @sm:pt-[20px] @md/lg:pt-[32px] justify-between  border-t border-yellow h-full autoscale-children">
   <div class="flex flex-col items-start @@:gap-y-[16px]">
     <div class="flex flex-row @@:gap-x-2 items-center">
       <?php if($date_start): ?><span class="badge badge-primary badge-outlined"><?= $date_start ?></span><?php endif; ?>

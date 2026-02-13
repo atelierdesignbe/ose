@@ -200,13 +200,14 @@ acf_add_local_field_group([
           'mime_types' => 'jpg,jpeg,png,svg,webp',
           'required' => 1,
         ],
-        [
-          'key' => 'field-home-insights-items-content',
-          'label' => 'Content',
-          'type' => 'textarea',
-          'name' => 'content',
-          'rows' => 2,
-        ],
+        // [
+        //   'key' => 'field-home-insights-items-content',
+        //   'label' => 'Content',
+        //   'type' => 'textarea',
+        //   'name' => 'content',
+        //   'rows' => 2,
+        // ],
+        wysiwyg('field-home-insights-items-content'),
         [
           'key' => 'field-home-insights-items-date',
           'label' => 'Date',

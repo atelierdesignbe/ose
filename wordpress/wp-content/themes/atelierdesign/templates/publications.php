@@ -63,8 +63,8 @@
   <div class="px-container @sm:pt-[120px] @md/lg:pt-[144px] @@:pb-[78px]">
     <div class="w-full @md/lg:max-w-[945px] ">
       <div class="flex flex-col @@:gap-y-[46px] autoscale-children">
-        <h1 class="heading heading-2xl heading-primary aos animate-fadinup"><?= get_the_title(); ?></h1>
-        <?php if($fields['content']): ?><p class="paragraph paragraph-xl paragraph-primary text-balance aos animate-fadinup animate-delay-200"><?= $fields['content'] ?></p><?php endif; ?>
+        <h1 class="heading heading-2xl heading-primary aos animate-fadeinup"><?= get_the_title(); ?></h1>
+        <?php if($fields['content']): ?><p class="paragraph paragraph-xl paragraph-primary text-balance aos animate-fadeinup animate-delay-200"><?= $fields['content'] ?></p><?php endif; ?>
       </div>
     </div>
 
@@ -160,7 +160,7 @@
     <?php if ( $publications->have_posts() ) : ?>
       <div class="grid grid-cols-1 md:grid-cols-2 @@:gap-[15px] @@:mt-[48px] *:md:stagger-2" js-ajax-results>
         <?php while ( $publications->have_posts() ) : $publications->the_post(); ?>
-          <div class="col-span-1 aos animate-fadinup stagger-delay-200">
+          <div class="col-span-1 aos animate-fadeinup stagger-delay-200">
             <?php echo get_template_part('/components/publication', null, array('id' => get_the_ID())); ?>
           </div>
         <?php endwhile; ?>

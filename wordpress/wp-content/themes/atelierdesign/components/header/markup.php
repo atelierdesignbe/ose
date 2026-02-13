@@ -13,7 +13,7 @@
       </div>
       <nav class="flex flex-wrap items-center">
         <div class="md:hidden z-[99] relative">
-          <button type="button" class="button button-flat button-primary menu-btn btn-animation <?php if($theme === 'text-dark-blue'): ?> bg-dark-blue text-white <?php else: ?> bg-white text-dark-blue <?php endif; ?>" js-menu-button>
+          <button type="button" class="button button-flat button-primary menu-btn btn-animation autoscale <?php if($theme === 'text-dark-blue'): ?> bg-dark-blue text-white <?php else: ?> bg-white text-dark-blue <?php endif; ?>" js-menu-button>
             <span class="button-title">Menu</span>
             <span class="menu-btn-lines">
               <span class="menu-btn-line"></span>

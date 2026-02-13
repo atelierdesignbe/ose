@@ -42,7 +42,7 @@ else if ($coverStatus === 'fit') $heroClass = 'absolute bottom-0 right-0 md:h-[-
   <?php elseif($coverStatus === 'fit'): ?>
     <div class="hero-cover mm-sm:px-container z-[0] mm-sm:w-full md:absolute md:bottom-0 md:right-0 md:h-[--hero-h] @md/lg:pr-[--pl-margin] @md/lg:py-[--pl-margin] @sm:pb-[80px] flex items-center md:pt-0">
       <div class="w-full h-full @md/lg:max-h-[320px]">
-        <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'object-cover w-full h-full']); ?>
+        <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'object-contain w-full h-full']); ?>
       </div>
     </div>
   <?php elseif($coverStatus === 'fill'): ?>

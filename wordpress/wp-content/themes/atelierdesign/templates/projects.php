@@ -54,8 +54,8 @@
   <div class="px-container @sm:pt-[120px] @md/lg:pt-[144px] @@:pb-[78px]">
     <div class="w-full @md/lg:max-w-[945px] ">
       <div class="flex flex-col @@:gap-y-[46px] autoscale-children">
-        <h1 class="heading heading-2xl heading-primary aos animate-fadinup"><?= get_the_title(); ?></h1>
-        <?php if($fields['content']): ?><p class="paragraph paragraph-xl paragraph-primary text-balance aos animate-fadinup animate-delay-200"><?= $fields['content'] ?></p><?php endif; ?>
+        <h1 class="heading heading-2xl heading-primary aos animate-fadeinup"><?= get_the_title(); ?></h1>
+        <?php if($fields['content']): ?><p class="paragraph paragraph-xl paragraph-primary text-balance aos animate-fadeinup animate-delay-200"><?= $fields['content'] ?></p><?php endif; ?>
       </div>
     </div>
 
