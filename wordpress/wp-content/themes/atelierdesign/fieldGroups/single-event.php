@@ -12,9 +12,23 @@ add_action('acf/include_fields', function () {
       // // Tab: Hero
       [
         'key' => 'field-single-event-template-tab-global',
-        'label' => 'Global',
+        'label' => 'Hero',
         'type' => 'tab',
         'no_preference' => 0,
+      ],
+      [
+        'key' => 'field-hero-event-image-state',
+        'label' => 'Cover style',
+        'name' => 'cover-status',
+        'type' => 'button_group',
+        'choices' => [
+            'fit'  => 'Fit',
+            'fill'  => 'Fill',
+            'none'  => 'None',
+        ],
+        'default_value' => 'fill',
+        'layout' => 'horizontal',
+        'return_format' => 'value',
       ],
       [
         'key' => 'field-single-event-template-cover',
@@ -24,7 +38,17 @@ add_action('acf/include_fields', function () {
         'preview_size' => 'thumbnail',
         'library' => 'all',
         'mime_types' => 'jpg,jpeg,png,svg,webp',
+        'conditional_logic' => [
+          [
+            [
+              'field' => 'field-hero-event-image-state',
+              'operator' => '!=',
+              'value' => 'none',
+            ]
+          ]
+        ]
       ],
+
       [
         'key' => 'field-single-event-template-description',
         'label' => 'Description',
@@ -50,30 +74,31 @@ add_action('acf/include_fields', function () {
         'return_format' => 'd-m-Y',
         // 'required' => 1,
       ],
-      [
-        'key' => 'field-single-event-template-tab-hero',
-        'label' => 'Hero',
-        'type' => 'tab',
-        'no_preference' => 0,
-      ],
-      // // Hero section
-      [
-        'key' => 'field-single-event-template-group-hero',
-        'label' => 'Hero',
-        'name' => 'hero',
-        'type' => 'group',
-        'sub_fields' => [
-          [
-            'key' => 'field-single-event-template-clone-fieldgroup-hero',
-            'label' => 'Hero',
-            'name' => 'hero',
-            'type' => 'clone',
-            'clone' => [
-              0 => 'field-group-hero-event',
-            ],
-          ],
-        ],
-      ],
+      
+      // [
+      //   'key' => 'field-single-event-template-tab-hero',
+      //   'label' => 'Hero',
+      //   'type' => 'tab',
+      //   'no_preference' => 0,
+      // ],
+      // // // Hero section
+      // [
+      //   'key' => 'field-single-event-template-group-hero',
+      //   'label' => 'Hero',
+      //   'name' => 'hero',
+      //   'type' => 'group',
+      //   'sub_fields' => [
+      //     [
+      //       'key' => 'field-single-event-template-clone-fieldgroup-hero',
+      //       'label' => 'Hero',
+      //       'name' => 'hero',
+      //       'type' => 'clone',
+      //       'clone' => [
+      //         0 => 'field-group-hero-event',
+      //       ],
+      //     ],
+      //   ],
+      // ],
       // Tab: Flexible Content
       [
         'key' => 'field-single-event-template-tab-flexible',

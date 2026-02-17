@@ -10,7 +10,7 @@ $hasLabel = $labelStatus === 'override' || $labelStatus === 'default';
 if ($hasLabel &&  $labelStatus === 'override') $label = $args['label'];
 
 $wrapperClass = ' items-center justify-center text-center md:col-span-16 md:col-start-5 theme-dark-blue @sm:pt-[144px] @sm:pb-[80px]';
-if ($coverStatus === 'fit') $wrapperClass = ' @sm:pt-[144px] @sm:pb-[40px]';
+if ($coverStatus === 'fit') $wrapperClass = ' @sm:pt-[144px] @sm:pb-[40px] ';
 if ($coverStatus === 'fill') $wrapperClass = ' @sm:pt-[144px] @sm:pb-[80px]';
 if ($coverStatus === 'none') $wrapperClass = ' @sm:pt-[144px] @sm:pb-[80px]';
 
@@ -40,20 +40,26 @@ else if ($coverStatus === 'fit') $heroClass = 'absolute bottom-0 right-0 md:h-[-
       </div>
     </div>
   <?php elseif($coverStatus === 'fit'): ?>
-    <div class="hero-cover mm-sm:px-container z-[0] mm-sm:w-full md:absolute md:bottom-0 md:right-0 md:h-[--hero-h] @md/lg:pr-[--pl-margin] @md/lg:py-[--pl-margin] @sm:pb-[80px] flex items-center md:pt-0">
-      <div class="w-full h-full @md/lg:max-h-[320px]">
-        <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'object-contain w-full h-full']); ?>
+    <div class="hero-cover mm-sm:px-container z-[1] mm-sm:w-full md:absolute md:bottom-0 md:right-0 md:h-[--hero-h] @md/lg:pr-[--pl-margin] @md/lg:py-[--pl-margin] @sm:pb-[80px] flex items-center md:pt-0">
+      <div class="absolute top-0 left-[22.22%] w-[1px] h-full bg-dark-blue opacity-20 z-[0]"></div>
+      <div class="w-full h-full @md/lg:max-h-[320px] z-[1] relative flex items-center">
+        <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'w-auto h-auto max-w-[100%] max-h-[100%] image-shadow aos animate-fadeinup animate-delay-400']); ?>
       </div>
     </div>
+    <?php echo get_template_part('/components/gradient', null, ['class' => 'absolute bottom-0 left-0 z-[0] scale-y-[-1] mix-blend-color']); ?>
+    <?php echo get_template_part('/components/gradient', null, ['class' => 'absolute top-0 right-0 z-[0] scale-x-[-1] mix-blend-color hidden lg:block']); ?>
   <?php elseif($coverStatus === 'fill'): ?>
     <div class="hero-cover z-[0] md:absolute md:bottom-0 md:right-0 md:h-[--hero-h]">
       <div class="w-full h-full parallax-image-wrapper">
         <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'object-cover w-full h-full parallax-image']); ?>
       </div>
     </div>
+    <?php echo get_template_part('/components/gradient', null, ['class' => 'absolute bottom-0 left-0 z-[0] scale-y-[-1] mix-blend-color']); ?>
   <?php endif; ?>
 
-  <?php if($coverStatus === 'fill'): ?>
+  <?php if($coverStatus === 'none'): ?>
+    <div class="absolute bottom-0 left-[62.5%] w-[1px] h-full bg-dark-blue opacity-20 z-[0] md:h-[--hero-h] mm-sm:hidden"></div>
+    <?php echo get_template_part('/components/gradient', null, ['class' => 'absolute bottom-0 left-0 z-[0] scale-y-[-1] mix-blend-color']); ?>
     <!-- <div class="absolute gradient-hero-fill"></div> -->
   <?php endif; ?>
     

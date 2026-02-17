@@ -12,11 +12,24 @@ add_action('acf/include_fields', function () {
       // // Tab: Hero
       [
         'key' => 'field-single-project-template-tab-global',
-        'label' => 'Global',
+        'label' => 'Hero',
         'type' => 'tab',
         'no_preference' => 0,
       ],
-
+      [
+        'key' => 'field-hero-project-image-state',
+        'label' => 'Cover style',
+        'name' => 'cover-status',
+        'type' => 'button_group',
+        'choices' => [
+            'fit'  => 'Fit',
+            'fill'  => 'Fill',
+            'none'  => 'None',
+        ],
+        'default_value' => 'fill',
+        'layout' => 'horizontal',
+        'return_format' => 'value',
+      ],
       [
         'key' => 'field-single-project-template-cover',
         'label' => 'Cover',
@@ -25,6 +38,15 @@ add_action('acf/include_fields', function () {
         'preview_size' => 'thumbnail',
         'library' => 'all',
         'mime_types' => 'jpg,jpeg,png,svg,webp',
+        'conditional_logic' => [
+          [
+            [
+              'field' => 'field-hero-project-image-state',
+              'operator' => '!=',
+              'value' => 'none',
+            ]
+          ]
+        ]
       ],
       [
         'key' => 'field-single-project-template-description',
@@ -44,30 +66,30 @@ add_action('acf/include_fields', function () {
         'default_value' => date('d-m-Y'),
       ],
       
-      [
-        'key' => 'field-single-project-template-tab-hero',
-        'label' => 'Hero',
-        'type' => 'tab',
-        'no_preference' => 0,
-      ],
+      // [
+      //   'key' => 'field-single-project-template-tab-hero',
+      //   'label' => 'Hero',
+      //   'type' => 'tab',
+      //   'no_preference' => 0,
+      // ],
       // // Hero section
-      [
-        'key' => 'field-single-project-template-group-hero',
-        'label' => 'Hero',
-        'name' => 'hero',
-        'type' => 'group',
-        'sub_fields' => [
-          [
-            'key' => 'field-single-project-template-clone-fieldgroup-hero',
-            'label' => 'Hero',
-            'name' => 'hero',
-            'type' => 'clone',
-            'clone' => [
-              0 => 'field-group-hero-project',
-            ],
-          ],
-        ],
-      ],
+      // [
+      //   'key' => 'field-single-project-template-group-hero',
+      //   'label' => 'Hero',
+      //   'name' => 'hero',
+      //   'type' => 'group',
+      //   'sub_fields' => [
+      //     [
+      //       'key' => 'field-single-project-template-clone-fieldgroup-hero',
+      //       'label' => 'Hero',
+      //       'name' => 'hero',
+      //       'type' => 'clone',
+      //       'clone' => [
+      //         0 => 'field-group-hero-project',
+      //       ],
+      //     ],
+      //   ],
+      // ],
       // Tab: Flexible Content
       [
         'key' => 'field-single-project-template-tab-flexible',

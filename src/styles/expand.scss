@@ -1,51 +1,32 @@
 [js-expand="desktop"],
 [js-expand="all"] {
-  @apply md:scale-y-0;
-
-  [js-expand-item] {
-    & > a,
-    & > button {
-      @apply md:translate-y-[100%] md:opacity-0;
-    }
+  & > div,
+  & > ul {
+    @apply md:translate-y-[20px] md:opacity-0;
   }
 }
 
 [js-expand="mobile"],
 [js-expand="all"] {
-  @apply mm-sm:scale-y-0;
-
-  [js-expand-item] {
-    & > a,
-    & > button {
-      @apply mm-sm:translate-y-[100%]  mm-sm:opacity-100;
-    }
+  & > div,
+  & > ul {
+    @apply md:translate-y-[20px] md:opacity-0;
   }
 }
 
 [js-expand] {
-  @apply origin-top duration-200 ease-out transition-all;
-  transition-delay: 300ms;
-
-  [js-expand-item] {
-    overflow: hidden;
-
-    & > a,
-    & > button {
-      @apply transition-all duration-200 ease-out;
-      transition-delay: 0ms;
-    }
+  & > div,
+  & > ul {
+    @apply duration-500 ease-out transition-all;
+    transition-delay: 300ms;
   }
 
-  &.is-open {
-    @apply scale-y-100;
-    transition-delay: 0ms;
 
-    [js-expand-item] {
-      & > a,
-      & > button {
-        @apply translate-y-[0%] opacity-100;
-        transition-delay: 300ms;
-      }
+  &.is-open {
+    & > div,
+    & > ul {
+      @apply translate-y-[0%] opacity-100;
+      transition-delay: 0ms;
     }
   }
 }

@@ -26,8 +26,8 @@ else $cols = 'grid-cols-1 md:grid-cols-2';
         </a>
       </div>
       <?php if($i == 1): ?>
-        <div class="absolute inset-0 z-[0] parallax-image-wrapper">
-            <img src="<?= get_template_directory_uri() ?>/assets/cta.jpg"  alt="" class="parallax-image object-cover w-full h-ful opacity-[0.55]" />
+        <div class="absolute inset-0 z-[0] parallax-image-wrapper opacity-70">
+            <img src="<?= get_template_directory_uri() ?>/assets/cta.jpg"  alt="" class="parallax-image object-cover w-full h-ful" />
             <div class="absolute inset-0 bg-yellow mix-blend-soft-light"></div>
             <div class="absolute inset-0 bg-yellow mix-blend-hue"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-white to-transparent"></div>

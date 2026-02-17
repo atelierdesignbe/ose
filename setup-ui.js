@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 const THEME_DIR = path.join(__dirname, 'wordpress/wp-content/themes', 'atelierdesign');
 const TOKENS_SOURCE_DIR = path.join(THEME_DIR, 'tokens');
-const UI_DIR = path.join(THEME_DIR, 'ui');
+const UI_DIR = path.join(THEME_DIR, 'ad-ui');
 const UI_TOKENS_DIR = path.join(UI_DIR, 'core', 'src', 'data');
 const UI_REPO = 'git@github.com:atelierdesignbe/ui.git';
 // const TOKENS_TEMPLATE = path.join(UI_DIR, 'core', 'src', 'data', 'tokens.example.json');
@@ -99,7 +99,7 @@ function initUI() {
     console.log(`   Destination: ${UI_DIR}\n`);
 
     process.chdir(THEME_DIR);
-    exec(`git clone ${UI_REPO}`);
+    exec(`git clone ${UI_REPO} ad-ui`);
     
     console.log('✅ UI repository cloned successfully!', UI_DIR);
   } catch (error) {

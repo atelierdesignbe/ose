@@ -12,7 +12,7 @@ $privacyNav = $args['bottom-nav'];
           <?php echo get_template_part('/components/logo', null, ['logo' => get_field('logo', 'acf-options-global-fields')]); ?>
         </div>
         <!-- ADDR -->
-        <div class="contact flex flex-col @@:gap-y-[24px] items-start @md/lg:pr-[6.66%]">
+        <div class="contact flex flex-col @@:gap-y-[24px] items-start @md/lg:pr-[6.66%] @md/lg:w-[438px]">
           <?php if($contact['link']): ?>
             <a href="<?= $contact['link']['url'] ?>" target="<?= $contact['url']['target'] ?? '_self' ?>" class="heading heading-2xl heading-primary aos animate-fadeinup animate-delay-100 autoscale"><?= $contact['link']['title'] ?></a>
           <?php endif; ?>
@@ -33,21 +33,21 @@ $privacyNav = $args['bottom-nav'];
         </div>
       </div>
       <!-- MENU -->
-      <div class="flex flex-col @@:gap-y-[50px] mm-sm:border-t border-gray-200 @sm:pt-[50px] @md/lg:pt-[64px] @md/lg:pb-[42px] @sm:mt-[50px] md:mt-0 col-span-12 md:col-span-9 @md/lg:pl-[11.11%] md:border-l justify-between">
+      <div class="flex flex-col @@:gap-y-[50px] mm-sm:border-t border-gray-200 @sm:pt-[50px] @md/lg:pt-[64px] @md/lg:pb-[42px] @sm:mt-[50px] md:mt-0 col-span-12 md:col-span-9 @md/lg:pl-[11.11%] md:border-l <?php if($newsletter && class_exists('FrmForm')): ?> justify-between <?php else: ?> justify-end <?php endif; ?>">
         <!-- NEWSLETTER -->
-        <div class="newsletter aos animate-fadeinup">
-          <?php if($newsletter && class_exists('FrmForm')): ?>
+        <?php if($newsletter && class_exists('FrmForm')): ?>
+          <div class="newsletter aos animate-fadeinup">
             <?php do_shortcode("[formidable id='".$newsletter."']"); ?>
-          <?php endif; ?>
-        </div>
+          </div>
+        <?php endif; ?>
         <div class="flex flex-col md:flex-row @@:gap-[50px] md:items-end md:justify-between">
           <?php if($menu && sizeof($menu) > 0): ?>
-            <div class="footer-menu flex flex-col @@:gap-y-[24px]">
+            <div class="footer-menu flex-none flex flex-col @@:gap-y-[24px]">
               <p class="subtitle autoscale aos animate-fadeinup text-dark-blue">Ose</p>
-              <ul class="flex flex-col @@:gap-y-[12px] autoscale-children aos animate-fadeinup animate-delay-200">
+              <ul class="flex flex-col @@:gap-y-[24px] autoscale-children aos animate-fadeinup animate-delay-200">
                 <?php foreach($menu as $item): ?>
-                  <li>
-                    <a href="<?= get_permalink($item->ID) ?>" class="paragraph paragraph-md paragraph-primary"><?= get_the_title($item->ID) ?></a>
+                  <li class="leading-none">
+                    <a href="<?= get_permalink($item->ID) ?>" class="paragraph paragraph-md paragraph-primary leading-none"><?= get_the_title($item->ID) ?></a>
                   </li>
                 <?php endforeach; ?>
               </ul>

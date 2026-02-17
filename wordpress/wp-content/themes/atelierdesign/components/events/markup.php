@@ -46,7 +46,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[54px] @@:mt-[44px] *:md:stagger-2">
           <?php foreach ($events as $i => $post) : setup_postdata($post); ?>
             <div class="col-span-1 <?php if($i === 0): ?> md:col-start-2 <?php endif; ?> aos animate-fadeinup stagger-delay-200">
-              <?php echo get_template_part('/components/event', null, array('id' => get_the_ID())); ?>
+              <?php echo get_template_part('/components/event', null, array('id' => get_the_ID(), "theme" => 'blue')); ?>
             </div>
           <?php endforeach; ?>
         </div>

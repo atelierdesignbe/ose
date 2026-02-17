@@ -41,7 +41,7 @@
       </div>
     </div>
     <?php if ( $events->have_posts() ) : ?>
-      <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px] @@:mt-[48px] *:md:stagger-3">
+      <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[54px] @@:mt-[48px] *:md:stagger-3">
         <?php while ( $events->have_posts() ) : $events->the_post(); ?>
           <div class="col-span-1 aos animate-fadeinup stagger-delay-200">
             <?php echo get_template_part('/components/event', null, array('id' => get_the_ID())); ?>
@@ -76,10 +76,10 @@
     <div class="theme-dark-blue bg-layout-main py-section">
       <div class="px-container">
         <h2 class="heading heading-2xl heading-primary aos animate-fadeinup">Past events</h1>
-        <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px] @@:mt-[48px] *:md:stagger-3">
+        <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[54px] @@:mt-[48px] *:md:stagger-3">
           <?php while ( $oldevents->have_posts() ) : $oldevents->the_post(); ?>
             <div class="col-span-1 aos animate-fadeinup stagger-delay-200">
-              <?php echo get_template_part('/components/event', null, array('id' => get_the_ID())); ?>
+              <?php echo get_template_part('/components/event', null, array('id' => get_the_ID(), 'theme' => 'blue')); ?>
             </div>
           <?php endwhile; ?>
         </div>

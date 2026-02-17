@@ -60,7 +60,7 @@
     </div>
 
     <!-- FILTER -->
-    <div class="filter flex flex-col md:flex-row md:items-center flex-wrap @@:gap-[16px] @@:mt-[60px]">
+    <div class="filter flex flex-col md:flex-row md:items-center flex-wrap @@:gap-[16px] @@:mt-[60px] aos animate-fadeinup">
       <p class="filter-label subtitle autoscale text-dark-blue">Filter by</p>
       <!-- <div class=""></div> -->
       <div class="flex flex-wrap flex-row mm-sm:justify-between @sm:gap-y-[12px] @md/lg:gap-x-4">

@@ -1,23 +1,45 @@
 .header {
-  @apply absolute top-0 left-0 w-full z-[99];
+  @apply absolute top-0 left-0 w-full z-[99] ;
 
   &-wrapper {
-    @apply relative @@:py-[10px] items-center flex;
+    @apply relative items-center flex @sm:py-[10px] md:py-0 @md/lg:h-[92px];
 
     &-line {
       @apply absolute bottom-0 left-0 w-full h-[1px] opacity-20;
     }
-
   }
 
   .logo-brand {
     @apply relative z-[99];
+
+    /**REWORK AUTO SCALE**/ 
+    @media (min-width: 600px) and (max-width: 1024px) {
+      --tw-screen-lg: 1024;
+    }
+  }
+
+  &:after {
+    @apply absolute w-full @@:h-[120px] z-[2] opacity-0 md:hidden delay-0 top-0 left-0;
+    background: linear-gradient(to bottom, #021D4C 70%, rgb(2, 29, 76, 0));
+    content: "";
+  }
+  
+  &.menu-open {
+    &:after {
+      @apply opacity-100 delay-200;
+    }
+
+    .logo-brand {
+      @apply text-white;
+    }
+
   }
 }
 
 .logo-brand {
   img, svg {
-    @apply @sm:w-[106px] @sm:h-[70px] @md/lg:w-[125px] @md/lg:h-[82px];
+    // @apply @sm:w-[106px] @sm:h-[70px] @md/lg:w-[125px] @md/lg:h-[82px];
+    @apply w-auto @sm:h-[70px] @md/lg:h-[82px];
   }
 }
 

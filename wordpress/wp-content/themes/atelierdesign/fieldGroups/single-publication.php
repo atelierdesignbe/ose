@@ -12,7 +12,7 @@ add_action('acf/include_fields', function () {
       // // Tab: Hero
       [
         'key' => 'field-single-publication-template-tab-global',
-        'label' => 'Global',
+        'label' => 'Hero',
         'type' => 'tab',
         'no_preference' => 0,
       ],
@@ -65,30 +65,30 @@ add_action('acf/include_fields', function () {
           // 'max' => 5,
           'return_format' => 'object',
       ],
-      [
-        'key' => 'field-single-publication-template-tab-hero',
-        'label' => 'Hero',
-        'type' => 'tab',
-        'no_preference' => 0,
-      ],
+      // [
+      //   'key' => 'field-single-publication-template-tab-hero',
+      //   'label' => 'Hero',
+      //   'type' => 'tab',
+      //   'no_preference' => 0,
+      // ],
       // // Hero section
-      [
-        'key' => 'field-single-publication-template-group-hero',
-        'label' => 'Hero',
-        'name' => 'hero',
-        'type' => 'group',
-        'sub_fields' => [
-          [
-            'key' => 'field-single-publication-template-clone-fieldgroup-hero',
-            'label' => 'Hero',
-            'name' => 'hero',
-            'type' => 'clone',
-            'clone' => [
-              0 => 'field-group-hero-publication',
-            ],
-          ],
-        ],
-      ],
+      // [
+      //   'key' => 'field-single-publication-template-group-hero',
+      //   'label' => 'Hero',
+      //   'name' => 'hero',
+      //   'type' => 'group',
+      //   'sub_fields' => [
+      //     [
+      //       'key' => 'field-single-publication-template-clone-fieldgroup-hero',
+      //       'label' => 'Hero',
+      //       'name' => 'hero',
+      //       'type' => 'clone',
+      //       'clone' => [
+      //         0 => 'field-group-hero-publication',
+      //       ],
+      //     ],
+      //   ],
+      // ],
       // Tab: Flexible Content
       [
         'key' => 'field-single-publication-template-tab-flexible',

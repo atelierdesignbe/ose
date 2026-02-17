@@ -14,22 +14,22 @@
 // });
 
 // Core functions & styles
-$ui_dir = get_template_directory() . '/ui';
+$ui_dir = get_template_directory() . '/ad-ui';
 $ui_init_file = $ui_dir . '/wp/init.php';
 
 if (file_exists($ui_init_file)) {
 
-  require_once 'ui/wp/init.php';
+  require_once 'ad-ui/wp/init.php';
 
   $adwp = new ADWP([
-    'packageFolder' => get_template_directory() . '/ui',
-    'packageUrl' => get_template_directory_uri() . '/ui',
+    'packageFolder' => get_template_directory() . '/ad-ui',
+    'packageUrl' => get_template_directory_uri() . '/ad-ui',
     'customFlexibleComponentPath' => get_template_directory() . '/components',
     'disableEnqueueStyles' => true,
   ]);
 
   // Advanced Custom Fields modules
-  require_once 'ui/acf/includes.php';
+  require_once 'ad-ui/acf/includes.php';
 } else {
    // UI n'est pas installé - Afficher un avertissement dans l'admin
     add_action('admin_notices', function() {
@@ -37,7 +37,7 @@ if (file_exists($ui_init_file)) {
         <div class="notice notice-error">
             <p>
                 <strong>⚠️ Atelier Design Theme :</strong> 
-                Le dossier <code>/ui</code> n'est pas installé.
+                Le dossier <code>/ad-ui</code> n'est pas installé.
             </p>
             <p>
                 Pour installer le thème, lancez les commandes suivantes dans le terminal à la racine du projet:
@@ -52,7 +52,7 @@ if (file_exists($ui_init_file)) {
         if (!is_admin()) {
             wp_die(
                 '<h1>Thème non configuré</h1>
-                <p>Le dossier <code>/ui</code> n\'est pas installé.</p>
+                <p>Le dossier <code>/ad-ui</code> n\'est pas installé.</p>
                 <p>Veuillez lancer <code>yarn install</code> dans le dossier du thème.</p>
                 <hr>
                 <p><a href="' . admin_url() . '">← Retour à l\'admin</a></p>',

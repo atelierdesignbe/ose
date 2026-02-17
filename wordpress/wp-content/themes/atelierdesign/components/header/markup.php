@@ -22,30 +22,32 @@
             </span>
           </button>
         </div>
-        <div class="menu " js-menu>
-          <?php if($nav): ?>
-            <ul class="menu-nav mm-sm:opacity-0 mm-sm:translate-y-[20px]" js-menu-item>
-              <?php foreach($nav as $item): ?>
-                <li>
-                  <a href="<?= get_permalink($item->ID); ?>" class="button button-none button-primary">
-                    <span class="button-title"><?= get_the_title($item->ID); ?></span>
-                  </a>
-                </li>
-              <?php endforeach;?>
-            </ul>
-          <?php endif; ?>
-          <div class="flex flex-col @sm:gap-y-8 @md/lg:gap-y-4 @@:gap-x-4 md:flex-row items-start md:items-center mm-sm:w-full mm-sm:opacity-0 mm-sm:translate-y-[20px]" js-menu-item>
-            <?php if($link): ?>
-              <a href="<?= $link['url'] ?>" target="<?= $link['target'] ?? '_self' ?>" class="button button-flat md:button-outline button-primary mm-sm:w-full mm-sm:justify-center <?php if($theme === 'text-dark-blue'): ?>md:border-dark-blue <?php else: ?> border-white text-white <?php endif; ?>">
-                <span class="button-title"><?= $link['title'] ?></span>
-              </a>
+        <div class="menu " js-menu data-lenis-prevent>
+          <div class="menu-wrapper">
+            <?php if($nav): ?>
+              <ul class="menu-nav mm-sm:opacity-0 mm-sm:translate-y-[20px]" js-menu-item>
+                <?php foreach($nav as $item): ?>
+                  <li>
+                    <a href="<?= get_permalink($item->ID); ?>" class="button button-none button-primary">
+                      <span class="button-title"><?= get_the_title($item->ID); ?></span>
+                    </a>
+                  </li>
+                <?php endforeach;?>
+              </ul>
             <?php endif; ?>
+            <div class="flex flex-col @sm:gap-y-8 @md/lg:gap-y-4 @@:gap-x-4 md:flex-row items-start md:items-center mm-sm:w-full mm-sm:opacity-0 mm-sm:translate-y-[20px]" js-menu-item>
+              <?php if($link): ?>
+                <a href="<?= $link['url'] ?>" target="<?= $link['target'] ?? '_self' ?>" class="button button-flat md:button-outline button-primary mm-sm:w-full mm-sm:justify-center <?php if($theme === 'text-dark-blue'): ?>md:border-dark-blue <?php else: ?> border-white text-white <?php endif; ?>">
+                  <span class="button-title"><?= $link['title'] ?></span>
+                </a>
+              <?php endif; ?>
 
-            <?php
-              if (function_exists('pll_current_language')) {
-                display_lang();
-              }
-            ?>
+              <?php
+                if (function_exists('pll_current_language')) {
+                  display_lang();
+                }
+              ?>
+            </div>
           </div>
         </div>
       </nav>
