@@ -111,12 +111,12 @@ acf_add_local_field_group([
       'required' => 0,
       'conditional_logic' => 0,
     ],
-    [
-      'key' => 'field-related-tab',
-      'label' => 'Related News',
-      'type' => 'tab',
-      'no_preference' => 0,
-    ],
+    // [
+    //   'key' => 'field-related-tab',
+    //   'label' => 'Related News',
+    //   'type' => 'tab',
+    //   'no_preference' => 0,
+    // ],
   ],
   'location' => array(
     array(

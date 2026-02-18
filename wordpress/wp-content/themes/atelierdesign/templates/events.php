@@ -30,6 +30,8 @@
     
   $events = new WP_Query($args);
 
+  
+
 ?>
 <?php get_template_part('/components/header/markup', 'header', get_field('header', 'acf-options-global-fields')); ?>
 <main id="events" class="overflow-hidden relative">
@@ -48,6 +50,8 @@
           </div>
         <?php endwhile; ?>
       </div>
+    <?php else: ?>
+      <p class="paragraph paragraph-primary paragraph-lg aos animate-fadeinup @@:mt-[48px]"><?= $fields['none']; ?></p>
     <?php endif; ?>
   </div>
   <?php  wp_reset_postdata(); // ← Important ! ?>
