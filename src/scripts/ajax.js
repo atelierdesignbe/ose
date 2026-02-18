@@ -91,6 +91,7 @@ if (ajaxPage) {
 
   filters.forEach((filter, index) => {
     const filterType = filter.getAttribute('js-ajax-filter')
+    const buttonExpand = filter.parentElement.parentElement.querySelector('[js-expand-button]')
     data.filters[filterType] = ''
 
     const items = filter.querySelectorAll('button')
@@ -109,7 +110,7 @@ if (ajaxPage) {
         nButton.dataset.id = item.dataset.id
         nButton.dataset.filter = filterType
         resetWrapper.appendChild(nButton)
-
+        buttonExpand.classList.add('is-filtered')
         data.filters[filterType] = item.dataset.id
         item.classList.add('is-active')
 
@@ -120,6 +121,7 @@ if (ajaxPage) {
         nButton.addEventListener('click', () => {
           ajaxPage.querySelector(`[js-ajax-filter] [data-id="${nButton.dataset.id}"]`).classList.remove('is-active')
           data.filters[nButton.dataset.filter] = ''
+          ajaxPage.querySelector(`[js-ajax-filter="${nButton.dataset.filter}"]`).parentElement.parentElement.querySelector('[js-expand-button]').classList.remove('is-filtered')
           data.page = 1
           searchData(true)
           nButton.remove()

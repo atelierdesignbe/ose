@@ -23,19 +23,6 @@ acf_add_local_field_group([
       'type' => 'textarea',
       'rows' => 2
     ],
-    [
-      'key' => 'field-event-general',
-      'label' => 'General',
-      'type' => 'tab',
-      'no_preference' => 0,
-    ],
-    [
-      'key' => 'field-event-none',
-      'label' => 'No event',
-      'name' => 'none',
-      'type' => 'textarea',
-      'rows' => 2
-    ],
     // CTA
     [
       'key' => 'field-event-cta-footer-tab',

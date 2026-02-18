@@ -34,3 +34,9 @@
     }
   }
 }
+
+[js-expand-button] {
+  &.is-filtered {
+    @apply border-dark-blue;
+  }
+}

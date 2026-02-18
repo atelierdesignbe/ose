@@ -68,3 +68,11 @@
     }
   }
 }
+
+.wysiwyg {
+  &.my-inside {
+    & > *:first-child {
+      @apply pt-0;
+    }
+  }
+}

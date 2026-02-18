@@ -57,7 +57,12 @@ body {
 }
 
 .image-shadow {
-  box-shadow: 0px 8px 16px rgba(1, 27, 72, 0.30);
+  // box-shadow: 0px 8px 16px rgba(1, 27, 72, 0.30);
+  box-shadow: vw(-4) vw(16) vw(42) vw(-10) rgba(1, 27, 72, 0.30);
+}
+
+.image-shadow-lg {
+  box-shadow: 0 vw(20) vw(60) vw(-20) rgba(1, 27, 72, 0.40);
 }
 
 .last-publication {
@@ -152,4 +157,8 @@ body {
 
 .gradient-pattern-1 {
   background: linear-gradient(90deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%);
+}
+
+.parallax-image-wrapper.h-full {
+  height: calc(100% + 1px);
 }

@@ -20,7 +20,7 @@ if (isset($args['isNested']) && $args['isNested'] == true) {
 }
 ?>
 <?php if (!empty($args['content'])): ?>
-  <div class="wysiwyg <?= $args['inside'] ? '' : 'my-elem-md' ?> <?= $isFullWidth ? '' : 'px-content' ?> autoscale-children">
+  <div class="wysiwyg <?= $args['inside'] ? 'my-inside' : 'my-elem-md' ?> <?= $isFullWidth ? '' : 'px-content' ?> autoscale-children">
     <?php
     $content = $args['content'] ?? '';
 

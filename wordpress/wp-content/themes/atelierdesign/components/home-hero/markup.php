@@ -20,8 +20,9 @@ $cover = $args['cover'];
     </div>
   </div>
   <div class="hero-media absolute inset-0 z-[0]">
-    <div class="absolute inset-0 z-[1] hero-gradient-home opacity-50"></div>
-    <div class="parallax-image-wrapper h-full z-[1] relative">
+    <div class="absolute inset-0 bg-yellow mix-blend-soft-light"></div>
+    <div class="absolute inset-0 hero-gradient-home"></div>
+    <div class="parallax-image-wrapper h-full relative aos animate-fadeinzoomout aniamte-delay-400">
       <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'parallax-image object-cover w-full h-full']); ?>
     </div>
   </div>

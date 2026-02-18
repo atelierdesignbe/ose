@@ -9,7 +9,7 @@ if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fi
 
 ?>
 
-<a href="<?= get_permalink($id) ?>" class="bg-layout-main <?= $theme ?> @@:p-[20px] flex @md/lg:min-h-[220px]">
+<a href="<?= get_permalink($id) ?>" class="bg-layout-main <?= $theme ?> @@:p-[20px] flex @md/lg:min-h-[220px] h-full overflow-hidden">
   <div class="flex-none @sm:w-[88px] @md/lg:w-[158px]">
     <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'object-contain w-full image-shadow']) ?>
   </div>

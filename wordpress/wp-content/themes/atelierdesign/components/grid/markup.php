@@ -11,7 +11,7 @@ $contentBottomRight = $args['grid-content-bottom-right'];
 $link = $args['grid-link'];
 ?>
 
-<div class="block-grid">
+<div class="block-grid bg-white relative">
   <div class="grid md:grid-cols-6 ">
     <div class="col-span-1 md:col-span-4 bg-layout-main theme-white px-container @@:py-[40px] flex items-center @sm:h-[256px] md:h-auto">
       <div class="flex flex-col md:flex-row md:justify-between items-start w-full">

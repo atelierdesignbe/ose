@@ -51,7 +51,7 @@
         <?php endwhile; ?>
       </div>
     <?php else: ?>
-      <p class="paragraph paragraph-primary paragraph-lg aos animate-fadeinup @@:mt-[48px]"><?= $fields['none']; ?></p>
+      <p class="paragraph paragraph-primary paragraph-lg aos animate-fadeinup @@:mt-[48px]"><?= get_field('event-none', 'acf-options-global-fields'); ?></p>
     <?php endif; ?>
   </div>
   <?php  wp_reset_postdata(); // ← Important ! ?>

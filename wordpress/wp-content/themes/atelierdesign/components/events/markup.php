@@ -50,6 +50,8 @@
             </div>
           <?php endforeach; ?>
         </div>
+      <?php else: ?>
+        <p class="paragraph paragraph-primary paragraph-lg aos animate-fadeinup @@:mt-[48px]"><?= get_field('event-none', 'acf-options-global-fields'); ?></p>
       <?php endif; ?>
     
   </div>
