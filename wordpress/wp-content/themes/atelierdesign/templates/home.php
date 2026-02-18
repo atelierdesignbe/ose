@@ -34,13 +34,13 @@
       </div>
       <div class="w-full md:flex-auto">
         <div class="@sm:py-[60px] @md/lg:py-[80px] px-container">
-          <?php $adwp->get_template_part('_wysiwyg',  array('content' => $introContent, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+          <?php $adwp->get_template_part('_wysiwyg',  array('content' => $introContent, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
         </div>
         <div class="bg-layout-main theme-light-grey px-container sm:py-[60px] @md/lg:py-[80px] grid grid-cols-1 md:grid-cols-2 @md/lg:gap-x-[60px] relative">
           <?php foreach($areas as $i => $item): ?>
             <div class="col-span-1 flex flex-col @sm:gap-y-4 @md/lg:gap-y-[28px] text-dark-blue border-[--dark-blue-20] border-b @sm:pb-[42px] @sm:mb-[42px] @md/lg:pb-[58px] @md/lg:mb-[58px] <?php if(($i + 2) >= sizeof($areas)) { echo " md:mb-0 md:border-b-0";} ?> ">
               <span class="subtitle aos animate-fadeinup"><?= $i < 8 ? '0'.($i + 1) : $i + 1 ?></span>
-              <?php $adwp->get_template_part('_wysiwyg',  array('content' => $item['content'], 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+              <?php $adwp->get_template_part('_wysiwyg',  array('content' => $item['content'], 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
             </div>
           <?php endforeach; ?>
         </div>
@@ -61,7 +61,7 @@
     <div class="px-container">
       <div class="grid grid-cols-1 md:grid-cols-3 @md/lg:gap-x-[60px]">
         <div class="col-span-1 text-balance">
-          <?php $adwp->get_template_part('_wysiwyg',  array('content' => $insightContent, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+          <?php $adwp->get_template_part('_wysiwyg',  array('content' => $insightContent, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
         </div>
         <div class="col-span-1 md:col-span-2">
             <div class="flex flex-col @@:gap-y-[32px] *:md:stagger-2">
@@ -75,7 +75,7 @@
                       <span class="badge badge-primary badge-outlined"><?= $item['date'] ?></span>
                     <?php endif; ?>
                     <?php if($item['content']): ?>
-                      <?php $adwp->get_template_part('_wysiwyg',  array('content' => $item['content'], 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+                      <?php $adwp->get_template_part('_wysiwyg',  array('content' => $item['content'], 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
                     <?php endif; ?>
                     <?php if($item['link']): ?>
                       <a href="<?= $item['link']['url']; ?>" class="button button-underline button-primary"> <span class="button-title"><?= $item['link']['title'] ?></span> </a>

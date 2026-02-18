@@ -22,6 +22,16 @@ acf_add_local_field_group([
       'required' => 1
     ],
     [
+      'key' => 'field-global-publication-placeholder',
+      'label' => 'Publication placeholder',
+      'name' => 'publication-placeholder',
+      'type' => 'image',
+      'preview_size' => 'thumbnail',
+      'library' => 'all',
+      'mime_types' => 'jpg,jpeg,png,svg,webp',
+      'required' => 1
+    ],
+    [
       'key' => 'field-header-tab',
       'label' => 'Header',
       'type' => 'tab',

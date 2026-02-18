@@ -24,3 +24,24 @@ const lenis = new Lenis({
 });
 
 window.lenis = lenis
+
+
+const hero = document.querySelector('.hero')
+
+if (hero) {
+
+  function initRatioHero() {
+    const screen = {
+      w: window.innerWidth,
+      h: window.innerHeight,
+    }
+
+    
+    if (screen.w/screen.h < 1.45) hero.classList.add('is-vertical')
+    else hero.classList.remove('is-vertical')
+    
+  } 
+
+  initRatioHero()
+  window.addEventListener('resize', initRatioHero)
+}

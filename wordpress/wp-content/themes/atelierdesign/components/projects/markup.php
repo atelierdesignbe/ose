@@ -51,10 +51,10 @@
   <div class="px-container relative z-[2]">
       <div class="flex flex-col md:flex-row @@:gap-y-[24px] justify-between items-start">
         <div class="flex flex-col @@:gap-y-[24px] items-start  @md/lg:max-w-[638px]">
-          <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+          <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
         </div>
         <?php if($link): ?>
-          <a href="<?= $link['url'] ?>" class="button button-primary button-flat aos animate-fadeinup animate-delay-200">
+          <a href="<?= $link['url'] ?>" class="button button-primary button-flat aos animate-fadeinup animate-delay-200 autoscale">
             <span class="button-title"><?= $link['title'] ?></span>
           </a>
         <?php endif; ?>

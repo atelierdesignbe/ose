@@ -16,7 +16,7 @@ global $adwp; ?>
     <div class="px-container">
       <div class="grid grid-base @@:gap-y-lg">
         <div class="col-span-12 md:col-span-7">
-          <?php $adwp->get_template_part('_wysiwyg',  array('content' => $fields['content'], 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+          <?php $adwp->get_template_part('_wysiwyg',  array('content' => $fields['content'], 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
         </div>
         <div class="col-span-12 md:col-span-15 md:col-start-10">
           <?php if($fields['form_id']): ?>

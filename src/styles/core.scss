@@ -4,7 +4,8 @@
 
   --dark-blue-20: rgba(2, 29, 76, .2);
   --button-underline-border-width: 1;
-  --size-container: calc(100vw - var(--pl-margin) * 2)
+  --size-container: calc(100vw - var(--pl-margin) * 2);
+  --left-line: calc(((17 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin));
 }
 
 @screen md {

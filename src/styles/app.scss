@@ -7,6 +7,7 @@
 @use 'typo';
 @use 'form';
 @use 'expand';
+@use 'hero';
 
 body {
   @apply min-h-screen font-sans;
@@ -16,33 +17,7 @@ body {
   @apply grid grid-cols-12 md:grid-cols-24;
 }
 
-.hero-cpt {
-  .hero-cover {
-    @apply w-full;
 
-    @screen md {
-      width: calc(((9 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin))
-    }
-
-    &.hero-fit, 
-    &.hero-none {
-      // background: var(--Light-Blue, #CDE0F6);
-    }
-  }
-}
-
-.hero-fit,
-.hero-fill {
-  @apply flex mm-sm:flex-col;
-  
-  .hero-cover {
-    @apply w-full;
-
-    @screen md {
-      width: calc(((9 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin))
-    }
-  }
-}
 
 .hero {
   &-social {
@@ -97,6 +72,10 @@ body {
     @apply h-full aspect-square absolute bottom-0 left-0 -translate-x-[50%] translate-y-[50%];
     background: radial-gradient(circle, #FFD65A 0%, #CDE0F6 50%, transparent 70%);
     opacity: .4;
+  }
+  
+  &-fullsize {
+    background: linear-gradient(110deg, #FFD65A 6.65%, rgba(205, 224, 246, 0.00) 55.46%);
   }
 }
 

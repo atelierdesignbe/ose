@@ -63,7 +63,7 @@ $privacyNav = $args['bottom-nav'];
   </div>
 
   <!-- BOTTOM -->
-  <div class="footer-bottom md:absolute md:bottom-0 md:left-0 z-[1]">
+  <div class="footer-bottom md:absolute md:bottom-0 md:left-0 relative z-[1]">
     <div class="mm-sm:px-container">
       <div class="border-t border-gray-200 @sm:py-[50px] @md/lg:py-[32px] @sm:mt-[50px] md:mt-0 @md/lg:pl-[--pl-margin]">
         <?php if($privacyNav && sizeof($privacyNav) > 0):  ?>
@@ -78,6 +78,6 @@ $privacyNav = $args['bottom-nav'];
       </div>
     </div>
   </div>
-  <?php echo get_template_part('/components/gradient', null, ['class' => 'absolute bottom-0 left-0 z-[0] scale-y-[-1] mix-blend-color']); ?>
+  <img src="<?= get_template_directory_uri() ?>/assets/gradient-footer.jpg" class="absolute bottom-0 left-0 z-[0] @@:h-[400px] @md/lg:h-full w-auto"/>
 
 </footer>

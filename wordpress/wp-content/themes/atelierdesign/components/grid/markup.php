@@ -16,10 +16,10 @@ $link = $args['grid-link'];
     <div class="col-span-1 md:col-span-4 bg-layout-main theme-white px-container @@:py-[40px] flex items-center @sm:h-[256px] md:h-auto">
       <div class="flex flex-col md:flex-row md:justify-between items-start w-full">
         <div class="@md/lg:max-w-[494px]">
-          <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+          <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
         </div>
         <?php if($link): ?>
-          <a href="<?= $link['url']; ?>" class="button button-flat button-primary aos animate-fadeinup animate-delay-200">
+          <a href="<?= $link['url']; ?>" class="button button-flat button-primary aos animate-fadeinup animate-delay-200 autoscale">
             <span class="button-title"><?= $link['title']; ?></span>
           </a>
         <?php endif; ?>
@@ -33,7 +33,7 @@ $link = $args['grid-link'];
       </div>
     </div>
     <div class="col-span-1 md:col-span-2 bg-layout-main theme-light-blue px-container @@:py-[40px] flex items-center @sm:h-[256px] md:h-auto">
-      <?php $adwp->get_template_part('_wysiwyg',  array('content' => $contentMiddleLeft, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+      <?php $adwp->get_template_part('_wysiwyg',  array('content' => $contentMiddleLeft, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
     </div>
     <div class="col-span-1 md:col-span-2 @sm:h-[290px] md:h-auto @md/lg:min-h-[398px] relative overflow-hidden">
       <div class="aos animate-fadeinzoomout absolute inset-0">
@@ -43,7 +43,7 @@ $link = $args['grid-link'];
       </div>
     </div>
     <div class="col-span-1 md:col-span-2 bg-layout-main theme-dark-blue px-container @@:py-[40px] flex items-center @sm:h-[256px] md:h-auto">
-      <?php $adwp->get_template_part('_wysiwyg',  array('content' => $contentMiddleRight, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+      <?php $adwp->get_template_part('_wysiwyg',  array('content' => $contentMiddleRight, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
     </div>
     <div class="col-span-1 md:col-span-2 @sm:h-[290px] md:h-auto @md/lg:min-h-[398px] relative overflow-hidden">
       <div class="aos animate-fadeinzoomout absolute inset-0">
@@ -53,10 +53,10 @@ $link = $args['grid-link'];
       </div>
     </div>
     <div class="col-span-1 md:col-span-2 bg-layout-main theme-yellow px-container @@:py-[40px] flex items-center @sm:h-[256px] md:h-auto">
-      <?php $adwp->get_template_part('_wysiwyg',  array('content' => $contentBottomCenter, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+      <?php $adwp->get_template_part('_wysiwyg',  array('content' => $contentBottomCenter, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
     </div>
     <div class="col-span-1 md:col-span-2 bg-layout-main theme-light-grey px-container @@:py-[40px] flex items-center @sm:h-[256px] md:h-auto">
-      <?php $adwp->get_template_part('_wysiwyg',  array('content' => $contentBottomRight, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+      <?php $adwp->get_template_part('_wysiwyg',  array('content' => $contentBottomRight, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
     </div>
     
   </div>
