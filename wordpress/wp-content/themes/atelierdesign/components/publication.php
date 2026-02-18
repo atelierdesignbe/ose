@@ -9,7 +9,7 @@ if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fi
 
 ?>
 
-<a href="<?= get_permalink($id) ?>" class="bg-layout-main <?= $theme ?> @@:p-[20px] flex @md/lg:min-h-[220px] h-full overflow-hidden">
+<a href="<?= get_permalink($id) ?>" class="bg-layout-main <?= $theme ?> @@:p-[20px] flex @md/lg:min-h-[220px] h-full overflow-hidden publication">
   <div class="flex-none @sm:w-[88px] @md/lg:w-[158px]">
     <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'object-contain w-full image-shadow']) ?>
   </div>
@@ -17,10 +17,22 @@ if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fi
     <div class="flex flex-col items-start @@:gap-y-[16px]">
       <div class="flex flex-wrap flex-row @@:gap-2 items-center">
         <?php if($date): ?><span class="badge badge-primary badge-outlined"><?= $date ?></span><?php endif; ?>
-        <span class="badge badge-primary badge-filled">In depth</span>
+        <?php if($theme === 'theme-light-blue'): ?>
+          <?php if($catgory): ?>
+            <span class="badge badge-primary badge-filled bg-dark-blue border-dark-blue text-white">In depth</span>
+          <?php else: ?>
+            <span class="badge badge-primary badge-filled">Sumary</span>
+          <?php endif; ?>
+        <?php else:  ?>
+          <?php if($catgory): ?>
+            <span class="badge badge-primary badge-filled bg-dark-blue border-dark-blue text-white">In depth</span>
+          <?php else: ?>
+            <span class="badge badge-primary badge-filled bg-light-blue border-light-blue">Sumary</span>
+          <?php endif; ?>
+        <?php endif; ?>
       </div>
       <p class="heading heading-md heading-primary"><?= get_the_title($id); ?> </p>
     </div>
-    <span class="button button-underline button-primary"><span class="button-title">Read more</span></span>
+    <span class="button button-underline button-primary is-fake"><span class="button-title">Read more</span></span>
   </div>
 </a>

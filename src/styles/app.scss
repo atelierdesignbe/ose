@@ -162,3 +162,125 @@ body {
 .parallax-image-wrapper.h-full {
   height: calc(100% + 1px);
 }
+
+
+// UNDERLINE
+
+.button-underline {
+  border-bottom: 0;
+  position: relative;
+
+  &:after {
+    @apply absolute h-[1px] w-full bg-current bottom-0 left-0 origin-right;
+
+    content: "";
+  }
+
+  &:hover:not(.is-fake) {
+    &:after {
+      animation: underline .4s ease-out forwards;
+    }
+  }
+}
+a {
+  &:hover {
+    .button-underline {
+      &:after {
+        animation: underline .4s ease-out forwards;
+      }
+    }
+  }
+}
+
+.link-underline {
+  position: relative;
+
+  &:after {
+    @apply absolute h-[1px] w-full bg-current bottom-0 left-0 origin-right duration-300 transition-transform scale-x-0 origin-right;
+    content: "";
+  }
+
+  &:hover {
+    &:after {
+      @apply scale-x-100 origin-left;
+    }
+  }
+
+}
+
+@keyframes underline {
+  0% {
+    transform: scaleX(1);
+    transform-origin: center right;
+  }
+
+  49.9% {
+    transform: scaleX(0);
+    transform-origin: center right;
+  }
+
+  50% {
+    transform: scaleX(0);
+    transform-origin: center left;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: center left;
+  }
+}
+
+
+.event {
+  position: relative;
+
+  &:after {
+    @apply absolute top-[-1px] left-0 h-[2px] bg-dark-blue w-full scale-x-0 duration-300 ease-out transition-transform origin-right;
+    content: "";
+  }
+  &:before {
+    @apply absolute top-[-1px] left-0 h-[2px] bg-yellow w-full scale-x-100 duration-300 ease-out transition-transform origin-left;
+    content: "";
+  }
+
+  &--blue {
+    &:after {
+      @apply bg-white;
+    }
+  }
+
+  p {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  &:hover {
+    p {
+      @apply opacity-60;
+    }
+    &:after {
+      @apply scale-x-100 origin-left;
+    }
+    &:before {
+      @apply scale-x-0 origin-right;
+    }
+  }
+}
+
+.publication {
+  position: relative;
+
+  & > div {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:after {
+    @apply absolute inset-0 bg-light-yellow duration-300 opacity-0 transition-opacity transition-transform z-0 scale-x-0 origin-right ;
+    content: "";
+  }
+
+  &:hover {
+    &:after {
+      @apply scale-x-100 opacity-100 origin-left;
+    }
+  }
+}

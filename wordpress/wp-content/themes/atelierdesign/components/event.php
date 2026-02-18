@@ -7,7 +7,7 @@ $catgory = get_field('category', $id);
 $theme = $args['theme'];
 ?>
 
-<a href="<?= get_permalink($id) ?>" class="flex flex-col items-start @@:gap-y-[16px] @sm:pt-[20px] @md/lg:pt-[32px] justify-between  border-t border-yellow h-full autoscale-children">
+<a href="<?= get_permalink($id) ?>" class="flex flex-col items-start @@:gap-y-[16px] @sm:pt-[20px] @md/lg:pt-[32px] justify-between h-full autoscale-children event event--<?= $theme ?>">
   <div class="flex flex-col items-start @@:gap-y-[16px]">
     <div class="flex flex-row @@:gap-x-2 items-center">
       <?php if($date_start): ?><span class="badge badge-primary badge-outlined"><?= $date_start ?></span><?php endif; ?>
@@ -15,5 +15,5 @@ $theme = $args['theme'];
     </div>
     <p class="heading heading-md heading-primary"><?= get_the_title($id); ?> </p>
   </div>
-  <span class="button button-underline button-primary"><span class="button-title">Read more</span></span>
+  <span class="button button-underline button-primary is-fake"><span class="button-title">Read more</span></span>
 </a>

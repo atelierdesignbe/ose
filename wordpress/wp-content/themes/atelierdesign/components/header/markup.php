@@ -28,7 +28,7 @@
               <ul class="menu-nav mm-sm:opacity-0 mm-sm:translate-y-[20px]" js-menu-item>
                 <?php foreach($nav as $item): ?>
                   <li>
-                    <a href="<?= get_permalink($item->ID); ?>" class="button button-none button-primary">
+                    <a href="<?= get_permalink($item->ID); ?>" class="button button-none button-primary link-underline">
                       <span class="button-title"><?= get_the_title($item->ID); ?></span>
                     </a>
                   </li>

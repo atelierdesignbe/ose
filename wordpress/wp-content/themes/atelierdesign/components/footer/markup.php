@@ -18,7 +18,7 @@ $privacyNav = $args['bottom-nav'];
           <?php endif; ?>
           <?php if($contact['title']): ?><p class="subtitle mm-sm:hidden @md/lg:mt-[32px] aos animate-fadeinup animate-delay-200 text-dark-blue"><?= $contact['title'] ?></p><?php endif;?>
           <?php if($contact['addr']): ?>
-            <a href="#" class="heading-lg heading-primary heading aos animate-fadeinup animate-delay-200 autoscale">
+            <a href="#" class="heading-lg heading-primary heading aos animate-fadeinup animate-delay-200 autoscale ">
               <?= $contact['addr'] ?>
             </a>
           <?php endif; ?>
@@ -47,7 +47,7 @@ $privacyNav = $args['bottom-nav'];
               <ul class="flex flex-col @@:gap-y-[24px] autoscale-children aos animate-fadeinup animate-delay-200">
                 <?php foreach($menu as $item): ?>
                   <li class="leading-none">
-                    <a href="<?= get_permalink($item->ID) ?>" class="paragraph paragraph-md paragraph-primary leading-none"><?= get_the_title($item->ID) ?></a>
+                    <a href="<?= get_permalink($item->ID) ?>" class="paragraph paragraph-md paragraph-primary leading-none link-underline"><?= get_the_title($item->ID) ?></a>
                   </li>
                 <?php endforeach; ?>
               </ul>
@@ -70,7 +70,7 @@ $privacyNav = $args['bottom-nav'];
           <ul class="flex flex-col @@:gap-y-[12px] @@:gap-x-[22px] md:flex-row aos animate-fadeinup autoscale-children">
             <?php foreach($privacyNav as $item): ?>
               <li>
-                <a href="<?= get_permalink($item->ID); ?>" class="paragraph paragraph-sm paragraph-primary"><?= get_the_title($item->ID); ?></a>
+                <a href="<?= get_permalink($item->ID); ?>" class="paragraph paragraph-sm paragraph-primary link-underline"><?= get_the_title($item->ID); ?></a>
               </li>
             <?php endforeach; ?>
           </ul>
