@@ -3,7 +3,10 @@ $id = $args['id'];
 $date = get_field('date_start', $id);
 $cover = get_field('cover', $id);
 $catgory = get_field('category', $id);
-$theme = $args['theme'] ?? 'theme-light-blue'
+$theme = $args['theme'] ?? 'theme-light-blue';
+
+if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fields');
+
 ?>
 
 <a href="<?= get_permalink($id) ?>" class="bg-layout-main <?= $theme ?> @@:p-[20px] flex @md/lg:min-h-[220px]">

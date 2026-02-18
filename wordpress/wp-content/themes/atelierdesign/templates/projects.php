@@ -147,6 +147,7 @@
     </div>
   </div>
   <?php  wp_reset_postdata(); // ← Important ! ?>
+  <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute top-0 right-0 z-[-1] translate-x-[50%] @@:h-[800px]"/>
   <?php get_template_part('/components/cta-footer/markup', 'cta-footer', ['state' => $fields['cta_status'], 'cta' => $fields['cta']]); ?>
 </main>
 <?php get_template_part('/components/footer/markup', 'footer', get_field('footer', 'acf-options-global-fields')); ?>

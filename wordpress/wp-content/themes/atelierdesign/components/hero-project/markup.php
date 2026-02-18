@@ -60,10 +60,10 @@ $types = get_the_terms( get_the_ID(), 'types' );
   <?php endif; ?>
 
   <?php if($coverState !== 'fill'): ?>
-    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute top-0 right-0 z-[-1] translate-x-[50%]"/>
-    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute bottom-0 left-0 z-[-1] scale-[-1] translate-x-[-50%]"/>
+    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute top-0 right-0 z-[-1] translate-x-[50%]  @@:h-[800px]"/>
+    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute bottom-0 left-0 z-[-1] scale-[-1] translate-x-[-50%]  @@:h-[800px]"/>
   <?php else : ?>
-    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute @sm:bottom-[400px] md:bottom-0 left-0 z-[-1] scale-[-1] translate-x-[-50%]"/>
+    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute @sm:bottom-[400px] md:bottom-0 left-0 z-[-1] scale-[-1] translate-x-[-50%] @@:h-[800px]"/>
 
   <?php endif;?>
   <?php echo get_template_part('/components/scroll'); ?>
