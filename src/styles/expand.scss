@@ -1,5 +1,7 @@
 [js-expand="desktop"],
 [js-expand="all"] {
+  @apply md:hidden;
+  
   & > div,
   & > ul {
     @apply md:translate-y-[20px] md:opacity-0;
@@ -8,9 +10,11 @@
 
 [js-expand="mobile"],
 [js-expand="all"] {
+  @apply mm-sm:hidden;
+  
   & > div,
   & > ul {
-    @apply md:translate-y-[20px] md:opacity-0;
+    @apply mm-sm:translate-y-[20px] mm-sm:opacity-0 ;
   }
 }
 

@@ -59,7 +59,7 @@
   ]);
 ?>
 <?php get_template_part('/components/header/markup', 'header', get_field('header', 'acf-options-global-fields')); ?>
-<main id="publications" js-ajax="publication">
+<main id="publications" class="overflow-hidden relative" js-ajax="publication">
   <div class="px-container @sm:pt-[120px] @md/lg:pt-[144px] @@:pb-[78px]">
     <div class="w-full @md/lg:max-w-[945px] ">
       <div class="flex flex-col @@:gap-y-[46px] autoscale-children">
@@ -68,7 +68,7 @@
       </div>
     </div>
 
-    <div class="filter flex flex-col md:flex-row md:items-center flex-wrap @@:gap-[16px] @@:mt-[60px] aos animate-fadeinup">
+    <div class="filter flex flex-col md:flex-row md:items-center flex-wrap @@:gap-[16px] @@:mt-[60px] aos animate-fadeinup relative z-[1]">
       <p class="filter-label subtitle autoscale text-dark-blue">Filter by</p>
       <!-- <div class=""></div> -->
       <div class="flex flex-wrap flex-row mm-sm:justify-between @sm:gap-y-[12px] @md/lg:gap-x-4">
@@ -98,7 +98,7 @@
               <span class="button-title">Type</span>
               <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
             </button>
-            <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 left-0 translate-y-full z-[10] mm-sm:w-[--size-container] md:w-full" js-expand="all">
+            <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 right-0 md:left-0 md:right-auto translate-y-full z-[10] mm-sm:w-[--size-container] md:w-full" js-expand="all">
               <ul class="border border-yellow @@:px-[20px] @@:py-[12px] @md/lg:min-w-[160px] bg-white text-dark-blue w-full" js-ajax-filter="types">
                 <?php foreach($types as $type): ?>
                   <li js-expand-item>
@@ -138,7 +138,7 @@
               <span class="button-title">Project</span>
               <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
             </button>
-            <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 left-0 translate-y-full z-[10] mm-sm:w-[--size-container] md:w-full" js-expand="all">
+            <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 right-0 md:left-0 md:right-auto  translate-y-full z-[10] mm-sm:w-[--size-container] md:w-full" js-expand="all">
               <ul class="border border-yellow @@:px-[20px] @@:py-[12px] @md/lg:min-w-[160px] bg-white text-dark-blue w-full" js-ajax-filter="projects">
                 <?php foreach($projects as $project): ?>
                   <li js-expand-item>
@@ -175,7 +175,7 @@
       <?php endif; ?>
     </div>
   </div>
-  <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute top-0 right-0 z-[-1] translate-x-[50%] @@:h-[800px]"/>
+  <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute top-0 right-0 z-[-1] translate-x-[20%] md:translate-x-[40%] @sm:h-[770px] @md/lg:h-[800px] w-auto"/>
   <?php  wp_reset_postdata(); // ← Important ! ?>
   <?php get_template_part('/components/cta-footer/markup', 'cta-footer', ['state' => $fields['cta_status'], 'cta' => $fields['cta']]); ?>
 </main>

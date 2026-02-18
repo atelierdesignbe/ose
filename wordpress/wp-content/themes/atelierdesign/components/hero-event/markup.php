@@ -46,12 +46,12 @@ $types = get_the_terms( get_the_ID(), 'types' );
   <?php endif; ?>
 
   <?php if($coverState !== 'fill'): ?>
-    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute top-0 right-0 z-[-1] translate-x-[50%]  @@:h-[800px]"/>
-    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute bottom-0 left-0 z-[-1] scale-[-1] translate-x-[-50%]  @@:h-[800px]"/>
+    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute top-0 right-0 z-[-1] translate-x-[20%] md:translate-x-[40%] @sm:h-[770px] @md/lg:h-[800px] w-auto mm-sm:hidden"/>
+    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute bottom-0 left-[50%] translate-x-[-50%] md:left-0  md:translate-x-[-30%] z-[-1] scale-[-1] md:translate-x-[-30%] translate-y-[30%] @@:h-[800px] w-auto"/>
   <?php else : ?>
-    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute @sm:bottom-[400px] md:bottom-0 left-0 z-[-1] scale-[-1] translate-x-[-50%]  @@:h-[800px]"/>
+    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute @sm:bottom-[400px] md:bottom-0 left-[50%] translate-x-[-60%] md:left-0  md:translate-x-[-30%] z-[-1] scale-[-1] md:translate-x-[-30%] translate-y-[30%] @@:h-[800px] w-auto"/>
 
   <?php endif;?>
-  <?php echo get_template_part('/components/scroll'); ?>
+  <?php echo get_template_part('/components/scroll', 'scroll',  ['isFit' => $coverState === 'fit']); ?>
 
 </div>
