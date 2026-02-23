@@ -11,18 +11,6 @@
 <?php
   $fields = get_fields();
 
-  $args = array(
-    'post_type' => 'publication',
-    'post_status' => 'publish',
-    'posts_per_page' => 16,
-    'meta_key' => 'date_start',
-    'orderby' => 'meta_value',
-    'order' => 'DESC',
-  );
-
-  $publications = new WP_Query($args);
-
-
   $types = get_terms([
     'taxonomy'   => 'types', // Remplace 'type' par le nom exact de ta taxonomie
     'hide_empty' => true,
@@ -52,18 +40,34 @@
       }
     endforeach;
   endforeach;
+  
+  wp_reset_postdata();
 
   $projects = get_terms([
     'taxonomy'   => 'projects', // Remplace 'type' par le nom exact de ta taxonomie
     'hide_empty' => true,
   ]);
+
+
+
+  $args = array(
+    'post_type' => 'publication',
+    'post_status' => 'publish',
+    'posts_per_page' => 16,
+    'meta_key' => 'date_start',
+    'orderby' => 'meta_value',
+    'order' => 'DESC',
+  );
+
+  $publications = new WP_Query($args);
+
 ?>
 <?php get_template_part('/components/header/markup', 'header', get_field('header', 'acf-options-global-fields')); ?>
 <main id="publications" class="overflow-hidden relative" js-ajax="publication">
   <div class="px-container @sm:pt-[120px] @md/lg:pt-[144px] @@:pb-[78px]">
     <div class="w-full @md/lg:max-w-[945px] ">
       <div class="flex flex-col @@:gap-y-[46px] autoscale-children">
-        <h1 class="heading heading-2xl heading-primary aos animate-fadeinup"><?= get_the_title(); ?></h1>
+        <h1 class="heading heading-2xl heading-primary aos animate-fadeinup"><?= the_title(); ?></h1>
         <?php if($fields['content']): ?><p class="paragraph paragraph-xl paragraph-primary text-balance aos animate-fadeinup animate-delay-200"><?= $fields['content'] ?></p><?php endif; ?>
       </div>
     </div>

@@ -11,16 +11,6 @@
 <?php
   $fields = get_fields();
 
-  $args = array(
-    'post_type' => 'project',
-    'post_status' => 'publish',
-    'posts_per_page' => 18,
-    'meta_key' => 'date_start',
-    'orderby' => 'meta_value',
-    'order' => 'DESC',
-  );
-
-  $projects = new WP_Query($args);
 
   $args = array(
     'post_type' => 'project',
@@ -37,6 +27,9 @@
     if (!in_array($year, $years))$years[] = $year;
   endforeach;
 
+  wp_reset_postdata();
+
+
   $types = get_terms([
     'taxonomy'   => 'types', // Remplace 'type' par le nom exact de ta taxonomie
     'hide_empty' => true,
@@ -46,6 +39,18 @@
     'taxonomy'   => 'themes', // Remplace 'type' par le nom exact de ta taxonomie
     'hide_empty' => true,
   ]);
+
+
+  $args = array(
+    'post_type' => 'project',
+    'post_status' => 'publish',
+    'posts_per_page' => 18,
+    'meta_key' => 'date_start',
+    'orderby' => 'meta_value',
+    'order' => 'DESC',
+  );
+
+  $projects = new WP_Query($args);
 
 ?>
 <?php get_template_part('/components/header/markup', 'header', get_field('header', 'acf-options-global-fields')); ?>

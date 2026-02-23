@@ -48,17 +48,20 @@
 ?>
 <div class="relative last-publication">
   <div class="bg-layout-main theme-light-blue">
-    <div class="px-container grid grid-base">
+    <div class="relative md:px-container grid grid-base">
 
-      <div class="flex flex-col @@:gap-y-[24px] items-start theme-dark-blue py-section col-span-12 md:col-span-8 z-[1] autoscale-children">
-        <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+      <div class="relative theme-dark-blue py-section col-span-12 md:col-span-8 z-[1] ">
+        <div class="flex flex-col @@:gap-y-[24px] items-start autoscale-children relative z-[1] mm-sm:px-container">
+        <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
         <?php if($link): ?>
           <a href="<?= $link['url'] ?>" class="button button-primary button-flat aos animate-fadeinup animate-delay-200">
             <span class="button-title"><?= $link['title'] ?></span>
           </a>
         <?php endif; ?>
+        </div>
+        <div class="absolute top-0 left-0 w-full h-full last-publication-cover md:hidden z-0 origin-top"></div>
       </div>
-      <div class="col-span-12 md:col-span-15 md:col-start-10 mm-sm:pt-0 py-section z-[1]">
+      <div class="col-span-12 md:col-span-15 md:col-start-10 mm-sm:pt-0 py-section z-[1] mm-sm:px-container">
           <!--  -->
           <?php if ($publications) : ?>
           <div class="flex flex-col @@:gap-y-[15px] *:md:stagger-2">
@@ -71,7 +74,7 @@
         <?php endif; ?>
 
       </div>
-      <div class="absolute top-0 left-0 w-full h-full last-publication-cover "></div>
+      <div class="absolute top-0 left-0 w-full h-full last-publication-cover mm-sm:hidden"></div>
     </div>
   </div>
 </div>

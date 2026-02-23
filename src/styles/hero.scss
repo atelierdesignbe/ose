@@ -1,8 +1,8 @@
 .hero {
-  @apply md:min-h-screen flex items-center mm-sm:flex-col @sm:gap-y-[50px] @sm:pt-[142px] @sm:pb-[50px] md:py-0;
+  @apply min-h-screen flex items-center mm-sm:flex-col @sm:gap-y-[50px] @sm:pt-[142px] @sm:pb-[50px] md:py-0;
 
   &.is-vertical {
-    @apply @md/lg:min-h-[824px] ;
+    @apply @sm:min-h-screen @md/lg:min-h-[824px] ;
   }
 
   &-wrapper {
@@ -16,7 +16,7 @@
     }
 
     &--fit {
-      @apply @md/lg:py-[42px];
+      @apply @md/lg:py-[42px] @md/lg:pb-[82px];
       padding-right: var(--pl-margin);
     }
   }

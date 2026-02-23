@@ -38,7 +38,7 @@
         </div>
         <div class="bg-layout-main theme-light-grey px-container sm:py-[60px] @md/lg:py-[80px] grid grid-cols-1 md:grid-cols-2 @md/lg:gap-x-[60px] relative">
           <?php foreach($areas as $i => $item): ?>
-            <div class="col-span-1 flex flex-col @sm:gap-y-4 @md/lg:gap-y-[28px] text-dark-blue border-[--dark-blue-20] border-b @sm:pb-[42px] @sm:mb-[42px] @md/lg:pb-[58px] @md/lg:mb-[58px] <?php if(($i + 2) >= sizeof($areas)) { echo " md:mb-0 md:border-b-0";} ?> ">
+            <div class="col-span-1 flex flex-col @sm:gap-y-4 @md/lg:gap-y-[28px] text-dark-blue border-[--dark-blue-20] border-b @sm:pb-[42px] @sm:mb-[42px] @md/lg:pb-[58px] @md/lg:mb-[58px] <?php if(($i + 2) >= sizeof($areas)) { echo " md:mb-0 md:border-b-0";} ?> last:mm-sm:mb-0 last:mm-sm:pb-0 last:mm-sm:border-b-0">
               <span class="subtitle aos animate-fadeinup"><?= $i < 8 ? '0'.($i + 1) : $i + 1 ?></span>
               <?php $adwp->get_template_part('_wysiwyg',  array('content' => $item['content'], 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
             </div>
@@ -59,26 +59,26 @@
   ?>
   <div class="py-section theme-white bg-layout-main">
     <div class="px-container">
-      <div class="grid grid-cols-1 md:grid-cols-3 @md/lg:gap-x-[60px]">
+      <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-y-[42px] @md/lg:gap-x-[60px]">
         <div class="col-span-1 text-balance">
           <?php $adwp->get_template_part('_wysiwyg',  array('content' => $insightContent, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
         </div>
         <div class="col-span-1 md:col-span-2">
             <div class="flex flex-col @@:gap-y-[32px] *:md:stagger-2">
               <?php foreach($insights as $item): ?>
-                <div class="flex flex-col md:flex-row items-center aos animate-fadeinup stagger-delay-200">
-                  <div class="w-full @sm:h-[260px] @md/lg:w-[248px] @md/lg:h-[268px]  flex-none">
-                    <?php echo wp_get_attachment_image($item['cover']['ID'], "full", null, ["class" => 'object-cover  h-full w-full']); ?>
+                <div class="flex flex-col md:flex-row items-start aos animate-fadeinup stagger-delay-200">
+                  <div class="w-full @sm:h-[260px] @md/lg:w-[248px] @md/lg:h-[268px] flex-none overflow-hidden">
+                    <?php echo wp_get_attachment_image($item['cover']['ID'], "full", null, ["class" => 'object-cover  h-full w-full aos animate-fadeinzoomout']); ?>
                   </div>
-                  <div class="flex-auto flex flex-col w-full @@:gap-y-4 items-start @@:py-[30px] @md/lg:px-[20px] autoscale-children">
+                  <div class="flex-auto flex flex-col w-full @@:gap-y-4 items-start @@:px-[30px] @md/lg:px-[20px] autoscale-children self-center">
                     <?php if($item['date']): ?>
-                      <span class="badge badge-primary badge-outlined"><?= $item['date'] ?></span>
+                      <span class="badge badge-primary badge-outlined aos animate-fadeinup"><?= $item['date'] ?></span>
                     <?php endif; ?>
                     <?php if($item['content']): ?>
                       <?php $adwp->get_template_part('_wysiwyg',  array('content' => $item['content'], 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
                     <?php endif; ?>
                     <?php if($item['link']): ?>
-                      <a href="<?= $item['link']['url']; ?>" class="button button-underline button-primary"> <span class="button-title"><?= $item['link']['title'] ?></span> </a>
+                      <a href="<?= $item['link']['url']; ?>" class="button button-underline button-primary aos animate-fadeinup"> <span class="button-title"><?= $item['link']['title'] ?></span> </a>
                     <?php endif; ?>
                   </div>
                 </div>

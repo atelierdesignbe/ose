@@ -24,6 +24,7 @@ $projects = get_the_terms( get_the_ID(), 'projects' );
       <div class="hero-wrapper z-[1] relative col-span-12  flex flex-col @@:gap-y-[16px]">
         <div class="flex items-center @@:gap-x-2 autoscale-children aos animate-fadeinup">
           <?php if($date): ?> <span class="badge badge-primary badge-outlined"><?= $date ?></span><?php endif; ?>
+            
           <span class="badge badge-primary badge-filled bg-dark-blue border-dark-blue text-white"><?= $category ? 'In depth' : 'Sumary publication' ?></span>
         </div>
         <?php if($projects && sizeof($projects) > 0): ?>
@@ -69,7 +70,7 @@ $projects = get_the_terms( get_the_ID(), 'projects' );
     <div class="absolute top-0 left-[22.22%] w-[1px] h-full bg-dark-blue opacity-20 z-[0] mm-sm:hidden"></div>
     <div class="w-full h-full z-[1] relative flex items-center mm-sm:justify-center">
       <?php 
-        echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'h-auto @sm:w-[83.33%] md:w-auto @md/lg:max-h-[400px] w-auto image-shadow-lg aos animate-fadeinup animate-delay-400']);
+        echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'h-auto @sm:w-[83.33%] md:max-h-full md:w-auto w-auto image-shadow-lg aos animate-fadeinup animate-delay-400']);
       ?> 
     </div>
   </div>

@@ -21,7 +21,15 @@
     }
 
     a {
-      @apply flex @sm:py-[12px] md:py-0 @sm:px-[12px] md:px-0 border-white border @sm:rounded-[8px] md:border-0 md:rounded-none; 
+      @apply flex @sm:py-[12px] md:py-0 @sm:px-[12px] md:px-0 border-white border @sm:rounded-[8px] md:border-0 md:rounded-none opacity-50 md:opacity-100 duration-300 ease-out transition-all;
+
+      &:hover {
+        @apply opacity-100;
+      }
+      
+      &.is-active {
+        @apply border-yellow opacity-100;
+      }
     }
   }
 

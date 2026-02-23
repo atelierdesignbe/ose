@@ -21,13 +21,13 @@ if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fi
           <?php if($catgory): ?>
             <span class="badge badge-primary badge-filled bg-dark-blue border-dark-blue text-white">In depth</span>
           <?php else: ?>
-            <span class="badge badge-primary badge-filled">Sumary</span>
+            <span class="badge badge-primary badge-filled">Summary</span>
           <?php endif; ?>
         <?php else:  ?>
           <?php if($catgory): ?>
             <span class="badge badge-primary badge-filled bg-dark-blue border-dark-blue text-white">In depth</span>
           <?php else: ?>
-            <span class="badge badge-primary badge-filled bg-light-blue border-light-blue">Sumary</span>
+            <span class="badge badge-primary badge-filled bg-light-blue border-light-blue">Summary</span>
           <?php endif; ?>
         <?php endif; ?>
       </div>

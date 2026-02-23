@@ -19,9 +19,9 @@ else $cols = 'grid-cols-1 md:grid-cols-2';
     <div class="col-span-1 bg-layout-main <?= $i == 0 ? 'theme-light-blue' : 'theme-white' ?> @sm:py-[70px] @sm:px-[30px] @md/lg:p-[100px] relative">
       <div class="relative z-[1] flex flex-col justify-between items-center text-center h-full">
         <?php $adwp->get_template_part('_wysiwyg',  array('content' => $item['content'], 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
-        <a href="<?= $item['link']['url'] ?>" class="button button-flat button-primary aos animate-fadeinup animate-delay-100">
+        <a href="<?= $item['link'] ? $item['link']['url'] : '#' ?>" class="button button-flat button-primary aos animate-fadeinup animate-delay-100">
           <span class="button-title">
-            <?= $item['link']['title'] ?>
+            <?= $item['link'] ? $item['link']['title'] : 'Lorem ipsum' ?>
           </span>
         </a>
       </div>

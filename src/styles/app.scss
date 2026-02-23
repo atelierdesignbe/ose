@@ -10,7 +10,7 @@
 @use 'hero';
 
 body {
-  @apply min-h-screen font-sans;
+  @apply min-h-screen font-sans bg-white;
 }
 
 .grid-base {
@@ -67,7 +67,9 @@ body {
 
 .last-publication {
   &-cover {
-    @apply absolute top-0 left-0 z-[0] w-full @sm:h-[488px] md:h-full md:w-[50%] bg-dark-blue ;
+
+    --publication-full: calc(100% + calc((80 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale)));
+    @apply absolute top-0 left-0 z-[0] w-full @sm:h-[--publication-full]  md:h-full md:w-[50%] bg-dark-blue ;
     background: linear-gradient(137deg, #021D4C 4.65%, #043790 91.21%);
   }
 }
@@ -281,6 +283,47 @@ a {
   &:hover {
     &:after {
       @apply scale-x-100 opacity-100 origin-left;
+    }
+  }
+}
+
+.project {
+  position: relative;
+
+  --hover-project: var(--color-light-blue);
+
+  .theme-yellow & {
+  --hover-project: var(--color-white);
+  }
+  .theme-light-yellow & {
+  --hover-project: var(--color-white);
+  }
+
+  & > div {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:after {
+    @apply absolute inset-0 bg-[--hover-project] duration-300 opacity-0 transition-opacity transition-transform z-0 scale-x-0 origin-right ;
+    content: "";
+  }
+
+  &:hover {
+    &:after {
+      @apply scale-x-100 opacity-100 origin-left;
+    }
+  }
+}
+
+
+.wysiwyg {
+  & > * {
+    &:first-child {
+      @apply pt-0;
+    }
+    &:last-child {
+      @apply pb-0;
     }
   }
 }

@@ -3,11 +3,17 @@
   padding-inline: calc(var(--pl-margin));
 
   &-wrapper {
-    @apply @sm:pt-[140px] @sm:pb-[80px] flex flex-col @sm:gap-y-[32px]  @md/lg:gap-y-[16px] @@:gap-x-[32px] md:flex-row md:pt-0 md:pb-0;
+    @apply mm-sm:w-full @sm:pt-[140px] @sm:pb-[80px] flex flex-col @sm:gap-y-[32px]  @md/lg:gap-y-[16px] @@:gap-x-[32px] md:flex-row md:pt-0 md:pb-0;
 
     // &.is-center {
     //   @apply mm-sm:self-center mm-sm:h-full;
     // }
+
+    .button.button-flat {
+      &:hover {
+        @apply mm-sm:bg-white mm-sm:text-dark-blue
+      }
+    }
   }
 
   [js-menu-item]{
@@ -27,11 +33,19 @@
   }
 
   &-nav {
-    @apply flex flex-col @@:gap-[32px] items-start md:items-center md:flex-row ;
+    @apply flex flex-col @@:gap-[32px] items-start md:items-center md:flex-row;
 
     li {
       a {
-        @apply uppercase  ;
+        @apply uppercase  @sm:py-2 md:py-0;
+
+        &.is-active {
+          @apply mm-sm:text-yellow;
+          
+          &:after {
+            @apply scale-x-100;
+          }
+        }
 
         @media (max-width: 599px) {
           .button-title {

@@ -26,9 +26,16 @@
           <div class="menu-wrapper">
             <?php if($nav): ?>
               <ul class="menu-nav mm-sm:opacity-0 mm-sm:translate-y-[20px]" js-menu-item>
-                <?php foreach($nav as $item): ?>
+                <?php foreach($nav as $item):
+                  $current_id = get_queried_object_id();
+                  $is_active = ($item->ID === $current_id);
+                  
+                  // Optionnel : actif aussi si c'est une page parente
+                  $ancestors = get_post_ancestors($current_id);
+                  $is_ancestor = in_array($item->ID, $ancestors);  
+                ?>
                   <li>
-                    <a href="<?= get_permalink($item->ID); ?>" class="button button-none button-primary link-underline">
+                    <a href="<?= get_permalink($item->ID); ?>" class="button button-none button-primary link-underline <?= ($is_active || $is_ancestor) ? 'is-active' : '' ?>">
                       <span class="button-title"><?= get_the_title($item->ID); ?></span>
                     </a>
                   </li>

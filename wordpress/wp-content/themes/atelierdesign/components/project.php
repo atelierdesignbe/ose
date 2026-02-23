@@ -5,7 +5,7 @@ $cover = get_field('cover', $id);
 $catgory = get_field('category', $id);
 ?>
 
-<a href="<?= get_permalink($id) ?>" class="bg-layout-main theme-light-yellow duration-300 ease-out transition-all hover:theme-light-blue @sm:p-[20px] @md/lg:p-[32px] flex @md/lg:min-h-[224px]">
+<a href="<?= get_permalink($id) ?>" class="bg-layout-main theme-light-yellow @sm:p-[20px] @md/lg:p-[32px] flex @@:min-h-[224px] project h-full">
   <div class="flex flex-col @@:gap-y-[16px] items-start justify-between autoscale-children">
     <div class="flex flex-col @@:gap-y-[16px] items-start ">
       <?php if($date): ?><span class="badge badge-primary badge-outlined"><?= $date ?></span><?php endif; ?>

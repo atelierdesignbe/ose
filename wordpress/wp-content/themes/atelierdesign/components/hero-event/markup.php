@@ -3,7 +3,8 @@ $override = $args['hero-override'];
 $title = get_the_title();
 $cover = get_field('cover');
 $description = get_field('description');
-$date = get_field('date_start');
+$date_start = get_field('date_start');
+$date_end = get_field('date_end', $id);
 $coverState = get_field('cover-status') ?? 'fill';
 
 
@@ -16,7 +17,8 @@ $types = get_the_terms( get_the_ID(), 'types' );
     <div class="grid grid-base">
       <div class="hero-wrapper z-[1] relative col-span-12  @md/lg:py-[130px] flex flex-col @@:gap-y-[16px] autoscale-children">
         <div class="flex items-center @@:gap-x-2 aos animate-fadeinup">
-          <?php if($date): ?> <span class="badge badge-primary badge-outlined"><?= $date ?></span><?php endif; ?>
+          <?php if($date_start): ?> <span class="badge badge-primary badge-outlined"><?= $date_start ?></span><?php endif; ?>
+          <?php if($date_end && $date_end > $date_start): ?><span><?= icon('chevron', $theme === 'blue' ? 'stroke-white @@:h-[8px] w-auto -rotate-90' : 'stroke-dark-blue @@:h-[8px] w-auto -rotate-90'); ?></span><span class="badge badge-primary badge-outlined"><?= $date_end ?></span><?php endif; ?>
           <span class="badge badge-primary badge-filled bg-dark-blue text-white border-dark-blue">Event</span>
         </div>
         <h1 class="heading heading-primary @sm:text-[46px] @md/lg:text-[72px] font-serif font-light @sm:leading-[48px] @md/lg:leading-[69px] autoscale aos animate-fadeinup autoscale"><?= $title ?></h1>
@@ -31,7 +33,7 @@ $types = get_the_terms( get_the_ID(), 'types' );
       <div class="absolute top-0 left-[22.22%] w-[1px] h-full bg-dark-blue opacity-20 z-[0] mm-sm:hidden"></div>
       <div class="w-full h-full z-[1] relative flex items-center mm-sm:justify-center">
         <?php 
-          echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'h-auto w-full md:w-auto md:h-full @md/lg:max-h-[400px] w-auto image-shadow-lg aos animate-fadeinup animate-delay-400']);
+          echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'h-auto w-full md:w-auto md:h-full w-auto image-shadow-lg aos animate-fadeinup animate-delay-400']);
         ?> 
       </div>
     </div>
