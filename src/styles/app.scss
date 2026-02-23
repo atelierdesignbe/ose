@@ -99,7 +99,6 @@ body {
   }
 
   &-button {
-    &.is-active,
     &.is-open {
       @apply border-dark-blue;
     }
