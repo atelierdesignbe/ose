@@ -16,7 +16,7 @@ if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fi
 $themes = get_the_terms( get_the_ID(), 'themes' );
 $types = get_the_terms( get_the_ID(), 'types' );
 $projects = get_the_terms( get_the_ID(), 'projects' );
-
+$projectLink = get_field('publication-link', 'acf-options-global-fields');
 ?>
 <div class="hero hero-cpt relative overflow-hidden relative ">
   <div class="px-container relative z-10 w-full">
@@ -31,7 +31,7 @@ $projects = get_the_terms( get_the_ID(), 'projects' );
           <ul class="flex items-center @@:gap-[8px] autoscale-children aos animate-fadeinup">
             <?php foreach($projects as $project):?>
               <li>
-                <a href="/publications/?projects=<?= $project->term_id ?>" class="button button-primary button-underline"><span class="button-title"><?= $project->name ?></span></a>
+                <a href="<?= $projectLink ? $projectLink['url']."/?projects=".$project->term_id : "/publications/?projects=".$project->term_id; ?>" class="button button-primary button-underline"><span class="button-title"><?= $project->name ?></span></a>
               </li>
             <?php endforeach; ?>
           </ul>
@@ -42,25 +42,25 @@ $projects = get_the_terms( get_the_ID(), 'projects' );
           <ul class="flex flex-wrap items-center @@:gap-[8px] autoscale-children aos animate-fadeinup animate-delay-300">
             <?php foreach($authors as $author):?>
               <li>
-                <a href="/publications/?authors=<?= $author->ID ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= $author->post_title; ?></span>
+                <a href="<?= $projectLink ? $projectLink['url']."/?authors=".$author->ID : "/publications/?authors=".$author->ID; ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= $author->post_title; ?></a>
               </li>
             <?php endforeach; ?>
           </ul>
         <?php endif; ?>
         <?php if($types): ?>
-          <ul  class="flex items-center flex-wrap @@:gap-x-2 aos animate-fadeinup animate-delay-400 autoscale-children">
+          <ul class="flex items-center flex-wrap @@:gap-x-2 aos animate-fadeinup animate-delay-400 autoscale-children">
             <?php foreach($types as $type): ?>
-              <a href="/publications/?type=<?= $type->term_id ?>" class="badge badge-primary badge-filled">
+              <a href="<?= $projectLink ? $projectLink['url']."/?types=".$type->term_id : "/publications/?types=".$type->term_id; ?>" class="badge badge-primary badge-filled">
                 <?= $type->name ?>
               </a>            
             <?php endforeach; ?>
           </ul>
         <?php endif; ?>
         <?php if($themes): ?>
-          <ul  class="flex items-center flex-wrap @@:gap-x-2 aos animate-fadeinup animate-delay-500 autoscale-children">
+          <ul class="flex items-center flex-wrap @@:gap-x-2 aos animate-fadeinup animate-delay-500 autoscale-children">
             <?php foreach($themes as $theme): ?>
               <li >
-                <a href="/publications/?theme=<?= $theme->term_id ?>" class="badge badge-primary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>
+                <a href="<?= $projectLink ? $projectLink['url']."/?themes=".$theme->term_id : "/publications/?themes=".$theme->term_id; ?>" class="badge badge-primary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>
               </li>
             <?php endforeach; ?>
           </ul>

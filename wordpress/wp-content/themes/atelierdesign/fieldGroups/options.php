@@ -124,6 +124,25 @@ acf_add_local_field_group([
       'type' => 'textarea',
       'rows' => 2
     ],
+    [
+      'key' => 'field-event-none',
+      'label' => 'No event',
+      'name' => 'event-none',
+      'type' => 'textarea',
+      'rows' => 2
+    ],
+    [
+      'key' => 'field-page-publication',
+      'label' => 'Publication link',
+      'name' => 'publication-link',
+      'type' => 'link',
+    ],
+    [
+      'key' => 'field-page-project',
+      'label' => 'Project link',
+      'name' => 'project-link',
+      'type' => 'link',
+    ],
   ],
   'location' => array(
     array(

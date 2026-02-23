@@ -9,8 +9,8 @@ $coverState = get_field('cover-status');
 
 $themes = get_the_terms( get_the_ID(), 'themes' );
 $types = get_the_terms( get_the_ID(), 'types' );
+$projectLink = get_field('project-link', 'acf-options-global-fields');
 ?>
-
 <div class="hero hero-cpt relative overflow-hidden relative <?= $coverState === 'fill' ? 'mm-sm:pb-0' : '' ?>">
   <div class="px-container relative z-10 w-full">
     <div class="grid grid-base">
@@ -25,7 +25,7 @@ $types = get_the_terms( get_the_ID(), 'types' );
           <ul  class="flex items-center flex-wrap @@:gap-x-2 aos animate-fadeinup animate-delay-300 autoscale-children">
             <?php foreach($types as $type): ?>
               <li>
-                <a href="/projects/?type=<?= $type->term_id ?>" class="badge badge-primary badge-filled">
+                <a href="<?= $projectLink ? $projectLink['url'].'?types='.$type->term_id : '/projects/?types='.$type->term_id; ?>" class="badge badge-primary badge-filled">
                   <?= $type->name ?>
                 </a>
               </li>
@@ -36,7 +36,7 @@ $types = get_the_terms( get_the_ID(), 'types' );
           <ul  class="flex items-center flex-wrap @@:gap-x-2 aos animate-fadeinup animate-delay-400 autoscale-children">
             <?php foreach($themes as $theme): ?>
               <li>
-                <a href="/projects/?theme=<?= $theme->term_id ?>" class="badge badge-secondary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>
+                <a href="<?= $projectLink ? $projectLink['url']."?themes=".$theme->term_id : "/projects/?themes=".$theme->term_id ?>" class="badge badge-secondary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>
               </li>
             <?php endforeach; ?>
           </ul>
