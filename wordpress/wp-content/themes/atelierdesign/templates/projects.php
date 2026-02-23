@@ -71,7 +71,7 @@
         <div class="flex flex-wrap flex-row mm-sm:justify-between @sm:gap-y-[12px] @md/lg:gap-x-4">
           <?php if($themes): ?>
             <div class="relative mm-sm:w-[48%] md:w-auto">
-              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between" js-expand-button>
+              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
                 <span class="button-title">Theme</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>
@@ -91,7 +91,7 @@
           <!-- PERIOD -->
           <?php if($years): ?>
             <div class="relative mm-sm:w-[48%]">
-              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between" js-expand-button>
+              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
                 <span class="button-title">Period</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>
@@ -111,7 +111,7 @@
           
           <?php if($types): ?>
             <div class="relative mm-sm:w-[48%]">
-              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between" js-expand-button>
+              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
                 <span class="button-title">Type</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>

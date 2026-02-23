@@ -120,7 +120,7 @@
 
           <?php if($authors): ?>
             <div class="relative mm-sm:w-[48%]">
-              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between" js-expand-button>
+              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
                 <span class="button-title">Author</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>
@@ -140,7 +140,7 @@
 
           <?php if($projects): ?>
             <div class="relative mm-sm:w-[48%]">
-              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between" js-expand-button>
+              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
                 <span class="button-title">Project</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>
