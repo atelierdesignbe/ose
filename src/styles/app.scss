@@ -88,7 +88,7 @@ body {
 
 .filter {
   .is-active {
-    @apply text-yellow;
+    @apply bg-light-blue;
   }
 
   .is-disabled {
@@ -99,10 +99,16 @@ body {
   }
 
   &-button {
-    &.is-active {
+    &.is-active,
+    &.is-open {
       @apply border-dark-blue;
     }
-    
+  }
+  
+  &-item-btn {
+    &:hover:not(.is-active) {
+      @apply bg-light-yellow;
+    }
   }
 
   .reset-label {
@@ -112,7 +118,7 @@ body {
       @apply @@:size-[12px] stroke-current stroke-[1px];
     }
 
-    font-size: calc((var(--badge-filled-font-size) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    font-size: calc((var(--badge-filled-font-size) / var(--tw-screen-current)) * var(--tw-screen-max) * var(--tw-scale));
     font-family: var(--font-badge-filled-font-family);
     --tw-shadow-color: var(--color-badge-filled-shadow);
     --tw-shadow: var(--tw-shadow-colored);

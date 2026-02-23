@@ -80,15 +80,15 @@
         <div class="flex flex-wrap flex-row mm-sm:justify-between @sm:gap-y-[12px] @md/lg:gap-x-4">
           <?php if($themes): ?>
             <div class="relative mm-sm:w-[48%] md:w-auto">
-              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between" js-expand-button>
+              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
                 <span class="button-title">Theme</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>
-              <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 left-0 translate-y-full z-[10] mm-sm:w-[--size-container] md:w-full" js-expand="all">
-                <ul class="border border-yellow @@:px-[20px] @@:py-[12px] @md/lg:min-w-[160px] w-full bg-white text-dark-blue" js-ajax-filter="themes">
+              <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 left-0 translate-y-full z-[10] mm-sm:w-[208%] md:w-[250px]" js-expand="all">
+                <ul class="border border-dark-blue w-full bg-white text-dark-blue" js-ajax-filter="themes">
                   <?php foreach($themes as $theme): ?>
                     <li js-expand-item>
-                      <button type="button" class="button-title" data-id="<?= $theme->term_id ?>" data-name="<?= $theme->name ?>">
+                      <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $theme->term_id ?>" data-name="<?= $theme->name ?>">
                         <span><?= $theme->name ?></span>
                       </button>
                     </li>
@@ -100,15 +100,15 @@
           
           <?php if($types): ?>
             <div class="relative mm-sm:w-[48%]">
-              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between" js-expand-button>
+              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
                 <span class="button-title">Type</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>
-              <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 right-0 md:left-0 md:right-auto translate-y-full z-[10] mm-sm:w-[--size-container] md:w-full" js-expand="all">
-                <ul class="border border-yellow @@:px-[20px] @@:py-[12px] @md/lg:min-w-[160px] bg-white text-dark-blue w-full" js-ajax-filter="types">
+              <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 right-0 md:left-0 md:right-auto translate-y-full z-[10] mm-sm:w-[208%] md:w-[250px]" js-expand="all">
+                <ul class="border border-dark-blue w-full bg-white text-dark-blue" js-ajax-filter="types">
                   <?php foreach($types as $type): ?>
                     <li js-expand-item>
-                      <button type="button" class="button-title" data-id="<?= $type->term_id ?>" data-name="<?= $type->name ?>" >
+                      <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $type->term_id ?>" data-name="<?= $type->name ?>" >
                         <span><?= $type->name ?></span>
                       </button>
                     </li>
@@ -124,11 +124,11 @@
                 <span class="button-title">Author</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>
-              <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 left-0 translate-y-full z-[10] mm-sm:w-[--size-container] md:w-full" js-expand="all">
-                <ul class="border border-yellow @@:px-[20px] @@:py-[12px] @md/lg:min-w-[160px] bg-white text-dark-blue w-full" js-ajax-filter="authors">
+              <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 left-0 translate-y-full z-[10] mm-sm:w-[208%] md:w-[250px]" js-expand="all">
+                <ul class="border border-dark-blue bg-white text-dark-blue w-full" js-ajax-filter="authors">
                   <?php foreach($authors as $i => $author): ?>
                     <li js-expand-item>
-                      <button type="button" class="button-title" data-id="<?= $authors_ID[$i] ?>" data-name="<?= $author ?>" >
+                      <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $authors_ID[$i] ?>" data-name="<?= $author ?>" >
                         <span><?= $author ?></span>
                       </button>
                     </li>
@@ -144,11 +144,11 @@
                 <span class="button-title">Project</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>
-              <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 right-0 md:left-0 md:right-auto  translate-y-full z-[10] mm-sm:w-[--size-container] md:w-full" js-expand="all">
-                <ul class="border border-yellow @@:px-[20px] @@:py-[12px] @md/lg:min-w-[160px] bg-white text-dark-blue w-full" js-ajax-filter="projects">
+              <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 right-0 md:left-0 md:right-auto  translate-y-full z-[10] mm-sm:w-[208%] md:w-[250px]" js-expand="all">
+                <ul class="border border-dark-blue bg-white text-dark-blue w-full" js-ajax-filter="projects">
                   <?php foreach($projects as $project): ?>
                     <li js-expand-item>
-                      <button type="button" class="button-title" data-id="<?= $project->term_id ?>" data-name="<?= $project->name ?>" >
+                      <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $project->term_id ?>" data-name="<?= $project->name ?>" >
                         <span><?= $project->name ?></span>
                       </button>
                     </li>

@@ -20,7 +20,9 @@ global $adwp; ?>
         </div>
         <div class="col-span-12 md:col-span-15 md:col-start-10">
           <?php if($fields['form_id']): ?>
-            <?php echo do_shortcode("[formidable id='".$fields['form_id']."']"); ?>
+            <div class="aos animate-fadeinup animate-delay-200">
+              <?php echo do_shortcode("[formidable id='".$fields['form_id']."']"); ?>
+            </div>
           <?php endif; ?>
         </div>
       </div>
