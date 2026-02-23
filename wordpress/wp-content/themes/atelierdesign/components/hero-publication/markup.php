@@ -31,7 +31,7 @@ $projects = get_the_terms( get_the_ID(), 'projects' );
           <ul class="flex items-center @@:gap-[8px] autoscale-children aos animate-fadeinup">
             <?php foreach($projects as $project):?>
               <li>
-                <a href="#" class="button button-primary button-underline"><span class="button-title"><?= $project->name ?></span></a>
+                <a href="/publications/?projects=<?= $project->term_id ?>" class="button button-primary button-underline"><span class="button-title"><?= $project->name ?></span></a>
               </li>
             <?php endforeach; ?>
           </ul>
@@ -42,7 +42,7 @@ $projects = get_the_terms( get_the_ID(), 'projects' );
           <ul class="flex flex-wrap items-center @@:gap-[8px] autoscale-children aos animate-fadeinup animate-delay-300">
             <?php foreach($authors as $author):?>
               <li>
-                <span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= $author->post_title; ?></span>
+                <a href="/publications/?authors=<?= $author->ID ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= $author->post_title; ?></span>
               </li>
             <?php endforeach; ?>
           </ul>
@@ -50,14 +50,18 @@ $projects = get_the_terms( get_the_ID(), 'projects' );
         <?php if($types): ?>
           <ul  class="flex items-center flex-wrap @@:gap-x-2 aos animate-fadeinup animate-delay-400 autoscale-children">
             <?php foreach($types as $type): ?>
-              <li class="badge badge-secondary badge-filled "><?= $type->name ?></li>
+              <a href="/publications/?type=<?= $type->term_id ?>" class="badge badge-primary badge-filled">
+                <?= $type->name ?>
+              </a>            
             <?php endforeach; ?>
           </ul>
         <?php endif; ?>
         <?php if($themes): ?>
           <ul  class="flex items-center flex-wrap @@:gap-x-2 aos animate-fadeinup animate-delay-500 autoscale-children">
             <?php foreach($themes as $theme): ?>
-              <li class="badge badge-primary badge-filled bg-yellow border-yellow"><?= $theme->name ?></li>
+              <li >
+                <a href="/publications/?theme=<?= $theme->term_id ?>" class="badge badge-primary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>
+              </li>
             <?php endforeach; ?>
           </ul>
         <?php endif; ?>

@@ -368,3 +368,8 @@ function load_formidable_forms_into_select($field) {
 
     return $field;
 }
+
+add_action('admin_menu', 'remove_posts_menu');
+function remove_posts_menu() {
+  remove_menu_page('edit.php');
+}

@@ -130,4 +130,26 @@ if (ajaxPage) {
       })
     }
   })
+
+
+
+  function getUrlParams() {
+    const params = new URLSearchParams(window.location.search)
+    
+    filters.forEach((filter) => {
+      const filterType = filter.getAttribute('js-ajax-filter')
+      const paramValue = params.get(filterType) // ex: ?themes=12
+      
+      if (paramValue) {
+        const targetItem = filter.querySelector(`[data-id="${paramValue}"]`)
+        
+        if (targetItem) {
+          // Simule le clic sur le bon item
+          targetItem.click()
+        }
+      }
+    })
+  }
+
+  getUrlParams()
 }

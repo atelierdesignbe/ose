@@ -24,14 +24,20 @@ $types = get_the_terms( get_the_ID(), 'types' );
         <?php if($types): ?>
           <ul  class="flex items-center flex-wrap @@:gap-x-2 aos animate-fadeinup animate-delay-300 autoscale-children">
             <?php foreach($types as $type): ?>
-              <li class="badge badge-primary badge-filled"><?= $type->name ?></li>
+              <li>
+                <a href="/projects/?type=<?= $type->term_id ?>" class="badge badge-primary badge-filled">
+                  <?= $type->name ?>
+                </a>
+              </li>
             <?php endforeach; ?>
           </ul>
         <?php endif; ?>
         <?php if($themes): ?>
           <ul  class="flex items-center flex-wrap @@:gap-x-2 aos animate-fadeinup animate-delay-400 autoscale-children">
             <?php foreach($themes as $theme): ?>
-              <li class="badge badge-secondary badge-filled bg-yellow border-yellow"><?= $theme->name ?></li>
+              <li>
+                <a href="/projects/?theme=<?= $theme->term_id ?>" class="badge badge-secondary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>
+              </li>
             <?php endforeach; ?>
           </ul>
         <?php endif; ?>
