@@ -11,15 +11,9 @@
 <?php
   $fields = get_fields();
 
-  $types = get_terms([
-    'taxonomy'   => 'types', // Remplace 'type' par le nom exact de ta taxonomie
-    'hide_empty' => true,
-  ]);
-
-  $themes = get_terms([
-    'taxonomy'   => 'themes', // Remplace 'type' par le nom exact de ta taxonomie
-    'hide_empty' => true,
-  ]);
+  $types  = get_term_ids_for_cpt('types',  ['publication']);
+  $themes = get_term_ids_for_cpt('themes', ['publication']);
+  
 
    $args = array(
     'post_type' => 'publication',

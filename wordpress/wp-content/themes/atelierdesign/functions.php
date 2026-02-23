@@ -373,3 +373,20 @@ add_action('admin_menu', 'remove_posts_menu');
 function remove_posts_menu() {
   remove_menu_page('edit.php');
 }
+
+function get_term_ids_for_cpt($taxonomy, $post_types = ['post']) {
+  $posts = get_posts([
+    'post_type'      => $post_types,
+    'posts_per_page' => -1,
+    'fields'         => 'ids',
+    'post_status'    => 'publish',
+  ]);
+
+  if (empty($posts)) return [];
+
+  return get_terms([
+    'taxonomy'   => $taxonomy,
+    'hide_empty' => true,
+    'object_ids' => $posts, // Filtre uniquement les termes liés à ces posts
+  ]);
+}

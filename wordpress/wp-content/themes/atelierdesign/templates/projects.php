@@ -29,16 +29,8 @@
 
   wp_reset_postdata();
 
-  $types = get_terms([
-    'taxonomy'   => 'types', // Remplace 'type' par le nom exact de ta taxonomie
-    'hide_empty' => true,
-  ]);
-
-  $themes = get_terms([
-    'taxonomy'   => 'themes', // Remplace 'type' par le nom exact de ta taxonomie
-    'hide_empty' => true,
-  ]);
-
+  $types  = get_term_ids_for_cpt('types',  ['project']);
+  $themes = get_term_ids_for_cpt('themes', ['project']);  
 
   $args = array(
     'post_type' => 'project',
