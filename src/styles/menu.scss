@@ -5,10 +5,6 @@
   &-wrapper {
     @apply mm-sm:w-full @sm:pt-[140px] @sm:pb-[80px] flex flex-col @sm:gap-y-[32px]  @md/lg:gap-y-[16px] @@:gap-x-[32px] md:flex-row md:pt-0 md:pb-0;
 
-    // &.is-center {
-    //   @apply mm-sm:self-center mm-sm:h-full;
-    // }
-
     .button.button-flat {
       &:hover {
         @apply mm-sm:bg-white mm-sm:text-dark-blue
@@ -36,6 +32,8 @@
     @apply flex flex-col @@:gap-[32px] items-start md:items-center md:flex-row;
 
     li {
+      @apply flex items-center;
+
       a {
         @apply uppercase  @sm:py-2 md:py-0;
 

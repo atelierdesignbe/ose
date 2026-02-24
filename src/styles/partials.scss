@@ -1,8 +1,16 @@
 .header {
   @apply absolute top-0 left-0 w-full z-[99] ;
 
+  @media (min-width: 600px) and (max-width: 1024px) {
+    .logo-brand,
+    .menu,
+    .lang {
+      --tw-screen-lg: 600;
+    }
+  }
+
   &-wrapper {
-    @apply relative items-center flex @sm:py-[10px] md:py-0 @md/lg:h-[92px];
+    @apply relative items-center flex @sm:py-[10px] md:py-0 @md:h-[92px] @lg:h-[92px];
 
     &-line {
       @apply absolute bottom-0 left-0 w-full h-[1px] opacity-20;
@@ -14,7 +22,7 @@
 
     /**REWORK AUTO SCALE**/ 
     @media (min-width: 600px) and (max-width: 1024px) {
-      --tw-screen-lg: 1024;
+      // --tw-screen-lg: 1024;
     }
   }
 

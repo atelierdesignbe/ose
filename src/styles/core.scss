@@ -11,8 +11,13 @@
 @screen md {
   :root {
     --pl-margin: calc((var(--container-margin) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
-    --hero-h: calc(100% - (92 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    --hero-h: calc(100% - (92 / var(--tw-screen-md)) * var(--tw-screen-max) * var(--tw-scale));
     --col-1-3: calc(((8 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin))
+  }
+}
 
+@screen lg {
+  :root {
+    --hero-h: calc(100% - (92 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
   }
 }

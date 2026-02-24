@@ -10,11 +10,13 @@ $coverState = get_field('cover-status');
 $themes = get_the_terms( get_the_ID(), 'themes' );
 $types = get_the_terms( get_the_ID(), 'types' );
 $projectLink = get_field('project-link', 'acf-options-global-fields');
+if (!$cover) $coverState = 'none';
+
 ?>
 <div class="hero hero-cpt relative overflow-hidden relative <?= $coverState === 'fill' ? 'mm-sm:pb-0' : '' ?>">
   <div class="px-container relative z-10 w-full">
     <div class="grid grid-base">
-      <div class="hero-wrapper z-[1] relative col-span-12  @md/lg:py-[130px] flex flex-col @@:gap-y-[16px] autoscale-children">
+      <div class="hero-wrapper z-[1] relative col-span-12  @md:py-[130px] @lg:py-[130px] flex flex-col @@:gap-y-[16px] autoscale-children">
         <div class="flex items-center @@:gap-x-2 aos animate-fadeinup">
           <?php if($date): ?> <span class="badge badge-primary badge-outlined"><?= $date ?></span><?php endif; ?>
           <span class="badge badge-primary badge-filled bg-dark-blue text-white border-dark-blue">Project</span>
@@ -44,7 +46,7 @@ $projectLink = get_field('project-link', 'acf-options-global-fields');
       </div>
     </div>
   </div>
-  <?php if($coverState === 'none' || !$cover):  ?>
+  <?php if($coverState === 'none'):  ?>
     <div class="absolute bottom-0 left-[--left-line] w-[1px] h-full bg-dark-blue opacity-20 z-[0] md:h-[--hero-h] mm-sm:hidden"></div>
   <?php elseif($coverState === 'fit'):  ?>
     <div class="hero-cover hero-cover--fit mm-sm:px-container z-[1] mm-sm:w-full md:absolute md:bottom-0 md:right-0 md:h-[--hero-h]">

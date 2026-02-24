@@ -173,7 +173,7 @@ body {
 
 // UNDERLINE
 
-.button-underline {
+.button-underline:not(.is-tag) {
   border-bottom: 0;
   position: relative;
 
@@ -189,6 +189,7 @@ body {
     }
   }
 }
+
 a {
   &:hover {
     .button-underline {
@@ -281,13 +282,13 @@ a {
   }
 
   &:after {
-    @apply absolute inset-0 bg-light-yellow duration-300 opacity-0 transition-opacity transition-transform z-0 scale-x-0 origin-right ;
+    @apply absolute inset-0 bg-light-yellow duration-500 ease-out transition transition-transform z-0 scale-x-0 origin-right ;
     content: "";
   }
 
   &:hover {
     &:after {
-      @apply scale-x-100 opacity-100 origin-left;
+      @apply scale-x-100 origin-left;
     }
   }
 }
@@ -310,13 +311,13 @@ a {
   }
 
   &:after {
-    @apply absolute inset-0 bg-[--hover-project] duration-300 opacity-0 transition-opacity transition-transform z-0 scale-x-0 origin-right ;
+    @apply absolute inset-0 bg-[--hover-project] duration-300 transition-transform z-0 scale-x-0 origin-right ease-out ;
     content: "";
   }
 
   &:hover {
     &:after {
-      @apply scale-x-100 opacity-100 origin-left;
+      @apply scale-x-100 origin-left;
     }
   }
 }

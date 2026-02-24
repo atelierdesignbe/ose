@@ -31,7 +31,7 @@ $projectLink = get_field('publication-link', 'acf-options-global-fields');
           <ul class="flex items-center @@:gap-[8px] autoscale-children aos animate-fadeinup">
             <?php foreach($projects as $project):?>
               <li>
-                <a href="<?= $projectLink ? $projectLink['url']."/?projects=".$project->term_id : "/publications/?projects=".$project->term_id; ?>" class="button button-primary button-underline"><span class="button-title"><?= $project->name ?></span></a>
+                <a href="<?= $projectLink ? $projectLink['url']."/?projects=".$project->term_id : "/publications/?projects=".$project->term_id; ?>" class="button button-primary button-underline is-tag"><span class="button-title"><?= $project->name ?></span></a>
               </li>
             <?php endforeach; ?>
           </ul>

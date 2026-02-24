@@ -390,3 +390,33 @@ function get_term_ids_for_cpt($taxonomy, $post_types = ['post']) {
     'object_ids' => $posts, // Filtre uniquement les termes liés à ces posts
   ]);
 }
+
+function replace_publication_permalink_in_admin($post_link, $post) {
+  if ($post->post_type !== 'publication') {
+      return $post_link;
+  }
+
+  $is_external = get_field('is-external', $post->ID);
+  $external_link = get_field('external-link', $post->ID);
+
+  if ($is_external && $external_link) {
+      return $external_link;
+  }
+
+  return $post_link;
+}
+add_filter('post_type_link', 'replace_publication_permalink_in_admin', 10, 2);
+
+
+function noindex_external_publications() {
+  if (!is_singular('publication')) {
+      return;
+  }
+
+  $is_external = get_field('is-external');
+
+  if ($is_external) {
+      echo '<meta name="robots" content="noindex, nofollow">' . "\n";
+  }
+}
+add_action('wp_head', 'noindex_external_publications', 1);

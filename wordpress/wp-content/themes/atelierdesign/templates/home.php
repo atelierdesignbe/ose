@@ -66,11 +66,11 @@
         <div class="col-span-1 md:col-span-2">
             <div class="flex flex-col @@:gap-y-[32px] *:md:stagger-2">
               <?php foreach($insights as $item): ?>
-                <div class="flex flex-col md:flex-row items-start aos animate-fadeinup stagger-delay-200">
-                  <div class="w-full @sm:h-[260px] @md/lg:w-[248px] @md/lg:h-[268px] flex-none overflow-hidden">
+                <div class="flex flex-col md:flex-row items-start @@:gap-y-[30px] @@:gap-x-[20px] aos animate-fadeinup stagger-delay-200">
+                  <div class="w-full @sm:h-[260px] @md/lg:w-[248px] @md/lg:h-[268px] flex-none overflow-hidden ">
                     <?php echo wp_get_attachment_image($item['cover']['ID'], "full", null, ["class" => 'object-cover  h-full w-full aos animate-fadeinzoomout']); ?>
                   </div>
-                  <div class="flex-auto flex flex-col w-full @@:gap-y-4 items-start @@:px-[30px] @md/lg:px-[20px] autoscale-children self-center">
+                  <div class="flex-auto flex flex-col w-full @@:gap-y-4 items-start autoscale-children self-center">
                     <?php if($item['date']): ?>
                       <span class="badge badge-primary badge-outlined aos animate-fadeinup"><?= $item['date'] ?></span>
                     <?php endif; ?>

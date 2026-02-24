@@ -8,11 +8,12 @@ $coverState = $args['cover-status'];
 
 $hasLabel = $labelStatus === 'override' || $labelStatus === 'default';
 if ($hasLabel &&  $labelStatus === 'override') $label = $args['label'];
+if (!$cover) $coverState = 'none';
 ?>
 <div class="hero hero-cpt relative overflow-hidden relative <?= $coverState === 'fill' ? 'mm-sm:pb-0' : '' ?> ">
   <div class="px-container relative z-10 w-full">
     <div class="grid grid-base">
-      <div class="hero-wrapper z-[1] relative col-span-12  @md/lg:py-[130px] flex flex-col @@:gap-y-[16px] autoscale-children <?= $coverState === 'default' ? 'theme-dark-blue md:col-span-18 md:col-start-4 items-center text-center' : '' ?>">
+      <div class="hero-wrapper z-[1] relative col-span-12  @md:py-[130px] @lg:py-[130px] flex flex-col @@:gap-y-[16px] autoscale-children <?= $coverState === 'default' ? 'theme-dark-blue md:col-span-18 md:col-start-4 items-center text-center' : '' ?>">
         <div class="flex items-center @@:gap-x-2 aos animate-fadeinup">
           <?php if($label && $hasLabel): ?><span class="subtitle paragraph-primary aos animate-fadeinup"><?= $label ?></span><?php endif; ?>
         </div>
@@ -21,7 +22,7 @@ if ($hasLabel &&  $labelStatus === 'override') $label = $args['label'];
       </div>
     </div>
   </div>
-  <?php if($coverState === 'none' || !$cover):  ?>
+  <?php if($coverState === 'none'):  ?>
     <div class="absolute bottom-0 left-[--left-line] w-[1px] h-full bg-dark-blue opacity-20 z-[0] md:h-[--hero-h] mm-sm:hidden"></div>
   <?php elseif($coverState === 'fit'):  ?>
     <div class="hero-cover hero-cover--fit mm-sm:px-container z-[1] mm-sm:w-full md:absolute md:bottom-0 md:right-0 md:h-[--hero-h]">
