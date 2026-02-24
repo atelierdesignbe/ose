@@ -16,7 +16,7 @@ if (expand.length > 0) {
       elem.style.display = ''
       button.classList.remove('disabled', 'is-open')
       if (overflow) overflow.classList.remove('is-opened')
-    }, 400)
+    }, 300)
   
     // Retire le clickoutside si mobile
     document.removeEventListener('click', elem._outsideHandler)
@@ -26,7 +26,7 @@ if (expand.length > 0) {
   function expandOpen(elem, button) {
     elem.style.display = 'flex'
     button.classList.add('is-open', 'disabled')
-    const items = elem.querySelectorAll('[js-expand-item]')
+    // const items = elem.querySelectorAll('[js-expand-item]')
     const overflow = elem.querySelector('[js-expand-overflow]')
     if (overflow) overflow.classList.add('is-opened')
     
@@ -138,8 +138,7 @@ if (expand.length > 0) {
       }
     }
   }
-  
-  
+
   // ---------------- INIT + RESET ----------------
   initExpand()
   

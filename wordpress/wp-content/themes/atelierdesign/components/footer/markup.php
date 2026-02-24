@@ -12,7 +12,7 @@ $privacyNav = $args['bottom-nav'];
           <?php echo get_template_part('/components/logo', null, ['logo' => get_field('logo', 'acf-options-global-fields')]); ?>
         </div>
         <!-- ADDR -->
-        <div class="contact flex flex-col @md:gap-y-[12px] @lg:gap-y-[24px] items-start @md/lg:pr-[6.66%] @md/lg:w-[438px]">
+        <div class="contact flex flex-col @sm:gap-y-[24px] @md:gap-y-[12px] @lg:gap-y-[24px] items-start @md/lg:pr-[6.66%] @md/lg:w-[438px]">
           <?php if($contact['link']): ?>
             <a href="<?= $contact['link']['url'] ?>" target="<?= $contact['url']['target'] ?? '_self' ?>" class="heading heading-2xl heading-primary aos animate-fadeinup animate-delay-100 autoscale"><?= $contact['link']['title'] ?></a>
           <?php endif; ?>

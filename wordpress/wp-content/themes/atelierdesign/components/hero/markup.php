@@ -45,6 +45,8 @@ if (!$cover) $coverState = 'none';
     <div class="z-[0] absolute w-full h-full top-0 left-0 overflow-hidden">
       <div class="w-full h-full z-[1] relative parallax-image-wrapper aos animate-fadeinzoomout animate-delay-400 ">
         <!-- HERE BKG -->
+        <div class="absolute inset-0 hero-gradient-header z-[8]"></div>
+
         <?php 
           echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'w-full h-full object-cover parallax-image']);
         ?> 

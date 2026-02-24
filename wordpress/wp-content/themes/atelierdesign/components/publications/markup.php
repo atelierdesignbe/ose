@@ -44,8 +44,8 @@
   if ($isCustom) {
     $publications = $items;
   }
-
 ?>
+
 <div class="relative last-publication">
   <div class="bg-layout-main theme-light-blue">
     <div class="relative md:px-container grid grid-base">

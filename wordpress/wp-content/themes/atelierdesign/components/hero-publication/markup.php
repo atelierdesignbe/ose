@@ -18,7 +18,7 @@ $types = get_the_terms( get_the_ID(), 'types' );
 $projects = get_the_terms( get_the_ID(), 'projects' );
 $projectLink = get_field('publication-link', 'acf-options-global-fields');
 ?>
-<div class="hero hero-cpt relative overflow-hidden relative ">
+<div class="hero hero-cpt relative overflow-hidden relative">
   <div class="px-container relative z-10 w-full">
     <div class="grid grid-base">
       <div class="hero-wrapper z-[1] relative col-span-12  flex flex-col @@:gap-y-[16px]">
@@ -48,7 +48,7 @@ $projectLink = get_field('publication-link', 'acf-options-global-fields');
           </ul>
         <?php endif; ?>
         <?php if($types): ?>
-          <ul class="flex items-center flex-wrap @@:gap-x-2 aos animate-fadeinup animate-delay-400 autoscale-children">
+          <ul class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-400 autoscale-children">
             <?php foreach($types as $type): ?>
               <a href="<?= $projectLink ? $projectLink['url']."/?types=".$type->term_id : "/publications/?types=".$type->term_id; ?>" class="badge badge-primary badge-filled">
                 <?= $type->name ?>
@@ -57,7 +57,7 @@ $projectLink = get_field('publication-link', 'acf-options-global-fields');
           </ul>
         <?php endif; ?>
         <?php if($themes): ?>
-          <ul class="flex items-center flex-wrap @@:gap-x-2 aos animate-fadeinup animate-delay-500 autoscale-children">
+          <ul class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-500 autoscale-children">
             <?php foreach($themes as $theme): ?>
               <li >
                 <a href="<?= $projectLink ? $projectLink['url']."/?themes=".$theme->term_id : "/publications/?themes=".$theme->term_id; ?>" class="badge badge-primary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>

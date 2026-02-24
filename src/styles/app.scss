@@ -10,7 +10,7 @@
 @use 'hero';
 
 body {
-  @apply min-h-screen font-sans bg-white;
+  @apply min-h-[100dvh] font-sans bg-white;
 }
 
 .grid-base {
@@ -66,8 +66,9 @@ body {
 }
 
 .last-publication {
-  &-cover {
+  @apply @md/lg:mt-[-1px];
 
+  &-cover {
     --publication-full: calc(100% + calc((80 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale)));
     @apply absolute top-0 left-0 z-[0] w-full @sm:h-[--publication-full]  md:h-full md:w-[50%] bg-dark-blue ;
     background: linear-gradient(137deg, #021D4C 4.65%, #043790 91.21%);
@@ -98,8 +99,38 @@ body {
     }
   }
 
+  &-expand {
+    ul {
+      @apply @@:max-h-[250px] overflow-auto;
+
+      /* Firefox */
+      scrollbar-width: thin;
+      scrollbar-color: #ccc transparent;
+
+      
+      /* Chrome / Safari / Edge */
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 99px;
+      }
+      
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: #999;
+      }
+    }
+  }
+
   &-button {
-    &.is-open {
+    &.is-open,
+    &.is-filtered {
       @apply border-dark-blue;
     }
   }
@@ -172,11 +203,16 @@ body {
 
 
 // UNDERLINE
-
-.button-underline:not(.is-tag) {
+.button-underline {
   border-bottom: 0;
   position: relative;
 
+  &.is-tag {
+    @apply underline @@:underline-offset-[4px];
+  }
+}
+
+.button-underline:not(.is-tag) {
   &:after {
     @apply absolute h-[1px] w-full bg-current bottom-0 left-0 origin-right;
 
@@ -282,14 +318,18 @@ a {
   }
 
   &:after {
-    @apply absolute inset-0 bg-light-yellow duration-500 ease-out transition transition-transform z-0 scale-x-0 origin-right ;
+    @apply absolute inset-0 bg-light-yellow z-0;
     content: "";
+    transform: scaleX(0);
+    transform-origin: left center;
   }
 
-  &:hover {
-    &:after {
-      @apply scale-x-100 origin-left;
-    }
+  &.is-entering:after {
+    animation: rollIn .3s ease-out forwards;
+  }
+
+  &.is-leaving:after {
+    animation: rollOut .3s ease-out forwards;
   }
 }
 
@@ -332,4 +372,32 @@ a {
       @apply pb-0;
     }
   }
+}
+
+
+.filters {
+  & > div {
+    &:nth-child(odd) {
+      .filter-expand {
+        @apply left-0;
+      }
+    }
+    &:nth-child(even) {
+      .filter-expand {
+        @apply right-0 md:left-0 md:right-auto;
+      }
+    }
+  }
+}
+
+@keyframes rollIn {
+  from { transform: scaleX(0); opacity: 0; transform-origin: left center; }
+  to   { transform: scaleX(1); opacity: 1; transform-origin: left center; }
+}
+
+@keyframes rollOut {
+  // from { transform: scaleX(1); transform-origin: right center; }
+  // to   { transform: scaleX(0); transform-origin: right center; }
+  from { transform: scaleX(1); opacity:1; transform-origin: left center; }
+  to   { transform: scaleX(0); opacity:0; transform-origin: left center; }
 }

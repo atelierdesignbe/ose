@@ -203,14 +203,12 @@ add_action('acf/include_fields', function () {
               'operator' => '==',
               'value' => 'override',
             ],
-          ],
-          [
             [
               'field' => 'field-single-publication-is-external',
               'operator' => '!=',
               'value' => '1',
             ],
-          ]
+          ],
         ],
       ],
     ],

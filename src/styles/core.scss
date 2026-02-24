@@ -3,6 +3,10 @@
   // --hero-h: calc((var(92) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
 
   --dark-blue-20: rgba(2, 29, 76, .2);
+  --dark-blue-30: rgba(2, 29, 76, .3);
+  --dark-blue-50: rgba(2, 29, 76, .5);
+  --dark-blue-80: rgba(2, 29, 76, .8);
+  --dark-blue-0: rgba(2, 29, 76, 0);
   --button-underline-border-width: 1;
   --size-container: calc(100vw - var(--pl-margin) * 2);
   --left-line: calc(((17 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin));

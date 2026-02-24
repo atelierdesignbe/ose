@@ -420,3 +420,10 @@ function noindex_external_publications() {
   }
 }
 add_action('wp_head', 'noindex_external_publications', 1);
+
+add_filter('acf/prepare_field/key=field-home-hero-media-image', function($field) {
+  if (!is_super_admin()) {
+      return false; // cache complètement le champ
+  }
+  return $field;
+});

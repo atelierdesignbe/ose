@@ -92,46 +92,57 @@ if (ajaxPage) {
   filters.forEach((filter, index) => {
     const filterType = filter.getAttribute('js-ajax-filter')
     const buttonExpand = filter.parentElement.parentElement.querySelector('[js-expand-button]')
+    const expand = filter.parentElement.parentElement.querySelector('[js-expand]')
     data.filters[filterType] = ''
 
     const items = filter.querySelectorAll('button')
 
     for (const item of items) {
       item.addEventListener('click', () => {
+        const oldElt = data.filters[filterType]
         if (data.filters[filterType]) {
           ajaxPage.querySelector(`[js-ajax-filter="${filterType}"] [data-id="${data.filters[filterType]}"]`).classList.remove('is-active')
           resetWrapper.querySelector(`button[data-filter="${filterType}"]`).remove()
         }
 
-        const nButton = document.createElement('button')
+        if (oldElt !== item.dataset.id) {
+          const nButton = document.createElement('button')
 
-        nButton.innerHTML = `${item.dataset.name} ${iconClose}`
-        nButton.classList.add('reset-label')
-        nButton.dataset.id = item.dataset.id
-        nButton.dataset.filter = filterType
-        resetWrapper.appendChild(nButton)
-        buttonExpand.classList.add('is-filtered')
-        data.filters[filterType] = item.dataset.id
-        item.classList.add('is-active')
-
-        data.page = 1
-
-        searchData(true)
-
-        nButton.addEventListener('click', () => {
-          ajaxPage.querySelector(`[js-ajax-filter] [data-id="${nButton.dataset.id}"]`).classList.remove('is-active')
-          data.filters[nButton.dataset.filter] = ''
-          ajaxPage.querySelector(`[js-ajax-filter="${nButton.dataset.filter}"]`).parentElement.parentElement.querySelector('[js-expand-button]').classList.remove('is-filtered')
+          nButton.innerHTML = `${item.dataset.name} ${iconClose}`
+          nButton.classList.add('reset-label')
+          nButton.dataset.id = item.dataset.id
+          nButton.dataset.filter = filterType
+          resetWrapper.appendChild(nButton)
+          buttonExpand.classList.add('is-filtered')
+          data.filters[filterType] = item.dataset.id
+          item.classList.add('is-active')
+  
+          if(window.innerWidth < 600) {
+            expand.classList.remove('is-open')
+            buttonExpand.classList.remove('is-open')
+          }
+  
+          data.page = 1
+  
+          searchData(true)
+  
+          nButton.addEventListener('click', () => {
+            ajaxPage.querySelector(`[js-ajax-filter] [data-id="${nButton.dataset.id}"]`).classList.remove('is-active')
+            data.filters[nButton.dataset.filter] = ''
+            ajaxPage.querySelector(`[js-ajax-filter="${nButton.dataset.filter}"]`).parentElement.parentElement.querySelector('[js-expand-button]').classList.remove('is-filtered')
+            data.page = 1
+            searchData(true)
+            nButton.remove()
+          })
+        } else {
+          data.filters[filterType] = ''
+          buttonExpand.classList.remove('is-filtered')
           data.page = 1
           searchData(true)
-          nButton.remove()
-        })
-
+        }
       })
     }
   })
-
-
 
   function getUrlParams() {
     const params = new URLSearchParams(window.location.search)

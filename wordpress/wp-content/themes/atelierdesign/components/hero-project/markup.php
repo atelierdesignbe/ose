@@ -13,7 +13,7 @@ $projectLink = get_field('project-link', 'acf-options-global-fields');
 if (!$cover) $coverState = 'none';
 
 ?>
-<div class="hero hero-cpt relative overflow-hidden relative <?= $coverState === 'fill' ? 'mm-sm:pb-0' : '' ?>">
+<div class="hero hero-cpt relative overflow-hidden relative <?= $coverState === 'fill' ? 'mm-sm:pb-0' : '' ?> <?= $coverState === 'none' ? 'hero--none' : '' ?>">
   <div class="px-container relative z-10 w-full">
     <div class="grid grid-base">
       <div class="hero-wrapper z-[1] relative col-span-12  @md:py-[130px] @lg:py-[130px] flex flex-col @@:gap-y-[16px] autoscale-children">
@@ -24,7 +24,7 @@ if (!$cover) $coverState = 'none';
         <h1 class="heading heading-primary @sm:text-[46px] @md/lg:text-[72px] font-serif font-light @sm:leading-[48px] @md/lg:leading-[69px] autoscale aos animate-fadeinup autoscale"><?= $title ?></h1>
         <?php if($description): ?><p class="paragraph paragraph-primary paragraph-lg autoscale aos animate-fadeinup animate-delay-200 autoscale"><?= $description ?></p><?php endif; ?>
         <?php if($types): ?>
-          <ul  class="flex items-center flex-wrap @@:gap-x-2 aos animate-fadeinup animate-delay-300 autoscale-children">
+          <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-300 autoscale-children">
             <?php foreach($types as $type): ?>
               <li>
                 <a href="<?= $projectLink ? $projectLink['url'].'?types='.$type->term_id : '/projects/?types='.$type->term_id; ?>" class="badge badge-primary badge-filled">
@@ -35,7 +35,7 @@ if (!$cover) $coverState = 'none';
           </ul>
         <?php endif; ?>
         <?php if($themes): ?>
-          <ul  class="flex items-center flex-wrap @@:gap-x-2 aos animate-fadeinup animate-delay-400 autoscale-children">
+          <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-400 autoscale-children">
             <?php foreach($themes as $theme): ?>
               <li>
                 <a href="<?= $projectLink ? $projectLink['url']."?themes=".$theme->term_id : "/projects/?themes=".$theme->term_id ?>" class="badge badge-secondary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>

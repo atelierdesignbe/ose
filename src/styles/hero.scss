@@ -1,8 +1,12 @@
 .hero {
-  @apply min-h-screen flex items-center mm-sm:flex-col @sm:gap-y-[50px] @sm:pt-[142px] @sm:pb-[102px] md:py-0;
+  @apply min-h-[100dvh] flex items-center mm-sm:justify-center mm-sm:flex-col @sm:gap-y-[50px] @sm:py-[142px] md:py-0;
 
   &.is-vertical {
-    @apply @sm:min-h-screen @md/lg:min-h-[824px] ;
+    @apply @md/lg:min-h-[100dvh] @md/lg:min-h-[824px] ;
+  }
+
+  &.hero--none {
+    @apply mm-sm:min-h-[1px];
   }
 
   &-wrapper {
@@ -22,8 +26,6 @@
   }
 
   &.hero-home {
-    @apply @sm:pb-[102px] md:py-0;
-
     .hero-wrapper {
       @apply  @md/lg:py-[160px];
     }
@@ -31,5 +33,9 @@
 
   &.hero-cpt {
 
+  }
+
+  &-gradient-header {
+    background: linear-gradient(var(--dark-blue-30) 20%, var(--dark-blue-0));
   }
 }

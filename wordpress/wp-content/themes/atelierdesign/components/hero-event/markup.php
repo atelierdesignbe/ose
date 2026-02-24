@@ -16,7 +16,7 @@ if (!$cover) $coverState = 'none';
 
 ?>
 
-<div class="hero hero-cpt relative overflow-hidden relative <?= $coverState === 'fill' ? 'mm-sm:pb-0' : '' ?>">
+<div class="hero hero-cpt relative overflow-hidden relative <?= $coverState === 'fill' ? 'mm-sm:pb-0' : '' ?> <?= $coverState === 'none' ? 'hero--none' : '' ?>">
   <div class="px-container relative z-10 w-full">
     <div class="grid grid-base">
       <div class="hero-wrapper z-[1] relative col-span-12 @md:py-[130px] @lg:py-[130px] flex flex-col @@:gap-y-[16px] autoscale-children">
