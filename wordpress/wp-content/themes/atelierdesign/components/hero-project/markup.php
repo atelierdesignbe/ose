@@ -53,8 +53,8 @@ if (!$cover) $coverState = 'none';
       <div class="absolute top-0 left-[22.22%] w-[1px] h-full bg-dark-blue opacity-20 z-[0] mm-sm:hidden"></div>
       <div class="w-full h-full z-[1] relative flex items-center mm-sm:justify-center">
         <?php 
-          echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'h-auto w-full md:w-auto md:h-full w-auto image-shadow-lg aos animate-fadeinup animate-delay-400']);
-        ?> 
+          echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'w-auto h-auto max-h-full max-w-full image-shadow-lg aos animate-fadeinup animate-delay-400']);
+          ?> 
       </div>
     </div>
   <?php elseif($coverState === 'fill'): ?>
