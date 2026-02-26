@@ -6,7 +6,6 @@ add_action('wp_ajax_filter_publication', 'ajax_filter_publication');
 add_action('wp_ajax_nopriv_filter_publication', 'ajax_filter_publication');
 
 function get_filtered_term_counts($taxonomy, $base_filters, $exclude_tax = null, $cpt = 'post', $year = null, $author = null) {
-  // Supprimer la taxonomie qu'on est en train de compter
   $tax_query = array_filter($base_filters, function($t) use ($exclude_tax) {
     return !isset($t['taxonomy']) || $t['taxonomy'] !== $exclude_tax;
   });
@@ -22,8 +21,8 @@ function get_filtered_term_counts($taxonomy, $base_filters, $exclude_tax = null,
     $tax_query_for_count = $tax_query;
     $tax_query_for_count[] = [
       'taxonomy' => $taxonomy,
-      'field'    => 'term_id',
-      'terms'    => [$term->term_id],
+      'field'    => 'slug', // ← term_id → slug
+      'terms'    => [$term->slug], // ← term_id → slug
     ];
 
     $query_args = [
@@ -33,13 +32,12 @@ function get_filtered_term_counts($taxonomy, $base_filters, $exclude_tax = null,
       'tax_query'      => $tax_query_for_count,
     ];
 
-    // ✅ Construit le meta_query avec année ET/OU auteur
     $meta_query = [];
     
     if ($year) {
       $meta_query[] = [
         'key'     => 'date_start',
-        'value'   =>  $year,
+        'value'   => $year,
         'compare' => 'LIKE',
       ];
     }
@@ -47,19 +45,18 @@ function get_filtered_term_counts($taxonomy, $base_filters, $exclude_tax = null,
     if ($author) {
       $meta_query[] = [
         'key'     => 'author',
-        'value'   => '"' . $author . '"', // L'ID de l'auteur avec guillemets
+        'value'   => '"' . $author . '"',
         'compare' => 'LIKE',
       ];
     }
     
-    // Ajoute meta_query seulement si nécessaire
     if (!empty($meta_query)) {
       $query_args['meta_query'] = $meta_query;
     }
 
     $count_query = new WP_Query($query_args);
 
-    $counts[$term->term_id] = $count_query->found_posts;
+    $counts[$term->slug] = $count_query->found_posts; // ← term_id → slug comme clé
     wp_reset_postdata();
   }
 
@@ -182,7 +179,7 @@ function ajax_filter_project() {
   if (!empty($filtersDecode->types)) {
     $tax_query[] = [
       'taxonomy' => 'types',
-      'field' => 'term_id',
+      'field' => 'slug',
       'terms' => $filtersDecode->types,
     ];
   }
@@ -190,7 +187,7 @@ function ajax_filter_project() {
   if (!empty($filtersDecode->themes)) {
     $tax_query[] = [
       'taxonomy' => 'themes',
-      'field' => 'term_id',
+      'field' => 'slug',
       'terms' => $filtersDecode->themes,
     ];
   }
@@ -255,7 +252,7 @@ function ajax_filter_publication() {
   if (!empty($filtersDecode->types)) {
     $tax_query[] = [
       'taxonomy' => 'types',
-      'field' => 'term_id',
+      'field' => 'slug',
       'terms' => $filtersDecode->types,
     ];
   }
@@ -263,7 +260,7 @@ function ajax_filter_publication() {
   if (!empty($filtersDecode->themes)) {
     $tax_query[] = [
       'taxonomy' => 'themes',
-      'field' => 'term_id',
+      'field' => 'slug',
       'terms' => $filtersDecode->themes,
     ];
   }
@@ -271,7 +268,7 @@ function ajax_filter_publication() {
   if (!empty($filtersDecode->projects)) {
     $tax_query[] = [
       'taxonomy' => 'projects',
-      'field' => 'term_id',
+      'field' => 'slug',
       'terms' => $filtersDecode->projects,
     ];
   }

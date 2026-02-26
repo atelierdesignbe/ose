@@ -147,6 +147,23 @@ add_action('acf/include_fields', function () {
           ],
         ],
       ],
+
+      // [
+      //   'key' => 'field-single-publication-related-tab',
+      //   'label' => 'Related publications',
+      //   'type' => 'tab',
+      //   'no_preference' => 0,
+      //   'conditional_logic' => [
+      //     [
+      //       [
+      //         'field' => 'field-single-publication-is-external',
+      //         'operator' => '!=',
+      //         'value' => '1',
+      //       ],
+      //     ],
+      //   ],
+      // ],
+
       [
         'key' => 'field-single-publication-cta-footer-tab',
         'label' => 'CTA Footer',

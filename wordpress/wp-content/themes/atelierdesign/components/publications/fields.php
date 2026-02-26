@@ -2,12 +2,12 @@
 
 $publicationsFields = [
   wysiwyg('field-related-publication-content', ['heading-2xl', 'heading-xl', 'heading-lg'], ['paragraph-lg', 'paragraph-md']),
-  [
-    'key' => 'field-related-publication-link',
-    'name' => 'link',
-    'label' => 'Link',
-    'type' => 'link',
-  ],
+  // [
+  //   'key' => 'field-related-publication-link',
+  //   'name' => 'link',
+  //   'label' => 'Link',
+  //   'type' => 'link',
+  // ],
   [
     'key' => 'field-related-publication-auto',
     'label' => '',
@@ -45,6 +45,25 @@ $publicationsFields = [
     'instructions' => 'Limit the publications with the selected types',
     'field_type' => 'select', // 'checkbox', 'multi_select', 'radio'
     'taxonomy' => 'types', // Le slug de ta taxonomie
+    'allow_null' => 1,
+    'conditional_logic' => [
+      [
+        [
+          'field' => 'field-related-publication-auto',
+          'operator' => '!=',
+          'value' => '1',
+        ]
+      ]
+    ]
+  ],
+  [
+    'key' => 'field-related-publication-projects',
+    'label' => 'Projects',
+    'name' => 'projects',
+    'type' => 'taxonomy',
+    'instructions' => 'Limit the publications with the selected projects',
+    'field_type' => 'select', // 'checkbox', 'multi_select', 'radio'
+    'taxonomy' => 'projects', // Le slug de ta taxonomie
     'allow_null' => 1,
     'conditional_logic' => [
       [

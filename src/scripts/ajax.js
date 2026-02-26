@@ -1,5 +1,42 @@
 const ajaxPage = document.querySelector('[js-ajax]')
 
+function initPublicationAnimation() {
+  const publications = document.querySelectorAll('.publication')
+  if (publications.length > 0) {
+    publications.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        el.classList.remove('is-leaving')
+        el.classList.add('is-entering')
+      })
+  
+      el.addEventListener('mouseleave', () => {
+        el.classList.remove('is-entering')
+        el.classList.add('is-leaving')
+      })
+    })
+  }
+}
+
+function initProjectsAnimation() {  
+  const projects = document.querySelectorAll('.project')
+  if (projects.length > 0) {
+    projects.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        el.classList.remove('is-leaving')
+        el.classList.add('is-entering')
+      })
+
+      el.addEventListener('mouseleave', () => {
+        el.classList.remove('is-entering')
+        el.classList.add('is-leaving')
+      })
+    })
+  }
+}
+
+initPublicationAnimation()
+initProjectsAnimation()
+
 if (ajaxPage) {
   const custom_post = ajaxPage.getAttribute('js-ajax')
   const data = {
@@ -77,6 +114,9 @@ if (ajaxPage) {
             }
           })
         }
+
+        initPublicationAnimation()
+        initProjectsAnimation()
     })
   }
 
@@ -120,6 +160,9 @@ if (ajaxPage) {
           if(window.innerWidth < 600) {
             expand.classList.remove('is-open')
             buttonExpand.classList.remove('is-open')
+            setTimeout(() => {
+              expand.style.display = ''
+            }, 300)
           }
   
           data.page = 1
@@ -146,19 +189,24 @@ if (ajaxPage) {
 
   function getUrlParams() {
     const params = new URLSearchParams(window.location.search)
-    
+
+    // Injecte le filtre venant de l'URL SEO friendly
+    if (window.ajax?.activeFilterType && window.ajax?.activeFilterValue) {
+        params.set(window.ajax.activeFilterType, window.ajax.activeFilterValue)
+    }
+
+    console.log(window.ajax.activeFilterValue, window.ajax.activeFilterType)
+
     filters.forEach((filter) => {
-      const filterType = filter.getAttribute('js-ajax-filter')
-      const paramValue = params.get(filterType) // ex: ?themes=12
-      
-      if (paramValue) {
-        const targetItem = filter.querySelector(`[data-id="${paramValue}"]`)
-        
-        if (targetItem) {
-          // Simule le clic sur le bon item
-          targetItem.click()
+        const filterType = filter.getAttribute('js-ajax-filter')
+        const paramValue = params.get(filterType)
+
+        if (paramValue) {
+            const targetItem = filter.querySelector(`[data-id="${paramValue}"]`)
+            if (targetItem) {
+                targetItem.click()
+            }
         }
-      }
     })
   }
 

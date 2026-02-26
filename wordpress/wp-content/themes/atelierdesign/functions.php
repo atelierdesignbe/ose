@@ -306,19 +306,19 @@ load_acf_files(__DIR__ . '/fieldGroups/*.php');
 
 
 function setup_custom_image_sizes() {
-    // Modifier les tailles par défaut
-    update_option('thumbnail_crop', 0); // 0 = pas de crop, garde les proportions
-    update_option('medium_size_w', 640);
-    update_option('medium_size_h', 0); // 0 = hauteur proportionnelle
-    
-    
-    update_option('large_size_w', 1280);
-    update_option('large_size_h', 0);
-    
-    // Ou utiliser add_image_size pour des tailles custom
-    add_image_size('medium', 640, 0, false); // largeur 640px, hauteur auto
-    add_image_size('large', 1280, 0, false);   // largeur 1280px, hauteur auto
+  update_option( 'thumbnail_crop',   0 );
+  update_option( 'thumbnail_size_w', 640 );
+  update_option( 'thumbnail_size_h', 0 );
+
+  // Medium → 1280px (correspond à 1280w dans le srcset)
+  update_option( 'medium_size_w', 1280 );
+  update_option( 'medium_size_h', 0 );
+
+  // Large → 2560px (correspond à 2560w dans le srcset)
+  update_option( 'large_size_w', 2560 );
+  update_option( 'large_size_h', 0 );
 }
+
 add_action('after_setup_theme', 'setup_custom_image_sizes');
 
 // Désactiver les tailles d'images par défaut non utilisées (optionnel)
@@ -427,3 +427,59 @@ add_filter('acf/prepare_field/key=field-home-hero-media-image', function($field)
   }
   return $field;
 });
+
+
+function add_custom_filter_rewrite_rules() {
+  if (!function_exists('get_field')) return;
+
+  $publication_link = get_field('publication-link', 'acf-options-global-fields');
+  $project_link     = get_field('project-link', 'acf-options-global-fields');
+
+  if (is_array($publication_link)) $publication_link = $publication_link['url'];
+  if (is_array($project_link))     $project_link     = $project_link['url'];
+
+  $publication_link = $publication_link ?: '/publications/';
+  $project_link     = $project_link     ?: '/projects/';
+
+  // Retire le sous-dossier WP du path (ex: /OSE/publications/ → publications)
+  $wp_base = trim(parse_url(home_url(), PHP_URL_PATH), '/');
+
+  $clean_path = function($link) use ($wp_base) {
+      $path = trim(parse_url($link, PHP_URL_PATH), '/');
+      if ($wp_base && str_starts_with($path, $wp_base)) {
+          $path = substr($path, strlen($wp_base));
+      }
+      return trim($path, '/');
+  };
+
+  $publication_path = $clean_path($publication_link);
+  $project_path     = $clean_path($project_link);
+
+  $rules = [
+      ['path' => $publication_path, 'filters' => ['themes', 'types', 'projects', 'authors']],
+      ['path' => $project_path,     'filters' => ['themes', 'types']],
+  ];
+
+  foreach ($rules as $rule) {
+      foreach ($rule['filters'] as $filter) {
+          add_rewrite_rule(
+              '^' . $rule['path'] . '/' . $filter . '/([^/]+)/?$',
+              'index.php?pagename=' . $rule['path'] . '&active_filter_type=' . $filter . '&active_filter_value=$matches[1]',
+              'top'
+          );
+      }
+  }
+
+  $version = '1.5';
+  if (get_option('custom_rewrite_version') !== $version) {
+      flush_rewrite_rules();
+      update_option('custom_rewrite_version', $version);
+  }
+}
+add_action('init', 'add_custom_filter_rewrite_rules', 99);
+
+add_filter('query_vars', function($vars) {
+  $vars[] = 'active_filter_type';
+  $vars[] = 'active_filter_value';
+  return $vars;
+}, 1);

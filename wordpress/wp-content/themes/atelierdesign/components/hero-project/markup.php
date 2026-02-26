@@ -13,13 +13,13 @@ $projectLink = get_field('project-link', 'acf-options-global-fields');
 if (!$cover) $coverState = 'none';
 
 ?>
-<div class="hero hero-cpt relative overflow-hidden relative <?= $coverState === 'fill' ? 'mm-sm:pb-0' : '' ?> <?= $coverState === 'none' ? 'hero--none' : '' ?>">
+<div class="hero hero-cpt relative overflow-hidden relative <?= $coverState === 'fill' ? 'mm-sm:pb-0  mm-sm:min-h-[1px]' : '' ?> mm-sm:min-h-[1px]">
   <div class="px-container relative z-10 w-full">
     <div class="grid grid-base">
       <div class="hero-wrapper z-[1] relative col-span-12  @md:py-[130px] @lg:py-[130px] flex flex-col @@:gap-y-[16px] autoscale-children">
         <div class="flex items-center @@:gap-x-2 aos animate-fadeinup">
           <?php if($date): ?> <span class="badge badge-primary badge-outlined"><?= $date ?></span><?php endif; ?>
-          <span class="badge badge-primary badge-filled bg-dark-blue text-white border-dark-blue">Project</span>
+          <a href="<?= $projectLink ? $projectLink['url'] : '/projects/' ?>" class="badge badge-primary badge-filled bg-dark-blue text-white border-dark-blue">Project</a>
         </div>
         <h1 class="heading heading-primary @sm:text-[46px] @md/lg:text-[72px] font-serif font-light @sm:leading-[48px] @md/lg:leading-[69px] autoscale aos animate-fadeinup autoscale"><?= $title ?></h1>
         <?php if($description): ?><p class="paragraph paragraph-primary paragraph-lg autoscale aos animate-fadeinup animate-delay-200 autoscale"><?= $description ?></p><?php endif; ?>
@@ -27,7 +27,7 @@ if (!$cover) $coverState = 'none';
           <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-300 autoscale-children">
             <?php foreach($types as $type): ?>
               <li>
-                <a href="<?= $projectLink ? $projectLink['url'].'?types='.$type->term_id : '/projects/?types='.$type->term_id; ?>" class="badge badge-primary badge-filled">
+                <a href="<?= $projectLink ? rtrim($projectLink['url'], '/').'/types/'.$type->slug : '/projects/types/'.$type->slug; ?>" class="badge badge-primary badge-filled">
                   <?= $type->name ?>
                 </a>
               </li>
@@ -38,7 +38,7 @@ if (!$cover) $coverState = 'none';
           <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-400 autoscale-children">
             <?php foreach($themes as $theme): ?>
               <li>
-                <a href="<?= $projectLink ? $projectLink['url']."?themes=".$theme->term_id : "/projects/?themes=".$theme->term_id ?>" class="badge badge-secondary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>
+                <a href="<?= $projectLink ? rtrim($projectLink['url'], '/')."/themes/".$theme->slug : "/projects/themes/".$theme->slug ?>" class="badge badge-secondary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>
               </li>
             <?php endforeach; ?>
           </ul>

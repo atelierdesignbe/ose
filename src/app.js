@@ -42,21 +42,13 @@ if (hero) {
     
   } 
 
+  if(window.innerWidth < 600) {
+    // IS MOBILE
+    hero.style.height = `${hero.offsetHeight}px`
+    hero.style.minHeight = `${1}px`
+  }
+
   initRatioHero()
   window.addEventListener('resize', initRatioHero)
 }
 
-const publications = document.querySelectorAll('.publication')
-if (publications.length > 0) {
-  publications.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      el.classList.remove('is-leaving')
-      el.classList.add('is-entering')
-    })
-
-    el.addEventListener('mouseleave', () => {
-      el.classList.remove('is-entering')
-      el.classList.add('is-leaving')
-    })
-  })
-}

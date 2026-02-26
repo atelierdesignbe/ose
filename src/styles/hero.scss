@@ -4,11 +4,7 @@
   &.is-vertical {
     @apply @md/lg:min-h-[100dvh] @md/lg:min-h-[824px] ;
   }
-
-  &.hero--none {
-    @apply mm-sm:min-h-[1px];
-  }
-
+  
   &-wrapper {
     @apply  @md/lg:py-[112px];
   }

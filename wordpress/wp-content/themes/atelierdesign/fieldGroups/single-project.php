@@ -180,3 +180,65 @@ add_action('acf/include_fields', function () {
     ],
   ]);
 }, 1000);
+
+
+
+add_action('acf/include_fields', function () {
+  acf_add_local_field_group([
+    'key' => 'field-group-single-project-authors',
+    'title' => 'Custom Authors',
+    'fields' => [
+      [
+        'key' => 'field-single-project-template-author',
+        'label' => 'Authors',
+        'type' => 'relationship',
+        'name' => 'author',
+        'required' => 0,
+        'post_type' => ['author'], 
+        'filters' => ['search'],
+        // 'elements' => ['featured_image'],  // Afficher la photo
+        'min' => 0,
+        // 'max' => 5,
+        'return_format' => 'object',
+        // 'conditional_logic' => [
+        //   [
+        //     [
+        //       'field' => 'field-single-publication-is-external',
+        //       'operator' => '!=',
+        //       'value' => '1',
+        //     ],
+        //   ],
+        // ],
+      ],
+    ],
+    'location' => [
+      [
+        [
+          'param' => 'post_type',
+          'operator' => '==',
+          'value' => 'project',
+        ],
+      ],
+    ],
+    'menu_order' => 99,
+    'position' => 'side',
+    'style' => 'seamless',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'active' => 1,
+    'hide_on_screen' => [
+      0 => 'the_content',
+      1 => 'excerpt',
+      2 => 'discussion',
+      3 => 'comments',
+      // 4 => 'revisions',
+      5 => 'slug',
+      6 => 'author',
+      // 7 => 'format',
+      8 => 'featured_image',
+      9 => 'categories',
+      10 => 'tags',
+      11 => 'send-trackbacks',
+    ],
+  ]);
+}, 1000);

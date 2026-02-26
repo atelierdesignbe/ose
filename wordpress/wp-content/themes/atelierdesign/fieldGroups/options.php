@@ -143,6 +143,12 @@ acf_add_local_field_group([
       'name' => 'project-link',
       'type' => 'link',
     ],
+    [
+      'key' => 'field-page-events',
+      'label' => 'Events link',
+      'name' => 'events-link',
+      'type' => 'link',
+    ],
   ],
   'location' => array(
     array(

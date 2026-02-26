@@ -109,12 +109,14 @@ if (!function_exists('atelierdesign_enqueue_vite_assets')) {
 
         wp_localize_script('atelierdesign-app', 'ajax', [
           'url' => admin_url('admin-ajax.php'),
-          'nonce' => wp_create_nonce('my_nonce')
+          'nonce' => wp_create_nonce('my_nonce'),
+          'activeFilterType'  => get_query_var('active_filter_type') ?: null,
+          'activeFilterValue' => get_query_var('active_filter_value') ?: null,
         ]);
     }
 }
 
-add_action('wp_enqueue_scripts', 'atelierdesign_enqueue_vite_assets');
+add_action('wp_enqueue_scripts', 'atelierdesign_enqueue_vite_assets', 99);
 
 add_action('admin_bar_menu', function($wp_admin_bar) {
     if (!current_user_can('manage_options')) {
@@ -133,3 +135,4 @@ add_action('admin_bar_menu', function($wp_admin_bar) {
         ],
     ]);
 }, 100);
+

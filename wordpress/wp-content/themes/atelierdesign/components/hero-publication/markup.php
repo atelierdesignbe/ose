@@ -31,7 +31,7 @@ $projectLink = get_field('publication-link', 'acf-options-global-fields');
           <ul class="flex items-center @@:gap-[8px] autoscale-children aos animate-fadeinup">
             <?php foreach($projects as $project):?>
               <li>
-                <a href="<?= $projectLink ? $projectLink['url']."/?projects=".$project->term_id : "/publications/?projects=".$project->term_id; ?>" class="button button-primary button-underline is-tag"><span class="button-title"><?= $project->name ?></span></a>
+                <a href="<?= $projectLink ? rtrim($projectLink['url'], '/')."/projects/".$project->slug : "/publications/projects/".$project->slug; ?>" class="button button-primary button-underline is-tag"><span class="button-title"><?= $project->name ?></span></a>
               </li>
             <?php endforeach; ?>
           </ul>
@@ -42,7 +42,7 @@ $projectLink = get_field('publication-link', 'acf-options-global-fields');
           <ul class="flex flex-wrap items-center @@:gap-[8px] autoscale-children aos animate-fadeinup animate-delay-300">
             <?php foreach($authors as $author):?>
               <li>
-                <a href="<?= $projectLink ? $projectLink['url']."/?authors=".$author->ID : "/publications/?authors=".$author->ID; ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= $author->post_title; ?></a>
+                <a href="<?= $projectLink ? rtrim($projectLink['url'], '/')."/authors/".$author->ID : "/publications/?authors=".$author->ID; ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= $author->post_title; ?></a>
               </li>
             <?php endforeach; ?>
           </ul>
@@ -50,7 +50,7 @@ $projectLink = get_field('publication-link', 'acf-options-global-fields');
         <?php if($types): ?>
           <ul class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-400 autoscale-children">
             <?php foreach($types as $type): ?>
-              <a href="<?= $projectLink ? $projectLink['url']."/?types=".$type->term_id : "/publications/?types=".$type->term_id; ?>" class="badge badge-primary badge-filled">
+              <a href="<?= $projectLink ? rtrim($projectLink['url'], '/')."/types/".$type->slug : "/publications/types/".$type->slug; ?>" class="badge badge-primary badge-filled">
                 <?= $type->name ?>
               </a>            
             <?php endforeach; ?>
@@ -60,7 +60,7 @@ $projectLink = get_field('publication-link', 'acf-options-global-fields');
           <ul class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-500 autoscale-children">
             <?php foreach($themes as $theme): ?>
               <li >
-                <a href="<?= $projectLink ? $projectLink['url']."/?themes=".$theme->term_id : "/publications/?themes=".$theme->term_id; ?>" class="badge badge-primary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>
+                <a href="<?= $projectLink ? rtrim($projectLink['url'], '/')."/themes/".$theme->slug : "/publications/themes/".$theme->slug; ?>" class="badge badge-primary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>
               </li>
             <?php endforeach; ?>
           </ul>

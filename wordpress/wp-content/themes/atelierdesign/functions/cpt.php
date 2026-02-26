@@ -129,20 +129,21 @@ add_action( 'init', 'cpt_projects');
 
 function cpt_authors() {
     $labels = array(
-        'name'               => 'Authors',
-        'singular_name'      => 'Author',
-        'menu_name'          => 'Authors',
-        'name_admin_bar'     => 'Author',
-        'add_new'            => 'Add New',
-        'add_new_item'       => 'Add New Author',
-        'new_item'           => 'New Author',
-        'edit_item'          => 'Edit Author',
-        'view_item'          => 'View Author',
-        'all_items'          => 'All Authors',
-        'search_items'       => 'Search Authors',
-        'not_found'          => 'No Authors found',
-        'not_found_in_trash' => 'No Authors found in Trash'
-    );
+      'name'               => 'Members',
+      'singular_name'      => 'Member',
+      'menu_name'          => 'Members',
+      'name_admin_bar'     => 'Member',
+      'add_new'            => 'Add New',
+      'add_new_item'       => 'Add New Member',
+      'new_item'           => 'New Member',
+      'edit_item'          => 'Edit Member',
+      'view_item'          => 'View Member',
+      'all_items'          => 'All Members',
+      'search_items'       => 'Search Members',
+      'not_found'          => 'No Members found',
+      'not_found_in_trash' => 'No Members found in Trash'
+  );
+
     
     $args = array(
         'labels'              => $labels,

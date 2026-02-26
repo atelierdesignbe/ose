@@ -10,7 +10,7 @@ $hasLabel = $labelStatus === 'override' || $labelStatus === 'default';
 if ($hasLabel &&  $labelStatus === 'override') $label = $args['label'];
 if (!$cover) $coverState = 'none';
 ?>
-<div class="hero hero-cpt relative overflow-hidden relative <?= $coverState === 'fill' ? 'mm-sm:pb-0' : '' ?> ">
+<div class="hero hero-cpt relative overflow-hidden relative <?= $coverState === 'fill' ? 'mm-sm:pb-0' : '' ?> <?= $coverState !== 'default' ? 'mm-sm:min-h-[1px]' : '' ?> ">
   <div class="px-container relative z-10 w-full">
     <div class="grid grid-base">
       <div class="hero-wrapper z-[1] relative col-span-12  @md:py-[130px] @lg:py-[130px] flex flex-col @@:gap-y-[16px] autoscale-children <?= $coverState === 'default' ? 'theme-dark-blue md:col-span-18 md:col-start-4 items-center text-center' : '' ?>">
@@ -29,7 +29,7 @@ if (!$cover) $coverState = 'none';
       <div class="absolute top-0 left-[22.22%] w-[1px] h-full bg-dark-blue opacity-20 z-[0] mm-sm:hidden"></div>
       <div class="w-full h-full z-[1] relative flex items-center mm-sm:justify-center">
         <?php 
-          echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'h-auto w-full md:w-auto md:h-full @md/lg:max-h-[400px] w-auto image-shadow-lg aos animate-fadeinup animate-delay-400']);
+          echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'w-auto h-auto max-h-full max-w-full image-shadow-lg aos animate-fadeinup animate-delay-400']);
         ?> 
       </div>
     </div>

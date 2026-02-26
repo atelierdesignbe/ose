@@ -82,7 +82,7 @@
                 <ul class="border border-dark-blue w-full bg-white text-dark-blue" data-lenis-prevent js-ajax-filter="themes">
                   <?php foreach($themes as $theme): ?>
                     <li js-expand-item>
-                      <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $theme->term_id ?>" data-name="<?= $theme->name ?>">
+                      <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $theme->slug ?>" data-name="<?= $theme->name ?>">
                         <span><?= $theme->name ?></span>
                       </button>
                     </li>
@@ -102,7 +102,7 @@
                 <ul class="border border-dark-blue w-full bg-white text-dark-blue" data-lenis-prevent js-ajax-filter="types">
                   <?php foreach($types as $type): ?>
                     <li js-expand-item>
-                      <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $type->term_id ?>" data-name="<?= $type->name ?>" >
+                      <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $type->slug ?>" data-name="<?= $type->name ?>" >
                         <span><?= $type->name ?></span>
                       </button>
                     </li>
@@ -142,7 +142,7 @@
                 <ul class="border border-dark-blue bg-white text-dark-blue w-full" js-ajax-filter="projects">
                   <?php foreach($projects as $project): ?>
                     <li js-expand-item>
-                      <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $project->term_id ?>" data-name="<?= $project->name ?>" >
+                      <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $project->slug ?>" data-name="<?= $project->name ?>" >
                         <span><?= $project->name ?></span>
                       </button>
                     </li>

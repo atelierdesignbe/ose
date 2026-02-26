@@ -23,7 +23,7 @@ $cover = $args['cover'];
     <div class="absolute inset-0 bg-yellow mix-blend-soft-light"></div>
     <div class="absolute inset-0 hero-gradient-home"></div>
     <div class="parallax-image-wrapper h-full relative aos animate-fadeinzoomout aniamte-delay-400">
-      <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'parallax-image object-[10%_bottom] md:object-center object-cover w-full h-full']); ?>
+      <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'parallax-image object-[20%_center] md:object-center object-cover w-full h-full']); ?>
     </div>
     <div class="absolute w-full h-[300px] top-0 left-0 bg-gradient-to-b from-yellow/80 from-40%  to-yellow/0 "></div>
   </div>
