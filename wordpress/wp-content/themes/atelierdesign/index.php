@@ -6,8 +6,24 @@
 <?php get_header(); ?>
 <?php get_template_part('/components/header/markup', 'header', [...get_field('header', 'acf-options-global-fields'), 'theme' => $fields['hero']['cover-status'] === 'default' ? 'text-white' : 'text-dark-blue']); ?>
 <main id="index">
-  <?php get_template_part('/components/hero/markup', 'hero', $fields['hero']); ?>
-  <article class="article">
+  <?php 
+    $args = [
+      ...$fields['hero'],
+      'context' => '
+        <div class="absolute inset-0 hero-gradient-header z-[8]"></div>
+        <div class="absolute inset-0 bg-layout-main theme-dark-blue opacity-20"></div>
+        <div class="absolute inset-0 gradient-fullsize mix-blend-darken"></div>
+      '
+    ];
+    get_template_part('/components/hero/markup', 'hero', $args); 
+  ?>
+  <article class="article relative">
+    <!-- SOCIAL HERE -->
+    <div class="absolute @md/lg:top-[-96px] left-0  theme-white bg-layout-main px-container z-10 text-dark-blue hidden md:flex items-center @@:gap-x-[42px] @md/lg:h-[96px] ">
+      <div class="aos animate-fadeinup">
+        <?php echo get_template_part('/components/social/markup', 'social', ['social' => get_field('social', 'acf-options-global-fields')['social']]); ?>
+      </div>
+    </div>
     <?php $adwp->render_flexible_layout($fields['flexible-layout']); ?>
   </article>
 </main>

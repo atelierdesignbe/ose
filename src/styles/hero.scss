@@ -1,35 +1,88 @@
-.hero {
-  @apply min-h-[100dvh] flex items-center mm-sm:justify-center mm-sm:flex-col @sm:gap-y-[50px] @sm:py-[142px] md:py-0;
 
-  &.is-vertical {
-    @apply @md/lg:min-h-[100dvh] @md/lg:min-h-[824px] ;
+.hero {
+  --hero-padding-top: 0;
+  --hero-content-gap: calc((16 / var(--tw-screen-md)) * var(--tw-screen-max) * var(--tw-scale));
+
+  @screen md {
+    --hero-padding-top: calc((92 / var(--tw-screen-md)) * var(--tw-screen-max) * var(--tw-scale));
+  }
+
+  @screen lg {
+    --hero-padding-top: calc((92 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+  }
+
+  @apply pt-[--hero-padding-top] relative overflow-hidden;
+
+  &-wrapper {
+    @apply @sm:py-[120px] @md/lg:py-[80px];
+  }
+
+  &-content {
+    @apply flex flex-col gap-[--hero-content-gap];
   }
   
-  &-wrapper {
-    @apply  @md/lg:py-[112px];
+  &-default {
+    @apply min-h-[100dvh] text-center flex items-center  pb-[--hero-padding-top];
+
+    .hero-content {
+      @apply items-center w-full;
+
+      @screen md {
+        width: calc(20 / 24 * 100%);
+        margin-left: calc(2 / 24 * 100%);
+      }
+    }
+
+    .hero-cover {
+      @apply absolute inset-0 z-0 overflow-hidden;
+
+      &-wrap {
+        @apply absolute inset-0;
+      }
+
+      img {
+        @apply object-cover w-full h-full;
+      }
+    }
+  }
+
+  &.is-vertical {
+    @apply @md/lg:min-h-[824px]
   }
 
   &-cover {
-    
-    @screen md {
-      width: calc(((9 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin));
-    }
-
-    &--fit {
-      @apply @md/lg:py-[42px] @md/lg:pb-[82px];
-      padding-right: var(--pl-margin);
-    }
-  }
-
-  &.hero-home {
-    .hero-wrapper {
-      @apply  @md/lg:py-[160px];
-    }
-  }
-
-  &.hero-cpt {
 
   }
+  // @applyflex items-center mm-sm:justify-center mm-sm:flex-col @sm:gap-y-[50px] @sm:py-[142px] md:py-0;
+
+  // &.is-vertical {
+  //   @apply @md/lg:min-h-[100dvh] @md/lg:min-h-[824px] ;
+  // }
+  
+  // &-wrapper {
+  //   // @apply  @md/lg:py-[112px];
+  // }
+
+  // &-cover {
+  //   @screen md {
+  //     width: calc(((9 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin));
+  //   }
+
+  //   &--fit {
+  //     @apply @md/lg:py-[42px] @md/lg:pb-[82px];
+  //     padding-right: var(--pl-margin);
+  //   }
+  // }
+
+  // &.hero-home {
+  //   .hero-wrapper {
+  //     @apply  @md/lg:py-[160px];
+  //   }
+  // }
+
+  // &.hero-cpt {
+
+  // }
 
   &-gradient-header {
     background: linear-gradient(var(--dark-blue-30) 20%, var(--dark-blue-0));

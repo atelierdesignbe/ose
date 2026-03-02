@@ -1,0 +1,12 @@
+
+[js-scroll] {
+  @apply fixed bottom-0 right-0;
+
+  &.is-bottom {
+    @apply absolute bottom-0 right-0;
+  }
+
+  .hero.is-vertical:not(.is-bigger) & {
+    @apply absolute;
+  }
+}

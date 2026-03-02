@@ -29,6 +29,7 @@ window.lenis = lenis
 const hero = document.querySelector('.hero')
 
 if (hero) {
+  const scroll = document.querySelector('[js-scroll]')
 
   function initRatioHero() {
     const screen = {
@@ -37,8 +38,11 @@ if (hero) {
     }
 
     
-    if (screen.w/screen.h < 1.45) hero.classList.add('is-vertical')
-    else hero.classList.remove('is-vertical')
+    if (screen.w/screen.h < 1.45) {
+      hero.classList.add('is-vertical')
+      if(hero.offsetHeight > window.innerHeight) hero.classList.add('is-bigger')
+      else hero.classList.remove('is-bigger')
+    } else hero.classList.remove('is-vertical', 'is-bigger')
     
   } 
 
@@ -50,5 +54,25 @@ if (hero) {
 
   initRatioHero()
   window.addEventListener('resize', initRatioHero)
-}
 
+  if (scroll) {
+    function initScroll() {
+      const heroRect = hero.getBoundingClientRect()
+      if (heroRect.top + heroRect.height < window.innerHeight) {
+        scroll.classList.add('is-bottom')
+      } else {
+        scroll.classList.remove('is-bottom')
+      }
+
+    }
+    window.addEventListener('scroll', initScroll)
+    window.addEventListener('resize', initScroll)
+    scroll.addEventListener('click', () => {
+      window.scrollTo({
+        left: 0,
+        top: hero.nextElementSibling.offsetTop,
+        behavior: 'smooth',
+      })
+    })
+  }
+}
