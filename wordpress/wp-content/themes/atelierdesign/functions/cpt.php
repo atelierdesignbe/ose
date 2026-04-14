@@ -36,7 +36,7 @@ function cpt_events() {
         'hierarchical'       => false,
         'menu_position'      => 21,
         'show_in_rest'       => true,
-        'supports'           => array( 'title', 'editor', 'thumbnail' ),
+        'supports'           => array( 'title', 'editor', 'thumbnail', 'revisions' ),
         'taxonomies'         => array( )
     );
 
@@ -76,7 +76,7 @@ function cpt_publications() {
         'hierarchical'       => false,
         'menu_position'      => 22,
         'show_in_rest'       => true,
-        'supports'           => array( 'title', 'editor', 'thumbnail' ),
+        'supports'           => array( 'title', 'editor', 'thumbnail', 'revisions' ),
         'taxonomies'         => array( 'themes', 'types', 'projects' )
     );
 
@@ -116,7 +116,7 @@ function cpt_projects() {
         'hierarchical'       => false,
         'menu_position'      => 23,
         'show_in_rest'       => true,
-        'supports'           => array( 'title', 'editor', 'thumbnail' ),
+        'supports'           => array( 'title', 'editor', 'thumbnail', 'revisions' ),
         'taxonomies'         => array( 'themes', 'types' )
     );
 
@@ -159,7 +159,7 @@ function cpt_authors() {
         'hierarchical'        => false,
         'menu_position'       => 22,                 // Position après Events
         'show_in_rest'        => true,               // ✅ Actif pour Gutenberg/ACF
-        'supports'            => array( 'title', 'thumbnail' ), // Titre + Image seulement
+        'supports'            => array( 'title', 'thumbnail', 'revisions' ), // Titre + Image seulement
         'exclude_from_search' => true,               // ❌ Exclu des recherches
         'show_in_nav_menus'   => false,              // ❌ Pas dans les menus de navigation
         'can_export'          => true,               // ✅ Peut être exporté
