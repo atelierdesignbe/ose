@@ -21,6 +21,10 @@ if (file_exists($ui_init_file)) {
 
   require_once 'ad-ui/wp/init.php';
 
+  // Ensure $adwp binds to the true global, not the enclosing scope.
+  // WP-CLI requires wp-settings.php from inside a method, so functions.php
+  // runs in method scope — without this, $adwp is null in fields.php/markup.php.
+  global $adwp;
   $adwp = new ADWP([
     'packageFolder' => get_template_directory() . '/ad-ui',
     'packageUrl' => get_template_directory_uri() . '/ad-ui',
