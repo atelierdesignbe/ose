@@ -213,6 +213,14 @@ body {
   }
 }
 
+// Accordion underline: ad-ui emits a uniform `border-width` on all sides; keep the
+// bottom border only (matches Figma's Underline spec).
+.accordion-underline {
+  border-left-width: 0;
+  border-right-width: 0;
+  border-top-width: 0;
+}
+
 .button-underline:not(.is-tag) {
   &:after {
     @apply absolute h-[1px] w-full bg-current bottom-0 left-0 origin-right;
