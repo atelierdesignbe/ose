@@ -152,26 +152,58 @@
     }
   },
   "icon": {
+    "small": {
+      "fill": {
+        "$type": "color",
+        "$value": "{foundations.decorative-fill-primary}"
+      },
+      "background": {
+        "$type": "color",
+        "$value": "{tailwindcss.colors.transparent}"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{tailwindcss.colors.transparent}"
+      },
+      "shadow": {
+        "$type": "color",
+        "$value": "{tailwindcss.colors.transparent}"
+      }
+    },
     "primary": {
       "fill": {
         "$type": "color",
         "$value": "{foundations.decorative-fill-primary}"
       },
-      "holderBackground": {
+      "background": {
+        "$type": "color",
+        "$value": "{tailwindcss.colors.transparent}"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{tailwindcss.colors.transparent}"
+      },
+      "shadow": {
+        "$type": "color",
+        "$value": "{tailwindcss.colors.transparent}"
+      }
+    },
+    "primaryHasBackground": {
+      "fill": {
+        "$type": "color",
+        "$value": "{foundations.decorative-fill-on-bg-primary}"
+      },
+      "background": {
         "$type": "color",
         "$value": "{foundations.decorative-bg}"
       },
-      "holderBorder": {
+      "border": {
         "$type": "color",
         "$value": "{tailwindcss.colors.transparent}"
       },
-      "holderShadow": {
+      "shadow": {
         "$type": "color",
         "$value": "{tailwindcss.colors.transparent}"
-      },
-      "holderFill": {
-        "$type": "color",
-        "$value": "{foundations.decorative-fill-on-bg-primary}"
       }
     }
   },
@@ -214,68 +246,38 @@
     }
   },
   "accordion": {
-    "primary": {
-      "underline": {
-        "border": {
-          "$type": "color",
-          "$value": "{foundations.stroke-secondary}"
-        },
-        "title": {
-          "$type": "color",
-          "$value": "{typography.heading.primary}"
-        },
-        "titleActive": {
-          "$type": "color",
-          "$value": "{typography.heading.primary}"
-        },
-        "icon": {
-          "$type": "color",
-          "$value": "{foundations.decorative-fill-primary}"
-        },
-        "iconActive": {
-          "$type": "color",
-          "$value": "{foundations.decorative-fill-primary}"
-        },
-        "content": {
-          "$type": "color",
-          "$value": "{typography.paragraph.primary}"
-        },
-        "shadow": {
-          "$type": "color",
-          "$value": "{tailwindcss.colors.transparent}"
-        }
-      }
-    },
-    "secondary": {
-      "underline": {
-        "border": {
-          "$type": "color",
-          "$value": "{foundations.stroke-primary}"
-        },
-        "title": {
-          "$type": "color",
-          "$value": "{typography.heading.primary}"
-        },
-        "titleActive": {
-          "$type": "color",
-          "$value": "{typography.heading.primary}"
-        },
-        "icon": {
-          "$type": "color",
-          "$value": "{accordion.secondary.underline.title}"
-        },
-        "iconActive": {
-          "$type": "color",
-          "$value": "{accordion.secondary.underline.titleActive}"
-        },
-        "content": {
-          "$type": "color",
-          "$value": "{typography.paragraph.primary}"
-        },
-        "shadow": {
-          "$type": "color",
-          "$value": "{tailwindcss.colors.transparent}"
-        }
+    "underline": {
+      "background": {
+        "$type": "color",
+        "$value": "{tailwindcss.colors.transparent}"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{foundations.stroke-secondary}"
+      },
+      "title": {
+        "$type": "color",
+        "$value": "{typography.heading.primary}"
+      },
+      "titleActive": {
+        "$type": "color",
+        "$value": "{typography.heading.primary}"
+      },
+      "icon": {
+        "$type": "color",
+        "$value": "{foundations.decorative-fill-primary}"
+      },
+      "iconActive": {
+        "$type": "color",
+        "$value": "{foundations.decorative-fill-primary}"
+      },
+      "content": {
+        "$type": "color",
+        "$value": "{typography.paragraph.primary}"
+      },
+      "shadow": {
+        "$type": "color",
+        "$value": "{tailwindcss.colors.transparent}"
       }
     }
   },
@@ -378,135 +380,141 @@
     }
   },
   "button": {
-    "primary": {
-      "flat": {
-        "normal": {
-          "text": {
-            "$type": "color",
-            "$value": "{foundations.surface-primary-text}"
-          },
-          "icon": {
-            "$type": "color",
-            "$value": "{foundations.surface-primary-text}"
-          },
-          "border": {
-            "$type": "color",
-            "$value": "{foundations.surface-active-bg}"
-          },
-          "background": {
-            "$type": "color",
-            "$value": "{foundations.surface-active-bg}"
-          },
-          "shadow": {
-            "$type": "color",
-            "$value": "{tailwindcss.colors.transparent}"
-          }
+    "flat": {
+      "normal": {
+        "text": {
+          "$type": "color",
+          "$value": "{foundations.surface-primary-text}"
         },
-        "hover": {
-          "text": {
-            "$type": "color",
-            "$value": "{primitives.white}"
-          },
-          "icon": {
-            "$type": "color",
-            "$value": "{primitives.white}"
-          },
-          "border": {
-            "$type": "color",
-            "$value": "{primitives.dark-blue}"
-          },
-          "background": {
-            "$type": "color",
-            "$value": "{primitives.dark-blue}"
-          },
-          "shadow": {
-            "$type": "color",
-            "$value": "{tailwindcss.colors.transparent}"
-          }
+        "icon": {
+          "$type": "color",
+          "$value": "{foundations.surface-primary-text}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{foundations.surface-active-bg}"
+        },
+        "background": {
+          "$type": "color",
+          "$value": "{foundations.surface-active-bg}"
+        },
+        "shadow": {
+          "$type": "color",
+          "$value": "{tailwindcss.colors.transparent}"
         }
       },
-      "outline": {
-        "normal": {
-          "text": {
-            "$type": "color",
-            "$value": "{foundations.decorative-fill-primary}"
-          },
-          "icon": {
-            "$type": "color",
-            "$value": "{foundations.decorative-fill-primary}"
-          },
-          "border": {
-            "$type": "color",
-            "$value": "#f5b800"
-          },
-          "background": {
-            "$type": "color",
-            "$value": "{tailwindcss.colors.transparent}"
-          },
-          "shadow": {
-            "$type": "color",
-            "$value": "{tailwindcss.colors.transparent}"
-          }
+      "hover": {
+        "text": {
+          "$type": "color",
+          "$value": "{primitives.white}"
         },
-        "hover": {
-          "text": {
-            "$type": "color",
-            "$value": "{foundations.text}"
-          },
-          "icon": {
-            "$type": "color",
-            "$value": "{foundations.text}"
-          },
-          "border": {
-            "$type": "color",
-            "$value": "{foundations.text}"
-          },
-          "background": {
-            "$type": "color",
-            "$value": "{tailwindcss.colors.transparent}"
-          },
-          "shadow": {
-            "$type": "color",
-            "$value": "{tailwindcss.colors.transparent}"
-          }
+        "icon": {
+          "$type": "color",
+          "$value": "{primitives.white}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{primitives.dark-blue}"
+        },
+        "background": {
+          "$type": "color",
+          "$value": "{primitives.dark-blue}"
+        },
+        "shadow": {
+          "$type": "color",
+          "$value": "{tailwindcss.colors.transparent}"
+        }
+      }
+    },
+    "outline": {
+      "normal": {
+        "text": {
+          "$type": "color",
+          "$value": "{foundations.decorative-fill-primary}"
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{foundations.decorative-fill-primary}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "#f5b800"
+        },
+        "background": {
+          "$type": "color",
+          "$value": "{tailwindcss.colors.transparent}"
+        },
+        "shadow": {
+          "$type": "color",
+          "$value": "{tailwindcss.colors.transparent}"
         }
       },
-      "underline": {
-        "normal": {
-          "text": {
-            "$type": "color",
-            "$value": "{foundations.decorative-fill-primary}"
-          },
-          "icon": {
-            "$type": "color",
-            "$value": "{foundations.decorative-fill-primary}"
-          },
-          "border": {
-            "$type": "color",
-            "$value": "{foundations.decorative-fill-primary}"
-          },
-          "shadow": {
-            "$type": "color",
-            "$value": "{tailwindcss.colors.transparent}"
-          }
+      "hover": {
+        "text": {
+          "$type": "color",
+          "$value": "{foundations.text}"
         },
-        "hover": {
-          "text": {
-            "$type": "color",
-            "$value": "{foundations.text}"
-          },
-          "icon": {
-            "$type": "color",
-            "$value": "{foundations.text}"
-          },
-          "border": {
-            "$type": "color",
-            "$value": "{foundations.text}"
-          },
-          "shadow": {
-            "$type": "color",
-            "$value": "{tailwindcss.colors.transparent}"
-          }
+        "icon": {
+          "$type": "color",
+          "$value": "{foundations.text}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{foundations.text}"
+        },
+        "background": {
+          "$type": "color",
+          "$value": "{tailwindcss.colors.transparent}"
+        },
+        "shadow": {
+          "$type": "color",
+          "$value": "{tailwindcss.colors.transparent}"
+        }
+      }
+    },
+    "underline": {
+      "normal": {
+        "text": {
+          "$type": "color",
+          "$value": "{foundations.decorative-fill-primary}"
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{foundations.decorative-fill-primary}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{foundations.decorative-fill-primary}"
+        },
+        "shadow": {
+          "$type": "color",
+          "$value": "{tailwindcss.colors.transparent}"
+        },
+        "background": {
+          "$type": "color",
+          "$value": "{tailwindcss.colors.transparent}"
+        }
+      },
+      "hover": {
+        "text": {
+          "$type": "color",
+          "$value": "{foundations.text}"
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{foundations.text}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{foundations.text}"
+        },
+        "shadow": {
+          "$type": "color",
+          "$value": "{tailwindcss.colors.transparent}"
+        },
+        "background": {
+          "$type": "color",
+          "$value": "{tailwindcss.colors.transparent}"
         }
       }
     }

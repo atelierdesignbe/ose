@@ -744,41 +744,119 @@
     }
   },
   "icon": {
-    "size": {
-      "$type": "dimension",
-      "$value": "60px"
+    "small": {
+      "size": {
+        "$type": "dimension",
+        "$value": "24px"
+      },
+      "wrapper": {
+        "$type": "dimension",
+        "$value": "{icon.small.size}"
+      },
+      "border": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "borderRadius": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowX": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowY": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowBlur": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowSpread": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "isSmall": {
+        "$type": "boolean",
+        "$value": true
+      }
     },
-    "sizeInHolder": {
-      "$type": "dimension",
-      "$value": "50px"
+    "primary": {
+      "size": {
+        "$type": "dimension",
+        "$value": "60px"
+      },
+      "wrapper": {
+        "$type": "dimension",
+        "$value": "60px"
+      },
+      "border": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "borderRadius": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowX": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowY": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowBlur": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowSpread": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "isSmall": {
+        "$type": "boolean",
+        "$value": false
+      }
     },
-    "holderSize": {
-      "$type": "dimension",
-      "$value": "118px"
-    },
-    "holderBorder": {
-      "$type": "dimension",
-      "$value": "0px"
-    },
-    "holderBorderRadius": {
-      "$type": "dimension",
-      "$value": "9999px"
-    },
-    "holderShadowX": {
-      "$type": "dimension",
-      "$value": "0px"
-    },
-    "holderShadowY": {
-      "$type": "dimension",
-      "$value": "0px"
-    },
-    "holderShadowBlur": {
-      "$type": "dimension",
-      "$value": "0px"
-    },
-    "holderShadowSpread": {
-      "$type": "dimension",
-      "$value": "0px"
+    "primaryHasBackground": {
+      "size": {
+        "$type": "dimension",
+        "$value": "50px"
+      },
+      "wrapper": {
+        "$type": "dimension",
+        "$value": "118px"
+      },
+      "border": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "borderRadius": {
+        "$type": "dimension",
+        "$value": "9999px"
+      },
+      "shadowX": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowY": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowBlur": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowSpread": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "isSmall": {
+        "$type": "boolean",
+        "$value": false
+      }
     }
   },
   "logo": {
@@ -1242,6 +1320,54 @@
       "shadowBlur": {
         "$type": "dimension",
         "$value": "0px"
+      },
+      "paddingLeft": {
+        "$type": "dimension",
+        "$value": "{button.flat.paddingX}"
+      },
+      "paddingRight": {
+        "$type": "dimension",
+        "$value": "{button.flat.paddingX}"
+      },
+      "paddingTop": {
+        "$type": "dimension",
+        "$value": "{button.flat.paddingY}"
+      },
+      "paddingBottom": {
+        "$type": "dimension",
+        "$value": "{button.flat.paddingY}"
+      },
+      "borderLeftWidth": {
+        "$type": "dimension",
+        "$value": "{button.flat.borderWidth}"
+      },
+      "borderRightWidth": {
+        "$type": "dimension",
+        "$value": "{button.flat.borderWidth}"
+      },
+      "borderTopWidth": {
+        "$type": "dimension",
+        "$value": "{button.flat.borderWidth}"
+      },
+      "borderBottomWidth": {
+        "$type": "dimension",
+        "$value": "{button.flat.borderWidth}"
+      },
+      "borderTopLeftRadius": {
+        "$type": "dimension",
+        "$value": "{button.flat.borderRadius}"
+      },
+      "borderTopRightRadius": {
+        "$type": "dimension",
+        "$value": "{button.flat.borderRadius}"
+      },
+      "borderBottomLeftRadius": {
+        "$type": "dimension",
+        "$value": "{button.flat.borderRadius}"
+      },
+      "borderBottomRightRadius": {
+        "$type": "dimension",
+        "$value": "{button.flat.borderRadius}"
       }
     },
     "outline": {
@@ -1280,6 +1406,54 @@
       "shadowBlur": {
         "$type": "dimension",
         "$value": "{button.flat.shadowBlur}"
+      },
+      "paddingLeft": {
+        "$type": "dimension",
+        "$value": "{button.outline.paddingX}"
+      },
+      "paddingRight": {
+        "$type": "dimension",
+        "$value": "{button.outline.paddingX}"
+      },
+      "paddingTop": {
+        "$type": "dimension",
+        "$value": "{button.outline.paddingY}"
+      },
+      "paddingBottom": {
+        "$type": "dimension",
+        "$value": "{button.outline.paddingY}"
+      },
+      "borderLeftWidth": {
+        "$type": "dimension",
+        "$value": "{button.outline.borderWidth}"
+      },
+      "borderRightWidth": {
+        "$type": "dimension",
+        "$value": "{button.outline.borderWidth}"
+      },
+      "borderTopWidth": {
+        "$type": "dimension",
+        "$value": "{button.outline.borderWidth}"
+      },
+      "borderBottomWidth": {
+        "$type": "dimension",
+        "$value": "{button.outline.borderWidth}"
+      },
+      "borderTopLeftRadius": {
+        "$type": "dimension",
+        "$value": "{button.outline.borderRadius}"
+      },
+      "borderTopRightRadius": {
+        "$type": "dimension",
+        "$value": "{button.outline.borderRadius}"
+      },
+      "borderBottomLeftRadius": {
+        "$type": "dimension",
+        "$value": "{button.outline.borderRadius}"
+      },
+      "borderBottomRightRadius": {
+        "$type": "dimension",
+        "$value": "{button.outline.borderRadius}"
       }
     },
     "underline": {
@@ -1314,24 +1488,30 @@
       "shadowBlur": {
         "$type": "dimension",
         "$value": "0px"
-      }
-    },
-    "none": {
-      "gap": {
-        "$type": "dimension",
-        "$value": "{button.defaultGap}"
       },
-      "iconSize": {
+      "paddingLeft": {
         "$type": "dimension",
-        "$value": "{button.flat.iconSize}"
+        "$value": "{button.underline.paddingX}"
+      },
+      "paddingRight": {
+        "$type": "dimension",
+        "$value": "{button.underline.paddingX}"
+      },
+      "paddingTop": {
+        "$type": "dimension",
+        "$value": "{button.underline.paddingY}"
+      },
+      "paddingBottom": {
+        "$type": "dimension",
+        "$value": "{button.underline.paddingY}"
       }
     }
   },
   "accordion": {
-    "flat": {
+    "underline": {
       "paddingX": {
         "$type": "dimension",
-        "$value": "20px"
+        "$value": "0px"
       },
       "paddingY": {
         "$type": "dimension",
@@ -1341,95 +1521,63 @@
         "$type": "dimension",
         "$value": "16px"
       },
-      "borderWidth": {
+      "borderRadius": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowX": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowY": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowBlur": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "title": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{typography.accordion.fontSize}"
+        },
+        "lineHeight": {
+          "$type": "dimension",
+          "$value": "{typography.accordion.lineHeight}"
+        },
+        "letterSpacing": {
+          "$type": "dimension",
+          "$value": "{typography.accordion.letterSpacing}"
+        },
+        "iconSize": {
+          "$type": "dimension",
+          "$value": "{typography.accordion.iconSize}"
+        },
+        "iconMargin": {
+          "$type": "dimension",
+          "$value": "{typography.accordion.iconMargin}"
+        }
+      },
+      "borderBottomWidth": {
         "$type": "dimension",
         "$value": "1px"
       },
-      "borderRadius": {
-        "$type": "dimension",
-        "$value": "5px"
-      },
-      "shadowX": {
+      "borderLeftWidth": {
         "$type": "dimension",
         "$value": "0px"
       },
-      "shadowY": {
+      "borderRightWidth": {
         "$type": "dimension",
         "$value": "0px"
       },
-      "shadowBlur": {
+      "borderTopWidth": {
         "$type": "dimension",
         "$value": "0px"
-      }
-    },
-    "outline": {
-      "paddingX": {
-        "$type": "dimension",
-        "$value": "{accordion.flat.paddingX}"
-      },
-      "paddingY": {
-        "$type": "dimension",
-        "$value": "{accordion.flat.paddingY}"
-      },
-      "contentGap": {
-        "$type": "dimension",
-        "$value": "{accordion.flat.contentGap}"
       },
       "borderWidth": {
         "$type": "dimension",
-        "$value": "{accordion.flat.borderWidth}"
-      },
-      "borderRadius": {
-        "$type": "dimension",
-        "$value": "{accordion.flat.borderRadius}"
-      },
-      "shadowX": {
-        "$type": "dimension",
-        "$value": "{accordion.flat.shadowX}"
-      },
-      "shadowY": {
-        "$type": "dimension",
-        "$value": "{accordion.flat.shadowY}"
-      },
-      "shadowBlur": {
-        "$type": "dimension",
-        "$value": "{accordion.flat.shadowBlur}"
-      }
-    },
-    "underline": {
-      "paddingX": {
-        "$type": "dimension",
-        "$value": "0px"
-      },
-      "paddingY": {
-        "$type": "dimension",
-        "$value": "{accordion.flat.paddingY}"
-      },
-      "contentGap": {
-        "$type": "dimension",
-        "$value": "{accordion.flat.contentGap}"
-      },
-      "borderWidth": {
-        "$type": "dimension",
-        "$value": "{accordion.flat.borderWidth}"
-      },
-      "shadowX": {
-        "$type": "dimension",
-        "$value": "0px"
-      },
-      "shadowY": {
-        "$type": "dimension",
-        "$value": "0px"
-      },
-      "shadowBlur": {
-        "$type": "dimension",
-        "$value": "0px"
-      }
-    },
-    "none": {
-      "contentGap": {
-        "$type": "dimension",
-        "$value": "{accordion.flat.contentGap}"
+        "$value": "1px"
       }
     }
   },
