@@ -72,7 +72,8 @@
     @apply mt-0;
     
     & > * {
-      @apply text-center text-balance;
+      @apply text-balance;
+      text-align: center;
     }
   }
 }

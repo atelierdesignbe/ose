@@ -22,7 +22,8 @@
   }
   
   &-default {
-    @apply min-h-[100dvh] text-center flex items-center  pb-[--hero-padding-top];
+    @apply min-h-[100dvh] flex items-center  pb-[--hero-padding-top];
+    text-align: center;
 
     .hero-content {
       @apply items-center w-full;
