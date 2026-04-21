@@ -62,7 +62,7 @@ fi
 # ÉTAPE 3 : ACF Pro (téléchargement avec licence)
 # ============================================
 echo -e "${GREEN}═══════════════════════════════════════════════${NC}"
-echo -e "${GREEN}  ÉTAPE 3/4 : ACF Pro 6.4.3 (licence)${NC}"
+echo -e "${GREEN}  ÉTAPE 3/4 : ACF Pro 6.8.0.1 (licence)${NC}"
 echo -e "${GREEN}═══════════════════════════════════════════════${NC}\n"
 
 ACF_PRO_DIR="wordpress/wp-content/plugins/advanced-custom-fields-pro"
@@ -72,10 +72,10 @@ if [ -d "$ACF_PRO_DIR" ]; then
     rm -rf "$ACF_PRO_DIR"
 fi
 
-ACF_PRO_URL="https://connect.advancedcustomfields.com/v2/plugins/download?p=pro&k=${ACF_PRO_KEY}&t=6.4.3"
+ACF_PRO_URL="https://connect.advancedcustomfields.com/v2/plugins/download?p=pro&k=${ACF_PRO_KEY}&t=6.8.0.1"
 ACF_PRO_ZIP="/tmp/acf-pro.zip"
 
-echo -e "${BLUE}📥 Téléchargement d'ACF Pro 6.4.3...${NC}"
+echo -e "${BLUE}📥 Téléchargement d'ACF Pro 6.8.0.1...${NC}"
 
 if curl -L -f -o "$ACF_PRO_ZIP" "$ACF_PRO_URL" 2>/dev/null; then
     if [ -f "$ACF_PRO_ZIP" ] && [ -s "$ACF_PRO_ZIP" ]; then
@@ -148,7 +148,7 @@ fi
 
 echo -e "\n${BLUE}PRO (Licence):${NC}"
 if [ -d "wordpress/wp-content/plugins/advanced-custom-fields-pro" ]; then
-    echo -e "   • ACF Pro 6.4.3 ✅"
+    echo -e "   • ACF Pro 6.8.0.1 ✅"
 else
     echo -e "   • ACF Pro ❌"
 fi
