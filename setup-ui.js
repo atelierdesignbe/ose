@@ -11,6 +11,7 @@ const TOKENS_SOURCE_DIR = path.join(THEME_DIR, 'tokens');
 const UI_DIR = path.join(THEME_DIR, 'ad-ui');
 const UI_TOKENS_DIR = path.join(UI_DIR, 'core', 'src', 'data');
 const UI_REPO = 'git@github.com:atelierdesignbe/ui.git';
+const PATCHES_DIR = path.join(__dirname, 'patches', 'ad-ui');
 // const TOKENS_TEMPLATE = path.join(UI_DIR, 'core', 'src', 'data', 'tokens.example.json');
 // const TOKENS_FILE = path.join(UI_DIR, 'core', 'src', 'data');
 
@@ -83,6 +84,34 @@ function copyTokens() {
 }
 
 
+function applyPatches() {
+  if (!fs.existsSync(PATCHES_DIR)) return;
+
+  console.log('🩹 Applying ad-ui patches...\n');
+
+  let count = 0;
+
+  function walk(srcDir, relBase = '') {
+    for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
+      const relPath = path.join(relBase, entry.name);
+      const srcPath = path.join(srcDir, entry.name);
+      const dstPath = path.join(UI_DIR, relPath);
+
+      if (entry.isDirectory()) {
+        walk(srcPath, relPath);
+      } else {
+        fs.mkdirSync(path.dirname(dstPath), { recursive: true });
+        fs.copyFileSync(srcPath, dstPath);
+        console.log(`   → ${relPath}`);
+        count++;
+      }
+    }
+  }
+
+  walk(PATCHES_DIR);
+  console.log(`\n✅ ${count} file(s) patched.\n`);
+}
+
 function initUI() {
   console.log('🚀 Initializing UI repository...\n');
 
@@ -114,6 +143,7 @@ function initUI() {
   // Copier les tokens après le clone
   console.log('📝 Configuring project tokens...');
   copyTokens();
+  applyPatches();
   console.log('🎉 Setup complete! You can now start developing.');
 
 }
@@ -147,6 +177,7 @@ function updateUI() {
   // Re-copier les tokens après la mise à jour
   console.log('📝 Reapplying project tokens...');
   copyTokens();
+  applyPatches();
 
   console.log('🎉 Update complete!');
 }
