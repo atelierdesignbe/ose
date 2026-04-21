@@ -11,6 +11,6 @@ $catgory = get_field('category', $id);
       <?php if($date): ?><span class="badge badge-primary badge-outlined"><?= $date ?></span><?php endif; ?>
       <p class="heading heading-md heading-primary"><?= get_the_title($id); ?> </p>
     </div>
-    <span class="button button-underline button-primary is-fake"><span class="button-title">Read more</span></span>
+    <span class="button button-underline is-fake"><span class="button-title">Read more</span></span>
   </div>
 </a>

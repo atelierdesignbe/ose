@@ -26,7 +26,7 @@
       <div class="w-full md:w-[--col-1-3] bg-layout-main theme-dark-blue @sm:py-[60px] @md/lg:py-[80px] px-container flex flex-col @sm:gap-y-[34px] @md/lg:gap-y-[50px] items-start autoscale-children flex-none md:sticky md:top-0">
         <?php if($introTitle): ?><h2 class="heading-2xl heading-primary heading aos animate-fadeinup"><?= $introTitle ?></h2><?php endif; ?>
         <?php if($introLink): ?>
-          <a href="<?= $introLink['url']; ?>" class="button button-flat button-primary aos animate-fadeinup animate-delay-200">
+          <a href="<?= $introLink['url']; ?>" class="button button-flat aos animate-fadeinup animate-delay-200">
             <span class="button-title"><?= $introLink['title']; ?></span>
           </a>
         <?php endif; ?>
@@ -78,7 +78,7 @@
                       <?php $adwp->get_template_part('_wysiwyg',  array('content' => $item['content'], 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
                     <?php endif; ?>
                     <?php if($item['link']): ?>
-                      <a href="<?= $item['link']['url']; ?>" class="button button-underline button-primary aos animate-fadeinup"> <span class="button-title"><?= $item['link']['title'] ?></span> </a>
+                      <a href="<?= $item['link']['url']; ?>" class="button button-underline aos animate-fadeinup"> <span class="button-title"><?= $item['link']['title'] ?></span> </a>
                     <?php endif; ?>
                   </div>
                 </div>

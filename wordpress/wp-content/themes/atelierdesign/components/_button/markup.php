@@ -1,7 +1,8 @@
 <?php
 
-$style = 'button-' . $args['layout_settings']['style'];
-$color = 'button-' . $args['layout_settings']['color'];
+$style = $args['layout_settings']['style'] ?? 'flat';
+
+$buttonClass = 'button-' . $style;
 
 $isFullWidth = isset($args['layout_settings']['isFullWidth']) ? $args['layout_settings']['isFullWidth'] : false;
 if (isset($args['isNested']) && $args['isNested'] == true) {
@@ -26,7 +27,7 @@ if (isset($args['layout_settings']['alignment'])) {
 ?>
 <?php if (isset($args['link']['url']) && !empty($args['link']['url'])) : ?>
   <div class="button-wrapper my-elem-sm <?= $isFullWidth ? '' : 'px-content' ?> <?= $alignmentClass; ?> autoscale-children aos animate-fadeinup">
-    <a href="<?= $args['link']['url'] ?? '#'; ?>" <?= isset($args['link']['target']) && !empty($args['link']['target']) ? 'target="' . $args['link']['target'] . '"' : ''; ?> class="<?= $style; ?> <?= $color; ?> transition-colors duration-300 ease-out-cubic">
+    <a href="<?= $args['link']['url'] ?? '#'; ?>" <?= isset($args['link']['target']) && !empty($args['link']['target']) ? 'target="' . $args['link']['target'] . '"' : ''; ?> class="<?= $buttonClass; ?> transition-colors duration-300 ease-out-cubic">
       <span class="button-title">
         <?= $args['link']['title'] ?? ''; ?>
       </span>

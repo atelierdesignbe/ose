@@ -57,7 +57,7 @@
           <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
         </div>
         <div class="flex-none">
-          <a href="<?= $project_link ? $project_link['url'] : '/projects/' ?>" class="button button-primary button-flat aos animate-fadeinup animate-delay-200">
+          <a href="<?= $project_link ? $project_link['url'] : '/projects/' ?>" class="button button-flat aos animate-fadeinup animate-delay-200">
             <span class="button-title"><?= __('See all projects', 'atelierdesign') ?></span>
           </a>
         </div>
