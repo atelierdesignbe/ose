@@ -114,35 +114,6 @@ function applyPatches() {
   console.log(`\n✅ ${count} file(s) patched.\n`);
 }
 
-
-function applyPatches() {
-  if (!fs.existsSync(PATCHES_DIR)) return;
-
-  console.log('🩹 Applying ad-ui patches...\n');
-
-  let count = 0;
-
-  function walk(srcDir, relBase = '') {
-    for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
-      const relPath = path.join(relBase, entry.name);
-      const srcPath = path.join(srcDir, entry.name);
-      const dstPath = path.join(UI_DIR, relPath);
-
-      if (entry.isDirectory()) {
-        walk(srcPath, relPath);
-      } else {
-        fs.mkdirSync(path.dirname(dstPath), { recursive: true });
-        fs.copyFileSync(srcPath, dstPath);
-        console.log(`   → ${relPath}`);
-        count++;
-      }
-    }
-  }
-
-  walk(PATCHES_DIR);
-  console.log(`\n✅ ${count} file(s) patched.\n`);
-}
-
 function initUI() {
   console.log('🚀 Initializing UI repository...\n');
 
@@ -175,7 +146,6 @@ function initUI() {
   applyPatches();
   console.log('📝 Configuring project tokens...');
   copyTokens();
-  applyPatches();
   console.log('🎉 Setup complete! You can now start developing.');
 
 }
@@ -210,7 +180,6 @@ function updateUI() {
   applyPatches();
   console.log('📝 Reapplying project tokens...');
   copyTokens();
-  applyPatches();
 
   console.log('🎉 Update complete!');
 }
