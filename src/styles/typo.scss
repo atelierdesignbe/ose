@@ -1,3 +1,13 @@
 .subtitle {
   @apply @@:text-[13px] uppercase @@:tracking-[3px] @@:leading-[18px];
 }
+
+.heading-2xl,
+.heading-xl,
+.heading-lg {
+  hyphens: manual;
+}
+
+.wysiwyg > :not(hr, ul, ol) {
+  --block-margin-y: 0.5ch;
+}

@@ -20,23 +20,23 @@ body {
 
 
 
-// .hero {
-//   &-social {
-//     @screen md {
-//       width: calc(((8 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin))
-//     }
+.hero {
+  &-social {
+    @screen md {
+      width: calc(((8 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin));
+    }
 
-//     li {
-//       svg {
-//         @apply @@:h-[18px] w-auto;
-//       }
-//     }
-//   }
+    li {
+      svg {
+        @apply @@:h-[18px] w-auto;
+      }
+    }
+  }
 
-//   &-gradient-home {
-//     background: linear-gradient(107deg, #FFD65A 3.43%, #CDE0F6 97.42%);
-//   }
-// }
+  &-gradient-home {
+    background: linear-gradient(107deg, #FFD65A 3.43%, #CDE0F6 97.42%);
+  }
+}
 
 // .hero-page {
 //   &-gradient {
@@ -211,6 +211,14 @@ body {
   &.is-tag {
     @apply underline @@:underline-offset-[4px];
   }
+}
+
+// Accordion underline: ad-ui emits a uniform `border-width` on all sides; keep the
+// bottom border only (matches Figma's Underline spec).
+.accordion-underline {
+  border-left-width: 0;
+  border-right-width: 0;
+  border-top-width: 0;
 }
 
 .button-underline:not(.is-tag) {

@@ -1,21 +1,21 @@
 <?php global $adwp; ?>
 <?php
-// cover-status
+$fields = get_fields() ?: [];
+$hero = is_array($fields['hero'] ?? null) ? $fields['hero'] : [];
 ?>
-<?php $fields = get_fields(); ?>
 <?php get_header(); ?>
-<?php get_template_part('/components/header/markup', 'header', [...get_field('header', 'acf-options-global-fields'), 'theme' => $fields['hero']['cover-status'] === 'default' ? 'text-white' : 'text-dark-blue']); ?>
+<?php get_template_part('/components/header/markup', 'header', [...get_field('header', 'acf-options-global-fields'), 'theme' => ($hero['cover-status'] ?? null) === 'default' ? 'text-white' : 'text-dark-blue']); ?>
 <main id="index">
-  <?php 
+  <?php
     $args = [
-      ...$fields['hero'],
+      ...$hero,
       'context' => '
         <div class="absolute inset-0 hero-gradient-header z-[8]"></div>
         <div class="absolute inset-0 bg-layout-main theme-dark-blue opacity-20"></div>
         <div class="absolute inset-0 gradient-fullsize mix-blend-darken"></div>
       '
     ];
-    get_template_part('/components/hero/markup', 'hero', $args); 
+    get_template_part('/components/hero/markup', 'hero', $args);
   ?>
   <article class="article relative">
     <!-- SOCIAL HERE -->

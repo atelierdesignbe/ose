@@ -74,7 +74,7 @@
         <div class="flex flex-wrap flex-row mm-sm:justify-between @sm:gap-y-[12px] @md/lg:gap-x-4 filters">
           <?php if($themes): ?>
             <div class="relative mm-sm:w-[48%] md:w-auto">
-              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
+              <button type="button" class="button button-outline !rounded-none border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
                 <span class="button-title">Theme</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>
@@ -94,7 +94,7 @@
           
           <?php if($types): ?>
             <div class="relative mm-sm:w-[48%]">
-              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
+              <button type="button" class="button button-outline !rounded-none border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
                 <span class="button-title">Type</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>
@@ -114,7 +114,7 @@
 
           <?php if($authors): ?>
             <div class="relative mm-sm:w-[48%]">
-              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
+              <button type="button" class="button button-outline !rounded-none border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
                 <span class="button-title">Author</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>
@@ -134,7 +134,7 @@
 
           <?php if($projects): ?>
             <div class="relative mm-sm:w-[48%]">
-              <button type="button" class="button button-primary border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
+              <button type="button" class="button button-outline !rounded-none border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
                 <span class="button-title">Project</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>
@@ -171,7 +171,7 @@
 
     <div class="flex items-center justify-center" js-ajax-pagination>
       <?php if($publications->found_posts > $publications->post_count): ?>
-        <button type="button" class="button button-primary button-flat autoscale @@:mt-[60px]">
+        <button type="button" class="button button-flat autoscale @@:mt-[60px]">
           <span class="button-title">Load more</span>
         </button>
       <?php endif; ?>

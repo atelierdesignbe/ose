@@ -36,7 +36,7 @@ if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fi
       </div>
       <p class="heading heading-md heading-primary"><?= get_the_title($id); ?> </p>
     </div>
-    <span class="button button-underline button-primary is-fake"><span class="button-title">Read more</span></span>
+    <span class="button button-underline is-fake"><span class="button-title">Read more</span></span>
     <?php if($isExternal): ?>
       <span class="bg-yellow text-dark-blue @@:size-[44px] rounded-full flex items-center justify-center absolute @sm:bottom-[-9px] @md/lg:bottom-[9px] right-0">
         <?= icon('external', '@@:size-[24px]'); ?>

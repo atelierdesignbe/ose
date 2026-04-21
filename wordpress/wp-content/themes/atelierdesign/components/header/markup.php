@@ -13,7 +13,7 @@
       </div>
       <nav class="flex flex-wrap items-center">
         <div class="md:hidden z-[99] relative">
-          <button type="button" class="button button-flat button-primary menu-btn btn-animation autoscale <?php if($theme === 'text-dark-blue'): ?> bg-dark-blue text-white <?php else: ?> bg-white text-dark-blue <?php endif; ?>" js-menu-button>
+          <button type="button" class="button button-flat menu-btn btn-animation autoscale <?php if($theme === 'text-dark-blue'): ?> bg-dark-blue text-white <?php else: ?> bg-white text-dark-blue <?php endif; ?>" js-menu-button>
             <span class="button-title">Menu</span>
             <span class="menu-btn-lines">
               <span class="menu-btn-line"></span>
@@ -35,7 +35,7 @@
                   $is_ancestor = in_array($item->ID, $ancestors);  
                 ?>
                   <li>
-                    <a href="<?= get_permalink($item->ID); ?>" class="button button-none button-primary link-underline <?= ($is_active || $is_ancestor) ? 'is-active' : '' ?>">
+                    <a href="<?= get_permalink($item->ID); ?>" class="link-underline <?= ($is_active || $is_ancestor) ? 'is-active' : '' ?>">
                       <span class="button-title"><?= get_the_title($item->ID); ?></span>
                     </a>
                   </li>
@@ -44,7 +44,7 @@
             <?php endif; ?>
             <div class="flex flex-col @sm:gap-y-8 @md/lg:gap-y-4 @@:gap-x-4 md:flex-row items-start md:items-center mm-sm:w-full mm-sm:opacity-0 mm-sm:translate-y-[20px]" js-menu-item>
               <?php if($link): ?>
-                <a href="<?= $link['url'] ?>" target="<?= $link['target'] ?? '_self' ?>" class="button button-flat md:button-outline button-primary mm-sm:w-full mm-sm:justify-center <?php if($theme === 'text-dark-blue'): ?>md:border-dark-blue <?php else: ?> border-white text-white <?php endif; ?>">
+                <a href="<?= $link['url'] ?>" target="<?= $link['target'] ?? '_self' ?>" class="button button-flat md:button-outline mm-sm:w-full mm-sm:justify-center [&_.button-title]:text-current <?php if($theme === 'text-dark-blue'): ?>md:border-dark-blue <?php else: ?> border-white text-white md:!border-white md:!text-white <?php endif; ?>">
                   <span class="button-title"><?= $link['title'] ?></span>
                 </a>
               <?php endif; ?>

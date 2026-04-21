@@ -1,5 +1,12 @@
 .lang {
-  @apply relative flex items-center; 
+  @apply relative flex items-center uppercase tracking-[1px] text-[14px] font-medium;
+
+  // Button reset `button, select { text-transform: none }` wins over parent uppercase —
+  // restore it explicitly on the switcher button.
+  .lang-btn,
+  .lang-btn .button-title {
+    text-transform: uppercase;
+  }
 
   &-btn {
     @apply mm-sm:hidden border-l  @md/lg:pl-[16px];

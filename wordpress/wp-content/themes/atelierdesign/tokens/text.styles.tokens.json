@@ -306,7 +306,31 @@
     }
   },
   "Button": {
-    "Title": {
+    "Flat": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.button.fontFamily}",
+        "fontSize": "{typography.button.title.fontSize}",
+        "fontWeight": "{font.button.fontWeight}",
+        "letterSpacing": "{typography.button.title.letterSpacing}",
+        "lineHeight": "{typography.button.title.lineHeight}",
+        "textTransform": "uppercase",
+        "textDecoration": "none"
+      }
+    },
+    "Outline": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.button.fontFamily}",
+        "fontSize": "{typography.button.title.fontSize}",
+        "fontWeight": "{font.button.fontWeight}",
+        "letterSpacing": "{typography.button.title.letterSpacing}",
+        "lineHeight": "{typography.button.title.lineHeight}",
+        "textTransform": "uppercase",
+        "textDecoration": "none"
+      }
+    },
+    "Underline": {
       "$type": "typography",
       "$value": {
         "fontFamily": "{font.button.fontFamily}",
@@ -320,7 +344,7 @@
     }
   },
   "Accordion": {
-    "Title": {
+    "Underline": {
       "$type": "typography",
       "$value": {
         "fontFamily": "{font.accordion.title.fontFamily}",

@@ -37,7 +37,7 @@
           <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
         </div>
         <?php if($link): ?>
-          <a href="<?= $link['url'] ?>" class="button button-primary button-flat aos animate-fadeinup animate-delay-200">
+          <a href="<?= $link['url'] ?>" class="button button-flat aos animate-fadeinup animate-delay-200">
             <span class="button-title"><?= $link['title'] ?></span>
           </a>
         <?php endif; ?>
