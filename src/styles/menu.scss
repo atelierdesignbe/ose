@@ -35,7 +35,16 @@
       @apply flex items-center;
 
       a {
-        @apply uppercase  @sm:py-2 md:py-0;
+        @apply uppercase font-medium @sm:py-2 md:py-0;
+        font-size: calc((var(--typography-button-title-font-size) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+        letter-spacing: calc((var(--typography-button-title-letter-spacing) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+        line-height: calc((var(--typography-button-title-line-height) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+        @screen md {
+          font-size: calc((var(--typography-button-title-font-size) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+          letter-spacing: calc((var(--typography-button-title-letter-spacing) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+          line-height: calc((var(--typography-button-title-line-height) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+        }
 
         &.is-active {
           @apply mm-sm:text-yellow;
