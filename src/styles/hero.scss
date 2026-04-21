@@ -22,15 +22,19 @@
   }
   
   &-default {
-    @apply min-h-[100dvh] flex items-center  pb-[--hero-padding-top];
+    @apply min-h-[100dvh] flex items-center justify-center pb-[--hero-padding-top];
     text-align: center;
+
+    .hero-wrapper {
+      @apply w-full;
+    }
 
     .hero-content {
       @apply items-center w-full;
 
       @screen md {
         width: calc(20 / 24 * 100%);
-        margin-left: calc(2 / 24 * 100%);
+        margin-inline: auto;
       }
     }
 
