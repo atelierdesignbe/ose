@@ -83,6 +83,37 @@ function copyTokens() {
   return true;
 }
 
+// Mirror-copy everything under patches/ad-ui/ over the matching path in ad-ui/.
+// patches/ad-ui/core/src/foo.js  →  ad-ui/core/src/foo.js
+function applyPatches() {
+  if (!fs.existsSync(PATCHES_DIR)) return;
+
+  console.log('🩹 Applying ad-ui patches...\n');
+
+  let count = 0;
+
+  function walk(srcDir, relBase = '') {
+    for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.')) continue;
+      const relPath = path.join(relBase, entry.name);
+      const srcPath = path.join(srcDir, entry.name);
+      const dstPath = path.join(UI_DIR, relPath);
+
+      if (entry.isDirectory()) {
+        walk(srcPath, relPath);
+      } else {
+        fs.mkdirSync(path.dirname(dstPath), { recursive: true });
+        fs.copyFileSync(srcPath, dstPath);
+        console.log(`   ✅ ${relPath}`);
+        count++;
+      }
+    }
+  }
+
+  walk(PATCHES_DIR);
+  console.log(`\n✅ ${count} file(s) patched.\n`);
+}
+
 
 function applyPatches() {
   if (!fs.existsSync(PATCHES_DIR)) return;
@@ -140,7 +171,8 @@ function initUI() {
     process.chdir(originalDir);
   }
 
-  // Copier les tokens après le clone
+  // Appliquer les patches puis copier les tokens après le clone
+  applyPatches();
   console.log('📝 Configuring project tokens...');
   copyTokens();
   applyPatches();
@@ -174,7 +206,8 @@ function updateUI() {
     process.chdir(originalDir);
   }
 
-  // Re-copier les tokens après la mise à jour
+  // Re-appliquer les patches puis les tokens après la mise à jour
+  applyPatches();
   console.log('📝 Reapplying project tokens...');
   copyTokens();
   applyPatches();
@@ -200,11 +233,14 @@ switch (command) {
     copyTokens();
     // updateUI();
     break;
+  case 'patches':
+    applyPatches();
+    break;
   case 'status':
     // statusUI();
     break;
   default:
-    console.log('Usage: node setup-ui.js [init|update|status]');
+    console.log('Usage: node setup-ui.js [init|update|tokens|patches|status]');
     process.exit(1);
 }
 
