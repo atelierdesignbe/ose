@@ -55,6 +55,14 @@
     @apply @md/lg:min-h-[824px]
   }
 
+  &.hero-home {
+    @apply @md/lg:min-h-[100dvh] md:flex md:items-center md:!pt-0;
+
+    .hero-wrapper {
+      @apply @md/lg:py-[160px] md:w-full;
+    }
+  }
+
   &-cover {
 
   }
