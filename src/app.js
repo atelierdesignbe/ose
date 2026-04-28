@@ -3,6 +3,7 @@ import './styles/app.scss'
 import './scripts/expand'
 import './scripts/menu'
 import './scripts/ajax'
+import './scripts/search'
 
 import Lenis from 'lenis'
 
@@ -27,7 +28,6 @@ window.lenis = lenis
 
 
 const hero = document.querySelector('.hero')
-const heroFit = document.querySelector('.hero-fit, .hero-fill')
 
 if (hero) {
   const scroll = document.querySelector('[js-scroll]')
@@ -66,8 +66,6 @@ if (hero) {
       }
 
     }
-    initScroll()
-
     window.addEventListener('scroll', initScroll)
     window.addEventListener('resize', initScroll)
     scroll.addEventListener('click', () => {

@@ -1,4 +1,4 @@
-<?php 
+<?php
   $link = $args['header-contact'];
   $nav = $args['header-nav'];
   $theme = $args['theme'] ?? 'text-dark-blue';
@@ -7,13 +7,39 @@
 <header class="header" js-header>
   <div class="px-container">
     <div class="header-wrapper flex items-center justify-between autoscale-children <?= $theme ?>">
-      <!--  logo  -->
-      <div class="logo-brand">
-        <?php echo get_template_part('/components/logo', null, ['logo' => get_field('logo', 'acf-options-global-fields')]); ?>
+      <!--  logo + search desktop  -->
+      <div class="flex items-center @@:gap-x-[32px]">
+        <div class="logo-brand">
+          <?php echo get_template_part('/components/logo', null, ['logo' => get_field('logo', 'acf-options-global-fields')]); ?>
+        </div>
+        <!-- Search button — desktop only -->
+        <button
+          type="button"
+          class="search-header-btn hidden md:flex items-center button button-none button-primary"
+          js-search-open
+          aria-label="Open search"
+        >
+          <?= icon('search', 'text-purple'); ?>
+          <span class="button-title uppercase">Search</span>
+        </button>
       </div>
       <nav class="flex flex-wrap items-center">
+<<<<<<< HEAD
         <div class="md:hidden z-[99] relative">
           <button type="button" class="button button-flat menu-btn btn-animation autoscale <?php if($theme === 'text-dark-blue'): ?> bg-dark-blue text-white <?php else: ?> bg-white text-dark-blue <?php endif; ?>" js-menu-button>
+=======
+        <div class="md:hidden z-[99] relative flex items-center @@:gap-x-[12px]">
+          <!-- Search button — mobile only -->
+          <button
+            type="button"
+            class="search-mobile-btn button button-none button-primary flex items-center"
+            js-search-open
+            aria-label="Open search"
+          >
+            <?= icon('search', 'text-purple'); ?>
+          </button>
+          <button type="button" class="button button-flat button-primary menu-btn btn-animation autoscale <?php if($theme === 'text-dark-blue'): ?> bg-dark-blue text-white <?php else: ?> bg-white text-dark-blue <?php endif; ?>" js-menu-button>
+>>>>>>> 5a87d15 (Add search)
             <span class="button-title">Menu</span>
             <span class="menu-btn-lines">
               <span class="menu-btn-line"></span>
@@ -62,3 +88,4 @@
     </div>
   </div>
 </header>
+<?php get_template_part('/components/search/markup', 'search'); ?>

@@ -1,42 +1,27 @@
 <?php
-// BASE ----
 $title = get_the_title();
 $cover = get_field('cover');
-if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fields') ;
-
-$content = get_field('description');
+$description = get_field('description');
 $date = get_field('date_start');
 $category = get_field('category');
 $authors = get_field('author');
-$coverState = 'fit';
+if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fields') ;
+
+// $wrapperClass = ' @sm:pt-[144px] @sm:pb-[40px]';
+// if ($coverState === 'none') $wrapperClass = ' @sm:pt-[144px] @sm:pb-[80px]';
+
+// $heroClass = 'absolute inset-0 ';
+// if ($coverState === 'fit') $heroClass = 'absolute bottom-0 right-0 md:h-[--hero-h] @md/lg:pr-[--pl-margin] @md/lg:py-[--pl-margin]';
 
 $themes = get_the_terms( get_the_ID(), 'themes' );
 $types = get_the_terms( get_the_ID(), 'types' );
 $projects = get_the_terms( get_the_ID(), 'projects' );
 $projectLink = get_field('publication-link', 'acf-options-global-fields');
-
-$theme = 'theme-white';
-$context = $args['context'];
-
-$coverClass = array(
-  'wrap' => 'parallax-image-wrapper aos animate-fadeinzoomout',
-  'img' => 'parallax-image',
-);
-
-if ($coverState === 'fit') {
-  $coverClass = array(
-    'wrap' => '',
-    'img' => 'image-shadow-lg aos animate-fadeinup animate-delay-400',
-  );
-  
-}
 ?>
-
-
-<div class="hero hero-<?= $coverState ?> <?= $theme ?> hero-cpt">
-  <div class="hero-wrapper">
-    <div class="relative z-10 px-container">
-      <div class="hero-content">
+<div class="hero hero-cpt relative overflow-hidden relative">
+  <div class="px-container relative z-10 w-full">
+    <div class="grid grid-base">
+      <div class="hero-wrapper z-[1] relative col-span-12  flex flex-col @@:gap-y-[16px]">
         <div class="flex items-center @@:gap-x-2 autoscale-children aos animate-fadeinup">
           <?php if($date): ?> <span class="badge badge-primary badge-outlined"><?= $date ?></span><?php endif; ?>
             
@@ -51,18 +36,8 @@ if ($coverState === 'fit') {
             <?php endforeach; ?>
           </ul>
         <?php endif; ?>
-
-        <?php if ($title): ?>
-          <h1 class="heading heading-primary @sm:text-[46px] @md/lg:text-[72px] font-serif font-light @sm:leading-[48px] @md/lg:leading-[69px] autoscale aos animate-fadeinup">
-            <?= esc_html($title) ?>
-          </h1>
-        <?php endif; ?>
-
-        <?php if ($content): ?>
-          <p class="paragraph paragraph-primary paragraph-lg autoscale aos animate-fadeinup animate-delay-200">
-            <?= wp_kses_post($content) ?>
-          </p>
-        <?php endif; ?>
+        <h1 class="heading heading-primary @sm:text-[46px] @md/lg:text-[72px] font-serif font-light @sm:leading-[48px] @md/lg:leading-[69px] autoscale aos animate-fadeinup autoscale"><?= $title ?></h1>
+        <?php if($description): ?><p class="paragraph paragraph-primary paragraph-lg autoscale aos animate-fadeinup animate-delay-200 autoscale"><?= $description ?></p><?php endif; ?>
         <?php if($authors): ?>
           <ul class="flex flex-wrap items-center @@:gap-[8px] autoscale-children aos animate-fadeinup animate-delay-300">
             <?php foreach($authors as $author):?>
@@ -90,26 +65,21 @@ if ($coverState === 'fit') {
             <?php endforeach; ?>
           </ul>
         <?php endif; ?>
-      
+     
       </div>
     </div>
-    <!-- COVER -->
-    <?php if($coverState !== 'none'): ?>
-      <div class="hero-cover">
-        <div class="hero-cover-wrap <?= $coverClass['wrap'] ?>">
-          <?php if($coverState === 'fit'): ?>
-            <div class="hero-cover-fit">
-              <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => $coverClass['img']]); ?> 
-            </div>
-          <?php else:  ?>
-            <?php echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => $coverClass['img']]); ?> 
-          <?php endif; ?>
-        </div>
-      </div>
-    <?php endif; ?>
+  </div>
+
+  <div class="hero-cover hero-cover--fit mm-sm:px-container z-[1] mm-sm:w-full md:absolute md:bottom-0 md:right-0 md:h-[--hero-h]">
+    <div class="absolute top-0 left-[22.22%] w-[1px] h-full bg-dark-blue opacity-20 z-[0] mm-sm:hidden"></div>
+    <div class="w-full h-full z-[1] relative flex items-center mm-sm:justify-center">
+      <?php 
+        echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'h-auto @sm:w-[83.33%] md:max-h-full md:w-auto w-auto image-shadow-lg aos animate-fadeinup animate-delay-400']);
+      ?> 
+    </div>
   </div>
   
-  <?php echo get_template_part('/components/scroll', 'scroll'); ?>
-
-  <?= $context ?>
+  <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute top-0 right-0 z-[-1] translate-x-[20%] md:translate-x-[40%] @sm:h-[770px] @md/lg:h-[800px] w-auto mm-sm:hidden"/>
+  <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute bottom-0 left-[50%] translate-x-[-50%] md:left-0  md:translate-x-[-30%] z-[-1] scale-[-1] md:translate-x-[-30%] translate-y-[30%] @@:h-[800px] w-auto"/>
+  <?php echo get_template_part('/components/scroll', 'scroll', ['isFit' => true]); ?>
 </div>

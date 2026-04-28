@@ -1,0 +1,262 @@
+.search {
+  &-modal {
+    @apply fixed inset-0 z-[200] bg-dark-blue text-white ;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+
+    &.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    &-close {
+      @apply absolute @sm:top-[24px] @md/lg:top-[24px] right-0 @@:size-[48px] rounded-full border border-white flex items-center justify-center cursor-pointer transition-colors duration-200;
+      background: transparent;
+      color: white;
+      opacity: 0.6;
+
+      &:hover {
+        opacity: 1;
+        // background: rgba(255, 255, 255, 0.1);
+      }
+
+      svg {
+        @apply @@:size-[14px];
+        stroke-width: .5px;
+      }
+    }
+
+    &-inner {
+      @apply w-full flex flex-col @@:gap-y-[20px];
+
+      @screen md {
+        // max-width: 900px;
+        // margin: 0 auto;
+        // padding-inline: 0;
+      }
+    }
+
+    &-label {
+      @apply uppercase;
+    }
+
+    &-form {
+      @apply w-full flex items-center @@:gap-x-[16px] relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      padding-bottom: calc((16 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+      @screen md {
+        padding-bottom: calc((16 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      }
+
+      input[type="search"] {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: white;
+
+        @media (max-width: 599px) {
+          @apply @sm:text-[24px];
+        }
+        // font-weight: 300;
+        // font-family: var(--font-heading-primary-font-family, serif);
+        -webkit-appearance: none;
+
+        // font-size: calc((42 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+        // @screen md {
+        //   font-size: calc((56 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+        // }
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 1);
+        }
+
+        // Remove default search clear button
+        &::-webkit-search-cancel-button {
+          display: none;
+        }
+      }
+
+      svg {
+        flex-shrink: 0;
+        color: rgba(255, 255, 255, 0.5);
+
+        width: calc((28 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+        height: calc((28 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+        @screen md {
+          width: calc((32 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+          height: calc((32 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+        }
+      }
+    }
+  }
+
+  }
+
+// Button search dans le header
+.search-header-btn {
+  @apply @sm:gap-x-[8px] @md/lg:gap-x-[8px] border-l border-[--color-dark-blue] @sm:py-[8px] @md/lg:py-[8px]  @sm:pl-[16px] @md/lg:pl-[16px];
+
+  svg {
+    @apply @sm:size-[20px] @md/lg:size-[20px]; 
+  }
+}
+
+.search-mobile-btn {
+  svg {
+    @apply @sm:size-[20px] @md/lg:size-[20px]; 
+  }
+}
+
+// Page de résultats search
+.search-results-page {
+  &-hero {
+    @apply @sm:pt-[160px] @sm:pb-[92px] @md/lg:pt-[270px] @md/lg:pb-[124px] ;
+    // padding-top: calc((100 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    // padding-bottom: calc((80 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+    // @screen md {
+    //   padding-top: calc((140 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    //   padding-bottom: calc((80 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    // }
+  }
+
+  &-label {
+    @apply uppercase text-[--color-purple];
+    // font-size: calc((12 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    // letter-spacing: 0.15em;
+
+    @screen md {
+      font-size: calc((12 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    }
+  }
+
+  &-form {
+    @apply flex items-center justify-between @sm:gap-x-[12px] @md/lg:gap-x-[24px] border-b border-[--color-dark-blue]  @sm:pb-[12px] @md/lg:pb-[36px];
+    
+
+    input[type="search"] {
+      @apply flex-auto max-w-[86%];
+      background: transparent;
+      border: none;
+      outline: none;
+      -webkit-appearance: none;
+
+      @media (max-width: 599px) {
+        @apply @sm:text-[24px];
+      }
+
+      &::-webkit-search-cancel-button {
+        display: none;
+      }
+    }
+
+    svg {
+      @apply text-[--color-dark-blue] @sm:size-[28px] @md/lg:size-[32px] flex-none;
+      flex-shrink: 0;
+      
+      width: calc((28 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+      height: calc((28 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+      @screen md {
+        width: calc((32 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+        height: calc((32 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      }
+    }
+  }
+
+  &-count {
+    font-family: var(--font-body-font-family, sans-serif);
+    font-size: calc((16 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    opacity: 0.7;
+
+    @screen md {
+      font-size: calc((16 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    }
+  }
+}
+
+// Card résultat de recherche
+.search-result-item {
+  @apply bg-light-blue relative block h-full transition-colors duration-200;
+  padding: calc((24 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+  @screen md {
+    padding: calc((28 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+  }
+
+  &:hover {
+    @apply bg-light-blue;
+
+    .search-result-item-read {
+      &:after {
+        @apply scale-x-100 origin-left;
+      }
+    }
+  }
+
+  &-inner {
+    @apply flex flex-col justify-between h-full items-start;
+    gap: calc((24 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+    @screen md {
+      gap: calc((32 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    }
+  }
+
+  // title + excerpt + read: classes appliquées directement dans le HTML (heading, paragraph-primary, button sont des classes custom, pas des utilitaires Tailwind)
+  &-title {
+    // styles supplémentaires si besoin
+  }
+
+  &-excerpt {
+    opacity: 0.7;
+    font-size: calc((14 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+    @screen md {
+      font-size: calc((14 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    }
+  }
+}
+
+// Member card
+.member-card {
+  @apply relative overflow-hidden;
+
+  &-image {
+    @apply w-full overflow-hidden bg-light-blue;
+    aspect-ratio: 3/4;
+
+    img {
+      @apply w-full h-full object-cover transition-transform duration-500;
+    }
+  }
+
+  &-info {
+    padding-top: calc((16 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+    @screen md {
+      padding-top: calc((16 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    }
+  }
+
+  // name + role: classes custom appliquées directement dans le HTML
+  &-name {
+    // heading heading-sm heading-primary → dans member.php
+  }
+
+  &-role {
+    opacity: 0.6;
+    font-size: calc((13 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    margin-top: calc((4 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+    @screen md {
+      font-size: calc((13 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      margin-top: calc((4 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    }
+  }
+}

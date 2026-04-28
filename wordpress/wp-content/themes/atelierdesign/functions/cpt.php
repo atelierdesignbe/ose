@@ -125,9 +125,9 @@ function cpt_projects() {
 add_action( 'init', 'cpt_projects');
 
 
-// AUTHOR
+// MEMBER
 
-function cpt_authors() {
+function cpt_members() {
     $labels = array(
       'name'               => 'Members',
       'singular_name'      => 'Member',
@@ -144,31 +144,30 @@ function cpt_authors() {
       'not_found_in_trash' => 'No Members found in Trash'
   );
 
-    
     $args = array(
         'labels'              => $labels,
-        'public'              => false,              // ❌ Pas accessible publiquement
-        'publicly_queryable'  => false,              // ❌ Pas d'accès via URL
+        'public'              => true,               // ✅ Accessible publiquement
+        'publicly_queryable'  => true,               // ✅ Accès via URL
         'show_ui'             => true,               // ✅ Interface admin visible
         'show_in_menu'        => true,               // ✅ Affiché dans le menu
-        'menu_icon'           => 'dashicons-businessman', // Icône représentant un auteur
-        'query_var'           => false,              // ❌ Pas de query var
-        'rewrite'             => false,              // ❌ Pas de réécriture URL
+        'menu_icon'           => 'dashicons-businessman',
+        'query_var'           => true,
+        'rewrite'             => array( 'slug' => 'team', 'with_front' => false ),
         'capability_type'     => 'post',
-        'has_archive'         => false,              // ❌ Pas de page d'archive
+        'has_archive'         => false,
         'hierarchical'        => false,
-        'menu_position'       => 22,                 // Position après Events
-        'show_in_rest'        => true,               // ✅ Actif pour Gutenberg/ACF
-        'supports'            => array( 'title', 'thumbnail', 'revisions' ), // Titre + Image seulement
-        'exclude_from_search' => true,               // ❌ Exclu des recherches
-        'show_in_nav_menus'   => false,              // ❌ Pas dans les menus de navigation
-        'can_export'          => true,               // ✅ Peut être exporté
+        'menu_position'       => 22,                 
+        'show_in_rest'        => true,               
+        'supports'            => array( 'title', 'thumbnail', 'revisions' ),
+        'exclude_from_search' => true,               
+        'show_in_nav_menus'   => false,             
+        'can_export'          => true,       
         'taxonomies'          => array()
     );
-    
-    register_post_type( 'author', $args );
+
+    register_post_type( 'member', $args );
 }
-add_action( 'init', 'cpt_authors' );
+add_action( 'init', 'cpt_members' );
 
 // function create_taxonomies() {
 //     // Services

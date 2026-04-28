@@ -7,8 +7,9 @@
 @use 'typo';
 @use 'form';
 @use 'expand';
-@use 'hero';
 @use 'scroll';
+@use 'search';
+@use 'hero';
 
 body {
   @apply min-h-[100dvh] font-sans bg-white;
