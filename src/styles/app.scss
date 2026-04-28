@@ -299,6 +299,10 @@ a {
     &:after {
       @apply bg-white;
     }
+
+    .button-underline {
+      @apply text-white;
+    }
   }
 
   p {

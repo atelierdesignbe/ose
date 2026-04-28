@@ -18,5 +18,5 @@ if($date_end) $ts_end   = strtotime(str_replace('-', '/', $date_end));
     </div>
     <p class="heading heading-md heading-primary"><?= get_the_title($id); ?> </p>
   </div>
-  <span class="button button-underline is-fake"><span class="button-title">Read more</span></span>
+  <span class="button button-underline is-fake text-current"><span class="button-title">Read more</span></span>
 </a>
