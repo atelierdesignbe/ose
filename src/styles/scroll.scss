@@ -1,6 +1,6 @@
 
 [js-scroll] {
-  @apply fixed bottom-0 right-0;
+  @apply fixed bottom-0 right-0 z-[20];
 
   &.is-bottom {
     @apply absolute bottom-0 right-0;
@@ -8,5 +8,10 @@
 
   .hero.is-vertical:not(.is-bigger) & {
     @apply absolute;
+  }
+
+
+  .hero-fit & {
+    @apply mm-sm:hidden;
   }
 }
