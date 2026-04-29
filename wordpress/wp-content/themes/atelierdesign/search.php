@@ -19,15 +19,15 @@ $found_posts  = $wp_query->found_posts;
     <div class="px-container flex flex-col @@:gap-y-[20px] relative z-10 autoscale-children">
       <p class="button-title">Search &amp; Press Enter</p>
       <form role="search" method="get" action="<?= esc_url(home_url('/')) ?>" class="search-results-page-form">
-        <input
-          type="search"
+        <textarea
           name="s"
-          placeholder="What are you looking for?"
           class="heading heading-2xl heading-primary"
-          value="<?= esc_attr($search_query) ?>"
+          placeholder="<?= pll__('What are you looking for?', 'atelierdesign') ?>"
           autocomplete="off"
+          rows="1"
           aria-label="<?= esc_attr__('Search', 'atelierdesign') ?>"
-        />
+          js-search-textarea
+        ><?= esc_textarea($search_query) ?></textarea>
         <button type="submit" class="appearance-none"><?= icon('search', 'text-purple'); ?></button>
       </form>
     </div>

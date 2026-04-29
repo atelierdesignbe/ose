@@ -65,7 +65,11 @@
   }
 
   &-btn {
-    @apply flex items-center @@:gap-x-[10px] z-[99] md:hidden border-0;
+    @apply flex items-center @@:gap-x-[10px] z-[99] md:hidden border-0 text-white;
+
+    .button-title {
+      @apply text-current;
+    }
 
     &.is-disabled {
       pointer-events: none;

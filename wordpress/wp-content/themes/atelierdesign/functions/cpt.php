@@ -151,17 +151,18 @@ function cpt_authors() {
         'show_ui'             => true,               // ✅ Interface admin visible
         'show_in_menu'        => true,               // ✅ Affiché dans le menu
         'menu_icon'           => 'dashicons-businessman',
-        'query_var'           => true,
+        // ⚠️ 'author' est un query_var réservé par WordPress — on utilise un nom custom
+        'query_var'           => 'ose_author',
         'rewrite'             => array( 'slug' => 'team', 'with_front' => false ),
         'capability_type'     => 'post',
         'has_archive'         => false,
         'hierarchical'        => false,
-        'menu_position'       => 22,                 
-        'show_in_rest'        => true,               
+        'menu_position'       => 22,
+        'show_in_rest'        => true,
         'supports'            => array( 'title', 'thumbnail', 'revisions' ),
-        'exclude_from_search' => true,               
-        'show_in_nav_menus'   => false,             
-        'can_export'          => true,       
+        'exclude_from_search' => false,
+        'show_in_nav_menus'   => false,
+        'can_export'          => true,
         'taxonomies'          => array()
     );
 

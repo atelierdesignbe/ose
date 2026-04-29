@@ -50,33 +50,22 @@
         padding-bottom: calc((16 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
       }
 
-      input[type="search"] {
+      textarea {
         flex: 1;
         background: transparent;
         border: none;
         outline: none;
         color: white;
+        resize: none;
+        overflow: hidden;
+        line-height: 1.15;
 
         @media (max-width: 599px) {
-          @apply @sm:text-[24px];
+          @apply @sm:text-[20px];
         }
-        // font-weight: 300;
-        // font-family: var(--font-heading-primary-font-family, serif);
-        -webkit-appearance: none;
-
-        // font-size: calc((42 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
-
-        // @screen md {
-        //   font-size: calc((56 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
-        // }
 
         &::placeholder {
           color: rgba(255, 255, 255, 1);
-        }
-
-        // Remove default search clear button
-        &::-webkit-search-cancel-button {
-          display: none;
         }
       }
 
@@ -99,10 +88,45 @@
 
 // Button search dans le header
 .search-header-btn {
-  @apply @sm:gap-x-[8px] @md/lg:gap-x-[8px] border-l border-[--color-dark-blue] @sm:py-[8px] @md/lg:py-[8px]  @sm:pl-[16px] @md/lg:pl-[16px];
+  @apply @sm:gap-x-[8px] @md/lg:gap-x-[8px] border-l border-[--color-dark-blue] @sm:py-[8px] @md/lg:py-[8px]  @sm:px-[16px] @md/lg:px-[16px] relative;
+
+  span {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-button-font-family);
+    font-size: calc((var(--typography-button-title-font-size) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    font-weight: var(--font-button-font-weight);
+    letter-spacing: calc((var(--typography-button-title-letter-spacing) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    line-height: calc((var(--typography-button-title-line-height) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+    text-transform: uppercase;
+
+    @screen md {
+      font-size: calc((var(--typography-button-title-font-size) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      letter-spacing: calc((var(--typography-button-title-letter-spacing) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      line-height: calc((var(--typography-button-title-line-height) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+  
+    }
+  }
+
+  &:after {
+    @apply absolute inset-0 bg-dark-blue scale-x-0 origin-right duration-200 transition-transform;
+    content: "";
+  }
+
+  &:hover {
+    @apply text-white;
+
+    span {
+      @apply text-white;
+    }
+
+    &:after {
+      @apply scale-x-100 origin-left;
+    }
+  }
 
   svg {
-    @apply @sm:size-[20px] @md/lg:size-[20px]; 
+    @apply @sm:size-[20px] @md/lg:size-[20px] relative z-[1]; 
   }
 }
 
@@ -139,19 +163,17 @@
     @apply flex items-center justify-between @sm:gap-x-[12px] @md/lg:gap-x-[24px] border-b border-[--color-dark-blue]  @sm:pb-[12px] @md/lg:pb-[36px];
     
 
-    input[type="search"] {
+    textarea {
       @apply flex-auto max-w-[86%];
       background: transparent;
       border: none;
       outline: none;
-      -webkit-appearance: none;
+      resize: none;
+      overflow: hidden;
+      line-height: 1.15;
 
       @media (max-width: 599px) {
         @apply @sm:text-[24px];
-      }
-
-      &::-webkit-search-cancel-button {
-        display: none;
       }
     }
 
@@ -240,38 +262,35 @@
 
 // Member card
 .member-card {
-  @apply relative overflow-hidden;
+  @apply relative overflow-hidden flex flex-row md:flex-col @sm:gap-[20px] @md/lg:gap-[20px] mm-sm:items-center;
 
   &-image {
-    @apply w-full overflow-hidden bg-light-blue;
-    aspect-ratio: 3/4;
+    @apply w-full overflow-hidden bg-light-blue @sm:w-[116px] md:w-full @sm:h-[138px] @md/lg:h-[350px];
+    // aspect-ratio: 3/4;
 
     img {
-      @apply w-full h-full object-cover transition-transform duration-500;
-    }
-  }
-
-  &-info {
-    padding-top: calc((16 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
-
-    @screen md {
-      padding-top: calc((16 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      @apply w-full h-full object-cover object-top transition-transform duration-500;
     }
   }
 
   // name + role: classes custom appliquées directement dans le HTML
   &-name {
-    // heading heading-sm heading-primary → dans member.php
+    @apply transition-opacity duration-500;
   }
 
-  &-role {
-    opacity: 0.6;
-    font-size: calc((13 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
-    margin-top: calc((4 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+  &-info {
+    @apply relative flex-auto flex flex-col @sm:gap-[8px] @md/lg:gap-[8px];
+  }
 
-    @screen md {
-      font-size: calc((13 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
-      margin-top: calc((4 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+  &:hover {
+    .member-card-name {
+      opacity: .50;
+    }
+
+    .member-card-image {
+      img {
+        transform: scale(1.025);
+      }
     }
   }
 }

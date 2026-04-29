@@ -17,62 +17,67 @@ add_action('acf/include_fields', function () {
         'type'  => 'tab',
         'no_preference' => 0,
       ],
+
+      [
+        'key' => 'field-single-member-cover',
+        'label' => 'Cover',
+        'type' => 'image',
+        'name' => 'cover',
+        'preview_size' => 'thumbnail',
+        'library' => 'all',
+        'mime_types' => 'jpg,jpeg,png,svg,webp',
+      ],
+      
       [
         'key'   => 'field-single-member-role',
         'label' => 'Role / Position',
         'name'  => 'role',
         'type'  => 'text',
       ],
+      
       [
-        'key'   => 'field-single-member-bio',
-        'label' => 'Bio',
-        'name'  => 'bio',
-        'type'  => 'textarea',
-        'rows'  => 4,
+        'key'          => 'field-single-member-summary',
+        'label'        => 'Summary',
+        'instructions'        => 'Small description about member',
+        'name'         => 'submary',
+        'type'         => 'textarea',
       ],
+      // [
+      //   'key'          => 'field-single-member-email',
+      //   'label'        => 'Email',
+      //   'name'         => 'email',
+      //   'type'         => 'email',
+      // ],
+      
       [
-        'key'          => 'field-single-member-email',
-        'label'        => 'Email',
-        'name'         => 'email',
-        'type'         => 'email',
-      ],
-
-      // Tab: Social
-      [
-        'key'   => 'field-single-member-tab-social',
-        'label' => 'Social',
-        'type'  => 'tab',
+        'key' => 'field-single-project-template-tab-flexible',
+        'label' => 'Flexible Content',
+        'type' => 'tab',
         'no_preference' => 0,
       ],
+      // Flexible content section
       [
-        'key'   => 'field-single-member-linkedin',
-        'label' => 'LinkedIn',
-        'name'  => 'linkedin',
-        'type'  => 'url',
+        'key' => 'field-single-project-template-clone-fieldgroup-flexible',
+        'label' => 'Flexible Content',
+        'name' => 'flexible_content',
+        'type' => 'clone',
+        'clone' => [
+          0 => 'field-flexible-flexible-layout',
+        ],
       ],
-      [
-        'key'   => 'field-single-member-twitter',
-        'label' => 'Twitter / X',
-        'name'  => 'twitter',
-        'type'  => 'url',
-      ],
-
-      // Tab: Publications liées
-      [
-        'key'   => 'field-single-member-tab-publications',
-        'label' => 'Publications',
-        'type'  => 'tab',
-        'no_preference' => 0,
-      ],
-      [
-        'key'           => 'field-single-member-show-publications',
-        'label'         => 'Show related publications',
-        'name'          => 'show_publications',
-        'type'          => 'true_false',
-        'default_value' => 1,
-        'ui'            => 1,
-      ],
-
+      // [
+      //   'key'   => 'field-single-member-linkedin',
+      //   'label' => 'LinkedIn',
+      //   'name'  => 'linkedin',
+      //   'type'  => 'url',
+      // ],
+      // [
+      //   'key'   => 'field-single-member-twitter',
+      //   'label' => 'Twitter / X',
+      //   'name'  => 'twitter',
+      //   'type'  => 'url',
+      // ],
+    
     ],
     'location' => [
       [

@@ -19,15 +19,15 @@ $home_url = home_url('/');
         action="<?= esc_url($home_url) ?>"
         class="search-modal-form"
       >
-        <input
-          type="search"
+        <textarea
           name="s"
           class="heading heading-2xl"
           placeholder="<?= pll__('What are you looking for?', 'atelierdesign') ?>"
-          value="<?= esc_attr(get_search_query()) ?>"
           autocomplete="off"
+          rows="1"
           aria-label="<?= esc_attr__('Search', 'atelierdesign') ?>"
-        />
+          js-search-textarea
+        ><?= esc_textarea(get_search_query()) ?></textarea>
         <button type="submit" class="appearance-none"><?= icon('search', 'text-purple'); ?></button>
       </form>
     </div>

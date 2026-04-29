@@ -5,12 +5,9 @@
 global $adwp;
 $fields      = get_fields();
 $role        = $fields['role'] ?? '';
-$bio         = $fields['bio'] ?? '';
-$email       = $fields['email'] ?? '';
-$linkedin    = $fields['linkedin'] ?? '';
-$twitter     = $fields['twitter'] ?? '';
-$show_pubs   = $fields['show_publications'] ?? false;
-$thumbnail_id = get_post_thumbnail_id();
+$cover        = $fields['cover'] ?? '';
+$bio        = $fields['submary'] ?? '';
+
 ?>
 <?php get_header(); ?>
 <?php get_template_part('/components/header/markup', 'header', [
@@ -19,103 +16,158 @@ $thumbnail_id = get_post_thumbnail_id();
 ]); ?>
 
 <main id="single-member">
-
-  <!-- HERO MEMBER -->
-  <section class="theme-white bg-layout-main">
-    <div class="px-container">
-      <div class="grid grid-base @@:gap-y-[40px] @md/lg:pt-[120px] @sm:pt-[100px] @md/lg:pb-[80px] @sm:pb-[60px]">
-
-        <!-- Photo -->
-        <div class="col-span-12 md:col-span-8 lg:col-span-6">
-          <div class="member-card-image">
-            <?php if ($thumbnail_id) : ?>
-              <?php echo wp_get_attachment_image($thumbnail_id, 'medium', false, ['class' => 'w-full h-full object-cover image-shadow']); ?>
-            <?php else : ?>
-              <div class="w-full aspect-[3/4] bg-light-blue"></div>
-            <?php endif; ?>
+  <div class="member-hero @sm:pb-[48px] @md/lg:pb-[88px] @sm:pt-[120px] @md/lg:pt-[210px] relative overflow-hidden">
+    <div class="px-container relative z-[10]">
+      <div class="grid-base @sm:gap-y-[82px] @md/lg:gap-y-[16px]">
+        <div class="col-span-10 col-start-2 md:col-span-6 md:col-start-2 ">
+          <div class="member-image">
+            <?= wp_get_attachment_image($cover['ID'], 'large', null, ['class' => 'object-cover w-full h-full image-shadow']); ?>
           </div>
         </div>
-
-        <!-- Info -->
-        <div class="col-span-12 md:col-span-14 lg:col-span-16 md:col-start-10 lg:col-start-9 flex flex-col justify-center @@:gap-y-[32px] autoscale-children">
-
-          <!-- Breadcrumb / retour -->
-          <a href="javascript:history.back()" class="button button-none button-primary flex items-center @@:gap-x-[8px] w-fit">
-            <svg viewBox="0 0 47 16" xmlns="http://www.w3.org/2000/svg" class="@@:w-[32px] rotate-180 fill-current">
-              <path d="M46.7071 8.70711C47.0976 8.31658 47.0976 7.68342 46.7071 7.29289L40.3431 0.928932C39.9526 0.538408 39.3195 0.538408 38.9289 0.928932C38.5384 1.31946 38.5384 1.95262 38.9289 2.34315L44.5858 8L38.9289 13.6569C38.5384 14.0474 38.5384 14.6805 38.9289 15.0711C39.3195 15.4616 39.9526 15.4616 40.3431 15.0711L46.7071 8.70711ZM0 8V9H46V8V7H0V8Z"/>
-            </svg>
-            <span class="button-title uppercase">Back</span>
-          </a>
-
-          <!-- Title + role -->
-          <div class="flex flex-col @@:gap-y-[8px]">
-            <?php if ($role) : ?>
-              <span class="subtitle paragraph-primary opacity-60"><?= esc_html($role) ?></span>
-            <?php endif; ?>
-            <h1 class="heading heading-primary @sm:text-[40px] @md/lg:text-[56px] font-serif font-light autoscale">
-              <?= esc_html(get_the_title()) ?>
-            </h1>
+        <div class="col-span-12 md:col-span-14 md:col-start-9">
+          <div class="member-content flex flex-col @sm:gap-y-[16px] @md/lg:gap-y-[16px] @md/lg:pt-[92px]">
+            <h1 class="heading heading-2xl "><?= get_the_title() ?></h1>
+            <?php if($role): ?><p class="heading-lg heading-primary"><?= $role ?></p><?php endif; ?>
+            <?php if($bio): ?><p class="paragraph-md paragraph-primary"><?= $bio ?></p><?php endif; ?>
+            
           </div>
-
-          <!-- Bio -->
-          <?php if ($bio) : ?>
-            <p class="paragraph paragraph-primary paragraph-lg"><?= esc_html($bio) ?></p>
-          <?php endif; ?>
-
-          <!-- Contact & Social -->
-          <?php if ($email || $linkedin || $twitter) : ?>
-            <div class="flex flex-wrap items-center @@:gap-[16px]">
-              <?php if ($email) : ?>
-                <a href="mailto:<?= esc_attr($email) ?>" class="button button-outline button-primary">
-                  <span class="button-title"><?= esc_html($email) ?></span>
-                </a>
-              <?php endif; ?>
-              <?php if ($linkedin) : ?>
-                <a href="<?= esc_url($linkedin) ?>" target="_blank" rel="noopener noreferrer" class="button button-none button-primary" aria-label="LinkedIn">
-                  <?= icon('linkedin', '@@:size-[20px]') ?>
-                </a>
-              <?php endif; ?>
-              <?php if ($twitter) : ?>
-                <a href="<?= esc_url($twitter) ?>" target="_blank" rel="noopener noreferrer" class="button button-none button-primary" aria-label="Twitter / X">
-                  <?= icon('twitter', '@@:size-[20px]') ?>
-                </a>
-              <?php endif; ?>
-            </div>
-          <?php endif; ?>
-
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- RELATED PUBLICATIONS -->
-  <?php if ($show_pubs) : ?>
-    <?php
-    $related_publications = get_posts([
-      'post_type'      => 'publication',
-      'posts_per_page' => 6,
-      'post_status'    => 'publish',
-      'meta_query'     => [
-        [
-          'key'     => 'author',
-          'value'   => '"' . get_the_ID() . '"',
-          'compare' => 'LIKE',
-        ],
-      ],
-    ]);
-    ?>
-    <?php if (!empty($related_publications)) : ?>
-      <section class="theme-light-blue bg-layout-main py-section">
-        <div class="px-container">
-          <h2 class="heading heading-lg heading-primary @@:mb-[48px]">Publications</h2>
-          <div class="flex flex-col @@:gap-y-[2px]">
-            <?php foreach ($related_publications as $pub) : ?>
-              <?php get_template_part('/components/publication', null, ['id' => $pub->ID]); ?>
-            <?php endforeach; ?>
-          </div>
+    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute top-0 right-0 z-[0] translate-x-[20%] md:translate-x-[40%] @sm:h-[770px] @md/lg:h-[800px] w-auto"/>
+    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute bottom-0 left-[50%] translate-x-[-50%] md:left-0  md:translate-x-[-30%] z-[0] scale-[-1] md:translate-x-[-30%] translate-y-[30%] @@:h-[800px] w-auto"/>
+
+  </div>
+
+  <?php
+  /**
+   * Publications & Projects liés à cet author.
+   *
+   * ACF stocke les relationship fields sous forme de tableau sérialisé,
+   * ex: a:2:{i:0;s:3:"42";i:1;s:3:"99";}
+   * La recherche LIKE sur '"ID"' (avec guillemets) cible l'ID exact
+   * sans risque de faux positifs (ex: 4 vs 42).
+   */
+  $author_id = get_the_ID();
+  $meta_query_author = [
+    [
+      'key'     => 'author',
+      'value'   => '"' . $author_id . '"',
+      'compare' => 'LIKE',
+    ],
+  ];
+
+  $publications = get_posts([
+    'post_type'      => 'publication',
+    'posts_per_page' => -1,
+    'post_status'    => 'publish',
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+    'meta_query'     => $meta_query_author,
+  ]);
+
+  $projects = get_posts([
+    'post_type'      => 'project',
+    'posts_per_page' => -1,
+    'post_status'    => 'publish',
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+    'meta_query'     => $meta_query_author,
+  ]);
+  ?>
+
+  <?php
+  // Langue courante Polylang (null si Polylang inactif → pas de filtre langue)
+  $current_lang = function_exists('pll_current_language') ? pll_current_language() : null;
+
+  // Liens archive : priorité aux ACF options (déjà Polylang-aware via get_field),
+  // fallback sur la page utilisant le bon template, filtrée par langue courante.
+  $publication_link = get_field('publication-link', 'acf-options-global-fields');
+  if ( ! $publication_link ) {
+    $pub_args = [
+      'post_type'   => 'page',
+      'meta_key'    => '_wp_page_template',
+      'meta_value'  => 'templates/publications.php',
+      'numberposts' => 1,
+    ];
+    if ( $current_lang ) $pub_args['lang'] = $current_lang;
+    $pub_pages = get_posts( $pub_args );
+    if ( $pub_pages ) $publication_link = get_permalink( $pub_pages[0]->ID );
+  } elseif ( is_array($publication_link) ) {
+    $publication_link = $publication_link['url'];
+  }
+
+  $project_link = get_field('project-link', 'acf-options-global-fields');
+  if ( ! $project_link ) {
+    $proj_args = [
+      'post_type'   => 'page',
+      'meta_key'    => '_wp_page_template',
+      'meta_value'  => 'templates/projects.php',
+      'numberposts' => 1,
+    ];
+    if ( $current_lang ) $proj_args['lang'] = $current_lang;
+    $proj_pages = get_posts( $proj_args );
+    if ( $proj_pages ) $project_link = get_permalink( $proj_pages[0]->ID );
+  } elseif ( is_array($project_link) ) {
+    $project_link = $project_link['url'];
+  }
+  ?>
+
+  <?php if ( ! empty($projects) ) : ?>
+    <section class="theme-light-grey bg-layout-main py-section">
+      <div class="px-container">
+
+        <div class="flex flex-col @sm:gap-y-[16px] md:flex-row md:items-center md:justify-between @sm:mb-[40px] @md/lg:mb-[40px]">
+          <h2 class="heading heading-lg heading-primary"><?= pll__('Projects', 'atelierdesign') ?></h2>
+          <?php if ( $project_link ) : ?>
+            <a
+              href="<?= esc_url( $project_link ) ?>"
+              class="button button-outline button-primary flex items-center @@:gap-x-[12px] w-fit"
+            >
+              <span class="button-title"><?= pll__('See all projects', 'atelierdesign') ?></span>
+            </a>
+          <?php endif; ?>
         </div>
-      </section>
-    <?php endif; ?>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px]">
+          <?php foreach ( $projects as $project ) : ?>
+            <div>
+              <?php get_template_part( '/components/project', null, ['id' => $project->ID] ); ?>
+            </div>
+          <?php endforeach; ?>
+        </div>
+
+      </div>
+    </section>
+  <?php endif; ?>
+
+  <?php if ( ! empty($publications) ) : ?>
+    <section class="theme-white bg-layout-main py-section">
+      <div class="px-container">
+
+        <div class="flex flex-col @sm:gap-y-[16px] md:flex-row md:items-center md:justify-between @sm:mb-[40px] @md/lg:mb-[40px]">
+          <h2 class="heading heading-lg heading-primary">Publications</h2>
+          <?php if ( $publication_link ) : ?>
+            <a
+              href="<?= esc_url( $publication_link ) ?>"
+              class="button button-outline button-primary flex items-center @@:gap-x-[12px] w-fit"
+            >
+              <span class="button-title"><?= pll__('See all publications', 'atelierdesign') ?></span>
+            </a>
+          <?php endif; ?>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 @@:gap-[15px]">
+          <?php foreach ( $publications as $pub ) : ?>
+            <div>
+              <?php get_template_part( '/components/publication', null, ['id' => $pub->ID, 'theme' => 'theme-light-blue'] ); ?>
+            </div>
+          <?php endforeach; ?>
+        </div>
+
+      </div>
+    </section>
   <?php endif; ?>
 
 </main>

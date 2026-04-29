@@ -419,3 +419,24 @@ a {
   from { transform: scaleX(1); opacity:1; transform-origin: left center; }
   to   { transform: scaleX(0); opacity:0; transform-origin: left center; }
 }
+
+.button-flat {
+  @apply duration-300 transition-all;
+}
+.theme-light-blue,
+.theme-yellow,
+.theme-white {
+  .button-flat {
+    &:hover {
+      @apply bg-dark-blue border-dark-blue;
+    }
+  }
+}
+
+.theme-dark-blue {
+  .button-flat {
+    &:hover {
+      @apply bg-white border-white;
+    }
+  }
+}

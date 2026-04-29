@@ -31,9 +31,9 @@ $cover_status = $fields['hero']['cover-status'] ?? 'default';
       ?>
 
       <?php if ($members_query->have_posts()) : ?>
-        <div class="grid grid-base @@:gap-x-[24px] @@:gap-y-[48px]">
+        <div class="grid grid-base @sm:gap-y-[8px] @md/lg:gap-y-[40px] @md/lg:gap-x-[12px]">
           <?php while ($members_query->have_posts()) : $members_query->the_post(); ?>
-            <div class="col-span-6 sm:col-span-4 md:col-span-6 lg:col-span-4">
+            <div class="col-span-12 md:col-span-6">
               <?php get_template_part('/components/member', null, ['id' => get_the_ID()]); ?>
             </div>
           <?php endwhile; wp_reset_postdata(); ?>
