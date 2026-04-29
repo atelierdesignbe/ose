@@ -1519,6 +1519,14 @@
         "$type": "dimension",
         "$value": "{button.flat.gap}"
       },
+      "borderWidth": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "borderRadius": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
       "iconSize": {
         "$type": "dimension",
         "$value": "{button.flat.iconSize}"
@@ -1550,6 +1558,38 @@
       "paddingBottom": {
         "$type": "dimension",
         "$value": "{button.simple.paddingY}"
+      },
+      "borderLeftWidth": {
+        "$type": "dimension",
+        "$value": "{button.simple.borderWidth}"
+      },
+      "borderRightWidth": {
+        "$type": "dimension",
+        "$value": "{button.simple.borderWidth}"
+      },
+      "borderTopWidth": {
+        "$type": "dimension",
+        "$value": "{button.simple.borderWidth}"
+      },
+      "borderBottomWidth": {
+        "$type": "dimension",
+        "$value": "{button.simple.borderWidth}"
+      },
+      "borderTopLeftRadius": {
+        "$type": "dimension",
+        "$value": "{button.simple.borderRadius}"
+      },
+      "borderTopRightRadius": {
+        "$type": "dimension",
+        "$value": "{button.simple.borderRadius}"
+      },
+      "borderBottomLeftRadius": {
+        "$type": "dimension",
+        "$value": "{button.simple.borderRadius}"
+      },
+      "borderBottomRightRadius": {
+        "$type": "dimension",
+        "$value": "{button.simple.borderRadius}"
       }
     }
   },

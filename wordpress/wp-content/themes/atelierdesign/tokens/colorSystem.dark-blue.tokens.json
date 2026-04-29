@@ -530,7 +530,7 @@
         },
         "border": {
           "$type": "color",
-          "$value": "{foundations.decorative-fill-primary}"
+          "$value": "{tailwindcss.colors.transparent}"
         },
         "shadow": {
           "$type": "color",
@@ -552,7 +552,7 @@
         },
         "border": {
           "$type": "color",
-          "$value": "{foundations.text}"
+          "$value": "{tailwindcss.colors.transparent}"
         },
         "shadow": {
           "$type": "color",
