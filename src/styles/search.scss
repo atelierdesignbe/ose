@@ -182,8 +182,23 @@
 
 // Card résultat de recherche
 .search-result-item {
-  @apply bg-light-blue relative block h-full transition-colors duration-200;
+  @apply bg-light-blue relative block h-full transition-colors duration-200 @@:min-h-[224px] ;
   padding: calc((24 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+  &:after {
+    @apply absolute inset-0 bg-light-yellow z-0 transition-all duration-300 ease-out;
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left center;
+    opacity: 0;
+  }
+
+  &:hover {
+    &:after {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
 
   @screen md {
     padding: calc((28 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
@@ -200,7 +215,7 @@
   }
 
   &-inner {
-    @apply flex flex-col justify-between h-full items-start;
+    @apply flex flex-col justify-between h-full items-start z-10 relative;
     gap: calc((24 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
 
     @screen md {

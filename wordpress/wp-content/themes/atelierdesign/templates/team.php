@@ -22,7 +22,7 @@ $cover_status = $fields['hero']['cover-status'] ?? 'default';
     <div class="px-container">
       <?php
       $members_query = new WP_Query([
-        'post_type'      => 'member',
+        'post_type'      => 'author',
         'posts_per_page' => -1,
         'post_status'    => 'publish',
         'orderby'        => 'menu_order title',

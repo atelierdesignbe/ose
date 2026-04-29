@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+// import { tokensPlugin } from './vite-plugin-tokens.js';
 
 export default defineConfig({
   // Pas de root défini = racine du projet (là où est vite.config.js)
@@ -31,9 +32,15 @@ export default defineConfig({
     cors: true,
   },
   
+  plugins: [
+    // tokensPlugin(),
+  ],
+
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
+      '@components': resolve(__dirname, 'wordpress/wp-content/themes/atelierdesign/components'),
+      '@styles': resolve(__dirname, 'src/styles'),
     },
   },
 });

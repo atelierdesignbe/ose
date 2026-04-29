@@ -79,7 +79,7 @@ add_action('acf/include_fields', function () {
         [
           'param'    => 'post_type',
           'operator' => '==',
-          'value'    => 'member',
+          'value'    => 'author',
         ],
       ],
     ],

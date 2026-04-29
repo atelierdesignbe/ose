@@ -125,9 +125,9 @@ function cpt_projects() {
 add_action( 'init', 'cpt_projects');
 
 
-// MEMBER
+// AUTHOR (Members)
 
-function cpt_members() {
+function cpt_authors() {
     $labels = array(
       'name'               => 'Members',
       'singular_name'      => 'Member',
@@ -165,9 +165,9 @@ function cpt_members() {
         'taxonomies'          => array()
     );
 
-    register_post_type( 'member', $args );
+    register_post_type( 'author', $args );
 }
-add_action( 'init', 'cpt_members' );
+add_action( 'init', 'cpt_authors' );
 
 // function create_taxonomies() {
 //     // Services

@@ -276,7 +276,7 @@ add_action('acf/include_fields', function () {
         'type' => 'relationship',
         'name' => 'author',
         'required' => 0,
-        'post_type' => ['member'],
+        'post_type' => ['author'],
         'filters' => ['search'],
         // 'elements' => ['featured_image'],  // Afficher la photo
         'min' => 0,

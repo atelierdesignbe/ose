@@ -59,9 +59,6 @@ $found_posts  = $wp_query->found_posts;
                       <span class="badge badge-primary badge-outlined"><?= esc_html($type_label) ?></span>
                     <?php endif; ?>
                     <p class="search-result-item-title heading heading-md heading-primary"><?= get_the_title() ?></p>
-                    <?php if (get_the_excerpt()) : ?>
-                      <p class="search-result-item-excerpt paragraph paragraph-primary"><?= wp_trim_words(get_the_excerpt(), 20) ?></p>
-                    <?php endif; ?>
                   </div>
                   <span class="button button-underline button-primary is-fake">
                     <span class="button-title">Read more</span>

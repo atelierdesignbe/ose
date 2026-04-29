@@ -24,10 +24,8 @@
         </button>
       </div>
       <nav class="flex flex-wrap items-center">
-<<<<<<< HEAD
         <div class="md:hidden z-[99] relative">
           <button type="button" class="button button-flat menu-btn btn-animation autoscale <?php if($theme === 'text-dark-blue'): ?> bg-dark-blue text-white <?php else: ?> bg-white text-dark-blue <?php endif; ?>" js-menu-button>
-=======
         <div class="md:hidden z-[99] relative flex items-center @@:gap-x-[12px]">
           <!-- Search button — mobile only -->
           <button
@@ -39,7 +37,6 @@
             <?= icon('search', 'text-purple'); ?>
           </button>
           <button type="button" class="button button-flat button-primary menu-btn btn-animation autoscale <?php if($theme === 'text-dark-blue'): ?> bg-dark-blue text-white <?php else: ?> bg-white text-dark-blue <?php endif; ?>" js-menu-button>
->>>>>>> 5a87d15 (Add search)
             <span class="button-title">Menu</span>
             <span class="menu-btn-lines">
               <span class="menu-btn-line"></span>

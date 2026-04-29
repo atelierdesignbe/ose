@@ -12,7 +12,6 @@
     "ui:init": "node setup-ui.js init",
     "ui:update": "node setup-ui.js update",
     "ui:tokens": "node setup-ui.js tokens",
-    "ui:patches": "node setup-ui.js patches",
     "adui:init": "cd wordpress/wp-content/themes/atelierdesign/ad-ui/core && pnpm install",
     "adui:dev": "cd wordpress/wp-content/themes/atelierdesign/ad-ui/core && pnpm dev",
     "adui:build": "cd wordpress/wp-content/themes/atelierdesign/ad-ui/core && pnpm build",
