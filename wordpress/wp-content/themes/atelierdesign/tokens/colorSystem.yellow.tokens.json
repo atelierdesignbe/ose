@@ -517,6 +517,52 @@
           "$value": "{tailwindcss.colors.transparent}"
         }
       }
+    },
+    "simple": {
+      "normal": {
+        "text": {
+          "$type": "color",
+          "$value": "{foundations.decorative-fill-primary}"
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{foundations.decorative-fill-primary}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{foundations.decorative-fill-primary}"
+        },
+        "shadow": {
+          "$type": "color",
+          "$value": "{tailwindcss.colors.transparent}"
+        },
+        "background": {
+          "$type": "color",
+          "$value": "{tailwindcss.colors.transparent}"
+        }
+      },
+      "hover": {
+        "text": {
+          "$type": "color",
+          "$value": "{foundations.text}"
+        },
+        "icon": {
+          "$type": "color",
+          "$value": "{foundations.text}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{foundations.text}"
+        },
+        "shadow": {
+          "$type": "color",
+          "$value": "{tailwindcss.colors.transparent}"
+        },
+        "background": {
+          "$type": "color",
+          "$value": "{tailwindcss.colors.transparent}"
+        }
+      }
     }
   },
   "card": {

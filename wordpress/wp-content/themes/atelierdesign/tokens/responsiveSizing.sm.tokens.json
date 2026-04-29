@@ -1505,6 +1505,52 @@
         "$type": "dimension",
         "$value": "{button.underline.paddingY}"
       }
+    },
+    "simple": {
+      "paddingX": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "paddingY": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "gap": {
+        "$type": "dimension",
+        "$value": "{button.flat.gap}"
+      },
+      "iconSize": {
+        "$type": "dimension",
+        "$value": "{button.flat.iconSize}"
+      },
+      "shadowX": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowY": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "shadowBlur": {
+        "$type": "dimension",
+        "$value": "0px"
+      },
+      "paddingLeft": {
+        "$type": "dimension",
+        "$value": "{button.simple.paddingX}"
+      },
+      "paddingRight": {
+        "$type": "dimension",
+        "$value": "{button.simple.paddingX}"
+      },
+      "paddingTop": {
+        "$type": "dimension",
+        "$value": "{button.simple.paddingY}"
+      },
+      "paddingBottom": {
+        "$type": "dimension",
+        "$value": "{button.simple.paddingY}"
+      }
     }
   },
   "accordion": {
