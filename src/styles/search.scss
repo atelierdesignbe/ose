@@ -88,7 +88,7 @@
 
 // Button search dans le header
 .search-header-btn {
-  @apply @sm:gap-x-[8px] @md/lg:gap-x-[8px] border-l border-[--color-dark-blue] @sm:py-[8px] @md/lg:py-[8px]  @sm:px-[16px] @md/lg:px-[16px] relative;
+  @apply @sm:gap-x-[8px] @md/lg:gap-x-[8px] border-l border-current @sm:py-[8px] @md/lg:py-[8px]  @sm:px-[16px] @md/lg:px-[16px] relative text-current;
 
   span {
     position: relative;
@@ -99,12 +99,12 @@
     letter-spacing: calc((var(--typography-button-title-letter-spacing) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
     line-height: calc((var(--typography-button-title-line-height) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
     text-transform: uppercase;
+    color: currentColor;
 
     @screen md {
       font-size: calc((var(--typography-button-title-font-size) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
       letter-spacing: calc((var(--typography-button-title-letter-spacing) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
       line-height: calc((var(--typography-button-title-line-height) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
-  
     }
   }
 
@@ -115,10 +115,6 @@
 
   &:hover {
     @apply text-white;
-
-    span {
-      @apply text-white;
-    }
 
     &:after {
       @apply scale-x-100 origin-left;
@@ -260,6 +256,82 @@
   }
 }
 
+// ── Team filter dropdown — calqué sur .menu__list--sub ──────────────────────
+
+// Bouton trigger : largeur fixe pour éviter le saut au changement de label
+.team-filter-btn-trigger {
+  // on force une largeur min égale à la plus longue option possible
+  min-width: calc((180 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+  @screen md {
+    min-width: calc((200 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+  }
+
+  // Rotation chevron quand ouvert
+  &.is-open .team-filter-chevron svg {
+    transform: rotate(180deg);
+  }
+
+  .team-filter-chevron svg {
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+  }
+}
+
+.team-filter-dropdown {
+  padding-top: 10px; // espace transparent → zone hover continue, comme le submenu
+
+  // État initial avant is-open (opacity 0 + légère translation vers le bas)
+  .team-filter-list {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    background: white;
+    box-shadow: 0 8px 32px rgba(2, 29, 76, 0.14);
+    width: max-content;
+    min-width: calc((200 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+    @screen md {
+      min-width: calc((200 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    }
+  }
+
+  // État ouvert
+  &.is-open .team-filter-list {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.team-filter-item {
+  color: var(--color-dark-blue);
+  text-transform: none;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-size: calc((13 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+  padding: calc((10 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale))
+           calc((20 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+  @screen md {
+    font-size: calc((13 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    padding: calc((10 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale))
+             calc((20 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+  }
+
+  &:hover {
+    background-color: var(--color-light-blue);
+  }
+
+  &.is-active {
+    font-weight: 700;
+  }
+}
+
+// ── Animation membres au filtrage ─────────────────────────────────────────────
+[js-team-member] {
+  transition: opacity 0.25s ease, transform 0.3s ease;
+}
+
 // Member card
 .member-card {
   @apply relative overflow-hidden flex flex-row md:flex-col @sm:gap-[20px] @md/lg:gap-[20px] mm-sm:items-center;
@@ -294,3 +366,4 @@
     }
   }
 }
+

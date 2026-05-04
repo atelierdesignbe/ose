@@ -29,43 +29,155 @@
   }
 
   &-nav {
-    @apply flex flex-col @@:gap-[32px] items-start md:items-center md:flex-row;
+    @apply flex flex-col @md/lg:gap-[32px] items-start md:items-center md:flex-row;
 
-    li {
-      @apply flex items-center;
+    // ── Item wrapper ──────────────────────────────────────────────────────
+    .menu__item {
+      @apply flex flex-col items-start;
 
-      a {
-        @apply uppercase font-medium @sm:py-2 md:py-0;
-        font-size: calc((var(--typography-button-title-font-size) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
-        letter-spacing: calc((var(--typography-button-title-letter-spacing) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
-        line-height: calc((var(--typography-button-title-line-height) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+      @screen md {
+        position: relative;
+        @apply items-center;
+      }
+    }
 
-        @screen md {
-          font-size: calc((var(--typography-button-title-font-size) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
-          letter-spacing: calc((var(--typography-button-title-letter-spacing) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
-          line-height: calc((var(--typography-button-title-line-height) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+    // ── Styles partagés : liens + trigger (même typo) ─────────────────────
+    li > a,
+    .menu__trigger {
+      @apply uppercase font-medium @sm:py-2 md:py-0 mm-sm:w-full;
+      font-size: calc((var(--typography-button-title-font-size) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+      letter-spacing: calc((var(--typography-button-title-letter-spacing) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+      line-height: calc((var(--typography-button-title-line-height) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+
+      @screen md {
+        font-size: calc((var(--typography-button-title-font-size) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+        letter-spacing: calc((var(--typography-button-title-letter-spacing) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+        line-height: calc((var(--typography-button-title-line-height) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      }
+
+      &.is-active {
+        @apply mm-sm:text-yellow;
+
+        &:after {
+          @apply scale-x-100;
+        }
+      }
+
+      @media (max-width: 599px) {
+        .button-title {
+          @apply @sm:text-[23px];
+        }
+      }
+    }
+
+    // ── Chevron du trigger ────────────────────────────────────────────────
+    .menu__trigger {
+      @apply flex flex-row items-center;
+
+      &-label {
+        @apply flex flex-row items-center @@:gap-[6px];
+      }
+
+      &-chevron {
+        @apply flex items-center;
+
+        svg {
+          transition: transform 0.25s ease;
+        }
+      }
+
+      &[aria-expanded="true"] .menu__trigger-chevron svg {
+        transform: rotate(180deg);
+      }
+    }
+
+    // ── Dropdown desktop : CSS hover + fade-up ────────────────────────────
+    @screen md {
+      .menu__dropdown {
+        position: absolute;
+        top: 100%;           // colle au trigger — pas de gap qui coupe le hover
+        left: 0;
+        padding-top: 14px;   // l'espace visuel est en padding : la zone hover reste continue
+        min-width: 220px;
+        z-index: 200;
+
+        opacity: 0;
+        transform: translateY(10px);
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease;
+
+        // La boîte blanche est sur la liste, pas sur le wrapper transparent
+        .menu__list--sub {
+          background: white;
+          box-shadow: 0 8px 32px rgba(2, 29, 76, 0.14);
+        }
+      }
+
+      .menu__item:hover > .menu__dropdown,
+      .menu__item:focus-within > .menu__dropdown {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .menu__list--sub {
+        @apply flex flex-col;
+
+        .menu__item {
+          @apply w-full;
         }
 
-        &.is-active {
-          @apply mm-sm:text-yellow;
-          
-          &:after {
-            @apply scale-x-100;
+        .menu__link {
+          @apply block w-full normal-case font-normal text-dark-blue @sm:text-[13px] @md/lg:text-[13px] @md/lg:py-[10px] @md/lg:px-[20px];
+         
+          letter-spacing: 0.04em;
+
+          &:hover {
+            @apply bg-light-blue;
+          }
+
+          &.is-active {
+            @apply font-bold;
           }
         }
+      }
 
-        @media (max-width: 599px) {
-          .button-title {
-            @apply @sm:text-[23px]
+      // Ferme les submenus quand la souris quitte le menu-nav lui-même
+      // (au cas où pointer-events: none ne suffit pas sur certains navigateurs)
+      .menu__item:not(:hover):not(:focus-within) > .menu__dropdown {
+        pointer-events: none;
+      }
+    }
+
+    // ── Accordion mobile ──────────────────────────────────────────────────
+    @media (max-width: 599px) {
+      .menu__dropdown {
+        @apply w-full overflow-hidden;
+        max-height: 0;
+        transition: max-height 0.35s ease;
+
+        &.is-open {
+          max-height: 600px;
+        }
+      }
+
+      .menu__list--sub {
+        @apply flex flex-col pl-4 pt-1 pb-3 gap-y-1;
+
+        .menu__link {
+          @apply py-2 text-white;
+          font-size: calc((var(--typography-button-title-font-size) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale) * 0.85);
+
+          &.is-active {
+            @apply text-yellow font-bold;
           }
         }
-        
       }
     }
   }
 
   &-btn {
-    @apply flex items-center @@:gap-x-[10px] z-[99] md:hidden border-0 text-white;
+    @apply flex items-center @@:gap-x-[10px] z-[99] md:hidden border-0 ;
 
     .button-title {
       @apply text-current;
@@ -108,5 +220,55 @@
         }
       }
     }
+  }
+}
+@screen md {
+  .menu-wrapper {
+    .button-flat {
+      border-color: currentColor;
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .menu__link {
+    &:after {
+      display: none;
+    }
+  }
+  .menu-wrapper {
+    .button-flat {
+      border-color: var(--color-yellow);
+      color: var(--color-dark-blue) !important;
+
+      .button-title {
+        color: currentColor;
+      }
+    }
+
+    & > .menu__list > .menu__item {
+      @apply w-full border-b border-[--color-white-20] @sm:py-[20px];
+
+      .menu__trigger {
+        &-icon {
+          @apply flex-none;
+        }
+        &-label {
+          @apply w-full justify-between flex items-center @sm:gap-x-[12px];
+
+          .button-title {
+            @apply flex-auto text-left;
+          }
+        }
+      }
+    }
+  }
+
+  .menu-nav .menu__list--sub .menu__link {
+    @apply @sm:text-[18px] @sm:leading-[26px]  normal-case;
+  }
+
+  .menu__list--sub {
+    @apply flex flex-col pt-0 pb-0 @sm:gap-y-[8px];
   }
 }

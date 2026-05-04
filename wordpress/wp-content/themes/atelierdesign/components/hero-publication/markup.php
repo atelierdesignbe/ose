@@ -42,7 +42,7 @@ $projectLink = get_field('publication-link', 'acf-options-global-fields');
           <ul class="flex flex-wrap items-center @@:gap-[8px] autoscale-children aos animate-fadeinup animate-delay-300">
             <?php foreach($authors as $author):?>
               <li>
-                <a href="<?= $projectLink ? rtrim($projectLink['url'], '/')."/authors/".$author->ID : "/publications/?authors=".$author->ID; ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= $author->post_title; ?></a>
+                <a href="<?= get_permalink($author->ID) ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= $author->post_title; ?></a>
               </li>
             <?php endforeach; ?>
           </ul>

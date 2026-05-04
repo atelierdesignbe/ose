@@ -2,15 +2,15 @@
 
 $headerFields = [
   [
-    'key' => 'field-header-menu-nav',
+    'key'   => 'field-header-menu-',
     'label' => 'Menu',
-    'type' => 'link',
-    'name' => 'header-nav',
-    'type' => 'relationship',
-    'post_type' => ['page'], // tu peux mettre ce que tu veux ici
-    'filters' => ['search'], // filtres dans l’UI ACF
-    'return_format' => 'object',
+    'name'  => 'header-nav',
+    'type'  => 'clone',
+    'clone' => ['field-menu-group'],
+    'prefix_name' => 1,
+    'display' => 'group'
   ],
+
   [
     'key' => 'field-header-contact',
     'label' => 'Contact link',

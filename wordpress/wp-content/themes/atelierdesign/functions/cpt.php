@@ -36,7 +36,7 @@ function cpt_events() {
         'hierarchical'       => false,
         'menu_position'      => 21,
         'show_in_rest'       => true,
-        'supports'           => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+        'supports'           => array( 'title', 'editor', 'revisions' ),
         'taxonomies'         => array( )
     );
 
@@ -76,7 +76,7 @@ function cpt_publications() {
         'hierarchical'       => false,
         'menu_position'      => 22,
         'show_in_rest'       => true,
-        'supports'           => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+        'supports'           => array( 'title', 'editor', 'revisions' ),
         'taxonomies'         => array( 'themes', 'types', 'projects' )
     );
 
@@ -116,7 +116,7 @@ function cpt_projects() {
         'hierarchical'       => false,
         'menu_position'      => 23,
         'show_in_rest'       => true,
-        'supports'           => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+        'supports'           => array( 'title', 'editor', 'revisions' ),
         'taxonomies'         => array( 'themes', 'types' )
     );
 
@@ -159,16 +159,60 @@ function cpt_authors() {
         'hierarchical'        => false,
         'menu_position'       => 22,
         'show_in_rest'        => true,
-        'supports'            => array( 'title', 'thumbnail', 'revisions' ),
+        'supports'            => array( 'title', 'revisions' ),
         'exclude_from_search' => false,
         'show_in_nav_menus'   => false,
         'can_export'          => true,
-        'taxonomies'          => array()
+        'taxonomies'          => array('member_type')
     );
 
     register_post_type( 'author', $args );
 }
 add_action( 'init', 'cpt_authors' );
+
+// Taxonomy: Member Type (pour le CPT author)
+function custom_taxonomy_member_type() {
+    $labels = array(
+        'name'              => 'Member Types',
+        'singular_name'     => 'Member Type',
+        'search_items'      => 'Search Member Types',
+        'all_items'         => 'All Member Types',
+        'edit_item'         => 'Edit Member Type',
+        'update_item'       => 'Update Member Type',
+        'add_new_item'      => 'Add New Member Type',
+        'new_item_name'     => 'New Member Type',
+        'menu_name'         => 'Member Types',
+    );
+
+    $args = array(
+        'labels'            => $labels,
+        'hierarchical'      => true,  // comme des catégories (checkbox dans l'admin)
+        'public'            => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_nav_menus' => false,
+        'show_tagcloud'     => false,
+        'show_in_rest'      => true,
+        'rewrite'           => array('slug' => 'member-type'),
+    );
+
+    register_taxonomy('member_type', array('author'), $args);
+}
+add_action('init', 'custom_taxonomy_member_type');
+
+// Seed des termes par défaut (exécuté une seule fois via versioning)
+add_action('init', function () {
+    $version = '1.0';
+    if (get_option('ose_member_type_terms_version') !== $version) {
+        $default_terms = ['Team OSE', 'Research Team', 'Administrative Team', 'Research Associate'];
+        foreach ($default_terms as $term) {
+            if (!term_exists($term, 'member_type')) {
+                wp_insert_term($term, 'member_type');
+            }
+        }
+        update_option('ose_member_type_terms_version', $version);
+    }
+}, 20); // priorité 20 → après l'enregistrement de la taxonomie (priorité défaut 10)
 
 // function create_taxonomies() {
 //     // Services

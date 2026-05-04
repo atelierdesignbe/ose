@@ -7,6 +7,8 @@ $fields      = get_fields();
 $role        = $fields['role'] ?? '';
 $cover        = $fields['cover'] ?? '';
 $bio        = $fields['submary'] ?? '';
+$types = get_the_terms( get_the_ID(), 'member_type' );
+$teamLink = get_field('team-link', 'acf-options-global-fields');
 
 ?>
 <?php get_header(); ?>
@@ -20,15 +22,24 @@ $bio        = $fields['submary'] ?? '';
     <div class="px-container relative z-[10]">
       <div class="grid-base @sm:gap-y-[82px] @md/lg:gap-y-[16px]">
         <div class="col-span-10 col-start-2 md:col-span-6 md:col-start-2 ">
-          <div class="member-image">
+          <div class="member-image aos animate-fadeinup">
             <?= wp_get_attachment_image($cover['ID'], 'large', null, ['class' => 'object-cover w-full h-full image-shadow']); ?>
           </div>
         </div>
         <div class="col-span-12 md:col-span-14 md:col-start-9">
           <div class="member-content flex flex-col @sm:gap-y-[16px] @md/lg:gap-y-[16px] @md/lg:pt-[92px]">
-            <h1 class="heading heading-2xl "><?= get_the_title() ?></h1>
-            <?php if($role): ?><p class="heading-lg heading-primary"><?= $role ?></p><?php endif; ?>
-            <?php if($bio): ?><p class="paragraph-md paragraph-primary"><?= $bio ?></p><?php endif; ?>
+            <?php if($types): ?>
+              <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup autoscale-children">
+                <?php foreach($types as $type): ?>
+                  <li>
+                    <a href="<?= $teamLink ? rtrim($teamLink['url'], '/')."/".$type->slug : "/team/".$type->slug ?>" class="badge badge-primary badge-filled"><?= $type->name ?></a>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
+            <h1 class="heading heading-2xl aos animate-fadeinup"><?= get_the_title() ?></h1>
+            <?php if($role): ?><p class="heading-lg heading-primary aos animate-fadeinup"><?= $role ?></p><?php endif; ?>
+            <?php if($bio): ?><p class="paragraph-md paragraph-primary aos animate-fadeinup"><?= $bio ?></p><?php endif; ?>
             
           </div>
         </div>
@@ -119,11 +130,11 @@ $bio        = $fields['submary'] ?? '';
       <div class="px-container">
 
         <div class="flex flex-col @sm:gap-y-[16px] md:flex-row md:items-center md:justify-between @sm:mb-[40px] @md/lg:mb-[40px]">
-          <h2 class="heading heading-lg heading-primary"><?= pll__('Projects', 'atelierdesign') ?></h2>
+          <h2 class="heading heading-lg heading-primary aos animate-fadeinup"><?= pll__('Projects', 'atelierdesign') ?></h2>
           <?php if ( $project_link ) : ?>
             <a
               href="<?= esc_url( $project_link ) ?>"
-              class="button button-outline button-primary flex items-center @@:gap-x-[12px] w-fit"
+              class="button button-outline button-primary flex items-center @@:gap-x-[12px] w-fit aos animate-fadeinup"
             >
               <span class="button-title"><?= pll__('See all projects', 'atelierdesign') ?></span>
             </a>
@@ -132,7 +143,7 @@ $bio        = $fields['submary'] ?? '';
 
         <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px]">
           <?php foreach ( $projects as $project ) : ?>
-            <div>
+            <div class="aos animate-fadeinup">
               <?php get_template_part( '/components/project', null, ['id' => $project->ID] ); ?>
             </div>
           <?php endforeach; ?>
@@ -147,7 +158,7 @@ $bio        = $fields['submary'] ?? '';
       <div class="px-container">
 
         <div class="flex flex-col @sm:gap-y-[16px] md:flex-row md:items-center md:justify-between @sm:mb-[40px] @md/lg:mb-[40px]">
-          <h2 class="heading heading-lg heading-primary">Publications</h2>
+          <h2 class="heading heading-lg heading-primary aos animate-fadeinup">Publications</h2>
           <?php if ( $publication_link ) : ?>
             <a
               href="<?= esc_url( $publication_link ) ?>"
@@ -160,7 +171,7 @@ $bio        = $fields['submary'] ?? '';
 
         <div class="grid grid-cols-1 md:grid-cols-2 @@:gap-[15px]">
           <?php foreach ( $publications as $pub ) : ?>
-            <div>
+            <div class="aos animate-fadeinup">
               <?php get_template_part( '/components/publication', null, ['id' => $pub->ID, 'theme' => 'theme-light-blue'] ); ?>
             </div>
           <?php endforeach; ?>

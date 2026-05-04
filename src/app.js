@@ -4,6 +4,7 @@ import './scripts/expand'
 import './scripts/menu'
 import './scripts/ajax'
 import './scripts/search'
+import './scripts/team'
 
 import Lenis from 'lenis'
 

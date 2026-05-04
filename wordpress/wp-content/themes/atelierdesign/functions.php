@@ -487,3 +487,97 @@ add_filter('query_vars', function($vars) {
   $vars[] = 'active_filter_value';
   return $vars;
 }, 1);
+
+
+/**
+ * @TODO
+ * Add descriptioon label
+ * Add 
+ */
+function menu_build_fields(
+  string $fieldKey,
+  int    $maxDepth,
+  int    $level,
+  bool   $isTopLevel
+): array {
+
+  $typeKey = $fieldKey . '-l' . $level . '-type';
+
+  $fields = [];
+
+  // ── Type toggle ────────────────────────────────────────────────────────────
+  $choices = [ 'link' => 'Link' ];
+  if ( $level < $maxDepth ) {
+    $choices['submenu'] = 'Submenu';
+  }
+
+  if(sizeof($choices) > 1):
+    $fields[] = [
+      'key'           => $typeKey,
+      'label'         => 'Type',
+      'name'          => 'type',
+      'type'          => 'button_group',
+      'choices'       => $choices,
+      'default_value' => 'link',
+      'layout'        => 'horizontal',
+      'return_format' => 'value',
+      'wrapper'       => [ 'width' => $level < $maxDepth ? '50%' : '100%' ],
+    ];
+  endif;
+
+
+  // ── Link field ─────────────────────────────────────────────────────────────
+
+  $fields[] = [
+    'key'               => $fieldKey . '-l' . $level . '-link',
+    'label'             => 'Link',
+    'name'              => 'link',
+    'type'              => 'link',
+    'conditional_logic' => [
+      [ [ 'field' => $typeKey, 'operator' => '==', 'value' => 'link' ] ],
+    ],
+  ];
+
+  // ── Submenu fields (only when depth allows) ────────────────────────────────
+  if ( $level < $maxDepth ) {
+
+    $fields[] = [
+      'key'               => $fieldKey . '-l' . $level . '-label',
+      'label'             => 'Label',
+      'name'              => 'label',
+      'type'              => 'text',
+      
+      'conditional_logic' => [
+        [ [ 'field' => $typeKey, 'operator' => '==', 'value' => 'submenu' ] ],
+      ],
+    ];
+
+    $fields[] = [
+      'key'               => $fieldKey . '-l' . $level . '-items',
+      'label'             => 'Items',
+      'name'              => 'items',
+      'type'              => 'flexible_content',
+      // 'max'               => 1,
+      'button_label'      => 'Add nav item',
+      'layouts'           => [
+        [
+          'key'        => $fieldKey . '-l' . ( $level + 1 ) . '-nav-item',
+          'name'       => 'nav_item',
+          'label'      => 'Nav item',
+          'display'    => 'block',
+          'sub_fields' => menu_build_fields(
+            $fieldKey,
+            $maxDepth,
+            $level + 1,
+            false,
+          ),
+        ],
+      ],
+      'conditional_logic' => [
+        [ [ 'field' => $typeKey, 'operator' => '==', 'value' => 'submenu' ] ],
+      ],
+    ];
+  }
+
+  return $fields;
+}

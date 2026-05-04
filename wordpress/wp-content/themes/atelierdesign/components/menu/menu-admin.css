@@ -1,0 +1,140 @@
+/**
+ * menu-admin.css
+ *
+ * Admin styles pour le flexible content Menu.
+ * On masque .acfe-layout-title (qui affiche "Nav item" / "Sub nav item")
+ * et on affiche à la place notre .acf-field-ad-info injecté en JS.
+ */
+
+/* ── Validation — champ en erreur ──────────────────────────────────────────
+ *
+ * ACF ajoute .acf-error sur le .acf-field quand acf/validate_value échoue.
+ * On applique un encadré rouge + fond rosé pour le rendre bien visible.
+ */
+[data-key^="field-menu"] .acf-field.acf-error {
+  border: 1px solid #d63638 !important;
+  border-radius: 4px;
+  background-color: #fcf0f1;
+  padding: 8px;
+  margin-bottom: 4px;
+}
+
+/* Champ link natif ACF (wrapper interne .acf-link) */
+[data-key^="field-menu"] .acf-field.acf-error .acf-link {
+  border-color: #d63638;
+  border-radius: 3px;
+}
+
+/* Message d'erreur sous le champ */
+[data-key^="field-menu"] .acf-field.acf-error .acf-error-message,
+[data-key^="field-menu"] .acf-field.acf-error .acf-notice.-error {
+  color: #d63638;
+  font-size: 12px;
+  margin-top: 4px;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+/* ── Validation — handle de layout en erreur ───────────────────────────────
+ *
+ * Quand un layout (accordéon) contient un champ en erreur, on colore
+ * son handle en rouge pour signaler le problème même si replié.
+ * La classe .has-acf-error est ajoutée par menu-admin.js.
+ */
+[data-key^="field-menu"] .layout.has-acf-error > .acf-fc-layout-handle {
+  border-left: 3px solid #d63638;
+  background-color: #fcf0f1;
+}
+
+[data-key^="field-menu"] .layout.has-acf-error > .acf-fc-layout-handle .acf-fc-layout-order,
+[data-key^="field-menu"] .layout.has-acf-error > .acf-fc-layout-handle .acf-fc-layout-handle-text {
+  color: #d63638;
+}
+
+/* ── Masquer le bouton « more layout actions » (Rename / Disable) ──────────
+ *
+ * Ces deux actions n'ont pas de sens dans un menu éditorial.
+ * On cible le bouton via data-name pour rester scopé à nos champs.
+ */
+/* [data-key^="field-menu"] [data-name="more-layout-actions"] {
+  display: none !important;
+} */
+
+/* ── Bouton « Disabled » custom dans le handle ─────────────────────────────
+ *
+ * Remplace visuellement le menu 3-points masqué par un bouton Disable
+ * dédié, injecté via JS (voir menu-admin.js → .acf-field-ad-disable).
+ *
+ * Structure attendue dans le DOM :
+ *   <a class="acf-field-ad-disable acf-icon -cancel"
+ *      href="#"
+ *      title="Disable"
+ *      data-name="disable-layout"></a>
+ */
+[data-key^="field-menu"] .acf-fc-layout-handle .acf-field-ad-disable {
+  float: right;
+  margin-left: 4px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity .15s ease-in-out;
+}
+
+[data-key^="field-menu"] .acf-fc-layout-handle .acf-field-ad-disable:hover {
+  opacity: 1;
+  color: #d63638;
+}
+
+/* État « layout désactivé » (classe ACFE native) : on barre le handle */
+[data-key^="field-menu"] .layout.acfe-flexible-disabled > .acf-fc-layout-handle {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+[data-key^="field-menu"] .layout.acfe-flexible-disabled > .acf-fc-layout-handle .acf-field-ad-disable {
+  opacity: 1;
+  color: #d63638;
+}
+
+/* ── Masquer le titre ACFE par défaut pour nos layouts menu ────────────────
+ *
+ * Sélecteur :
+ *   .acf-field[data-key^="field-menu"]  → le champ flex wrapper (top + nested)
+ *   .acf-fc-layout-handle               → le handle natif ACF
+ *   .acfe-layout-title                  → le span titre ACFE
+ *
+ * On doit aussi cibler [data-name="items"] car les sous-niveaux ont leur
+ * propre data-key (field-menu-l0-items, field-menu-l1-items, etc.)
+ * mais sont tous descendants d'un ancêtre [data-key^="field-menu"].
+ */
+[data-key^="field-menu"] .acf-fc-layout-handle .acfe-layout-title {
+  display: none !important;
+}
+
+/* ── Conteneur info (injecté dans .acf-fc-layout-handle) ───────────────── */
+
+.acf-field-ad-info {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  margin-left: 2px;
+}
+
+/* ── Badge + description ─────────────────────────────────────────────────── */
+
+.acf-field-ad-menu,
+.acf-field-ad-desc {
+  font-size: 12px;
+  font-weight: 200;
+  font-style: italic;
+  color: currentColor;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.acf-field-ad-desc::before {
+  content: '\00b7';
+  margin: 0 4px;
+  opacity: 0.4;
+}

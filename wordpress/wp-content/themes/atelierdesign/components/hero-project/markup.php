@@ -6,6 +6,7 @@ $description = get_field('description');
 $date = get_field('date_start');
 $coverState = get_field('cover-status');
 
+$authors = get_field('author');
 
 $themes = get_the_terms( get_the_ID(), 'themes' );
 $types = get_the_terms( get_the_ID(), 'types' );
@@ -23,6 +24,15 @@ if (!$cover) $coverState = 'none';
         </div>
         <h1 class="heading heading-primary @sm:text-[46px] @md/lg:text-[72px] font-serif font-light @sm:leading-[48px] @md/lg:leading-[69px] autoscale aos animate-fadeinup autoscale"><?= $title ?></h1>
         <?php if($description): ?><p class="paragraph paragraph-primary paragraph-lg autoscale aos animate-fadeinup animate-delay-200 autoscale"><?= $description ?></p><?php endif; ?>
+        <?php if($authors): ?>
+          <ul class="flex flex-wrap items-center @@:gap-[8px] autoscale-children aos animate-fadeinup animate-delay-300">
+            <?php foreach($authors as $author):?>
+              <li>
+                <a href="<?= get_permalink($author->ID) ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= $author->post_title; ?></a>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
         <?php if($types): ?>
           <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-300 autoscale-children">
             <?php foreach($types as $type): ?>

@@ -440,3 +440,20 @@ a {
     }
   }
 }
+
+.menu {
+  .button-flat:not(.menu-btn),
+  .lang-btn {
+    color: currentColor;
+    .button-title {
+      color: currentColor
+    }
+  }
+
+  .menu-btn {
+    .button-title,
+    .menu-btn-lines {
+      color: currentColor
+    }
+  }
+}

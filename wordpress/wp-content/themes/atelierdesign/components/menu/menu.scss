@@ -1,0 +1,157 @@
+// =============================================================================
+// Menu component
+//
+// Toutes les CSS custom properties --menu-* sont générées automatiquement
+// par le build Vite depuis menu.tokens.json > "styles".
+// Pour modifier un token : éditer menu.tokens.json uniquement.
+//
+// Breakpoint interne : desktop ≥ 1024 px (indépendant du breakpoint Tailwind md)
+// =============================================================================
+
+// $menu-breakpoint: 1024px;
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+// @mixin menu-desktop {
+//   @media (min-width: #{$menu-breakpoint}) { @content; }
+// }
+
+// @mixin menu-mobile {
+//   @media (max-width: #{$menu-breakpoint - 1px}) { @content; }
+// }
+
+// ── Component ─────────────────────────────────────────────────────────────────
+
+.menu {
+  // position: relative;
+
+  &__button-control {
+    @apply flex flex-wrap items-center md:hidden z-[100] relative;
+    gap: var(--menu-nav-button-gap);
+    padding-inline: var(--menu-nav-button-px);
+    padding-block: var(--menu-nav-button-py);
+
+    font-size: var(--menu-nav-button-font-size);
+    font-family: var(--menu-nav-button-font-family);
+    letter-spacing: var(--menu-nav-button-letter-spacing);
+    font-weight: var(--menu-nav-button-font-weight);
+    line-height: var(--menu-nav-button-line-height);
+    text-transform: var(--menu-nav-button-text-transform);
+    color: var(--menu-nav-button-color);
+    text-decoration: var(--menu-nav-button-text-decoration);
+    text-underline-offset: var(--menu-nav-button-underline-offset);
+
+    border: var(--menu-nav-button-border-width) solid var(--menu-nav-button-border-color);
+    border-radius: var(--menu-nav-button-radius);
+    background:  var(--menu-nav-button-background);
+  }
+
+  &__button-lines {
+    display: block;
+  }
+
+  &__button-line {
+    display: block;
+    position: relative;
+    width: var(--menu-nav-button-lines-width);
+    height: var(--menu-nav-button-lines-height);
+    background: var(--menu-nav-button-lines-color);
+    transform-origin: center ;
+    transition: all .3s ease-out;
+    margin-block: var(--menu-nav-button-lines-gap);
+
+    &:nth-child(3) {
+      transform-origin: center right;
+      transition: all .3s ease-out;
+    }
+  }
+
+  &__button-control.is-open {
+    .menu__button-line {
+      &:first-child {
+        top: 1px;
+        transform: translateY(var(--menu-nav-button-lines-gap)) rotate(45deg);
+      }
+      &:nth-child(2) {
+        transform: rotate(-45deg);
+      }
+      &:nth-child(3) {
+        @apply @sm:translate-y-[6px];
+      }
+
+      &:nth-child(1) {
+        // transform: translateY(var(----menu-nav-button-lines-gap));
+      }
+    }
+  }
+
+  &__nav {
+    // MODAL
+    @media (max-width: 599px) {
+      @apply fixed hidden;
+      width: calc(100% - (var(--menu-nav-modal-offset-x) * 2));
+      height: calc(100% - (var(--menu-nav-modal-offset-y) * 2));
+      left: var(--menu-nav-modal-offset-x);
+      top: var(--menu-nav-modal-offset-y);
+      background: var(--menu-nav-modal-background);
+      padding-top: var(--menu-nav-modal-padding-top);
+      padding-bottom: var(--menu-nav-modal-padding-bottom);
+      border-radius: var(--menu-nav-modal-radius);
+      opacity: 0;
+
+      overflow: auto;
+
+      &-inner {
+        @apply flex flex-col container;
+        gap: var(--menu-nav-modal-gap);
+        align-items: var(--menu-nav-modal-alignement);
+
+        transition: all .3s ease-out;
+        opacity: 0;
+        transform: translateY(10px);
+
+        .menu__list {
+          width: 100%;
+        }
+      }
+
+      &.is-open {
+        opacity: 1;
+
+        .menu__nav-inner {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+    }
+
+    @screen md {
+      &-inner {
+        @apply flex flex-row items-center;
+
+        gap: var(--menu-nav-gap);
+      }
+    }
+  }
+
+  &__trigger {
+    @apply flex flex-col items-start;
+
+    &-label {
+      @apply flex flex-row @@:gap-3 ;
+    }
+
+    &-desc {
+      @apply mm-sm:hidden @sm:text-[11px] @md/lg:text-[11px];
+    }
+  }
+
+  &__nav-inner {
+    & > .menu__list {
+      .menu__trigger-label {
+        @apply @sm:text-[13px] @md/lg:text-[13px] uppercase;
+      }
+
+    }
+  }
+}

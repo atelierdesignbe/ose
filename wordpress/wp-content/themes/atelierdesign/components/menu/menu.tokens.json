@@ -1,0 +1,182 @@
+{
+  "default": {
+    "depth": 1,
+    "max": 4,
+    "hasAppearance": true,
+    "appearance": "default",
+    "appearances": ["default:Default", "flat:Flat", "outline:Outline"],
+    "chevronIcon": "chevron-down",
+    "depthMode": "accordeon",
+    "nav": {
+      "button": {
+        "label": "Menu",
+        "icon": true
+      },
+      "background": "var(--color-soft-green)",
+      "padding-top": 112,
+      "padding-bottom": 12
+    }
+  },
+  "styles": {
+    "gap-x": 26,
+    "gap-y": 24,
+
+    "link": {
+      "gap": 6,
+      "font-size":      15,
+      "font-weight":    "400",
+      "letter-spacing": "auto",
+      "line-height":    14,
+      "text-transform": "uppercase",
+      "font-family":    "var(--font)",
+      "text-decoration": "", 
+      "underline-offset": 4, 
+      "color":        "var(--color-dark-green)",
+
+      "padding-x": 0,
+      "padding-y": 0,
+
+      "active": {
+        "color":        "black",
+        "text-decoration": "underline"
+      }
+    },
+
+    "trigger": {
+    },
+
+    "dropdown": {
+      "background": "white",
+      "border-color": "transparent",
+      "border-width": 0,
+      "radius": 0,
+      "px": 0,
+      "py": 0,
+      "offset-top": 10,
+      "offset-left": -24,
+      "min-width": 240,
+      "max-height": 320,
+      "gap-y": 0,
+      "shadow": "4px 4px 34px rgba(32, 33, 38, 0.15)",
+
+      "depth": {
+        "offset-left": 32,
+        "offset-top": -24,
+        "background": "var(--color-white)",
+        "border-color": "var(--color-dark-green)",
+        "border-width": 2,
+        "radius": 12,
+        "shadow": "4px 4px 34px rgba(32, 33, 38, 0.15)"
+      },
+
+      "link": {
+        "gap": 6,
+        "font-size":      13,
+        "font-weight":    "300",
+        "letter-spacing": 1,
+        "line-height":    14,
+        "text-transform": "uppercase",
+        "font-family":    "var(--font)",
+        "text-decoration": "none", 
+        "underline-offset": 0, 
+        "color":  "black",
+        "background":   "transparent",
+        "border-width": 0,
+        "border-color": "transparent",
+        "border-radius": 0,
+        
+        "padding-x": 14,
+        "padding-y": 20,
+
+        "hover": {
+          "color":        "current",
+          "background":        "var(--color-grey)",
+          "border-color": "transparent"
+        },
+  
+        "active": {
+          "color":        "black",
+          "background":        "var(--color-yellow)",
+          "text-decoration": "none"
+        }
+      }
+    },
+
+    "accordeon": {
+      "background": "transparent",
+      "border-color": "transparent",
+      "border-width": 0,
+      "radius": 0,
+      "margin-top": 0,
+      "color": "white",
+      "px": 0,
+      "py": 0
+    },
+
+    "nav": {
+      "gap": 24,
+      "button": {
+        "background": "var(--color-black)",
+        "border-color": "var(--color-black)",
+        "border-width": 0,
+        "radius": 8,
+        "px": 20,
+        "py": 14,
+        "gap": 12,
+        "font-size":      14,
+        "font-weight":    "400",
+        "letter-spacing": 0,
+        "line-height":    14,
+        "text-transform": "",
+        "font-family":    "var(--font-sans)",
+        "text-decoration": "none", 
+        "underline-offset": 0, 
+        "color":   "white",
+        "lines": {
+          "width": 18,
+          "height": "1px",
+          "gap": "4px",
+          "color": "white"
+        }
+      },
+      "modal": {
+        "background": "var(--color-purple)",
+        "offset-x": 0, 
+        "offset-y": 0,
+        "padding-top": 112,
+        "padding-bottom": 6,
+        "radius": 0,
+        "gap": 24,
+        "alignement": "start",
+        "link": {
+          "color": "current"
+        }
+      }
+    },
+
+    "mobile": {
+      "bg":        "#fff",
+      "font-size": "1rem"
+    },
+    "sm": {
+      "link": {
+        "text-transform": "none"
+      },
+      "dropdown": {
+        "link": {
+          "text-transform": "none"
+        }
+      }
+    },
+    "md": {
+      "link": {
+        "text-transform": "transform"
+      },
+      "dropdown": {
+        "link": {
+          "text-transform": "uppercase"
+        }
+      }
+    }
+  }
+}

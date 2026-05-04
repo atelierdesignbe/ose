@@ -2,7 +2,7 @@
 /**
  * Search Results Template
  */
-global $adwp;
+global $adwp, $wp_query;
 $search_query = get_search_query();
 $found_posts  = $wp_query->found_posts;
 ?>
@@ -17,7 +17,7 @@ $found_posts  = $wp_query->found_posts;
   <!-- HERO SEARCH -->
   <section class="search-results-page-hero theme-white bg-layout-main relative overflow-hidden">
     <div class="px-container flex flex-col @@:gap-y-[20px] relative z-10 autoscale-children">
-      <p class="button-title">Search &amp; Press Enter</p>
+      <p class="@sm:text-[13px] @md/lg:text-[13px] @sm:tracking-[1px] @md/lg:tracking-[2px] uppercase text-dark-blue"><?= pll__('Search & Press Enter', 'atelierdesign') ?></p>
       <form role="search" method="get" action="<?= esc_url(home_url('/')) ?>" class="search-results-page-form">
         <textarea
           name="s"
@@ -42,7 +42,7 @@ $found_posts  = $wp_query->found_posts;
       <div class="px-container flex flex-col @sm:gap-y-[24px] @md/lg:gap-y-[40px]">
       <?php if ($search_query) : ?>
         <p class="paragraph-lg paragraph-primary paragraph">
-          <?= $found_posts ?> <?= $found_posts > 1 ? 'results found' : 'result found' ?>
+          <?= $found_posts ?> <?= $found_posts > 1 ? pll__('results found', 'atelierdesign') : pll__('result found', 'atelierdesign') ?>
         </p>
       <?php endif; ?>
         <div class="grid grid-base @@:gap-x-[12px] @@:gap-y-[12px]">
@@ -56,12 +56,12 @@ $found_posts  = $wp_query->found_posts;
                     $type_label = $post_type_obj ? $post_type_obj->labels->singular_name : '';
                     if ($type_label && get_post_type() !== 'page' && get_post_type() !== 'post') :
                     ?>
-                      <span class="badge badge-primary badge-outlined"><?= esc_html($type_label) ?></span>
+                      <!-- <span class="badge badge-primary badge-normal"><?= esc_html($type_label) ?></span> -->
                     <?php endif; ?>
                     <p class="search-result-item-title heading heading-md heading-primary"><?= get_the_title() ?></p>
                   </div>
                   <span class="button button-underline button-primary is-fake">
-                    <span class="button-title">Read more</span>
+                    <span class="button-title"><?= pll__('Read more', 'atelierdesign') ?></span>
                   </span>
                 </div>
               </a>
@@ -80,13 +80,13 @@ $found_posts  = $wp_query->found_posts;
       <div class="px-container">
         <p class="heading heading-lg heading-primary">
           <?php if ($search_query) : ?>
-            No results found for &ldquo;<?= esc_html($search_query) ?>&rdquo;
+            <?= sprintf(pll__('No results found for "%s"', 'atelierdesign'), esc_html($search_query)) ?>
           <?php else : ?>
-            Please enter a search term.
+            <?= pll__('Please enter a search term.', 'atelierdesign') ?>
           <?php endif; ?>
         </p>
         <p class="paragraph paragraph-primary paragraph-lg @@:mt-[24px]">
-          Try different keywords or browse our content.
+          <?= pll__('Try different keywords or browse our content.', 'atelierdesign') ?>
         </p>
       </div>
     </section>
