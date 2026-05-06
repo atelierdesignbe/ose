@@ -58,7 +58,7 @@
 ?>
 <?php get_template_part('/components/header/markup', 'header', get_field('header', 'acf-options-global-fields')); ?>
 <main id="publications" class="overflow-hidden relative" js-ajax="publication">
-  <div class="px-container @sm:pt-[120px] @md/lg:pt-[144px] @@:pb-[78px]">
+  <div class="px-container @sm:pt-[120px] @md/lg:pt-[220px] @lg:pt-[144px] @@:pb-[78px]">
     <div class="w-full @md/lg:max-w-[945px] ">
       <div class="flex flex-col @@:gap-y-[46px] autoscale-children">
         <h1 class="heading heading-2xl heading-primary aos animate-fadeinup"><?= the_title(); ?></h1>
@@ -81,7 +81,7 @@
               <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 translate-y-full z-[10] mm-sm:w-[208%] md:w-[250px]" js-expand="all">
                 <ul class="border border-dark-blue w-full bg-white text-dark-blue" data-lenis-prevent js-ajax-filter="themes">
                   <?php foreach($themes as $theme): ?>
-                    <li js-expand-item>
+                     <li js-expand-item>
                       <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $theme->slug ?>" data-name="<?= $theme->name ?>">
                         <span><?= $theme->name ?></span>
                       </button>
@@ -92,7 +92,7 @@
             </div>
           <?php endif; ?>
           
-          <?php if($types): ?>
+          <!-- <?php if($types): ?>
             <div class="relative mm-sm:w-[48%]">
               <button type="button" class="button button-outline !rounded-none border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
                 <span class="button-title">Type</span>
@@ -110,7 +110,7 @@
                 </ul>
               </div>
             </div>
-          <?php endif; ?>
+          <?php endif; ?> -->
 
           <?php if($authors): ?>
             <div class="relative mm-sm:w-[48%]">
@@ -132,7 +132,7 @@
             </div>
           <?php endif; ?>
 
-          <?php if($projects): ?>
+          <!-- <?php if($projects): ?>
             <div class="relative mm-sm:w-[48%]">
               <button type="button" class="button button-outline !rounded-none border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
                 <span class="button-title">Project</span>
@@ -150,7 +150,7 @@
                 </ul>
               </div>
             </div>
-          <?php endif; ?>
+          <?php endif; ?> -->
         </div>
         
         <div class="filter-reset autoscale-children flex items-center flex-wrap @@:gap-2 relative z-[1]" js-ajax-reset></div>

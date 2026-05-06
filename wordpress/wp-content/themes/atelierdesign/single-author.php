@@ -129,7 +129,7 @@ $teamLink = get_field('team-link', 'acf-options-global-fields');
     <section class="theme-light-grey bg-layout-main py-section">
       <div class="px-container">
 
-        <div class="flex flex-col @sm:gap-y-[16px] md:flex-row md:items-center md:justify-between @sm:mb-[40px] @md/lg:mb-[40px]">
+        <div class="flex flex-col @sm:gap-y-[16px] md:flex-row md:items-center md:justify-between @sm:mb-[40px] @md/lg:mb-[40px] autoscale-children">
           <h2 class="heading heading-lg heading-primary aos animate-fadeinup"><?= pll__('Projects', 'atelierdesign') ?></h2>
           <?php if ( $project_link ) : ?>
             <a
@@ -157,7 +157,7 @@ $teamLink = get_field('team-link', 'acf-options-global-fields');
     <section class="theme-white bg-layout-main py-section">
       <div class="px-container">
 
-        <div class="flex flex-col @sm:gap-y-[16px] md:flex-row md:items-center md:justify-between @sm:mb-[40px] @md/lg:mb-[40px]">
+        <div class="flex flex-col @sm:gap-y-[16px] md:flex-row md:items-center md:justify-between @sm:mb-[40px] @md/lg:mb-[40px] autoscale-children">
           <h2 class="heading heading-lg heading-primary aos animate-fadeinup">Publications</h2>
           <?php if ( $publication_link ) : ?>
             <a

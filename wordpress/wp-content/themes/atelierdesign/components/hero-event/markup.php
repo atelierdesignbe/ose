@@ -12,6 +12,7 @@ if($date_end) $ts_end   = strtotime(str_replace('-', '/', $date_end));
 
 $themes = get_the_terms( get_the_ID(), 'themes' );
 $types = get_the_terms( get_the_ID(), 'types' );
+
 if (!$cover) $coverState = 'none';
 
 ?>

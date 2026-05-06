@@ -6,7 +6,25 @@ $description = get_field('description');
 $date = get_field('date_start');
 $coverState = get_field('cover-status');
 
-$authors = get_field('author');
+$authors   = get_field('author') ?: [];
+$externals = get_field('external-author')
+    ? array_filter(array_map('trim', explode(',', get_field('external-author'))))
+    : [];
+
+// Construire une liste unifiée de strings HTML
+$items = [];
+
+foreach ($authors as $author) {
+    $items[] = '<a href="' . esc_url(get_permalink($author->ID)) . '" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] link-underline">'
+        . esc_html($author->post_title)
+        . '</a>';
+}
+
+foreach ($externals as $name) {
+    $items[] = '<span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]">'
+        . esc_html($name)
+        . '</span>';
+}
 
 $themes = get_the_terms( get_the_ID(), 'themes' );
 $types = get_the_terms( get_the_ID(), 'types' );
@@ -23,16 +41,19 @@ if (!$cover) $coverState = 'none';
           <a href="<?= $projectLink ? $projectLink['url'] : '/projects/' ?>" class="badge badge-primary badge-filled bg-dark-blue text-white border-dark-blue">Project</a>
         </div>
         <h1 class="heading heading-primary @sm:text-[46px] @md/lg:text-[72px] font-serif font-light @sm:leading-[48px] @md/lg:leading-[69px] autoscale aos animate-fadeinup autoscale"><?= $title ?></h1>
+        <?php if ($items) : ?>
+            <ul class="flex flex-wrap items-center @sm:gap-x-[8px] @md/lg:gap-x-[8px] @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children aos animate-fadeinup animate-delay-300">
+              <?php foreach ($items as $i => $item) : ?>
+                <li class="flex items-center"><?= $item ?></li>
+                <?php if ($i < count($items) - 1) : ?>
+                  <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center"><span>/</span></li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif; ?>
+        
         <?php if($description): ?><p class="paragraph paragraph-primary paragraph-lg autoscale aos animate-fadeinup animate-delay-200 autoscale"><?= $description ?></p><?php endif; ?>
-        <?php if($authors): ?>
-          <ul class="flex flex-wrap items-center @@:gap-[8px] autoscale-children aos animate-fadeinup animate-delay-300">
-            <?php foreach($authors as $author):?>
-              <li>
-                <a href="<?= get_permalink($author->ID) ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= $author->post_title; ?></a>
-              </li>
-            <?php endforeach; ?>
-          </ul>
-        <?php endif; ?>
+          
         <?php if($types): ?>
           <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-300 autoscale-children">
             <?php foreach($types as $type): ?>

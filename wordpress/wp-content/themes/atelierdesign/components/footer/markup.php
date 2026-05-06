@@ -3,6 +3,8 @@ $contact = $args['contact'];
 $menu = $args['menu'];
 $newsletter = $args['newsletter'];
 $privacyNav = $args['bottom-nav'];
+$link      = get_field('header-contact', 'acf-options-global-fields');
+
 ?>
 <footer class="footer @sm:pt-[50px] md:pt-0 theme-light-grey bg-layout-main relative overflow-hidden">
   <div class="footer-top relative z-[1]">
@@ -23,11 +25,11 @@ $privacyNav = $args['bottom-nav'];
             </a>
           <?php endif; ?>
           <div class="contact-link flex flex-col items-start aos animate-fadeinup animate-delay-300 @@:gap-y-2">
-            <?php if($contact['email']): ?>
-              <a href="mailto:<?= $contact['email'] ?>" target="_blank" rel="noopener noreferer" class="heading-lg heading heading-primary autoscale"><?= $contact['email'] ?></a>
+            <?php if($link && $contact): ?>
+              <a href="<?= $link['url'] ?>" class="heading-lg heading heading-primary autoscale link-underline"><?= $contact['email'] ?></a>
             <?php endif; ?>
             <?php if($contact['phone']): ?>
-              <a href="tel:<?= $contact['phone'] ?>" target="_blank" rel="noopener noreferer" class="heading-lg heading heading-primary autoscale"><?= $contact['phone'] ?></a>
+              <a href="tel:<?= $contact['phone'] ?>" target="_blank" rel="noopener noreferer" class="heading-lg heading heading-primary autoscale link-underline"><?= $contact['phone'] ?></a>
             <?php endif; ?>
           </div>
         </div>

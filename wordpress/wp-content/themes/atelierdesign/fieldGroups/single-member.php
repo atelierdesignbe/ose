@@ -11,12 +11,12 @@ add_action('acf/include_fields', function () {
     'fields' => [
 
       // Tab: Info
-      [
-        'key'   => 'field-single-member-tab-info',
-        'label' => 'Info',
-        'type'  => 'tab',
-        'no_preference' => 0,
-      ],
+      // [
+      //   'key'   => 'field-single-member-tab-info',
+      //   'label' => 'Info',
+      //   'type'  => 'tab',
+      //   'no_preference' => 0,
+      // ],
 
       [
         'key' => 'field-single-member-cover',
@@ -34,14 +34,18 @@ add_action('acf/include_fields', function () {
         'name'  => 'role',
         'type'  => 'text',
       ],
-      
       [
-        'key'          => 'field-single-member-summary',
+        ...wysiwyg('field-single-member-summary', ['heading-xl'], ['paragraph-md', 'paragraph-lg', 'paragraph-xl'], 'submary'),
         'label'        => 'Summary',
         'instructions'        => 'Small description about member',
-        'name'         => 'submary',
-        'type'         => 'textarea',
       ],
+
+      // [
+      //   'key'          => 'field-single-member-summary',
+    
+      //   'name'         => 'submary',
+      //   'type'         => 'textarea',
+      // ],
       // [
       //   'key'          => 'field-single-member-email',
       //   'label'        => 'Email',
@@ -49,22 +53,22 @@ add_action('acf/include_fields', function () {
       //   'type'         => 'email',
       // ],
       
-      [
-        'key' => 'field-single-project-template-tab-flexible',
-        'label' => 'Flexible Content',
-        'type' => 'tab',
-        'no_preference' => 0,
-      ],
-      // Flexible content section
-      [
-        'key' => 'field-single-project-template-clone-fieldgroup-flexible',
-        'label' => 'Flexible Content',
-        'name' => 'flexible_content',
-        'type' => 'clone',
-        'clone' => [
-          0 => 'field-flexible-flexible-layout',
-        ],
-      ],
+      // [
+      //   'key' => 'field-single-project-template-tab-flexible',
+      //   'label' => 'Flexible Content',
+      //   'type' => 'tab',
+      //   'no_preference' => 0,
+      // ],
+      // // Flexible content section
+      // [
+      //   'key' => 'field-single-project-template-clone-fieldgroup-flexible',
+      //   'label' => 'Flexible Content',
+      //   'name' => 'flexible_content',
+      //   'type' => 'clone',
+      //   'clone' => [
+      //     0 => 'field-flexible-flexible-layout',
+      //   ],
+      // ],
       // [
       //   'key'   => 'field-single-member-linkedin',
       //   'label' => 'LinkedIn',

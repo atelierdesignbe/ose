@@ -47,7 +47,7 @@
 <?php get_template_part('/components/header/markup', 'header', get_field('header', 'acf-options-global-fields')); ?>
 
 <main id="projects" js-ajax="project" class="relative overflow-hidden">
-  <div class="px-container @sm:pt-[120px] @md/lg:pt-[144px] @@:pb-[78px]">
+  <div class="px-container @sm:pt-[120px] @md/lg:pt-[220px] @lg:pt-[144px] @@:pb-[78px]">
     <div class="w-full @md/lg:max-w-[945px] ">
       <div class="flex flex-col @@:gap-y-[46px] autoscale-children">
         <h1 class="heading heading-2xl heading-primary aos animate-fadeinup"><?= get_the_title(); ?></h1>

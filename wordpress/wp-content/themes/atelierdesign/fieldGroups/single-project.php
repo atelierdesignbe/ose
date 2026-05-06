@@ -210,6 +210,13 @@ add_action('acf/include_fields', function () {
         //   ],
         // ],
       ],
+      [
+        'key' => 'field-single-project-template-external-author',
+        'label' => 'External Authors',
+        'type' => 'text',
+        'name' => 'external-author',
+        'instructions' => 'Add externals authors separate by comma'
+      ]
     ],
     'location' => [
       [

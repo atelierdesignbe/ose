@@ -70,8 +70,10 @@
       }
 
       svg {
+        @apply duration-300 ease-out transition-all;
         flex-shrink: 0;
-        color: rgba(255, 255, 255, 0.5);
+        color: white;
+        opacity: 0.5;
 
         width: calc((28 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
         height: calc((28 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
@@ -79,6 +81,10 @@
         @screen md {
           width: calc((32 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
           height: calc((32 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+        }
+
+        &:hover {
+          opacity: 1;
         }
       }
     }
@@ -88,7 +94,7 @@
 
 // Button search dans le header
 .search-header-btn-wrapper {
-  @apply border-l border-current @sm:px-[16px] @md/lg:px-[16px] @sm:py-[6px] @md/lg:py-[6px];
+  @apply mm-sm:hidden border-l border-current @sm:px-[16px] @md/lg:px-[16px] @sm:py-[6px] @md/lg:py-[6px];
 }
 
 .search-header-btn {
@@ -113,7 +119,7 @@
   }
 
   svg {
-    @apply @sm:size-[20px] @md/lg:size-[20px] relative z-[1]; 
+    @apply @sm:size-[20px] @md/lg:size-[20px] relative z-[1] ; 
   }
 }
 

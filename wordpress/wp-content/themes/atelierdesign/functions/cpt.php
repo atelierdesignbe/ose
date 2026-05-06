@@ -200,6 +200,69 @@ function custom_taxonomy_member_type() {
 }
 add_action('init', 'custom_taxonomy_member_type');
 
+/**
+ * Meta box radio button pour member_type
+ *
+ * Remplace la meta box checkbox par défaut par une sélection unique (radio).
+ * Un membre ne peut appartenir qu'à un seul type à la fois.
+ */
+
+// 1. Supprimer la meta box checkbox par défaut
+add_action('add_meta_boxes', function () {
+    remove_meta_box('member_typediv', 'author', 'side');
+});
+
+// 2. Ajouter une meta box avec radio buttons
+add_action('add_meta_boxes', function () {
+    add_meta_box(
+        'member_type_radio',
+        'Member Type',
+        function ($post) {
+            $terms        = get_terms(['taxonomy' => 'member_type', 'hide_empty' => false, 'orderby' => 'name']);
+            $current_ids  = wp_get_object_terms($post->ID, 'member_type', ['fields' => 'ids']);
+            $current_id   = !empty($current_ids) ? (int) $current_ids[0] : 0;
+
+            wp_nonce_field('member_type_radio_save', 'member_type_radio_nonce');
+
+            echo '<div style="display:flex;flex-direction:column;gap:6px;padding:4px 0;">';
+
+            if (!is_wp_error($terms)) {
+                foreach ($terms as $term) {
+                    echo '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;">';
+                    echo '<input type="radio" name="member_type_radio" value="' . esc_attr($term->term_id) . '" '
+                        . checked((int) $term->term_id, $current_id, false) . '>';
+                    echo esc_html($term->name);
+                    echo '</label>';
+                }
+            }
+
+            echo '</div>';
+        },
+        'author',
+        'side',
+        'default'
+    );
+});
+
+// 3. Sauvegarder la sélection
+add_action('save_post_author', function ($post_id) {
+    if (
+        ! isset($_POST['member_type_radio_nonce']) ||
+        ! wp_verify_nonce($_POST['member_type_radio_nonce'], 'member_type_radio_save')
+    ) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (! current_user_can('edit_post', $post_id))    return;
+
+    $term_id = isset($_POST['member_type_radio']) ? (int) $_POST['member_type_radio'] : 0;
+
+    // wp_set_object_terms avec false = remplace toute la liste (= sélection unique)
+    wp_set_object_terms($post_id, $term_id ? [$term_id] : [], 'member_type', false);
+});
+
+
 // Seed des termes par défaut (exécuté une seule fois via versioning)
 add_action('init', function () {
     $version = '1.0';

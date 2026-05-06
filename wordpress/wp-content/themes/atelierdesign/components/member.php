@@ -11,7 +11,7 @@ $cover = get_field('cover', $id);
       <div class="w-full h-full bg-light-blue"></div>
     <?php endif; ?>
   </div>
-  <div class="member-card-info">
+  <div class="member-card-info autoscale-children">
     <p class="member-card-name paragraph-lg paragraph-primary"><?= esc_html(get_the_title($id)) ?></p>
     <?php if ($role) : ?>
       <p class="member-card-role paragraph-md paragraph-primary"><?= esc_html($role) ?></p>

@@ -69,7 +69,7 @@ function icon($type, $class) {
       break;
     case 'search': 
       $icon = '<svg class="'.$class.'" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14.667 0.580078C22.4473 0.580078 28.7549 6.88697 28.7549 14.667C28.7547 22.4469 22.4472 28.7539 14.667 28.7539C6.88686 28.7539 0.580261 22.4468 0.580078 14.667C0.580078 6.887 6.88674 0.580127 14.667 0.580078Z" stroke="currentColor" stroke-width="1.1593"/><path d="M25 25L40 40" stroke="currentColor" stroke-width="1.1593"/>
+        <path d="M14.667 0.580078C22.4473 0.580078 28.7549 6.88697 28.7549 14.667C28.7547 22.4469 22.4472 28.7539 14.667 28.7539C6.88686 28.7539 0.580261 22.4468 0.580078 14.667C0.580078 6.887 6.88674 0.580127 14.667 0.580078Z" stroke="currentColor"/><path d="M25 25L40 40" stroke="currentColor"/>
         </svg>';
       break;
     default: 

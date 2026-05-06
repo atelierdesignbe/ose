@@ -9,9 +9,9 @@ $cover = $args['cover'];
 <div class="hero hero-home bg-yellow-50 relative overflow-hidden ">
   <div class="hero-wrapper px-container z-[1] relative">
     <div class="grid grid-base relative @sm:gap-y-[42px] @md/lg:gap-y-[68px]">
-      <h1 class="heading heading-primary @sm:text-[46px] @md/lg:text-[72px] font-serif font-light @sm:leading-[48px] @md/lg:leading-[69px] col-span-12 md:col-span-18 md:col-start-4 autoscale aos animate-fadeinup"><?= $title ?></h1>
+      <h1 class="heading heading-primary @sm:text-[46px] @md/lg:text-[72px] font-serif font-light @sm:leading-[48px] @md/lg:leading-[69px] col-span-12 md:col-span-20 md:col-start-2 lg:col-span-18 lg:col-start-4 autoscale aos animate-fadeinup"><?= $title ?></h1>
       <?php if($content): ?>
-        <div class="md:absolute @md/lg:bottom-[20px] @xl:bottom-[-40px] md:translate-y-[100%] md:left-[58.33%]  col-span-12 @md/lg:max-w-[380px] @xl:max-w-[380px] ">
+        <div class="md:absolute @md:bottom-[-20px] @xl:bottom-[-40px] md:translate-y-[100%] md:left-[58.33%]  col-span-12 @md/lg:max-w-[400px] @lg:max-w-[380px] @xl:max-w-[380px] ">
         <p class="autoscale aos animate-fadeinup animate-delay-200 paragraph paragraph-primary @md/lg:text-[18px] @@:pl-[28px] border-l border-dark-blue  @@:tracking-[1px] ">
           <?= $content ?>
         </p>

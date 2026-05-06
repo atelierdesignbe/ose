@@ -24,8 +24,8 @@
             js-search-open
             aria-label="Open search"
           >
-            <?= icon('search', ''); ?>
-            <span class="button-title uppercase">Search</span>
+            <?= icon('search', 'stroke-[2] overflow-visible' ); ?>
+            <span class="button-title uppercase hidden lg:flex"><?= __('Search', 'atelierdesign') ?></span>
           </button>
         </div>
       </div>
@@ -40,7 +40,7 @@
             js-search-open
             aria-label="Open search"
           >
-            <?= icon('search', ''); ?>
+            <?= icon('search', 'overflow-visible stroke-[2]'); ?>
           </button>
           <button type="button" class="button button-flat button-primary menu-btn btn-animation autoscale <?php if($theme === 'text-dark-blue'): ?> bg-dark-blue text-white <?php else: ?> bg-white text-dark-blue <?php endif; ?>" js-menu-button>
             <span class="button-title">Menu</span>

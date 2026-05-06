@@ -39,25 +39,25 @@ add_action('acf/include_fields', function () {
           ],
         ],
       ],
-      [
-        'key' => 'field-single-publication-template-category',
-        'label' => 'Category',
-        'name' => 'category',
-        'type' => 'true_false',
-        'default_value' => 0,
-        'ui' => 1,
-        'ui_on_text' => 'In depth',
-        'ui_off_text' => 'Summary',
-        // 'conditional_logic' => [
-        //   [
-        //     [
-        //       'field' => 'field-single-publication-is-external',
-        //       'operator' => '!=',
-        //       'value' => '1',
-        //     ],
-        //   ],
-        // ],
-      ],
+      // [
+      //   'key' => 'field-single-publication-template-category',
+      //   'label' => 'Category',
+      //   'name' => 'category',
+      //   'type' => 'true_false',
+      //   'default_value' => 0,
+      //   'ui' => 1,
+      //   'ui_on_text' => 'In depth',
+      //   'ui_off_text' => 'Summary',
+      //   // 'conditional_logic' => [
+      //   //   [
+      //   //     [
+      //   //       'field' => 'field-single-publication-is-external',
+      //   //       'operator' => '!=',
+      //   //       'value' => '1',
+      //   //     ],
+      //   //   ],
+      //   // ],
+      // ],
       [
         'key' => 'field-single-publication-template-cover',
         'label' => 'Cover',
@@ -292,6 +292,13 @@ add_action('acf/include_fields', function () {
         //   ],
         // ],
       ],
+      [
+        'key' => 'field-single-publication-template-external-author',
+        'label' => 'External Authors',
+        'type' => 'text',
+        'name' => 'external-author',
+        'instructions' => 'Add externals authors separate by comma'
+      ]
     ],
     'location' => [
       [

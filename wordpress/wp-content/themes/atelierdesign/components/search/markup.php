@@ -11,7 +11,7 @@ $home_url = home_url('/');
     >
       <?= icon('close', 'text-white'); ?>
     </button>
-    <div class="flex flex-col justify-center @@:gap-y-[20px]">
+    <div class="flex flex-col justify-center @@:gap-y-[20px] autoscale-children">
       <p class="search-modal-label button-title"><?= pll__('Search &amp; Press Enter', 'atelierdesign'); ?></p>
       <form
         role="search"
@@ -28,7 +28,7 @@ $home_url = home_url('/');
           aria-label="<?= esc_attr__('Search', 'atelierdesign') ?>"
           js-search-textarea
         ><?= esc_textarea(get_search_query()) ?></textarea>
-        <button type="submit" class="appearance-none"><?= icon('search', 'text-purple'); ?></button>
+        <button type="submit" class="appearance-none"><?= icon('search', 'text-purple overflow-visible stroke-[2]'); ?></button>
       </form>
     </div>
   </div>

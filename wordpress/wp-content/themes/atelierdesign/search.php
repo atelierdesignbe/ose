@@ -28,7 +28,7 @@ $found_posts  = $wp_query->found_posts;
           aria-label="<?= esc_attr__('Search', 'atelierdesign') ?>"
           js-search-textarea
         ><?= esc_textarea($search_query) ?></textarea>
-        <button type="submit" class="appearance-none"><?= icon('search', 'text-purple'); ?></button>
+        <button type="submit" class="appearance-none"><?= icon('search', 'text-purple stroke-[2]'); ?></button>
       </form>
     </div>
     <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute top-0 right-0 z-[0] translate-x-[20%] md:translate-x-[40%] @sm:h-[770px] @md/lg:h-[800px] w-auto mm-sm:hidden"/>
@@ -99,7 +99,7 @@ $found_posts  = $wp_query->found_posts;
   <?php else : ?>
     <!-- No results -->
     <section class="theme-light-grey bg-layout-main py-section">
-      <div class="px-container">
+      <div class="px-container autoscale-children">
         <p class="heading heading-lg heading-primary">
           <?php if ($search_query) : ?>
             <?= sprintf(pll__('No results found for "%s"', 'atelierdesign'), esc_html($search_query)) ?>

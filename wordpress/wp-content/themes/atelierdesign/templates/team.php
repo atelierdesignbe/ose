@@ -32,9 +32,10 @@ $cover_status = $fields['hero']['cover-status'] ?? 'default';
       <?php
       $member_types = get_terms([
         'taxonomy'   => 'member_type',
-        'hide_empty' => false,
+        'hide_empty' => true,
         'orderby'    => 'name',
         'order'      => 'ASC',
+        
       ]);
 
       $members_query = new WP_Query([
@@ -47,11 +48,11 @@ $cover_status = $fields['hero']['cover-status'] ?? 'default';
       ?>
 
       <div class="flex flex-col @sm:gap-[24px] @md/lg:gap-[24px] md:flex-row md:items-start justify-between @sm:mb-[32px] @md/lg:mb-[48px]">
-        <p class="heading heading-2xl heading-primary" js-team-title><?= pll__('All members', 'atelierdesign') ?></p>
+        <p class="heading heading-2xl heading-primary autoscale" js-team-title><?= pll__('All members', 'atelierdesign') ?></p>
 
         <?php if (!empty($member_types) && !is_wp_error($member_types)) : ?>
           <!-- Filter bar -->
-          <div class="flex items-center @sm:gap-x-[12px] @md/lg:gap-x-[20px] flex-shrink-0">
+          <div class="flex items-center @sm:gap-x-[12px] @md/lg:gap-x-[20px] flex-shrink-0 autoscale-children">
             <p class="subtitle"><?= pll__('Filter by', 'atelierdesign') ?></p>
             <div class="relative">
               <button

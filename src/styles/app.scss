@@ -471,3 +471,12 @@ a {
     }
   }
 }
+
+.py-section.theme-white.bg-layout-main + .py-section.theme-white.bg-layout-main,
+.py-section.theme-light-grey.bg-layout-main + .py-section.theme-light-grey.bg-layout-main,
+.py-section.theme-light-blue.bg-layout-main + .py-section.theme-light-blue.bg-layout-main,
+.py-section.theme-light-yellow.bg-layout-main + .py-section.theme-light-yellow.bg-layout-main,
+.py-section.theme-yellow.bg-layout-main + .py-section.theme-yellow.bg-layout-main,
+.py-section.theme-dark-blue.bg-layout-main + .py-section.theme-dark-blue.bg-layout-main {
+  @apply pt-0;
+}
