@@ -17,15 +17,17 @@
           <?php echo get_template_part('/components/logo', null, ['logo' => get_field('logo', 'acf-options-global-fields')]); ?>
         </div>
         <!-- Search button — desktop only -->
-        <button
-          type="button"
-          class="search-header-btn hidden md:flex items-center button button-simple"
-          js-search-open
-          aria-label="Open search"
-        >
-          <?= icon('search', ''); ?>
-          <span class="button-title uppercase">Search</span>
-        </button>
+        <div class="search-header-btn-wrapper">
+          <button
+            type="button"
+            class="search-header-btn hidden md:flex items-center button button-simple link-underline"
+            js-search-open
+            aria-label="Open search"
+          >
+            <?= icon('search', ''); ?>
+            <span class="button-title uppercase">Search</span>
+          </button>
+        </div>
       </div>
 
       <nav class="flex flex-wrap items-center">

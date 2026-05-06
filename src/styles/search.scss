@@ -87,8 +87,12 @@
   }
 
 // Button search dans le header
+.search-header-btn-wrapper {
+  @apply border-l border-current @sm:px-[16px] @md/lg:px-[16px] @sm:py-[6px] @md/lg:py-[6px];
+}
+
 .search-header-btn {
-  @apply @sm:gap-x-[8px] @md/lg:gap-x-[8px] border-l border-current @sm:py-[8px] @md/lg:py-[8px]  @sm:px-[16px] @md/lg:px-[16px] relative text-current;
+  @apply relative @sm:gap-x-[8px] @md/lg:gap-x-[8px] relative text-current @sm:py-[2px] @md/lg:py-[2px];
 
   span {
     position: relative;
@@ -105,19 +109,6 @@
       font-size: calc((var(--typography-button-title-font-size) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
       letter-spacing: calc((var(--typography-button-title-letter-spacing) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
       line-height: calc((var(--typography-button-title-line-height) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
-    }
-  }
-
-  &:after {
-    @apply absolute inset-0 bg-dark-blue scale-x-0 origin-right duration-200 transition-transform;
-    content: "";
-  }
-
-  &:hover {
-    @apply text-white;
-
-    &:after {
-      @apply scale-x-100 origin-left;
     }
   }
 
@@ -325,6 +316,68 @@
   &.is-active {
     font-weight: 700;
   }
+}
+
+// ── Pagination de la recherche ────────────────────────────────────────────────
+.search-pagination {
+  @apply @sm:mt-[40px] @md/lg:mt-[56px];
+
+  &-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px;
+
+    .page-numbers {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-button-font-family);
+      font-size: calc((12 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+      font-weight: var(--font-button-font-weight);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-dark-blue);
+      opacity: 0.45;
+      padding: 8px 12px;
+      transition: opacity 0.2s ease;
+
+      @screen md {
+        font-size: calc((12 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+      }
+
+      &:hover:not(.dots) {
+        opacity: 1;
+      }
+
+      &.current {
+        opacity: 1;
+        font-weight: 700;
+      }
+
+      &.prev,
+      &.next {
+        opacity: 0.7;
+        font-weight: 600;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      &.dots {
+        opacity: 0.25;
+        pointer-events: none;
+        letter-spacing: 0;
+      }
+    }
+  }
+}
+
+// ── Load more — Team ──────────────────────────────────────────────────────────
+.team-load-more-wrapper {
+  @apply @sm:mt-[40px] @md/lg:mt-[56px] flex justify-center;
 }
 
 // ── Animation membres au filtrage ─────────────────────────────────────────────

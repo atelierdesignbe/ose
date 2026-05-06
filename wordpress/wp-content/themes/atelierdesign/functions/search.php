@@ -21,7 +21,7 @@ add_action('pre_get_posts', function (WP_Query $query) {
         'author',
     ]);
 
-    $query->set('posts_per_page', 24);
+    $query->set('posts_per_page', 3); // TEST — remettre 24 en prod
 
 }, 1);
 

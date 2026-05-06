@@ -117,6 +117,14 @@ $cover_status = $fields['hero']['cover-status'] ?? 'default';
             </div>
           <?php endwhile; wp_reset_postdata(); ?>
         </div>
+
+        <!-- Load more -->
+        <div class="team-load-more-wrapper" js-team-load-more-wrapper>
+          <button class="button button-outline button-primary team-load-more-btn" js-team-load-more>
+            <span class="button-title"><?= pll__('Load more', 'atelierdesign') ?></span>
+          </button>
+        </div>
+
       <?php else : ?>
         <p class="paragraph paragraph-primary paragraph-lg">No members found.</p>
       <?php endif; ?>

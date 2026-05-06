@@ -48,15 +48,15 @@ add_action('acf/include_fields', function () {
         'ui' => 1,
         'ui_on_text' => 'In depth',
         'ui_off_text' => 'Summary',
-        'conditional_logic' => [
-          [
-            [
-              'field' => 'field-single-publication-is-external',
-              'operator' => '!=',
-              'value' => '1',
-            ],
-          ],
-        ],
+        // 'conditional_logic' => [
+        //   [
+        //     [
+        //       'field' => 'field-single-publication-is-external',
+        //       'operator' => '!=',
+        //       'value' => '1',
+        //     ],
+        //   ],
+        // ],
       ],
       [
         'key' => 'field-single-publication-template-cover',
@@ -66,15 +66,15 @@ add_action('acf/include_fields', function () {
         'preview_size' => 'thumbnail',
         'library' => 'all',
         'mime_types' => 'jpg,jpeg,png,svg,webp',
-        'conditional_logic' => [
-          [
-            [
-              'field' => 'field-single-publication-is-external',
-              'operator' => '!=',
-              'value' => '1',
-            ],
-          ],
-        ],
+        // 'conditional_logic' => [
+        //   [
+        //     [
+        //       'field' => 'field-single-publication-is-external',
+        //       'operator' => '!=',
+        //       'value' => '1',
+        //     ],
+        //   ],
+        // ],
       ],
       [
         'key' => 'field-single-publication-template-description',
@@ -82,15 +82,15 @@ add_action('acf/include_fields', function () {
         'type' => 'textarea',
         'name' => 'description',
         'rows' => 2,
-        'conditional_logic' => [
-          [
-            [
-              'field' => 'field-single-publication-is-external',
-              'operator' => '!=',
-              'value' => '1',
-            ],
-          ],
-        ],
+        // 'conditional_logic' => [
+        //   [
+        //     [
+        //       'field' => 'field-single-publication-is-external',
+        //       'operator' => '!=',
+        //       'value' => '1',
+        //     ],
+        //   ],
+        // ],
       ],
       [
         'key' => 'field-single-publication-template-date',
@@ -101,15 +101,15 @@ add_action('acf/include_fields', function () {
         'display_format' => 'd-m-Y',      // Format d'affichage dans l'admin
         'return_format' => 'd-m-Y',
         'default_value' => date('d-m-Y'),
-        'conditional_logic' => [
-          [
-            [
-              'field' => 'field-single-publication-is-external',
-              'operator' => '!=',
-              'value' => '1',
-            ],
-          ],
-        ],
+        // 'conditional_logic' => [
+        //   [
+        //     [
+        //       'field' => 'field-single-publication-is-external',
+        //       'operator' => '!=',
+        //       'value' => '1',
+        //     ],
+        //   ],
+        // ],
       ],
 
       // Tab: Flexible Content

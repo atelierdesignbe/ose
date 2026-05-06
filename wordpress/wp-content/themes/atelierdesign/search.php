@@ -41,14 +41,14 @@ $found_posts  = $wp_query->found_posts;
    
       <div class="px-container flex flex-col @sm:gap-y-[24px] @md/lg:gap-y-[40px]">
       <?php if ($search_query) : ?>
-        <p class="paragraph-lg paragraph-primary paragraph">
+        <p class="paragraph-lg paragraph-primary paragraph autoscale">
           <?= $found_posts ?> <?= $found_posts > 1 ? pll__('results found', 'atelierdesign') : pll__('result found', 'atelierdesign') ?>
         </p>
       <?php endif; ?>
         <div class="grid grid-base @@:gap-x-[12px] @@:gap-y-[12px]">
           <?php while (have_posts()) : the_post(); ?>
             <div class="col-span-12 md:col-span-8">
-              <a href="<?= esc_url(get_permalink()) ?>" class="search-result-item block h-full">
+              <a href="<?= esc_url(get_permalink()) ?>" class="search-result-item block h-full autoscale-children">
                 <div class="search-result-item-inner ">
                   <div>
                     <?php
@@ -70,7 +70,29 @@ $found_posts  = $wp_query->found_posts;
         </div>
 
         <!-- Pagination -->
-      
+        <?php
+        $max_pages = $wp_query->max_num_pages;
+        if ($max_pages > 1) :
+          $paged = max(1, get_query_var('paged'));
+          $links = paginate_links([
+            'total'     => $max_pages,
+            'current'   => $paged,
+            'prev_text' => pll__('Prev', 'atelierdesign'),
+            'next_text' => pll__('Next', 'atelierdesign'),
+            'mid_size'  => 2,
+            'end_size'  => 1,
+            'type'      => 'array',
+          ]);
+        ?>
+          <nav class="search-pagination" aria-label="<?= esc_attr(pll__('Search pages', 'atelierdesign')) ?>">
+            <ul class="search-pagination-list">
+              <?php foreach ($links as $link) : ?>
+                <li class="search-pagination-item"><?= $link ?></li>
+              <?php endforeach; ?>
+            </ul>
+          </nav>
+        <?php endif; ?>
+
       </div>
     </section>
 

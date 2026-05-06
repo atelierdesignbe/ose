@@ -26,6 +26,7 @@ $socialFields = [
               'twitter' => 'Twitter',
               'tiktok' => 'Tiktok',
               'youtube' => 'Youtube',
+              'bluesky' => 'Bluesky',
             ],
           ],
           [

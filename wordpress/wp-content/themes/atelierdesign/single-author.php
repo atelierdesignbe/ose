@@ -27,7 +27,7 @@ $teamLink = get_field('team-link', 'acf-options-global-fields');
           </div>
         </div>
         <div class="col-span-12 md:col-span-14 md:col-start-9">
-          <div class="member-content flex flex-col @sm:gap-y-[16px] @md/lg:gap-y-[16px] @md/lg:pt-[92px]">
+          <div class="member-content flex flex-col @sm:gap-y-[16px] @md/lg:gap-y-[16px] @md/lg:pt-[92px] autoscale-children">
             <?php if($types): ?>
               <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup autoscale-children">
                 <?php foreach($types as $type): ?>

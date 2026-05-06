@@ -118,21 +118,21 @@ if (!function_exists('atelierdesign_enqueue_vite_assets')) {
 
 add_action('wp_enqueue_scripts', 'atelierdesign_enqueue_vite_assets', 99);
 
-add_action('admin_bar_menu', function($wp_admin_bar) {
-    if (!current_user_can('manage_options')) {
-        return;
-    }
+// add_action('admin_bar_menu', function($wp_admin_bar) {
+//     if (!current_user_can('manage_options')) {
+//         return;
+//     }
     
-    $is_dev = atelierdesign_is_vite_development();
+//     $is_dev = atelierdesign_is_vite_development();
     
-    $wp_admin_bar->add_node([
-        'id' => 'vite-mode',
-        'title' => $is_dev ? '🔥 MODE DEV' : '🚀 MODE PROD',
-        'meta' => [
-            'title' => $is_dev 
-                ? 'Hot Reload actif - yarn dev tourne' 
-                : 'Assets buildés - yarn dev arrêté',
-        ],
-    ]);
-}, 100);
+//     $wp_admin_bar->add_node([
+//         'id' => 'vite-mode',
+//         'title' => $is_dev ? '🔥 MODE DEV' : '🚀 MODE PROD',
+//         'meta' => [
+//             'title' => $is_dev 
+//                 ? 'Hot Reload actif - yarn dev tourne' 
+//                 : 'Assets buildés - yarn dev arrêté',
+//         ],
+//     ]);
+// }, 100);
 

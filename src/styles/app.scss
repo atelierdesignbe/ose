@@ -131,7 +131,7 @@ body {
   }
 
   &-button {
-    &.is-open,
+    // &.is-open,
     &.is-filtered {
       @apply border-dark-blue;
     }
@@ -193,6 +193,20 @@ body {
       line-height: calc((var(--badge-filled-line-height) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
     }
   }
+}
+
+.filters {
+  .filter-button {
+    @apply transition-all duration-200 ease-out;
+  }
+  & > div {
+    &:hover {
+      .filter-button {
+        @apply border-dark-blue;
+      }
+    }
+  }
+
 }
 
 .gradient-pattern-1 {

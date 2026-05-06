@@ -84,7 +84,7 @@
           <?php if($years): ?>
             <div class="relative mm-sm:w-[48%]">
               <button type="button" class="button button-outline !rounded-none border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
-                <span class="button-title">Period</span>
+                <span class="button-title">Year</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>
               <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 translate-y-full z-[10]  mm-sm:w-[208%] md:w-[250px]" js-expand="all">
