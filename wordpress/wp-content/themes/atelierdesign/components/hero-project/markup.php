@@ -3,31 +3,16 @@ $override = $args['hero-override'];
 $title = get_the_title();
 $cover = get_field('cover');
 $description = get_field('description');
-$date = get_field('date_start');
+$year_start = get_field('year_start');
+$year_end   = get_field('year_end');
+$show_end = $year_end && (int) $year_end > (int) $year_start;
+
 $coverState = get_field('cover-status');
 
-$authors   = get_field('author') ?: [];
-$externals = get_field('external-author')
-    ? array_filter(array_map('trim', explode(',', get_field('external-author'))))
-    : [];
-
-// Construire une liste unifiée de strings HTML
-$items = [];
-
-foreach ($authors as $author) {
-    $items[] = '<a href="' . esc_url(get_permalink($author->ID)) . '" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] link-underline">'
-        . esc_html($author->post_title)
-        . '</a>';
-}
-
-foreach ($externals as $name) {
-    $items[] = '<span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]">'
-        . esc_html($name)
-        . '</span>';
-}
+$authors   = get_field('author');
 
 $themes = get_the_terms( get_the_ID(), 'themes' );
-$types = get_the_terms( get_the_ID(), 'types' );
+// $types = get_the_terms( get_the_ID(), 'types' );
 $projectLink = get_field('project-link', 'acf-options-global-fields');
 if (!$cover) $coverState = 'none';
 
@@ -35,36 +20,53 @@ if (!$cover) $coverState = 'none';
 <?php
 ob_start();
 ?>
-<div class="flex items-center @@:gap-x-2 aos animate-fadeinup">
-  <?php if($date): ?> <span class="badge badge-primary badge-outlined"><?= $date ?></span><?php endif; ?>
+<div class="flex items-center @@:gap-x-2 aos animate-fadeinup autoscale-children">
+  <div class="flex flex-row @@:gap-2 items-center ">
+    <?php if($year_start): ?><span class="badge badge-primary badge-outlined"><?= $year_start ?></span><?php endif; ?>
+    <?php if($show_end): ?>
+      <span><?= icon('chevron', $theme === 'blue' ? 'stroke-white @@:h-[8px] w-auto -rotate-90' : 'stroke-dark-blue @@:h-[8px] w-auto -rotate-90', true); ?></span>
+      <span class="badge badge-primary badge-outlined"><?= $year_end ?></span>
+    <?php endif; ?>
+  </div>
   <a href="<?= $projectLink ? $projectLink['url'] : '/projects/' ?>" class="badge badge-primary badge-filled bg-dark-blue text-white border-dark-blue">Project</a>
 </div>
 <?php $beforeContent = ob_get_clean(); ?>
 <?php
 ob_start();
 ?>
-<?php if($types): ?>
-        <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-300 autoscale-children">
-          <?php foreach($types as $type): ?>
-            <li>
-              <a href="<?= $projectLink ? rtrim($projectLink['url'], '/').'/types/'.$type->slug : '/projects/types/'.$type->slug; ?>" class="badge badge-primary badge-filled">
-                <?= $type->name ?>
-              </a>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-      <?php endif; ?>
-      <?php if($themes): ?>
-        <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-400 autoscale-children">
-          <?php foreach($themes as $theme): ?>
-            <li>
-              <a href="<?= $projectLink ? rtrim($projectLink['url'], '/')."/themes/".$theme->slug : "/projects/themes/".$theme->slug ?>" class="badge badge-secondary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-      <?php endif; ?>
+<!--  -->
+<?php if($themes): ?>
+  <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-400 autoscale-children">
+    <?php foreach($themes as $theme): ?>
+      <li>
+        <a href="<?= $projectLink ? rtrim($projectLink['url'], '/')."/themes/".$theme->slug : "/projects/themes/".$theme->slug ?>" class="badge badge-secondary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>
+      </li>
+    <?php endforeach; ?>
+  </ul>
+<?php endif; ?>
 <?php $afterContent = ob_get_clean(); ?>
+<?php
+ob_start();
+?>   
 
+  <?php if ($authors) : ?>
+    <ul class="flex flex-wrap items-center @sm:gap-x-[8px] @md/lg:gap-x-[8px] @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children aos animate-fadeinup animate-delay-300 ">
+      <?php foreach ($authors as $i => $author) : ?>
+        <li class="flex items-center">
+          <?php if($author->post_type == 'author'):  ?>
+            <a href="<?= esc_url(get_permalink($author->ID)) ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] link-underline"><?= esc_html($author->post_title) ?> </a>
+          <?php else:  ?>
+            <span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] "><?= esc_html($author->post_title) ?> </span>
+          <?php endif;  ?>
+        </li>
+        <?php if ($i < count($authors) - 1) : ?>
+          <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center"><span>/</span></li>
+        <?php endif; ?>
+      <?php endforeach; ?>
+    </ul>
+  <?php endif; ?>
+
+<?php $beforeDescription = ob_get_clean(); ?>
 <?php 
   echo get_template_part(
     '/components/hero/markup', 
@@ -76,6 +78,7 @@ ob_start();
       'cover-status' => $coverState,
       'beforeContent' => $beforeContent,
       'afterContent' => $afterContent,
+      'beforeDescription' => $beforeDescription,
       'social'  => false,
     ]);
 ?>

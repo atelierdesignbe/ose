@@ -13,44 +13,50 @@
 
   $types  = get_term_ids_for_cpt('types',  ['publication']);
   $themes = get_term_ids_for_cpt('themes', ['publication']);
-  
 
-   $args = array(
-    'post_type' => 'publication',
+  // Exclure les publications masquées (hidden = 1)
+  $exclude_hidden = [
+    'relation' => 'OR',
+    [ 'key' => 'hidden', 'compare' => 'NOT EXISTS' ],
+    [ 'key' => 'hidden', 'value' => '1', 'compare' => '!=' ],
+  ];
+
+  $args = array(
+    'post_type'   => 'publication',
     'post_status' => 'publish',
     'posts_per_page' => -1,
+    'meta_query'  => [ $exclude_hidden ],
   );
 
   $allProjects = new WP_Query($args);
   $authors = [];
   $authors_ID = [];
 
-  foreach($allProjects->posts as $post): 
+  foreach($allProjects->posts as $post):
     $author = get_field('author', $post->ID);
     foreach($author as $item):
-      if (!in_array($item->post_title, $authors)) {
-        $authors[] = $item->post_title; 
-        $authors_ID[] = $item->ID; 
+      if (!in_array($item->post_title, $authors) && $item->post_type === 'author') {
+        $authors[] = $item->post_title;
+        $authors_ID[] = $item->ID;
       }
     endforeach;
   endforeach;
-  
+
   wp_reset_postdata();
 
   $projects = get_terms([
-    'taxonomy'   => 'projects', // Remplace 'type' par le nom exact de ta taxonomie
+    'taxonomy'   => 'projects',
     'hide_empty' => true,
   ]);
 
-
-
   $args = array(
-    'post_type' => 'publication',
-    'post_status' => 'publish',
+    'post_type'      => 'publication',
+    'post_status'    => 'publish',
     'posts_per_page' => 16,
-    'meta_key' => 'date_start',
-    'orderby' => 'meta_value',
-    'order' => 'DESC',
+    'meta_key'       => 'date_start',
+    'orderby'        => 'meta_value',
+    'order'          => 'DESC',
+    'meta_query'     => [ $exclude_hidden ],
   );
 
   $publications = new WP_Query($args);
@@ -58,7 +64,7 @@
 ?>
 <?php get_template_part('/components/header/markup', 'header', get_field('header', 'acf-options-global-fields')); ?>
 <main id="publications" class="overflow-hidden relative" js-ajax="publication">
-  <div class="px-container @sm:pt-[120px] @md/lg:pt-[220px] @lg:pt-[144px] @@:pb-[78px]">
+  <div class="container @sm:pt-[120px] @md/lg:pt-[220px] @lg:pt-[144px] @@:pb-[78px]">
     <div class="w-full @md/lg:max-w-[945px] ">
       <div class="flex flex-col @@:gap-y-[46px] autoscale-children">
         <h1 class="heading heading-2xl heading-primary aos animate-fadeinup"><?= the_title(); ?></h1>

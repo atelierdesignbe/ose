@@ -64,6 +64,9 @@ function get_filtered_term_counts($taxonomy, $base_filters, $exclude_tax = null,
 }
 
 function get_filtered_year_counts($base_filters, $cpt = 'post') {
+  // Projects utilisent year_start (number), les autres utilisent date_start (date d-m-Y)
+  $is_project = ($cpt === 'project');
+
   // ✅ ÉTAPE 1 : Récupère TOUTES les années existantes (sans filtres)
   $all_years_query = new WP_Query([
     'post_type'      => $cpt,
@@ -71,23 +74,23 @@ function get_filtered_year_counts($base_filters, $cpt = 'post') {
     'posts_per_page' => -1,
     'fields'         => 'ids',
   ]);
-  
+
   $all_years = [];
   foreach ($all_years_query->posts as $post_id) {
-    $date = get_field('date_start', $post_id);
-    if ($date) {
-      $year = explode('-', $date)[2];
-      if (!in_array($year, $all_years)) {
-        $all_years[] = $year;
-      }
+    if ($is_project) {
+      $year = get_field('year_start', $post_id);
+    } else {
+      $date = get_field('date_start', $post_id);
+      $year = $date ? explode('-', $date)[2] : null;
+    }
+    if ($year && !in_array($year, $all_years)) {
+      $all_years[] = $year;
     }
   }
-  
-  // Initialise toutes les années à 0
+
   $year_counts = array_fill_keys($all_years, 0);
-  
   wp_reset_postdata();
-  
+
   // ✅ ÉTAPE 2 : Applique les filtres et compte
   $query_args = [
     'post_type'      => $cpt,
@@ -101,23 +104,22 @@ function get_filtered_year_counts($base_filters, $cpt = 'post') {
   }
 
   $filtered_posts = new WP_Query($query_args);
-  
-  // Compte les posts filtrés par année
+
   foreach ($filtered_posts->posts as $post_id) {
-    $date = get_field('date_start', $post_id);
-    if ($date) {
-      $year = explode('-', $date)[2];
-      if (isset($year_counts[$year])) {
-        $year_counts[$year]++;
-      }
+    if ($is_project) {
+      $year = get_field('year_start', $post_id);
+    } else {
+      $date = get_field('date_start', $post_id);
+      $year = $date ? explode('-', $date)[2] : null;
+    }
+    if ($year && isset($year_counts[$year])) {
+      $year_counts[$year]++;
     }
   }
 
   wp_reset_postdata();
-  
-  // Trie les années (plus récent en premier)
   krsort($year_counts);
-  
+
   return $year_counts;
 }
 
@@ -194,9 +196,10 @@ function ajax_filter_project() {
 
   if (!empty($filtersDecode->period)) {
     $meta_query[] = [
-      'key' => 'date_start',
-      'value' => $filtersDecode->period,
-      'compare' => 'LIKE',
+      'key'     => 'year_start',
+      'value'   => (int) $filtersDecode->period,
+      'compare' => '=',
+      'type'    => 'NUMERIC',
     ];
   }
 
@@ -205,8 +208,8 @@ function ajax_filter_project() {
     'post_type' => 'project',
     'post_status' => 'publish',
     'posts_per_page' => 18,
-    'meta_key' => 'date_start',
-    'orderby' => 'meta_value',
+    'meta_key' => 'year_start',
+    'orderby' => 'meta_value_num',
     'order' => 'DESC',
     'tax_query' => count($tax_query) > 1 ? $tax_query : '',
     'meta_query' => count($meta_query) >= 1 ? $meta_query : '',
@@ -282,16 +285,23 @@ function ajax_filter_publication() {
     ];
   }
 
+  // Toujours exclure les publications masquées (hidden = 1)
+  $meta_query[] = [
+    'relation' => 'OR',
+    [ 'key' => 'hidden', 'compare' => 'NOT EXISTS' ],
+    [ 'key' => 'hidden', 'value' => '1', 'compare' => '!=' ],
+  ];
+
   $args = [
-    'paged' => $paged,
-    'post_type' => 'publication',
-    'post_status' => 'publish',
+    'paged'          => $paged,
+    'post_type'      => 'publication',
+    'post_status'    => 'publish',
     'posts_per_page' => 16,
-    'meta_key' => 'date_start',
-    'orderby' => 'meta_value',
-    'order' => 'DESC',
-    'tax_query' => count($tax_query) > 1 ? $tax_query : '',
-    'meta_query' => count($meta_query) >= 1 ? $meta_query : '',
+    'meta_key'       => 'date_start',
+    'orderby'        => 'meta_value',
+    'order'          => 'DESC',
+    'tax_query'      => count($tax_query) > 1 ? $tax_query : '',
+    'meta_query'     => $meta_query,
   ];
 
   $query = new WP_Query($args);

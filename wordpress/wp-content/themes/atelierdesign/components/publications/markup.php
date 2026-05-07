@@ -49,7 +49,6 @@
 <div class="relative last-publication">
   <div class="bg-layout-main theme-light-blue">
     <div class="relative md:px-container grid grid-base">
-
       <div class="relative theme-dark-blue py-section col-span-12 md:col-span-8 z-[1] ">
         <div class="flex flex-col @@:gap-y-[24px] items-start autoscale-children relative z-[1] mm-sm:px-container">
         <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>

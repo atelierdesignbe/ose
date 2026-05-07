@@ -15,23 +15,41 @@ if ($date_end) {
   $ts_end = DateTime::createFromFormat('d-m-Y', $date_end)->getTimestamp();
 }
 
+$types = get_the_terms( get_the_ID(), 'event_type' );
 $themes = get_the_terms( get_the_ID(), 'themes' );
-$types = get_the_terms( get_the_ID(), 'types' );
 
 if (!$cover) $coverState = 'none';
-// var_dump($ts_start);
+
+
+
+ob_start();
 ?>
+<div class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup autoscale-children">
+  <?php if($date_start): ?> <span class="badge badge-primary badge-outlined"><?= $date_start ?></span><?php endif; ?>
+  <?php if($date_end && $ts_end > $ts_start): ?><span><?= icon('chevron', $theme === 'blue' ? 'stroke-white @@:h-[8px] w-auto -rotate-90' : 'stroke-dark-blue @@:h-[8px] w-auto -rotate-90', true); ?></span><span class="badge badge-primary badge-outlined"><?= $date_end ?></span><?php endif; ?>
+  <?php if($types): ?>
+    <span class="badge badge-primary badge-filled">
+      <?= $types && $types[0] ? $types[0]->name : __('Event', 'atelierdesign'); ?>
+    </span>      
+  <?php endif; ?>
+
+</div>
+<?php $beforeContent = ob_get_clean(); ?>
 
 
 <?php
 ob_start();
-?>
-<div class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup">
-  <?php if($date_start): ?> <span class="badge badge-primary badge-outlined"><?= $date_start ?></span><?php endif; ?>
-  <?php if($date_end && $ts_end > $ts_start): ?><span><?= icon('chevron', $theme === 'blue' ? 'stroke-white @@:h-[8px] w-auto -rotate-90' : 'stroke-dark-blue @@:h-[8px] w-auto -rotate-90', true); ?></span><span class="badge badge-primary badge-outlined"><?= $date_end ?></span><?php endif; ?>
-  <span class="badge badge-primary badge-filled bg-dark-blue text-white border-dark-blue">Event</span>
-</div>
-<?php $beforeContent = ob_get_clean(); ?>
+
+if($themes): ?>
+  <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-400 autoscale-children">
+    <?php foreach($themes as $theme): ?>
+      <li>
+        <span class="badge badge-secondary badge-filled bg-yellow border-yellow"><?= $theme->name ?></span>
+      </li>
+    <?php endforeach; ?>
+  </ul>
+<?php endif; ?>
+<?php $afterContent = ob_get_clean(); ?>
 
   <?php 
   echo get_template_part(
@@ -43,6 +61,7 @@ ob_start();
       'content' => $description,
       'cover-status' => $coverState,
       'beforeContent' => $beforeContent,
+      'afterContent' => $afterContent,
       'social'  => false,
     ]);
 ?>

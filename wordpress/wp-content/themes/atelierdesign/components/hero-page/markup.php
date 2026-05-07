@@ -11,7 +11,7 @@ if ($hasLabel &&  $labelStatus === 'override') $label = $args['label'];
 if (!$cover) $coverState = 'none';
 ?>
 <div class="hero hero-cpt relative overflow-hidden relative <?= $coverState === 'fill' ? 'mm-sm:pb-0' : '' ?> <?= $coverState !== 'default' ? 'mm-sm:min-h-[1px]' : '' ?> ">
-  <div class="px-container relative z-10 w-full">
+  <div class="container relative z-10 w-full">
     <div class="grid grid-base">
       <div class="hero-wrapper z-[1] relative col-span-12  @md:py-[130px] @lg:py-[130px] flex flex-col @@:gap-y-[16px] autoscale-children <?= $coverState === 'default' ? 'theme-dark-blue md:col-span-18 md:col-start-4 items-center text-center' : '' ?>">
         <div class="flex items-center @@:gap-x-2 aos animate-fadeinup">

@@ -106,7 +106,7 @@ add_action('acf/include_fields', function () {
       5  => 'slug',
       6  => 'author',
       9  => 'categories',
-      10 => 'tags',
+      // 10 => 'tags',
       11 => 'send-trackbacks',
     ],
   ]);

@@ -119,7 +119,7 @@ add_action('acf/include_fields', function () {
       // 7 => 'format',
       8 => 'featured_image',
       9 => 'categories',
-      10 => 'tags',
+      // 10 => 'tags',
       11 => 'send-trackbacks',
     ],
   ]);

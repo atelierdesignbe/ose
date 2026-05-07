@@ -12,8 +12,8 @@
     'post_type' => 'project',
     'post_status' => 'publish',
     'posts_per_page' => 3,
-    'meta_key' => 'date_start',
-    'orderby' => 'meta_value',
+    'meta_key' => 'year_start',
+    'orderby' => 'meta_value_num',
     'order' => 'DESC',
   );
 

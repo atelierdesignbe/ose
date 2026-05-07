@@ -5,6 +5,12 @@
  */
 
 add_action('acf/include_fields', function () {
+  // Choices pour les selects year_start / year_end : année courante + 2 → 1990
+  $year_choices = [];
+  for ( $y = (int) date('Y') + 15; $y >= 1990; $y-- ) {
+    $year_choices[ (string) $y ] = (string) $y;
+  }
+
   acf_add_local_field_group([
     'key' => 'field-group-single-project-template',
     'title' => 'Custom Flexible Fields',
@@ -56,14 +62,29 @@ add_action('acf/include_fields', function () {
         'rows' => 2,
     ],
       [
-        'key' => 'field-single-project-template-date',
-        'label' => 'Date',
-        'type' => 'date_picker',
-        'name' => 'date_start',
-        'required' => 1,
-        'display_format' => 'd-m-Y',      // Format d'affichage dans l'admin
-        'return_format' => 'd-m-Y',
-        'default_value' => date('d-m-Y'),
+        'key'           => 'field-single-project-year-start',
+        'label'         => 'Start Year',
+        'name'          => 'year_start',
+        'type'          => 'select',
+        'required'      => 1,
+        'choices'       => $year_choices,
+        'default_value' => (string) date('Y'),
+        'allow_null'    => 0,
+        'return_format' => 'value',
+        'ui'            => 0,
+      ],
+      [
+        'key'           => 'field-single-project-year-end',
+        'label'         => 'End Year',
+        'name'          => 'year_end',
+        'type'          => 'select',
+        'required'      => 0,
+        'choices'       => $year_choices,
+        'default_value' => '',
+        'allow_null'    => 1,
+        'instructions'  => 'Leave empty if the project is ongoing',
+        'return_format' => 'value',
+        'ui'            => 0,
       ],
       
       // [
@@ -175,7 +196,7 @@ add_action('acf/include_fields', function () {
       // 7 => 'format',
       8 => 'featured_image',
       9 => 'categories',
-      10 => 'tags',
+      // 10 => 'tags',
       11 => 'send-trackbacks',
     ],
   ]);
@@ -189,34 +210,28 @@ add_action('acf/include_fields', function () {
     'title' => 'Custom Authors',
     'fields' => [
       [
-        'key' => 'field-single-project-template-author',
-        'label' => 'Authors',
-        'type' => 'relationship',
-        'name' => 'author',
-        'required' => 0,
-        'post_type' => ['author'], 
-        'filters' => ['search'],
-        // 'elements' => ['featured_image'],  // Afficher la photo
-        'min' => 0,
-        // 'max' => 5,
+        'key'           => 'field-single-project-template-author',
+        'label'         => 'Authors',
+        'type'          => 'relationship',
+        'name'          => 'author',
+        'required'      => 0,
+        'post_type'     => ['author', 'external_author'],
+        'filters'       => ['search'],
+        'min'           => 0,
         'return_format' => 'object',
-        // 'conditional_logic' => [
-        //   [
-        //     [
-        //       'field' => 'field-single-publication-is-external',
-        //       'operator' => '!=',
-        //       'value' => '1',
-        //     ],
-        //   ],
-        // ],
       ],
       [
-        'key' => 'field-single-project-template-external-author',
-        'label' => 'External Authors',
-        'type' => 'text',
-        'name' => 'external-author',
-        'instructions' => 'Add externals authors separate by comma'
-      ]
+        'key'           => 'field-single-project-related-publications',
+        'label'         => 'Related Publications',
+        'name'          => 'related_publications',
+        'type'          => 'relationship',
+        'required'      => 0,
+        'post_type'     => ['publication'],
+        'filters'       => ['search'],
+        'min'           => 0,
+        'return_format' => 'object',
+      ],
+
     ],
     'location' => [
       [
@@ -244,7 +259,7 @@ add_action('acf/include_fields', function () {
       // 7 => 'format',
       8 => 'featured_image',
       9 => 'categories',
-      10 => 'tags',
+      // 10 => 'tags',
       11 => 'send-trackbacks',
     ],
   ]);

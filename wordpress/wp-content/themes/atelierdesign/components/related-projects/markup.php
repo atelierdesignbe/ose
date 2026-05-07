@@ -13,8 +13,8 @@
     'post_type' => 'project',
     'post_status' => 'publish',
     'posts_per_page' => 3,
-    'meta_key' => 'date_start',
-    'orderby' => 'meta_value',
+    'meta_key' => 'year_start',
+    'orderby' => 'meta_value_num',
     'order' => 'DESC',
   );
 
@@ -50,7 +50,7 @@
 ?>
 
 <div class="relative py-section theme-white bg-layout-main">
-  <div class="px-container">
+  <div class="container">
     <div class="flex flex-col @sm:gap-y-[32px] @md/lg:gap-y-[40px]">
       <div class="flex flex-col md:flex-row @@:gap-[24px] md:justify-between items-start autoscale-children">
         <div class="flex-auto">

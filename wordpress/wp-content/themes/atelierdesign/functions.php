@@ -557,7 +557,7 @@ function menu_build_fields(
       'label'             => 'Items',
       'name'              => 'items',
       'type'              => 'flexible_content',
-      // 'max'               => 1,
+      'max'               => 1,
       'button_label'      => 'Add nav item',
       'layouts'           => [
         [
@@ -581,3 +581,20 @@ function menu_build_fields(
 
   return $fields;
 }
+// 1. Enregistrer external_author dans Polylang (évite le filtrage)
+add_filter( 'pll_get_post_types', function( $post_types, $is_settings ) {
+  $post_types['external_author'] = 'external_author';
+  return $post_types;
+}, 10, 2 );
+
+// 2. Auto-assigner la langue par défaut au save
+add_action( 'save_post_external_author', function( $post_id ) {
+  if ( function_exists( 'pll_set_post_language' ) && ! pll_get_post_language( $post_id ) ) {
+      pll_set_post_language( $post_id, pll_default_language() );
+  }
+}, 20 );
+
+// 3. Cacher la metabox Polylang sur ce CPT
+add_action( 'add_meta_boxes', function() {
+  remove_meta_box( 'ml_box', 'external_author', 'side' );
+}, 100 );

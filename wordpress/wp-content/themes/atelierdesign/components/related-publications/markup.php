@@ -13,12 +13,17 @@
 
 
   $queryArgs = array(
-    'post_type' => 'publication',
-    'post_status' => 'publish',
+    'post_type'      => 'publication',
+    'post_status'    => 'publish',
     'posts_per_page' => 4,
-    'meta_key' => 'date_start',
-    'orderby' => 'meta_value',
-    'order' => 'DESC',
+    'meta_key'       => 'date_start',
+    'orderby'        => 'meta_value',
+    'order'          => 'DESC',
+    'meta_query'     => [
+      'relation' => 'OR',
+      [ 'key' => 'hidden', 'compare' => 'NOT EXISTS' ],
+      [ 'key' => 'hidden', 'value' => '1', 'compare' => '!=' ],
+    ],
   );
 
   $tax = array();
@@ -76,7 +81,7 @@
 ?>
 
 <div class="relative py-section theme-white bg-layout-main">
-  <div class="px-container">
+  <div class="container">
     <div class="flex flex-col @sm:gap-y-[32px] @md/lg:gap-y-[40px]">
       <div class="flex flex-col md:flex-row @@:gap-[24px] md:justify-between items-start autoscale-children">
         <div class="flex-auto">

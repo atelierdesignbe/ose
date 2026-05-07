@@ -7,7 +7,7 @@ $cover = $args['cover'];
 ?>
 
 <div class="hero hero-home bg-yellow-50 relative overflow-hidden ">
-  <div class="hero-wrapper px-container z-[1] relative">
+  <div class="hero-wrapper container z-[1] relative">
     <div class="grid grid-base relative @sm:gap-y-[42px] @md/lg:gap-y-[68px]">
       <h1 class="heading heading-primary @sm:text-[46px] @md/lg:text-[72px] font-serif font-light @sm:leading-[48px] @md/lg:leading-[69px] col-span-12 md:col-span-20 md:col-start-2 lg:col-span-18 lg:col-start-4 autoscale aos animate-fadeinup"><?= $title ?></h1>
       <?php if($content): ?>
@@ -28,7 +28,7 @@ $cover = $args['cover'];
     <div class="absolute w-full h-[300px] top-0 left-0 bg-gradient-to-b from-yellow/80 from-40%  to-yellow/0 "></div>
   </div>
   <?php echo get_template_part('/components/scroll'); ?>
-  <div class="hero-social theme-dark-blue bg-layout-main px-container absolute bottom-0 left-0 z-10 text-light-blue @md/lg:h-[96px] hidden md:flex items-center @@:gap-x-[42px]">
+  <div class="hero-social theme-dark-blue bg-layout-main px-container absolute bottom-0 left-0 z-10 text-light-blue @md/lg:h-[96px] hidden md:flex items-center @@:gap-x-[42px]  md:w-[--col-1-3]">
     <div class="aos animate-fadeinup flex-none">
       <?php echo get_template_part('/components/social/markup', 'social', ['social' => get_field('social', 'acf-options-global-fields')['social']]); ?>
     </div>

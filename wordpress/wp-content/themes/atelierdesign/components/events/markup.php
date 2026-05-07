@@ -31,7 +31,7 @@
   }
 ?>
 <div class="py-section bg-layout-main theme-dark-blue relative">
-  <div class="px-container">
+  <div class="container">
       <div class="flex flex-col md:flex-row @@:gap-y-[24px] justify-between items-start autoscale-children">
         <div class="flex flex-col @@:gap-y-[24px] items-start  @md/lg:max-w-[638px]">
           <?php $adwp->get_template_part('_wysiwyg',  array('content' => $content, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>

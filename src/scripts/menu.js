@@ -1,9 +1,28 @@
-// ── Submenus (accordéon mobile / aria desktop) ────────────────────────────────
+// ── Submenus ──────────────────────────────────────────────────────────────────
+// Mobile  (< 600px) : toggle au click (accordéon)
+// Desktop (≥ 600px) : CSS :hover gère l'ouverture visuelle,
+//                     mouseenter/mouseleave synchronisent aria-expanded
+
+const MENU_BREAKPOINT = 600;
+
+function closeAllTriggers() {
+  document.querySelectorAll( '.menu__trigger[aria-expanded="true"]' ).forEach( t => {
+    t.setAttribute( 'aria-expanded', 'false' );
+    const d = t.nextElementSibling;
+    if ( d ) d.classList.remove( 'is-open' );
+  });
+}
 
 document.querySelectorAll('.menu__trigger').forEach( trigger => {
+  const dropdown = trigger.nextElementSibling;
+  if ( ! dropdown || ! dropdown.classList.contains( 'menu__dropdown' ) ) return;
+
+  // ── Click : mobile uniquement ──────────────────────────────────────────
   trigger.addEventListener( 'click', () => {
-    const dropdown = trigger.nextElementSibling;
-    if ( ! dropdown || ! dropdown.classList.contains( 'menu__dropdown' ) ) return;
+    if ( window.innerWidth >= MENU_BREAKPOINT ) {
+      trigger.blur(); // retire le focus pour éviter tout effet :focus-within résiduel
+      return;
+    }
 
     const isOpen = trigger.getAttribute( 'aria-expanded' ) === 'true';
 
@@ -26,17 +45,25 @@ document.querySelectorAll('.menu__trigger').forEach( trigger => {
       dropdown.classList.add( 'is-open' );
     }
   });
-});
 
-// ── Ferme les submenus au click en dehors ─────────────────────────────────────
-document.addEventListener( 'click', e => {
-  if ( ! e.target.closest( '.menu__item' ) ) {
-    document.querySelectorAll( '.menu__trigger[aria-expanded="true"]' ).forEach( t => {
-      t.setAttribute( 'aria-expanded', 'false' );
-      const d = t.nextElementSibling;
-      if ( d ) d.classList.remove( 'is-open' );
+  // ── Hover : desktop uniquement (sync aria-expanded avec CSS :hover) ────
+  const item = trigger.parentElement; // .menu__item
+  if ( item ) {
+    item.addEventListener( 'mouseenter', () => {
+      if ( window.innerWidth < MENU_BREAKPOINT ) return;
+      trigger.setAttribute( 'aria-expanded', 'true' );
+    });
+    item.addEventListener( 'mouseleave', () => {
+      if ( window.innerWidth < MENU_BREAKPOINT ) return;
+      trigger.setAttribute( 'aria-expanded', 'false' );
     });
   }
+});
+
+// ── Ferme au click en dehors (desktop) ────────────────────────────────────────
+document.addEventListener( 'click', e => {
+  if ( window.innerWidth < MENU_BREAKPOINT ) return;
+  if ( ! e.target.closest( '.menu__item' ) ) closeAllTriggers();
 });
 
 // ── Burger menu ───────────────────────────────────────────────────────────────

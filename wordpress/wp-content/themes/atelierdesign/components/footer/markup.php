@@ -8,7 +8,7 @@ $link      = get_field('header-contact', 'acf-options-global-fields');
 ?>
 <footer class="footer @sm:pt-[50px] md:pt-0 theme-light-grey bg-layout-main relative overflow-hidden">
   <div class="footer-top relative z-[1]">
-    <div class="px-container grid grid-base">
+    <div class="container grid grid-base">
       <div class="flex flex-col @@:gap-y-[32px] col-span-12 md:col-span-15 @md/lg:pt-[64px] @md/lg:pb-[180px] md:flex-row md:justify-between @md/lg:gap-x-[50px]">
         <div class="logo-brand aos animate-fadeinup flex-none text-dark-blue">
           <?php echo get_template_part('/components/logo', null, ['logo' => get_field('logo', 'acf-options-global-fields')]); ?>
@@ -66,7 +66,7 @@ $link      = get_field('header-contact', 'acf-options-global-fields');
 
   <!-- BOTTOM -->
   <div class="footer-bottom md:absolute md:bottom-0 md:left-0 relative z-[1]">
-    <div class="mm-sm:px-container">
+    <div class="mm-sm:container">
       <div class="border-t border-gray-200 @sm:py-[50px] @md/lg:py-[32px] @sm:mt-[50px] md:mt-0 @md/lg:pl-[--pl-margin]">
         <?php if($privacyNav && sizeof($privacyNav) > 0):  ?>
           <ul class="flex flex-col @@:gap-y-[12px] @@:gap-x-[22px] md:flex-row aos animate-fadeinup autoscale-children">

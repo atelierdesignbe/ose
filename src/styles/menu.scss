@@ -113,8 +113,8 @@
         }
       }
 
-      .menu__item:hover > .menu__dropdown,
-      .menu__item:focus-within > .menu__dropdown {
+      // Desktop : ouverture au hover uniquement (pas au focus/click)
+      .menu__item:hover > .menu__dropdown {
         opacity: 1;
         transform: translateY(0);
         pointer-events: auto;

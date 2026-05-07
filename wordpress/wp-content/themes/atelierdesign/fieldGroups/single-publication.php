@@ -23,6 +23,21 @@ add_action('acf/include_fields', function () {
         'type' => 'true_false',
         'default_value' => 0,
         'ui' => 1,
+        'wrapper' => [
+          'width' => '50%'
+        ]
+      ],
+      [
+        'key' => 'field-single-publication-is-hidden',
+        'label' => 'Hiden',
+        'instuctions' => 'If true, publication is only visible in Search or Team Member',
+        'name' => 'hidden',
+        'type' => 'true_false',
+        'default_value' => 0,
+        'ui' => 1,
+        'wrapper' => [
+          'width' => '50%'
+        ]
       ],
       [
         'key' => 'field-single-publication-external-link',
@@ -255,7 +270,7 @@ add_action('acf/include_fields', function () {
       // 7 => 'format',
       8 => 'featured_image',
       9 => 'categories',
-      10 => 'tags',
+      // 10 => 'tags',
       11 => 'send-trackbacks',
     ],
   ]);
@@ -276,29 +291,11 @@ add_action('acf/include_fields', function () {
         'type' => 'relationship',
         'name' => 'author',
         'required' => 0,
-        'post_type' => ['author'],
+        'post_type' => ['author', 'external_author'],
         'filters' => ['search'],
-        // 'elements' => ['featured_image'],  // Afficher la photo
         'min' => 0,
-        // 'max' => 5,
         'return_format' => 'object',
-        // 'conditional_logic' => [
-        //   [
-        //     [
-        //       'field' => 'field-single-publication-is-external',
-        //       'operator' => '!=',
-        //       'value' => '1',
-        //     ],
-        //   ],
-        // ],
       ],
-      [
-        'key' => 'field-single-publication-template-external-author',
-        'label' => 'External Authors',
-        'type' => 'text',
-        'name' => 'external-author',
-        'instructions' => 'Add externals authors separate by comma'
-      ]
     ],
     'location' => [
       [
@@ -326,7 +323,7 @@ add_action('acf/include_fields', function () {
       // 7 => 'format',
       8 => 'featured_image',
       9 => 'categories',
-      10 => 'tags',
+      // 10 => 'tags',
       11 => 'send-trackbacks',
     ],
   ]);

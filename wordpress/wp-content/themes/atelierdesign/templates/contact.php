@@ -17,7 +17,7 @@ global $adwp; ?>
 
     get_template_part('/components/hero/markup', 'hero', $fields['hero']); ?>
   <div class="theme-white bg-layout-main py-section">
-    <div class="px-container">
+    <div class="container">
       <div class="grid grid-base @@:gap-y-lg">
         <div class="col-span-12 md:col-span-7">
           <?php $adwp->get_template_part('_wysiwyg',  array('content' => $fields['content'], 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>

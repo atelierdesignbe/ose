@@ -31,7 +31,7 @@ $cover_status = $fields['hero']['cover-status'] ?? 'default';
 
   <!-- Members grid -->
   <section class="theme-white bg-layout-main py-section" js-team-filter>
-    <div class="px-container">
+    <div class="container">
 
       <?php
       $member_types = get_terms([

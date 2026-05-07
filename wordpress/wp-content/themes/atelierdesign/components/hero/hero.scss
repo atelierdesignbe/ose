@@ -46,3 +46,17 @@
     }
   }
 }
+
+.hero-home {
+  @apply min-h-[100dvh] flex items-center mm-sm:justify-center mm-sm:flex-col @sm:gap-y-[50px] @sm:py-[142px] md:py-0;
+  
+  .hero-wrapper {
+    @apply  @md/lg:py-[160px];
+  }
+
+
+  &.is-vertical {
+    @apply @md/lg:min-h-[100dvh] @md/lg:min-h-[824px] ;
+  }
+  
+}

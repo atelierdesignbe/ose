@@ -9,7 +9,7 @@
   $ancestors  = get_post_ancestors( $current_id );
 ?>
 <header class="header <?= $isBlendMode ? 'is-blend-mode' : '' ?>" js-header>
-  <div class="px-container">
+  <div class="container relative">
     <div class="header-wrapper flex items-center justify-between autoscale-children <?= $theme ?>">
 
       <!--  Logo + search desktop  -->
@@ -160,8 +160,8 @@
       </nav>
 
     </div>
-  </div>
-  <div class="header-wrapper-line z-10 <?= $theme === 'text-dark-blue' ? 'bg-dark-blue' : 'bg-white' ?>"></div>
+    <div class="header-wrapper-line z-1 <?= $theme === 'text-dark-blue' ? 'bg-dark-blue' : 'bg-white' ?>"></div>
 
+  </div>
 </header>
 <?php get_template_part('/components/search/markup', 'search'); ?>

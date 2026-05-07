@@ -1,13 +1,13 @@
 <?php
 
 ?>
-<div class="hero hero-fit is-fullscreen">
+<div class="hero hero-fit is-fullscreen <?= $args['social'] ? 'has-social' : ''?>">
   <div class="container relative z-10">
     <div class="grid grid-cols-1 md:grid-cols-24">
-      <div class="hero-fit-content md:col-span-11 md:col-start-2">
+      <div class="hero-fit-content md:col-span-13">
         <?= $args['contentHTML']; ?>
       </div>
-      <div class="hero-cover md:col-span-9 md:col-start-15 z-[99]">
+      <div class="hero-cover md:col-span-9 md:col-start-16 z-[99]">
         <div class="hero-cover-wrap ">
           <?= wp_get_attachment_image($args['cover']['ID'], 'full', false, ['class' => 'aos animate-fadeinup image-shadow-lg']) ?>
         </div>

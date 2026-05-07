@@ -11,26 +11,6 @@ $types = get_the_terms( $ids, 'types' );
 
 
 $authors   = get_field('author', $id) ?: [];
-$externals = get_field('external-author', $id)
-    ? array_filter(array_map('trim', explode(',', get_field('external-author'))))
-    : [];
-
-// Construire une liste unifiée de strings HTML
-$items = [];
-
-foreach ($authors as $author) {
-    $items[] = '<span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]">'
-        . esc_html($author->post_title)
-        . '</span>';
-}
-
-foreach ($externals as $name) {
-    $items[] = '<span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]">'
-        . esc_html($name)
-        . '</span>';
-}
-
-
 if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fields');
 
 ?>
@@ -53,11 +33,13 @@ if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fi
       </div>
      
       <p class="heading heading-md heading-primary aos animate-fadeinup"><?= get_the_title($id); ?> </p>
-      <?php if ($items) : ?>
+      <?php if ($authors) : ?>
         <ul class="flex flex-wrap items-center @sm:gap-x-[8px] @md/lg:gap-x-[8px] @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children aos animate-fadeinup animate-delay-300">
-          <?php foreach ($items as $i => $item) : ?>
-            <li class="flex items-center"><?= $item ?></li>
-            <?php if ($i < count($items) - 1) : ?>
+          <?php foreach ($authors as $i => $author) : ?>
+            <li class="flex items-center">
+              <span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= esc_html($author->post_title) ?></span>
+            </li>
+            <?php if ($i < count($authors) - 1) : ?>
               <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center"><span>/</span></li>
             <?php endif; ?>
           <?php endforeach; ?>

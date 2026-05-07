@@ -4,11 +4,14 @@ global $adwp;
 /** 
  * Create content here
  */
+
+if($args['label-status'] === 'default') $args['label'] = get_the_title();
+
 ob_start(); ?>
 <div class="hero-content-wrapper">
   <div class="hero-content">
     <?= $args['beforeContent']; ?>
-    <?php if($args['label'] && !empty($args['label']) && $args['label-status'] !== 'none'): ?>
+    <?php if($args['label'] && !empty($args['label']) && $args['label-status'] !== 'disabled'): ?>
       <p class="subtitle paragraph-primary aos animate-fadeinup"><?= $args['label'] ?></p>
     <?php endif; ?>
     <?php if($args['title']): ?>

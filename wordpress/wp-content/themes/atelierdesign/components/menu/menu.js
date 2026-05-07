@@ -52,7 +52,9 @@
   function isAccordion( dropdown ) {
     if ( dropdown.closest( '[data-menu-mode="accordeon"]' ) ) return true;
     if ( window.innerWidth <= MOBILE_BREAKPOINT && dropdown.closest( '[data-menu-mode="dropdown"]' ) ) return true;
-    if ( dropdown.getAttribute( 'data-depth-mode' ) === 'accordeon' ) return true;
+    // data-depth-mode="accordeon" ne s'applique qu'en contexte mobile :
+    // sur desktop le dropdown est géré par CSS :hover, pas par JS click.
+    if ( window.innerWidth <= MOBILE_BREAKPOINT && dropdown.getAttribute( 'data-depth-mode' ) === 'accordeon' ) return true;
     return false;
   }
 
@@ -241,10 +243,40 @@
       initButtonControl( menu );
 
       menu.querySelectorAll( '.menu__trigger' ).forEach( trigger => {
+
+        // ── Click : accordion only (desktop dropdown = CSS hover, no click) ──
         trigger.addEventListener( 'click', e => {
           e.stopPropagation();
+
+          const dropdown = getDropdown( trigger );
+          if ( dropdown && ! isAccordion( dropdown ) ) {
+            // Desktop dropdown mode : le click ne doit rien faire.
+            // Le sous-menu s'ouvre/ferme via CSS :hover — on bloque ici.
+            return;
+          }
+
           toggle( trigger );
         } );
+
+        // ── Hover : desktop dropdown seulement (mouseenter/leave sur le <li>) ─
+        // Garde aria-expanded en sync avec l'état CSS hover pour l'accessibilité.
+        const item = trigger.parentElement; // .menu__item
+        if ( item ) {
+          item.addEventListener( 'mouseenter', () => {
+            const dropdown = getDropdown( trigger );
+            if ( ! dropdown || isAccordion( dropdown ) ) return;
+            trigger.setAttribute( 'aria-expanded', 'true' );
+            dropdown.setAttribute( 'aria-hidden', 'false' );
+          } );
+
+          item.addEventListener( 'mouseleave', () => {
+            const dropdown = getDropdown( trigger );
+            if ( ! dropdown || isAccordion( dropdown ) ) return;
+            trigger.setAttribute( 'aria-expanded', 'false' );
+            dropdown.setAttribute( 'aria-hidden', 'true' );
+          } );
+        }
+
       } );
 
     } );
