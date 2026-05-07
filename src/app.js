@@ -139,7 +139,9 @@ if (hero) {
 // }
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log(document.querySelector('.hero').offsetHeight, document.querySelector('.header').offsetHeight)
   setPropertyContainer()
+  setTimeout(() => {
+    setPropertyContainer()
+  }, 100)
 });
 window.addEventListener('resize', setPropertyContainer)

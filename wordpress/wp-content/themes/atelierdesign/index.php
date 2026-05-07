@@ -2,6 +2,7 @@
 <?php
 $fields = get_fields() ?: [];
 $hero = is_array($fields['hero'] ?? null) ? $fields['hero'] : [];
+$hero['social'] = true;
 ?>
 <?php get_header(); ?>
 <?php 
@@ -11,7 +12,7 @@ $hero = is_array($fields['hero'] ?? null) ? $fields['hero'] : [];
     [
       ...get_field('header', 'acf-options-global-fields'), 
       'theme' => ($hero['cover-status'] ?? null) === 'default' ? 'text-white' : 'text-dark-blue', 
-      'isBlendMode' => $hero['cover-status'] === 'fill'
+      'isBlendMode' => $hero['cover-status'] === 'fill',
     ]
   );
 ?>

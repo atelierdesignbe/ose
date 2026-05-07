@@ -9,9 +9,13 @@ global $adwp; ?>
 ?>
 <?php $fields = get_fields(); ?>
 <?php get_header(); ?>
-<?php get_template_part('/components/header/markup', 'header', [...get_field('header', 'acf-options-global-fields'), 'theme' => $fields['hero']['cover-status'] === 'default' ? 'text-white' : 'text-dark-blue']); ?>
+<?php get_template_part('/components/header/markup', 'header', [...get_field('header', 'acf-options-global-fields'), 'theme' => $fields['hero']['cover-status'] === 'default' ? 'text-white' : 'text-dark-blue','isBlendMode' => $fields['hero']['cover-status'] === 'fill',
+]); ?>
 <main id="index">
-  <?php get_template_part('/components/hero-page/markup', 'hero', $fields['hero']); ?>
+  <?php 
+    $fields['hero']['social'] = true;
+
+    get_template_part('/components/hero/markup', 'hero', $fields['hero']); ?>
   <div class="theme-white bg-layout-main py-section">
     <div class="px-container">
       <div class="grid grid-base @@:gap-y-lg">

@@ -11,11 +11,15 @@ $cover_status = $fields['hero']['cover-status'] ?? 'default';
 <?php get_template_part('/components/header/markup', 'header', [
   ...get_field('header', 'acf-options-global-fields'),
   'theme' => $cover_status === 'default' ? 'text-white' : 'text-dark-blue',
+  'isBlendMode' => $fields['hero']['cover-status'] === 'fill',
 ]); ?>
 
 <main id="team">
 
-  <?php get_template_part('/components/hero-page/markup', 'hero', $fields['hero']); ?>
+  <?php 
+      $fields['hero']['social'] = true;
+
+  get_template_part('/components/hero/markup', 'hero', $fields['hero']); ?>
 
   <?php
   // Filtre actif depuis l'URL (ex: /team/administrative-team/)

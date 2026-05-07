@@ -21,10 +21,12 @@
   
 
   <?php echo get_template_part('/components/scroll', 'scroll'); ?>
-  <div class="absolute left-0  theme-white bg-layout-main px-container z-10 text-dark-blue hidden md:flex items-center @@:gap-x-[42px] @md/lg:h-[96px]" js-social>
-    <div class="aos animate-fadeinup">
-      <?php echo get_template_part('/components/social/markup', 'social', ['social' => get_field('social', 'acf-options-global-fields')['social']]); ?>
+  <?php if($args['social']): ?>
+    <div class="absolute left-0  theme-white bg-layout-main px-container z-10 text-dark-blue hidden md:flex items-center @@:gap-x-[42px] @md:h-[96px] @lg:h-[96px] @xl:h-[96px]" js-social>
+      <div class="aos animate-fadeinup">
+        <?php echo get_template_part('/components/social/markup', 'social', ['social' => get_field('social', 'acf-options-global-fields')['social']]); ?>
+      </div>
     </div>
-  </div>
+  <?php endif; ?>
 </div>
 

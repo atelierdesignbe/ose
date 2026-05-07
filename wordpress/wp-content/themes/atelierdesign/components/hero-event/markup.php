@@ -22,48 +22,27 @@ if (!$cover) $coverState = 'none';
 // var_dump($ts_start);
 ?>
 
-<div class="hero hero-cpt relative overflow-hidden relative <?= $coverState === 'fill' ? 'mm-sm:pb-0 ' : '' ?> mm-sm:min-h-[1px]">
-  <div class="px-container relative z-10 w-full">
-    <div class="grid grid-base">
-      <div class="hero-wrapper z-[1] relative col-span-12 @md:py-[130px] @lg:py-[130px] flex flex-col @@:gap-y-[16px] autoscale-children">
-        <div class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup">
-          <?php if($date_start): ?> <span class="badge badge-primary badge-outlined"><?= $date_start ?></span><?php endif; ?>
-          <?php if($date_end && $ts_end > $ts_start): ?><span><?= icon('chevron', $theme === 'blue' ? 'stroke-white @@:h-[8px] w-auto -rotate-90' : 'stroke-dark-blue @@:h-[8px] w-auto -rotate-90', true); ?></span><span class="badge badge-primary badge-outlined"><?= $date_end ?></span><?php endif; ?>
-          <span class="badge badge-primary badge-filled bg-dark-blue text-white border-dark-blue">Event</span>
-        </div>
-        <h1 class="heading heading-primary @sm:text-[46px] @md/lg:text-[72px] font-serif font-light @sm:leading-[48px] @md/lg:leading-[69px] autoscale aos animate-fadeinup autoscale"><?= $title ?></h1>
-        <?php if($description): ?><p class="paragraph paragraph-primary paragraph-lg autoscale aos animate-fadeinup animate-delay-200 autoscale"><?= $description ?></p><?php endif; ?>
-      </div>
-    </div>
-  </div>
-  <?php if($coverState === 'none'):  ?>
-    <div class="absolute bottom-0 left-[--left-line] w-[1px] h-full bg-dark-blue opacity-20 z-[0] md:h-[--hero-h] mm-sm:hidden"></div>
-  <?php elseif($coverState === 'fit'):  ?>
-    <div class="hero-cover hero-cover--fit mm-sm:px-container z-[1] mm-sm:w-full md:absolute md:bottom-0 md:right-0 md:h-[--hero-h]">
-      <div class="absolute top-0 left-[22.22%] w-[1px] h-full bg-dark-blue opacity-20 z-[0] mm-sm:hidden"></div>
-      <div class="w-full h-full z-[1] relative flex items-center mm-sm:justify-center">
-        <?php 
-          echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'w-auto h-auto max-h-full max-w-full image-shadow-lg aos animate-fadeinup animate-delay-400']);
-          ?> 
-      </div>
-    </div>
-  <?php elseif($coverState === 'fill'): ?>
-    <div class="hero-cover hero-cover--fill z-[1] @sm:h-[400px] mm-sm:w-full md:absolute md:bottom-0 md:right-0 md:h-[--hero-h] overflow-hidden">
-      <div class="w-full h-full z-[1] relative parallax-image-wrapper aos animate-fadeinzoomout animate-delay-400 ">
-        <?php 
-          echo wp_get_attachment_image($cover['ID'], 'full', null, ['class' => 'w-full h-full object-cover parallax-image']);
-        ?> 
-      </div>
-    </div>
-  <?php endif; ?>
 
-  <?php if($coverState !== 'fill'): ?>
-    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute top-0 right-0 z-[-1] translate-x-[20%] md:translate-x-[40%] @sm:h-[770px] @md/lg:h-[800px] w-auto mm-sm:hidden"/>
-    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute bottom-0 left-[50%] translate-x-[-50%] md:left-0  md:translate-x-[-30%] z-[-1] scale-[-1] md:translate-x-[-30%] translate-y-[30%] @@:h-[800px] w-auto"/>
-  <?php else : ?>
-    <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute @sm:bottom-[400px] md:bottom-0 left-[50%] translate-x-[-60%] md:left-0  md:translate-x-[-30%] z-[-1] scale-[-1] md:translate-x-[-30%] translate-y-[30%] @@:h-[800px] w-auto"/>
-
-  <?php endif;?>
-  <?php echo get_template_part('/components/scroll', 'scroll',  ['isFit' => $coverState === 'fit']); ?>
-
+<?php
+ob_start();
+?>
+<div class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup">
+  <?php if($date_start): ?> <span class="badge badge-primary badge-outlined"><?= $date_start ?></span><?php endif; ?>
+  <?php if($date_end && $ts_end > $ts_start): ?><span><?= icon('chevron', $theme === 'blue' ? 'stroke-white @@:h-[8px] w-auto -rotate-90' : 'stroke-dark-blue @@:h-[8px] w-auto -rotate-90', true); ?></span><span class="badge badge-primary badge-outlined"><?= $date_end ?></span><?php endif; ?>
+  <span class="badge badge-primary badge-filled bg-dark-blue text-white border-dark-blue">Event</span>
 </div>
+<?php $beforeContent = ob_get_clean(); ?>
+
+  <?php 
+  echo get_template_part(
+    '/components/hero/markup', 
+    null, 
+    [
+      'title' => $title,
+      'cover' => $cover,
+      'content' => $description,
+      'cover-status' => $coverState,
+      'beforeContent' => $beforeContent,
+      'social'  => false,
+    ]);
+?>
