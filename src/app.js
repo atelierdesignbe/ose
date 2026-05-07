@@ -1,3 +1,5 @@
+import Lenis from 'lenis'
+
 import './styles/app.scss'
 
 import './scripts/expand'
@@ -6,7 +8,7 @@ import './scripts/ajax'
 import './scripts/search'
 import './scripts/team'
 
-import Lenis from 'lenis'
+import '@components/hero/hero'
 
 // import './styles/tailwind.scss'
 console.log('🎨 Atelier Design Theme loaded');
@@ -17,9 +19,14 @@ if (import.meta.hot) {
 }
 
 // Votre code
+
+function setPropertyContainer() {
+  document.documentElement.style.setProperty('--hero-h', `${document.querySelector('.hero').offsetHeight - document.querySelector('.header').offsetHeight}px`  );
+}
 document.addEventListener('DOMContentLoaded', () => {
   console.log('✅ DOM ready');
 });
+
 
 const lenis = new Lenis({
   autoRaf: true,
@@ -32,6 +39,7 @@ const hero = document.querySelector('.hero')
 
 if (hero) {
   const scroll = document.querySelector('[js-scroll]')
+  const social = document.querySelector('[js-social]')
 
   function initRatioHero() {
     const screen = {
@@ -39,19 +47,19 @@ if (hero) {
       h: window.innerHeight,
     }
 
-    
+    if(hero.offsetHeight > window.innerHeight) hero.classList.add('is-bigger')
+    else hero.classList.remove('is-bigger')
+
     if (screen.w/screen.h < 1.45) {
       hero.classList.add('is-vertical')
-      if(hero.offsetHeight > window.innerHeight) hero.classList.add('is-bigger')
-      else hero.classList.remove('is-bigger')
-    } else hero.classList.remove('is-vertical', 'is-bigger')
+    } else hero.classList.remove('is-vertical')
     
   } 
 
   if(window.innerWidth < 600) {
     // IS MOBILE
-    hero.style.height = `${hero.offsetHeight}px`
-    hero.style.minHeight = `${1}px`
+    // hero.style.height = `${hero.offsetHeight}px`
+    // hero.style.minHeight = `${1}px`
   }
 
   initRatioHero()
@@ -77,6 +85,20 @@ if (hero) {
       })
     })
   }
+
+  // if (social) {
+  //   function initSocial() {
+  //     const heroRect = hero.getBoundingClientRect()
+  //     if (heroRect.top + heroRect.height < window.innerHeight) {
+  //       social.classList.add('is-bottom')
+  //     } else {
+  //       social.classList.remove('is-bottom')
+  //     }
+
+  //   }
+  //   window.addEventListener('scroll', initSocial)
+  //   window.addEventListener('resize', initSocial)
+  // }
 }
 
 // if (heroFit) {
@@ -115,3 +137,9 @@ if (hero) {
 //   window.addEventListener('resize', initHeroParallax)
 
 // }
+
+document.addEventListener('DOMContentLoaded', () => {
+  console.log(document.querySelector('.hero').offsetHeight, document.querySelector('.header').offsetHeight)
+  setPropertyContainer()
+});
+window.addEventListener('resize', setPropertyContainer)

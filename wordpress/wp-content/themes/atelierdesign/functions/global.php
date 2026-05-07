@@ -36,7 +36,7 @@ function display_lang() {
   }
 
 
-function icon($type, $class) {
+function icon($type, $class, $echo = true) {
   $icon = '';
   switch($type) {
     case 'chevron': 
@@ -77,7 +77,8 @@ function icon($type, $class) {
       break;
   }
 
-  echo $icon;
+  if($echo) echo $icon;
+  else return $icon;
 }
 
 

@@ -1,0 +1,50 @@
+@use '@styles/functions' as *;
+
+.hero-fullsize {
+  --hero-fullsize-x: #{fluid(0, 'sm')};
+
+  @screen md {
+    --hero-fullsize-x: #{fluid(0, 'lg')};
+  }
+
+
+  &-wrapper {
+    @apply relative @sm:pt-[144px] @sm:pb-[80px] @md/lg:pt-[190px] @md/lg:pb-[142px] @md/lg:min-h-[400px] flex items-center overflow-hidden ;
+  }
+
+  .wysiwyg > * {
+    text-align: center;
+  }
+
+  .hero-content-wrapper {
+    @apply w-full md:mx-auto md:max-w-[75%] flex flex-col items-center text-center @sm:gap-y-[32px] @md/lg:gap-y-[54px] relative z-[1] @sm:px-[12px] md:px-0;
+  }
+
+  .hero-content {
+    @apply items-center;
+  }
+
+  .hero-cover {
+    @apply absolute inset-0;
+
+    &:after {
+      @apply absolute inset-0 bg-black opacity-20;
+      content: "";
+    }
+  }
+
+  /*
+  * Modifier
+  */
+  &.is-fullscreen {
+    .hero-fullsize-wrapper {
+      @apply mm-sm:h-full min-h-[--hero-fullscreen];
+    }
+  }
+
+  &.is-fullscreen.is-vertical {
+    .hero-fullsize-wrapper {
+      @apply @md/lg:min-h-[820px];
+    }
+  }
+}

@@ -11,7 +11,7 @@ global $adwp; ?>
 <?php get_header(); ?>
 <?php get_template_part('/components/header/markup', 'header', [...get_field('header', 'acf-options-global-fields'), 'theme' => $fields['hero']['cover-status'] === 'default' ? 'text-white' : 'text-dark-blue']); ?>
 <main id="index">
-  <?php get_template_part('/components/hero/markup', 'hero', $fields['hero']); ?>
+  <?php get_template_part('/components/hero-page/markup', 'hero', $fields['hero']); ?>
   <div class="theme-white bg-layout-main py-section">
     <div class="px-container">
       <div class="grid grid-base @@:gap-y-lg">

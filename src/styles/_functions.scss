@@ -1,0 +1,9 @@
+@use 'sass:math';
+
+/// Calcule une valeur responsive relative à un breakpoint
+/// @param {number} $value - valeur en px
+/// @param {string} $screen - variable du breakpoint de référence
+
+@function fluid($value, $screen: 'md') {
+  @return calc((#{$value} / var(--tw-screen-#{$screen})) * var(--tw-screen-max) * var(--tw-scale));
+}

@@ -15,7 +15,7 @@ $cover_status = $fields['hero']['cover-status'] ?? 'default';
 
 <main id="team">
 
-  <?php get_template_part('/components/hero/markup', 'hero', $fields['hero']); ?>
+  <?php get_template_part('/components/hero-page/markup', 'hero', $fields['hero']); ?>
 
   <?php
   // Filtre actif depuis l'URL (ex: /team/administrative-team/)

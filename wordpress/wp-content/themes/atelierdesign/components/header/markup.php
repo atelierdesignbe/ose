@@ -3,11 +3,12 @@
   $nav       = $args['header-nav'];          // ACF clone → ['items' => [...]]
   $nav_items = is_array( $nav ) ? ( $nav['items'] ?? [] ) : [];
   $theme     = $args['theme'] ?? 'text-dark-blue';
+  $isBlendMode = $args['isBlendMode'] ?? false;
 
   $current_id = get_queried_object_id();
   $ancestors  = get_post_ancestors( $current_id );
 ?>
-<header class="header" js-header>
+<header class="header <?= $isBlendMode ? 'is-blend-mode' : '' ?>" js-header>
   <div class="px-container">
     <div class="header-wrapper flex items-center justify-between autoscale-children <?= $theme ?>">
 
@@ -158,8 +159,9 @@
 
       </nav>
 
-      <div class="header-wrapper-line <?= $theme === 'text-dark-blue' ? 'bg-dark-blue' : 'bg-white' ?>"></div>
     </div>
   </div>
+  <div class="header-wrapper-line z-10 <?= $theme === 'text-dark-blue' ? 'bg-dark-blue' : 'bg-white' ?>"></div>
+
 </header>
 <?php get_template_part('/components/search/markup', 'search'); ?>

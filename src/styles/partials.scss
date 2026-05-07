@@ -1,5 +1,9 @@
 .header {
-  @apply absolute top-0 left-0 w-full z-[99] ;
+  @apply absolute top-0 left-0 w-full z-[99] @sm:py-[10px] @md/lg:py-[14px];
+
+  &.is-blend-mode {
+    @apply md:bg-white;
+  }
 
   @media (min-width: 600px) and (max-width: 1024px) {
     .logo-brand,
@@ -10,7 +14,7 @@
   }
 
   &-wrapper {
-    @apply relative items-center flex @sm:py-[10px] md:py-0 ;
+    @apply relative items-center flex @sm:py-[10px] md:py-0 z-10;
 
     &-line {
       @apply absolute bottom-0 left-0 w-full h-[1px] opacity-20;
@@ -42,6 +46,7 @@
     }
 
   }
+
 }
 
 .logo-brand {

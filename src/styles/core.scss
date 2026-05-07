@@ -12,14 +12,17 @@
   --button-underline-border-width: 1;
   --size-container: calc(100vw - var(--pl-margin) * 2);
   --left-line: calc(((17 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin));
-
+  --container-margin-px: calc((100vw - 16px - (352 / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale)) / 2);
+  --inside: calc(100vw - (var(--container-margin-px) * 2));
 }
 
 @screen md {
   :root {
     --pl-margin: calc((var(--container-margin) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
     --hero-h: calc(100% - (92 / var(--tw-screen-md)) * var(--tw-screen-max) * var(--tw-scale));
-    --col-1-3: calc(((8 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin))
+    --col-1-3: calc(((8 / 24) * (100% - (var(--pl-margin) * 2))) + var(--pl-margin));
+    --container-margin-px: calc((100vw - 16px - (1140 / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale)) / 2);
+    --inside: calc(100vw - (var(--container-margin-px) * 2));
   }
 }
 

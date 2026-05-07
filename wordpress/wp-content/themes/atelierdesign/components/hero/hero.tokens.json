@@ -1,0 +1,163 @@
+{
+  "default": {
+    "types": [
+      "fullsize:Fullscreen hero",
+      "auto:Auto"
+    ],
+    "type": "fullsize",
+    "labels": [
+      "title:Title",
+      "custom:Custom",
+      "none:None"
+    ],
+    "label": "title",
+    "hasButtons": true,
+    "maxButtons": 1,
+    "hasCover": true,
+    "hasTitle": true,
+    "coverStyle": [],
+    "cover": "fullsize",
+    "hasScroll": false,
+    "hasSocial": false,
+    "headings": ["s"],
+    "paragraphs": []
+  },
+  "theme": {
+    "default": {
+      "fullsize": "black/main",
+      "fit": "white/main",
+      "fill": "white/main",
+      "none": "white/main",
+      "below": "white/main"
+    },
+    "content": {
+      "fullsize": "black/main"
+    }
+  },
+  "cover": {
+    "fit": {
+      "imgClass": "aos animate-fadeinup animate-delay-400",
+      "wrapClass": ""
+    },
+    "default": {
+      "imgClass": "parallax-image",
+      "wrapClass": "parallax-image-wrapper aos animate-fadeinzoomout"
+    }
+  },
+  "styles": {
+    "padding-top":          160,
+    "padding-bottom":       "0",
+    "content-gap":          16,
+    "image-rounded":        0,
+    "image-shadow":         "0 0 20px rgba(0, 0, 0, 0.5)",
+    "content-align":        "left",
+    "buttons-align":        "flex-start",
+    "content-align-items":  "flex-start",
+    "minimum-height":       400,
+    "buttons-gap":          16,
+    "buttons-size":         16,
+    "cover-width":          "calc(10 / 24)",
+    "vertical-height":      1,
+
+    "fullsize": {
+      "content-size": "100%",
+      "content-left": "0"
+    },
+
+    "none": {
+      "content-size": "100%",
+      "content-left": "0"
+    },
+
+    "fit": {
+      "content-size":       "calc(11 / 24 * 100%)",
+      "content-left":       0,
+      "cover-padding-right":"calc(var(--container-margin-px) + (1 / 24 * (100vw - (var(--container-margin-px) * 2))))",
+      "cover-padding-top":  180,
+      "cover-padding-bottom": 40
+    },
+
+    "fill": {
+      "cover-width":    "100%",
+      "cover-padding-x":"var(--container-margin-px)",
+      "padding-top":         120
+    },
+
+    "below": {
+      "content-size":     "100%",
+      "content-left":     0,
+      "cover-padding-x":  "var(--container-margin-px)",
+      "bg-layout-height": "calc(var(--hero-below-cover-height) * 2 / 3)"
+    },
+
+    "sm": {
+      "padding-x":   0,
+      "padding-y":   0,
+      "buttons-top": 0,
+      "vertical-fill-height": 620,
+
+      "fullsize": {
+        "padding-top":    120,
+        "padding-bottom": 24
+      },
+      "none": {
+        "padding-top":    120,
+        "padding-bottom": 24
+      },
+      "fit": {
+        "content-padding-top":    40,
+        "content-padding-bottom": 40,
+        "padding-bottom":         40,
+        "padding-top":         0
+      },
+      "fill": {
+        "cover-height":   346,
+        "padding-bottom": 40,
+        "content-padding-top": 40
+      },
+      "below": {
+        "padding-top":    160,
+        "padding-bottom": 40,
+        "cover-height":   346
+      }
+    },
+
+    "md": {
+      "padding-x":      0,
+      "padding-y":      0,
+      "padding-top":    0,
+      "buttons-top":    0,
+      "vertical-height": 824,
+      "minimum-height": 400,
+      "buttons-gap":    16,
+      "buttons-size":   16,
+      "vertical-fill-cover-height": "calc(100% - var(--hero-fill-padding-top))",
+
+      "fullsize": {
+        "padding-top":    160,
+        "padding-bottom": 40
+      },
+      "none": {
+        "padding-top":    260,
+        "padding-bottom": 24
+      },
+      "fit": {
+        "content-padding-top":    172,
+        "content-padding-bottom": 80,
+        "cover-padding-top":      120,
+        "cover-padding-bottom":   40,
+        "padding-bottom":         "0"
+      },
+      "fill": {
+        "cover-height":   "calc(100svh - var(--hero-fill-padding-top))",
+        "padding-bottom": "0"
+      },
+      "below": {
+        "padding-top":    160,
+        "padding-bottom": 80,
+        "cover-height":   540,
+        "cover-padding-x":"var(--container-margin-px)"
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@use '@styles/functions' as *;
+
+.hero {
+  --hero-fullscreen: 100svh;
+
+
+  @screen md {
+    --hero-fullscreen: 100svh;
+  }
+
+  @apply relative;
+
+  .hero-content-wrapper {
+    @apply w-full flex flex-col @sm:gap-y-[24px] @md/lg:gap-y-[54px] relative z-[1];
+  }
+
+  .hero-content {
+    @apply flex flex-col @sm:gap-y-[24px] @md/lg:gap-y-[18px] items-start;
+
+    .wysiwyg {
+      padding: 0;
+      margin: 0;
+    }
+
+    .wysiwyg > p:not(.heading-display) {
+      @apply font-serif @sm:text-[20px]  @sm:leading-[26px] @md/lg:text-[20px] @md/lg:leading-[26px] ;
+    }
+  }
+
+  .hero-buttons {
+    @apply flex flex-wrap flex-col md:flex-row @sm:gap-[12px] @md/lg:gap-[12px] md:items-center;
+
+    .button-wrapper {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+
+  &-grid {
+    @apply w-full;
+    
+    @screen md {
+      display: grid; 
+      grid-template-columns: calc( (15  / 24 * var(--inside, 100vw)) + var(--container-margin-px)) calc( (9  / 24 * var(--inside, 100vw)) + var(--container-margin-px));
+    }
+  }
+}
