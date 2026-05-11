@@ -20,15 +20,15 @@ if (!$cover) $coverState = 'none';
 <?php
 ob_start();
 ?>
-<div class="flex items-center @@:gap-x-2 aos animate-fadeinup autoscale-children">
-  <div class="flex flex-row @@:gap-2 items-center ">
-    <?php if($year_start): ?><span class="badge badge-primary badge-outlined"><?= $year_start ?></span><?php endif; ?>
+<div class="flex items-center @@:gap-x-2 autoscale-children">
+  <div class="flex flex-row @@:gap-2 items-center  aos animate-fadeinup ">
+    <?php if($year_start): ?><span class="badge badge-primary badge-outlined "><?= $year_start ?></span><?php endif; ?>
     <?php if($show_end): ?>
       <span><?= icon('chevron', $theme === 'blue' ? 'stroke-white @@:h-[8px] w-auto -rotate-90' : 'stroke-dark-blue @@:h-[8px] w-auto -rotate-90', true); ?></span>
       <span class="badge badge-primary badge-outlined"><?= $year_end ?></span>
     <?php endif; ?>
   </div>
-  <a href="<?= $projectLink ? $projectLink['url'] : '/projects/' ?>" class="badge badge-primary badge-filled bg-dark-blue text-white border-dark-blue">Project</a>
+  <a href="<?= $projectLink ? $projectLink['url'] : '/projects/' ?>" class="badge badge-primary badge-filled bg-dark-blue text-white border-dark-blue  aos animate-fadeinup  animate-delay-100">Project</a>
 </div>
 <?php $beforeContent = ob_get_clean(); ?>
 <?php
@@ -36,9 +36,9 @@ ob_start();
 ?>
 <!--  -->
 <?php if($themes): ?>
-  <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-400 autoscale-children">
-    <?php foreach($themes as $theme): ?>
-      <li>
+  <ul  class="flex items-center flex-wrap @@:gap-2 autoscale-children">
+    <?php foreach($themes as $i => $theme): ?>
+      <li class="aos animate-fadeinup " style="animation-delay: <?= ($i * 100) + 200 ?>ms">
         <a href="<?= $projectLink ? rtrim($projectLink['url'], '/')."/themes/".$theme->slug : "/projects/themes/".$theme->slug ?>" class="badge badge-secondary badge-filled bg-yellow border-yellow"><?= $theme->name ?></a>
       </li>
     <?php endforeach; ?>
@@ -50,9 +50,9 @@ ob_start();
 ?>   
 
   <?php if ($authors) : ?>
-    <ul class="flex flex-wrap items-center @sm:gap-x-[8px] @md/lg:gap-x-[8px] @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children aos animate-fadeinup animate-delay-300 ">
+    <ul class="flex flex-wrap items-center @sm:gap-x-[8px] @md/lg:gap-x-[8px] @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children ">
       <?php foreach ($authors as $i => $author) : ?>
-        <li class="flex items-center">
+        <li class="flex items-center aos animate-fadeinup" style="animation-delay: <?= ($i * 100) + 100 ?>ms">
           <?php if($author->post_type == 'author'):  ?>
             <a href="<?= esc_url(get_permalink($author->ID)) ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] link-underline"><?= esc_html($author->post_title) ?> </a>
           <?php else:  ?>
@@ -60,7 +60,7 @@ ob_start();
           <?php endif;  ?>
         </li>
         <?php if ($i < count($authors) - 1) : ?>
-          <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center"><span>/</span></li>
+          <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center aos animate-fadeinup"  style="animation-delay: <?= ($i * 125) + 100 ?>ms"><span>/</span></li>
         <?php endif; ?>
       <?php endforeach; ?>
     </ul>
@@ -74,7 +74,7 @@ ob_start();
     [
       'title' => $title,
       'cover' => $cover,
-      'content' => $description,
+      // 'content' => $description,
       'cover-status' => $coverState,
       'beforeContent' => $beforeContent,
       'afterContent' => $afterContent,

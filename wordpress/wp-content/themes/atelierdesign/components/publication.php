@@ -25,16 +25,16 @@ if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fi
         <?php if($date): ?><span class="badge badge-primary badge-outlined"><?= $date ?></span><?php endif; ?>
         <?php if($types): ?>
           <?php foreach($types as $type): ?>
-            <span class="badge badge-primary badge-filled aos animate-fadeinup">
+            <span class="badge badge-primary badge-filled">
               <?= $type->name ?>
           </span>            
           <?php endforeach; ?>
         <?php endif; ?>
       </div>
      
-      <p class="heading heading-md heading-primary aos animate-fadeinup"><?= get_the_title($id); ?> </p>
+      <p class="heading heading-md heading-primary "><?= get_the_title($id); ?> </p>
       <?php if ($authors) : ?>
-        <ul class="flex flex-wrap items-center @sm:gap-x-[8px] @md/lg:gap-x-[8px] @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children aos animate-fadeinup animate-delay-300">
+        <ul class="flex flex-wrap items-center @sm:gap-x-[8px] @md/lg:gap-x-[8px] @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children">
           <?php foreach ($authors as $i => $author) : ?>
             <li class="flex items-center">
               <span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= esc_html($author->post_title) ?></span>

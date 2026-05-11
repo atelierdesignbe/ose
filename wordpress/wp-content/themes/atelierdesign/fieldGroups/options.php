@@ -1,4 +1,47 @@
 <?php
+$forms = FrmForm::getAll(['is_template' => 0]);
+
+$form_fields = [];
+
+
+foreach ($forms as $form) {
+    $slug  = $form->form_key;
+    $label = $form->name;
+
+    $form_fields[] = [
+        'key'        => 'field-group-' . $slug,
+        'label'      => $label,
+        'name'       => $slug, // slug du formulaire
+        'type'       => 'group',
+        'sub_fields' => [
+            // [
+            //     'key'   => 'field-' . $slug . '-form-id',
+            //     'label' => 'Job Offer',
+            //     'name'  => $slug . '-id',
+            //     'type'  => 'select',
+            //     'choices' => [$form->id => $label],
+            //     'ui'    => 1,
+            //     'ajax'  => 0,
+            // ],
+            [
+                'key'          => 'field-' . $slug . '-email-items',
+                'label'        => '',
+                'instructions' => 'Erase email by default for this form.',
+                'name'         => $slug . '-email-items', 
+                'type'         => 'repeater',
+                'layout'       => 'table',
+                'sub_fields'   => [
+                  [
+                    'key'          => 'field-' . $slug . '-email-item',
+                    'label'        => 'Email',
+                    'name'         => $slug . '-email', 
+                    'type'         => 'email',
+                  ]
+                ]
+            ],
+        ],
+    ];
+}
 
 acf_add_local_field_group([
   'key' => 'options-page',
@@ -25,6 +68,16 @@ acf_add_local_field_group([
       'key' => 'field-global-publication-placeholder',
       'label' => 'Publication placeholder',
       'name' => 'publication-placeholder',
+      'type' => 'image',
+      'preview_size' => 'thumbnail',
+      'library' => 'all',
+      'mime_types' => 'jpg,jpeg,png,svg,webp',
+      'required' => 1
+    ],
+    [
+      'key' => 'field-global-team-placeholder',
+      'label' => 'Team placeholder',
+      'name' => 'team-placeholder',
       'type' => 'image',
       'preview_size' => 'thumbnail',
       'library' => 'all',
@@ -149,6 +202,21 @@ acf_add_local_field_group([
       'name' => 'events-link',
       'type' => 'link',
     ],
+    [
+      'key' => 'field-form-tab',
+      'label' => 'Form',
+      'type' => 'tab',
+      'no_preference' => 0,
+    ],
+    [
+      'key'           => 'field-form-contact-email',
+      'label'         => 'Main Email',
+      'name'          => 'form-contact-email',
+      'instructions'  => 'Used for all forms unless overridden below. Only one email address allowed.',
+      'type' => 'email',
+      'required' => 1,
+    ],
+    ...$form_fields,
   ],
   'location' => array(
     array(

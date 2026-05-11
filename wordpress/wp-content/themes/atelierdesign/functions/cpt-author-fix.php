@@ -68,3 +68,16 @@ add_action( 'init', function () {
         update_option( 'ose_author_rewrite_version', $version );
     }
 }, 100 );
+
+
+/**
+ * Exclut le CPT 'external_author' de la gestion Polylang.
+ *
+ * Les membres externes sont partagés entre toutes les langues (pas de traduction).
+ * Sans ce filtre, Polylang les filtre par langue et les fait disparaître
+ * des requêtes front et des champs ACF relationship.
+ */
+add_filter( 'pll_get_post_types', function ( $post_types, $is_settings ) {
+    unset( $post_types['external_author'] );
+    return $post_types;
+}, 10, 2 );

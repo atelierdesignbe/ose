@@ -34,7 +34,44 @@ add_action('acf/include_fields', function () {
           ],
         ],
       ],
-
+      [
+        'key' => 'field-custom-team-template-tab-flexible-before',
+        'label' => 'Content before team',
+        'type' => 'tab',
+        'no_preference' => 0,
+      ],
+      // Flexible content section
+      [
+        'key' => 'field-custom-team-template-clone-fieldgroup-flexible-before',
+        'label' => 'Flexible Content',
+        'name' => 'flexible_content_before',
+        'type' => 'clone',
+        'clone' => [
+          0 => 'field-flexible-flexible-layout',
+        ],
+        'prefix_name' => 1,
+        'display' => 'group'
+    
+      ],
+      [
+        'key' => 'field-custom-team-template-tab-flexible',
+        'label' => 'Flexible Content',
+        'type' => 'tab',
+        'no_preference' => 0,
+      ],
+      // Flexible content section
+      [
+        'key' => 'field-custom-team-template-clone-fieldgroup-flexible',
+        'label' => 'Flexible Content',
+        'name' => 'flexible_content',
+        'type' => 'clone',
+        'clone' => [
+          0 => 'field-flexible-flexible-layout',
+        ],
+        'prefix_name' => 1,
+        'display' => 'group'
+    
+      ],
       // Tab: CTA Footer
       [
         'key'   => 'field-custom-team-cta-footer-tab',

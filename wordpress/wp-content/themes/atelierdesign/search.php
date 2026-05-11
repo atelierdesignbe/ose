@@ -17,8 +17,8 @@ $found_posts  = $wp_query->found_posts;
   <!-- HERO SEARCH -->
   <section class="search-results-page-hero theme-white bg-layout-main relative overflow-hidden">
     <div class="px-container flex flex-col @@:gap-y-[20px] relative z-10 autoscale-children">
-      <p class="@sm:text-[13px] @md/lg:text-[13px] @sm:tracking-[1px] @md/lg:tracking-[2px] uppercase text-dark-blue"><?= pll__('Search & Press Enter', 'atelierdesign') ?></p>
-      <form role="search" method="get" action="<?= esc_url(home_url('/')) ?>" class="search-results-page-form">
+      <p class="@sm:text-[13px] @md/lg:text-[13px] @sm:tracking-[1px] @md/lg:tracking-[2px] uppercase text-dark-blue aos animate-fadeinup"><?= pll__('Search & Press Enter', 'atelierdesign') ?></p>
+      <form role="search" method="get" action="<?= esc_url(home_url('/')) ?>" class="search-results-page-form  aos animate-fadeinup animate-delay-100">
         <textarea
           name="s"
           class="heading heading-2xl heading-primary"
@@ -41,22 +41,22 @@ $found_posts  = $wp_query->found_posts;
    
       <div class="px-container flex flex-col @sm:gap-y-[24px] @md/lg:gap-y-[40px]">
       <?php if ($search_query) : ?>
-        <p class="paragraph-lg paragraph-primary paragraph autoscale">
+        <p class="paragraph-lg paragraph-primary paragraph autoscale aos animate-fadeinup">
           <?= $found_posts ?> <?= $found_posts > 1 ? pll__('results found', 'atelierdesign') : pll__('result found', 'atelierdesign') ?>
         </p>
       <?php endif; ?>
-        <div class="grid grid-base @@:gap-x-[12px] @@:gap-y-[12px]">
+        <div class="grid grid-base @@:gap-x-[12px] @@:gap-y-[12px] md:*:stagger-3">
           <?php while (have_posts()) : the_post(); ?>
-            <div class="col-span-12 md:col-span-8">
+            <div class="col-span-12 md:col-span-8 aos animate-fadeinup stagger-delay-100">
               <a href="<?= esc_url(get_permalink()) ?>" class="search-result-item block h-full autoscale-children">
                 <div class="search-result-item-inner ">
-                  <div>
+                  <div class="flex flex-col @sm:gap-y-[12px] @md/lg:gap-y-[12px]">
                     <?php
                     $post_type_obj = get_post_type_object(get_post_type());
                     $type_label = $post_type_obj ? $post_type_obj->labels->singular_name : '';
                     if ($type_label && get_post_type() !== 'page' && get_post_type() !== 'post') :
                     ?>
-                      <!-- <span class="badge badge-primary badge-normal"><?= esc_html($type_label) ?></span> -->
+                      <span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] "><?= esc_html($type_label) ?></span>
                     <?php endif; ?>
                     <p class="search-result-item-title heading heading-md heading-primary"><?= get_the_title() ?></p>
                   </div>

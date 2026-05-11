@@ -133,6 +133,59 @@ function ad_hide_subsubsub()
 add_action('admin_head', 'ad_hide_subsubsub');
 
 /**
+ * Formidable : renomme le menu en "Forms" et change l'icône.
+ */
+add_action('admin_menu', function () {
+  global $menu;
+  foreach ($menu as $key => $item) {
+    if (isset($item[2]) && $item[2] === 'formidable') {
+      $menu[$key][0] = 'Forms';
+      $menu[$key][6] = 'dashicons-feedback';
+      break;
+    }
+  }
+}, 999);
+
+/**
+ * Formidable Entries : masque les colonnes indésirables.
+ * CSS injecté sur toutes les pages admin (les classes sont assez spécifiques).
+ */
+add_action('admin_head', function () {
+  echo '<style>
+    .column-0_form_id,
+    .column-0_user_id,
+    .column-0_is_draft,
+    .column-0_updated_at,
+    .column-0_ip,
+    .column-0_post_id,
+    .column-0_parent_item_id {
+      display: none !important;
+    }
+  </style>';
+});
+
+/**
+ * Formidable : cache tout sauf "Entries" pour les non-Super Admin.
+ *
+ * On itère sur $submenu['formidable'] et on supprime tout ce qui
+ * n'est pas 'formidable-entries'. Le parent menu pointe alors
+ * automatiquement sur le premier sous-menu restant (= Entries).
+ */
+add_action('admin_menu', function () {
+  if (current_user_can('administrator')) return;
+
+  global $submenu;
+
+  if (empty($submenu['formidable'])) return;
+
+  foreach ($submenu['formidable'] as $key => $item) {
+    if (!isset($item[2]) || $item[2] !== 'formidable-entries') {
+      unset($submenu['formidable'][$key]);
+    }
+  }
+}, 999);
+
+/**
  * Remove unnecessary roles
  */
 

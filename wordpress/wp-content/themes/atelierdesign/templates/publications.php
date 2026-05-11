@@ -78,45 +78,6 @@
         <p class="filter-label subtitle autoscale text-dark-blue">Filter by</p>
         <!-- <div class=""></div> -->
         <div class="flex flex-wrap flex-row mm-sm:justify-between @sm:gap-y-[12px] @md/lg:gap-x-4 filters">
-          <?php if($themes): ?>
-            <div class="relative mm-sm:w-[48%] md:w-auto">
-              <button type="button" class="button button-outline !rounded-none border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
-                <span class="button-title">Theme</span>
-                <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
-              </button>
-              <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 translate-y-full z-[10] mm-sm:w-[208%] md:w-[250px]" js-expand="all">
-                <ul class="border border-dark-blue w-full bg-white text-dark-blue" data-lenis-prevent js-ajax-filter="themes">
-                  <?php foreach($themes as $theme): ?>
-                     <li js-expand-item>
-                      <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $theme->slug ?>" data-name="<?= $theme->name ?>">
-                        <span><?= $theme->name ?></span>
-                      </button>
-                    </li>
-                  <?php endforeach; ?>
-                </ul>
-              </div>
-            </div>
-          <?php endif; ?>
-          
-          <!-- <?php if($types): ?>
-            <div class="relative mm-sm:w-[48%]">
-              <button type="button" class="button button-outline !rounded-none border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
-                <span class="button-title">Type</span>
-                <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
-              </button>
-              <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 translate-y-full z-[10] mm-sm:w-[208%] md:w-[250px]" js-expand="all">
-                <ul class="border border-dark-blue w-full bg-white text-dark-blue" data-lenis-prevent js-ajax-filter="types">
-                  <?php foreach($types as $type): ?>
-                    <li js-expand-item>
-                      <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $type->slug ?>" data-name="<?= $type->name ?>" >
-                        <span><?= $type->name ?></span>
-                      </button>
-                    </li>
-                  <?php endforeach; ?>
-                </ul>
-              </div>
-            </div>
-          <?php endif; ?> -->
 
           <?php if($authors): ?>
             <div class="relative mm-sm:w-[48%]">
@@ -138,25 +99,26 @@
             </div>
           <?php endif; ?>
 
-          <!-- <?php if($projects): ?>
-            <div class="relative mm-sm:w-[48%]">
+          <?php if($themes): ?>
+            <div class="relative mm-sm:w-[48%] md:w-auto">
               <button type="button" class="button button-outline !rounded-none border border-yellow flex items-center @@:px-[20px] @@:py-[22px] @@:gap-x-2 autoscale text-dark-blue w-full justify-between filter-button" js-expand-button>
-                <span class="button-title">Project</span>
+                <span class="button-title">Theme</span>
                 <?php echo icon('chevron', '@@:w-[13px] h-auto stroke-current'); ?>
               </button>
               <div class="expand filter-expand autoscale @@:py-[4px] absolute bottom-0 translate-y-full z-[10] mm-sm:w-[208%] md:w-[250px]" js-expand="all">
-                <ul class="border border-dark-blue bg-white text-dark-blue w-full" js-ajax-filter="projects">
-                  <?php foreach($projects as $project): ?>
+                <ul class="border border-dark-blue w-full bg-white text-dark-blue" data-lenis-prevent js-ajax-filter="themes">
+                  <?php foreach($themes as $theme): ?>
                     <li js-expand-item>
-                      <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $project->slug ?>" data-name="<?= $project->name ?>" >
-                        <span><?= $project->name ?></span>
+                      <button type="button" class="@@:text-[14px] @@:leading-[20px] @@:tracking-[1px] @@:px-[20px] @@:py-[10px] w-full text-left filter-item-btn" data-id="<?= $theme->slug ?>" data-name="<?= $theme->name ?>">
+                        <span><?= $theme->name ?></span>
                       </button>
                     </li>
                   <?php endforeach; ?>
                 </ul>
               </div>
             </div>
-          <?php endif; ?> -->
+          <?php endif; ?>
+
         </div>
         
         <div class="filter-reset autoscale-children flex items-center flex-wrap @@:gap-2 relative z-[1]" js-ajax-reset></div>

@@ -54,13 +54,13 @@ add_action('acf/include_fields', function () {
           ]
         ]
       ],
-      [
-        'key' => 'field-single-project-template-description',
-        'label' => 'Description',
-        'type' => 'textarea',
-        'name' => 'description',
-        'rows' => 2,
-    ],
+      // [
+      //   'key' => 'field-single-project-template-description',
+      //   'label' => 'Description',
+      //   'type' => 'textarea',
+      //   'name' => 'description',
+      //   'rows' => 2,
+      // ],
       [
         'key'           => 'field-single-project-year-start',
         'label'         => 'Start Year',
@@ -82,35 +82,19 @@ add_action('acf/include_fields', function () {
         'choices'       => $year_choices,
         'default_value' => '',
         'allow_null'    => 1,
-        'instructions'  => 'Leave empty if the project is ongoing',
         'return_format' => 'value',
         'ui'            => 0,
       ],
-      
-      // [
-      //   'key' => 'field-single-project-template-tab-hero',
-      //   'label' => 'Hero',
-      //   'type' => 'tab',
-      //   'no_preference' => 0,
-      // ],
-      // // Hero section
-      // [
-      //   'key' => 'field-single-project-template-group-hero',
-      //   'label' => 'Hero',
-      //   'name' => 'hero',
-      //   'type' => 'group',
-      //   'sub_fields' => [
-      //     [
-      //       'key' => 'field-single-project-template-clone-fieldgroup-hero',
-      //       'label' => 'Hero',
-      //       'name' => 'hero',
-      //       'type' => 'clone',
-      //       'clone' => [
-      //         0 => 'field-group-hero-project',
-      //       ],
-      //     ],
-      //   ],
-      // ],
+      [
+        'key'           => 'field-single-project-completed',
+        'label'         => '',
+        'name'          => 'is_completed',
+        'type'          => 'true_false',
+        'ui'            => 1,
+        'ui_on_text' => 'Completed',
+        'ui_off_text' => 'Ongoing',
+      ],
+
       // Tab: Flexible Content
       [
         'key' => 'field-single-project-template-tab-flexible',
@@ -118,6 +102,7 @@ add_action('acf/include_fields', function () {
         'type' => 'tab',
         'no_preference' => 0,
       ],
+
       // Flexible content section
       [
         'key' => 'field-single-project-template-clone-fieldgroup-flexible',

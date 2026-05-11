@@ -5,6 +5,7 @@ import './styles/app.scss'
 import './scripts/expand'
 import './scripts/menu'
 import './scripts/ajax'
+import './scripts/loadmore'
 import './scripts/search'
 import './scripts/team'
 

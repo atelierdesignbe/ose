@@ -1,41 +1,33 @@
 const ajaxPage = document.querySelector('[js-ajax]')
 
-function initPublicationAnimation() {
-  const publications = document.querySelectorAll('.publication')
-  if (publications.length > 0) {
-    publications.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        el.classList.remove('is-leaving')
-        el.classList.add('is-entering')
-      })
-  
-      el.addEventListener('mouseleave', () => {
-        el.classList.remove('is-entering')
-        el.classList.add('is-leaving')
-      })
+function initHoverAnimation(selector, root = document) {
+  root.querySelectorAll(selector + ':not([js-hover-ready])').forEach(el => {
+    el.setAttribute('js-hover-ready', '')
+    el.addEventListener('mouseenter', () => {
+      el.classList.remove('is-leaving')
+      el.classList.add('is-entering')
     })
-  }
+    el.addEventListener('mouseleave', () => {
+      el.classList.remove('is-entering')
+      el.classList.add('is-leaving')
+    })
+  })
 }
 
-function initProjectsAnimation() {  
-  const projects = document.querySelectorAll('.project')
-  if (projects.length > 0) {
-    projects.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        el.classList.remove('is-leaving')
-        el.classList.add('is-entering')
-      })
+function initPublicationAnimation(root = document) {
+  initHoverAnimation('.publication', root)
+}
 
-      el.addEventListener('mouseleave', () => {
-        el.classList.remove('is-entering')
-        el.classList.add('is-leaving')
-      })
-    })
-  }
+function initProjectsAnimation(root = document) {
+  initHoverAnimation('.project', root)
 }
 
 initPublicationAnimation()
 initProjectsAnimation()
+
+// Exposé pour ré-init après injection Load More
+window.initPublicationAnimation = initPublicationAnimation
+window.initProjectsAnimation    = initProjectsAnimation
 
 if (ajaxPage) {
   const custom_post = ajaxPage.getAttribute('js-ajax')
@@ -49,38 +41,15 @@ if (ajaxPage) {
   }
 
 
-  const pagination      = ajaxPage.querySelector('[js-ajax-pagination]')
-  const resetWrapper    = ajaxPage.querySelector('[js-ajax-reset]')
-  const results         = ajaxPage.querySelector('[js-ajax-results]')
-  const filters         = ajaxPage.querySelectorAll('[js-ajax-filter]')
-  // Sections spécifiques à la page Projects (vue statique vs vue AJAX filtrée)
-  const projectSections = ajaxPage.querySelector('[js-projects-sections]')
-  const ajaxSections    = ajaxPage.querySelector('[js-ajax-sections]')
+  const pagination   = ajaxPage.querySelector('[js-ajax-pagination]')
+  const resetWrapper = ajaxPage.querySelector('[js-ajax-reset]')
+  const results      = ajaxPage.querySelector('[js-ajax-results]')
+  const filters      = ajaxPage.querySelectorAll('[js-ajax-filter]')
 
   const iconClose = `<svg class="@@:size-[12px] stroke-current stroke-[1px]" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><path d="M8.04289 0.5L0.5 8.04289M0.542893 0.5L8.08579 8.04289" stroke-linecap="round"></path></svg>`
 
-  // Retourne true si au moins un filtre est actif
-  function isFiltered() {
-    return Object.values(data.filters).some(v => v !== '')
-  }
-
-  // Bascule entre la vue statique (deux sections) et la vue AJAX (flat grid)
-  function toggleProjectSections(filtered) {
-    if (!projectSections || !ajaxSections) return
-    projectSections.style.display = filtered ? 'none' : ''
-    ajaxSections.style.display    = filtered ? ''     : 'none'
-    if (pagination) pagination.style.display = filtered ? '' : 'none'
-  }
-
   function searchData(reload = false) {
     if (reload) {
-      // Page Projects : si plus aucun filtre actif → restaurer la vue statique sans AJAX
-      if (projectSections && ajaxSections && !isFiltered()) {
-        toggleProjectSections(false)
-        return
-      }
-      // Sinon afficher la vue AJAX et animer
-      toggleProjectSections(true)
       results.style.transition = `all .3s ease-out`
       results.style.transform = `translateY(20px)`
       results.style.opacity = `0`
@@ -140,6 +109,9 @@ if (ajaxPage) {
 
         initPublicationAnimation()
         initProjectsAnimation()
+
+        // Ré-initialise les load more sur les sections injectées
+        if (typeof window.initLoadMore === 'function') window.initLoadMore(results)
     })
   }
 

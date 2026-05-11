@@ -51,7 +51,10 @@
         <?php endwhile; ?>
       </div>
     <?php else: ?>
-      <p class="paragraph paragraph-primary paragraph-lg aos animate-fadeinup @@:mt-[48px]"><?= get_field('event-none', 'acf-options-global-fields'); ?></p>
+      <p class="paragraph paragraph-primary paragraph-lg aos animate-fadeinup @@:mt-[48px]">
+      <?= __('There are currently no upcoming event.', 'atelierdesign'); ?>
+
+      </p>
     <?php endif; ?>
   </div>
   <?php  wp_reset_postdata(); // ← Important ! ?>

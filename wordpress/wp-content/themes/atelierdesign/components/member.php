@@ -2,6 +2,8 @@
 $id   = $args['id'];
 $role = get_field('role', $id);
 $cover = get_field('cover', $id);
+if(!$cover) $cover = get_field('team-placeholder', 'acf-options-global-fields') ;
+
 ?>
 <a href="<?= esc_url(get_permalink($id)) ?>" class="member-card block">
   <div class="member-card-image">

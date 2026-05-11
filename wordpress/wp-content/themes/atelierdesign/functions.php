@@ -282,6 +282,57 @@ add_action('wp_enqueue_scripts', 'enqueue_google_font');
 add_editor_style($font_url);
 
 
+function ad_enqueue_admin_css() {
+
+  wp_enqueue_style(
+    'ad-admin-css',
+    get_template_directory_uri() . '/functions/admin.css',
+    [],
+    filemtime( get_template_directory() . '/functions/admin.css' )
+  );
+
+}
+add_action( 'admin_enqueue_scripts', 'ad_enqueue_admin_css' );
+
+function adui_options($key) {
+  return get_field($key, 'acf-options-global-fields');
+} 
+function resolve_form_email($form_id): string {
+
+  // 1. Répéteur spécifique au form dans les options
+  //    Structure : groupe {slug} → répéteur {slug}-email-items → rows [{slug}-email: '...']
+  if ($form_id && class_exists('FrmForm')) {
+    $form = FrmForm::getOne((int) $form_id);
+    if ($form && !empty($form->form_key)) {
+      $slug        = $form->form_key;
+      $form_group  = adui_options($slug);
+      $email_items = $form_group[$slug . '-email-items'] ?? [];
+
+      if (!empty($email_items) && is_array($email_items)) {
+        $emails = [];
+        foreach ($email_items as $item) {
+          $e = trim($item[$slug . '-email'] ?? '');
+          if (!empty($e) && is_email($e)) {
+            $emails[] = sanitize_email($e);
+          }
+        }
+        if (!empty($emails)) {
+          return implode(', ', $emails);
+        }
+      }
+    }
+  }
+
+  // 2. Email global contact (Main Email dans les options)
+  $global = adui_options('form-contact-email');
+  if (!empty($global) && is_email($global)) {
+    return sanitize_email($global);
+  }
+
+  // 3. Fallback admin WordPress
+  return get_option('admin_email');
+}
+
 // Require once all the files in /src/functions/* for general functions
 foreach (glob(__DIR__ . '/functions/*.php') as $file) {
   require_once $file;
@@ -295,6 +346,10 @@ if (!function_exists('acf_add_local_field_group')) {
     return;
 }
 
+
+
+
+
 // Fonction helper pour charger les fichiers
 function load_acf_files($pattern) {
     foreach (glob($pattern) as $file) {
@@ -303,6 +358,8 @@ function load_acf_files($pattern) {
         }
     }
 }
+
+
 
 // Charger les fichiers
 load_acf_files(__DIR__ . '/components/**/fields.php');
@@ -346,32 +403,6 @@ function add_custom_editor_styles() {
 }
 add_action('admin_init', 'add_custom_editor_styles');
 // add_editor_style();
-
-
-add_filter('acf/load_field/key=field-form-formidable', 'load_formidable_forms_into_select');
-function load_formidable_forms_into_select($field) {
-
-    // Réinitialiser les choix
-    $field['choices'] = [];
-
-    // Vérifier que Formidable Forms est actif
-    if ( class_exists( 'FrmForm' ) ) {
-
-        // Récupérer tous les formulaires Formidable
-        $forms = FrmForm::getAll();
-
-        // Boucler sur les formulaires pour remplir les choix
-        if ( !empty($forms) ) {
-            foreach ($forms as $form) {
-                $field['choices'][$form->id] = $form->name;
-            }
-        }
-    } else {
-        $field['choices'][''] = '⚠️ Formidable Forms non détecté';
-    }
-
-    return $field;
-}
 
 add_action('admin_menu', 'remove_posts_menu');
 function remove_posts_menu() {
@@ -581,20 +612,4 @@ function menu_build_fields(
 
   return $fields;
 }
-// 1. Enregistrer external_author dans Polylang (évite le filtrage)
-add_filter( 'pll_get_post_types', function( $post_types, $is_settings ) {
-  $post_types['external_author'] = 'external_author';
-  return $post_types;
-}, 10, 2 );
 
-// 2. Auto-assigner la langue par défaut au save
-add_action( 'save_post_external_author', function( $post_id ) {
-  if ( function_exists( 'pll_set_post_language' ) && ! pll_get_post_language( $post_id ) ) {
-      pll_set_post_language( $post_id, pll_default_language() );
-  }
-}, 20 );
-
-// 3. Cacher la metabox Polylang sur ce CPT
-add_action( 'add_meta_boxes', function() {
-  remove_meta_box( 'ml_box', 'external_author', 'side' );
-}, 100 );

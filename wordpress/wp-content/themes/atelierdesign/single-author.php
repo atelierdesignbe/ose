@@ -9,6 +9,9 @@ $cover        = $fields['cover'] ?? '';
 $bio        = $fields['submary'] ?? '';
 $types = get_the_terms( get_the_ID(), 'member_type' );
 $teamLink = get_field('team-link', 'acf-options-global-fields');
+$themes = get_the_terms( get_the_ID(), 'themes' );
+
+if(!$cover) $cover = get_field('team-placeholder', 'acf-options-global-fields') ;
 
 ?>
 <?php get_header(); ?>
@@ -27,9 +30,9 @@ $teamLink = get_field('team-link', 'acf-options-global-fields');
           </div>
         </div>
         <div class="col-span-12 md:col-span-14 md:col-start-9">
-          <div class="member-content flex flex-col @sm:gap-y-[16px] @md/lg:gap-y-[16px] @md/lg:pt-[92px] autoscale-children">
+          <div class="member-content flex flex-col @sm:gap-y-[16px] @md/lg:gap-y-[16px] @md/lg:pt-[92px] autoscale-children aos animate-fadeinup md:animate-delay-100">
             <?php if($types): ?>
-              <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup autoscale-children">
+              <ul  class="flex items-center flex-wrap @@:gap-2  autoscale-children">
                 <?php foreach($types as $type): ?>
                   <li>
                     <a href="<?= $teamLink ? rtrim($teamLink['url'], '/')."/".$type->slug : "/team/".$type->slug ?>" class="badge badge-primary badge-filled"><?= $type->name ?></a>
@@ -37,9 +40,27 @@ $teamLink = get_field('team-link', 'acf-options-global-fields');
                 <?php endforeach; ?>
               </ul>
             <?php endif; ?>
-            <h1 class="heading heading-2xl aos animate-fadeinup"><?= get_the_title() ?></h1>
-            <?php if($role): ?><p class="heading-lg heading-primary aos animate-fadeinup"><?= $role ?></p><?php endif; ?>
-            <?php if($bio): ?><p class="paragraph-md paragraph-primary aos animate-fadeinup"><?= $bio ?></p><?php endif; ?>
+            <h1 class="heading heading-2xl aos animate-fadeinup md:animate-delay-200"><?= get_the_title() ?></h1>
+            <?php if($role): ?><p class="heading-lg heading-primaryaos animate-fadeinup animate-delay-300"><?= $role ?></p><?php endif; ?>
+            <?php if($bio): ?>
+              <div class="aos animate-fadeinup animate-delay-400">
+              <?php $adwp->get_template_part('_wysiwyg',  array('content' => $bio, 'inside' => true, 'isNested' => true, 'aos' => '','layout_settings' => ['isFullWidth' => true ] )); ?>
+              </div>
+            <?php endif; ?>
+
+            <?php if($themes): ?>
+              <ul  class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup animate-delay-400 autoscale-children">
+                <?php foreach($themes as $i => $theme): ?>
+                  <li>
+                    <a href="<?= $theme->url ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] link-underline"><?= $theme->name ?></a>
+                  </li>
+
+                  <?php if ($i < count($themes) - 1) : ?>
+                    <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center"><span>/</span></li>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
             
           </div>
         </div>
@@ -61,31 +82,33 @@ $teamLink = get_field('team-link', 'acf-options-global-fields');
    * sans risque de faux positifs (ex: 4 vs 42).
    */
   $author_id = get_the_ID();
-  $meta_query_author = [
-    [
-      'key'     => 'author',
-      'value'   => '"' . $author_id . '"',
-      'compare' => 'LIKE',
-    ],
+  $lm_per_page_projects      = 12; // ← modifiable pour la prod
+  $lm_per_page_publications  = 12; // ← modifiable pour la prod
+  $meta_query_author = [[
+    'key'     => 'author',
+    'value'   => '"' . $author_id . '"',
+    'compare' => 'LIKE',
+  ]];
+  $base_args = [
+    'post_status' => 'publish',
+    'orderby'     => 'date',
+    'order'       => 'DESC',
+    'meta_query'  => $meta_query_author,
   ];
 
-  $publications = get_posts([
+  $publications_query = new WP_Query( array_merge($base_args, [
     'post_type'      => 'publication',
-    'posts_per_page' => -1,
-    'post_status'    => 'publish',
-    'orderby'        => 'date',
-    'order'          => 'DESC',
-    'meta_query'     => $meta_query_author,
-  ]);
+    'posts_per_page' => $lm_per_page_publications,
+    'paged'          => 1,
+  ]));
+  $has_more_publications = $publications_query->max_num_pages > 1;
 
-  $projects = get_posts([
+  $projects_query = new WP_Query( array_merge($base_args, [
     'post_type'      => 'project',
-    'posts_per_page' => -1,
-    'post_status'    => 'publish',
-    'orderby'        => 'date',
-    'order'          => 'DESC',
-    'meta_query'     => $meta_query_author,
-  ]);
+    'posts_per_page' => $lm_per_page_projects,
+    'paged'          => 1,
+  ]));
+  $has_more_projects = $projects_query->max_num_pages > 1;
   ?>
 
   <?php
@@ -125,56 +148,78 @@ $teamLink = get_field('team-link', 'acf-options-global-fields');
   }
   ?>
 
-  <?php if ( ! empty($projects) ) : ?>
+  <?php if ( $projects_query->have_posts() ) : ?>
     <section class="theme-light-grey bg-layout-main py-section">
       <div class="px-container">
 
         <div class="flex flex-col @sm:gap-y-[16px] md:flex-row md:items-center md:justify-between @sm:mb-[40px] @md/lg:mb-[40px] autoscale-children">
           <h2 class="heading heading-lg heading-primary aos animate-fadeinup"><?= pll__('Projects', 'atelierdesign') ?></h2>
           <?php if ( $project_link ) : ?>
-            <a
-              href="<?= esc_url( $project_link ) ?>"
-              class="button button-outline button-primary flex items-center @@:gap-x-[12px] w-fit aos animate-fadeinup"
-            >
+            <a href="<?= esc_url( $project_link ) ?>" class="button button-outline button-primary flex items-center @@:gap-x-[12px] w-fit aos animate-fadeinup animate-delay-200">
               <span class="button-title"><?= pll__('See all projects', 'atelierdesign') ?></span>
             </a>
           <?php endif; ?>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px]">
-          <?php foreach ( $projects as $project ) : ?>
-            <div class="aos animate-fadeinup">
-              <?php get_template_part( '/components/project', null, ['id' => $project->ID] ); ?>
+        <div
+          js-loadmore-section
+          data-action="loadmore_author_items"
+          data-author-id="<?= $author_id ?>"
+          data-item-type="project"
+        >
+          <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px] md:*:stagger-3" js-loadmore-grid>
+            <?php while ( $projects_query->have_posts() ) : $projects_query->the_post(); ?>
+              <div class="aos animate-fadeinup stagger-delay-200">
+                <?php get_template_part( '/components/project', null, ['id' => get_the_ID()] ); ?>
+              </div>
+            <?php endwhile; wp_reset_postdata(); ?>
+          </div>
+          <?php if ( $has_more_projects ) : ?>
+            <div class="flex justify-center @@:mt-[48px]">
+              <button type="button" class="button button-flat autoscale bg-yellow hover:bg-dark-blue border-yellow hover:border-dark-blue hover:text-white" js-loadmore-btn>
+                <span class="button-title"><?= pll__('Load more', 'atelierdesign') ?></span>
+              </button>
             </div>
-          <?php endforeach; ?>
+          <?php endif; ?>
         </div>
 
       </div>
     </section>
   <?php endif; ?>
 
-  <?php if ( ! empty($publications) ) : ?>
+  <?php if ( $publications_query->have_posts() ) : ?>
     <section class="theme-white bg-layout-main py-section">
       <div class="px-container">
 
         <div class="flex flex-col @sm:gap-y-[16px] md:flex-row md:items-center md:justify-between @sm:mb-[40px] @md/lg:mb-[40px] autoscale-children">
           <h2 class="heading heading-lg heading-primary aos animate-fadeinup">Publications</h2>
           <?php if ( $publication_link ) : ?>
-            <a
-              href="<?= esc_url( $publication_link ) ?>"
-              class="button button-outline button-primary flex items-center @@:gap-x-[12px] w-fit"
-            >
+            <a href="<?= esc_url( $publication_link ) ?>" class="button button-outline button-primary flex items-center @@:gap-x-[12px] w-fit aos animate-fadeinup md:animate-delay-200">
               <span class="button-title"><?= pll__('See all publications', 'atelierdesign') ?></span>
             </a>
           <?php endif; ?>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 @@:gap-[15px]">
-          <?php foreach ( $publications as $pub ) : ?>
-            <div class="aos animate-fadeinup">
-              <?php get_template_part( '/components/publication', null, ['id' => $pub->ID, 'theme' => 'theme-light-blue'] ); ?>
+        <div
+          js-loadmore-section
+          data-action="loadmore_author_items"
+          data-author-id="<?= $author_id ?>"
+          data-item-type="publication"
+        >
+          <div class="grid grid-cols-1 md:grid-cols-2 @@:gap-[15px] md:*:stagger-2" js-loadmore-grid>
+            <?php while ( $publications_query->have_posts() ) : $publications_query->the_post(); ?>
+              <div class="aos animate-fadeinup stagger-delay-200">
+                <?php get_template_part( '/components/publication', null, ['id' => get_the_ID(), 'theme' => 'theme-light-blue'] ); ?>
+              </div>
+            <?php endwhile; wp_reset_postdata(); ?>
+          </div>
+          <?php if ( $has_more_publications ) : ?>
+            <div class="flex justify-center @@:mt-[48px]">
+            <button type="button" class="button button-flat autoscale bg-yellow hover:bg-dark-blue border-yellow hover:border-dark-blue hover:text-white" js-loadmore-btn>
+            <span class="button-title"><?= pll__('Load more', 'atelierdesign') ?></span>
+              </button>
             </div>
-          <?php endforeach; ?>
+          <?php endif; ?>
         </div>
 
       </div>

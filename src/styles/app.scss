@@ -471,3 +471,12 @@ a {
 .py-section.theme-dark-blue.bg-layout-main + .py-section.theme-dark-blue.bg-layout-main {
   @apply pt-0;
 }
+
+.badge {
+  text-indent: calc((var(--badge-outlined-letter-spacing) / var(--tw-screen-sm)) * var(--tw-screen-max) * var(--tw-scale));
+}
+@screen md {
+  .badge {
+    text-indent: calc((var(--badge-outlined-letter-spacing) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
+  }
+}

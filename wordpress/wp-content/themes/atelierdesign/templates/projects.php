@@ -12,7 +12,7 @@
   $fields       = get_fields();
   $current_year = (int) date('Y');
 
-  // ── Années disponibles pour le filtre (year_start de tous les projets) ──
+  // ── Années disponibles pour le filtre (plage year_start → year_end de chaque projet) ──
   $all_ids_query = new WP_Query([
     'post_type'      => 'project',
     'post_status'    => 'publish',
@@ -21,69 +21,84 @@
   ]);
   $years = [];
   foreach ( $all_ids_query->posts as $pid ) {
-    $y = get_field('year_start', $pid);
-    if ( $y && ! in_array($y, $years) ) $years[] = $y;
+    $ys = (int) get_field('year_start', $pid);
+    $ye = (int) get_field('year_end',   $pid);
+    if ( ! $ys ) continue;
+    $end = $ye ?: $ys;
+    for ( $y = $ys; $y <= $end; $y++ ) {
+      if ( ! in_array($y, $years) ) $years[] = $y;
+    }
   }
   rsort($years); // DESC
   wp_reset_postdata();
 
   $themes = get_term_ids_for_cpt('themes', ['project']);
 
+  $lm_per_page = 12; // ← items par page (load more)
+
   // ── Section 1 : projets en cours ────────────────────────────────────────
-  // Règle : year_start renseigné ET (year_end vide OU year_end >= année courante)
   $projects_ongoing = new WP_Query([
     'post_type'      => 'project',
     'post_status'    => 'publish',
-    'posts_per_page' => -1,
+    'posts_per_page' => $lm_per_page,
+    'paged'          => 1,
     'meta_key'       => 'year_start',
     'orderby'        => 'meta_value_num',
     'order'          => 'DESC',
     'meta_query'     => [
       'relation' => 'AND',
-      // year_start doit exister et ne pas être vide
       [ 'key' => 'year_start', 'compare' => 'EXISTS' ],
       [ 'key' => 'year_start', 'value' => '', 'compare' => '!=' ],
-      // year_end vide OU >= année courante
       [
         'relation' => 'OR',
         [ 'key' => 'year_end', 'compare' => 'NOT EXISTS' ],
         [ 'key' => 'year_end', 'value' => '', 'compare' => '=' ],
         [ 'key' => 'year_end', 'value' => $current_year, 'compare' => '>=', 'type' => 'NUMERIC' ],
       ],
+      // Exclure les projets manuellement marqués comme terminés
+      [
+        'relation' => 'OR',
+        [ 'key' => 'is_completed', 'compare' => 'NOT EXISTS' ],
+        [ 'key' => 'is_completed', 'value' => '1', 'compare' => '!=' ],
+      ],
     ],
   ]);
+  $has_more_ongoing = $projects_ongoing->max_num_pages > 1;
 
   // ── Section 2 : projets terminés ────────────────────────────────────────
-  // Règle : year_end < année courante  OU  year_start non renseigné
   $projects_completed = new WP_Query([
     'post_type'      => 'project',
     'post_status'    => 'publish',
-    'posts_per_page' => -1,
+    'posts_per_page' => $lm_per_page,
+    'paged'          => 1,
     'meta_key'       => 'year_start',
     'orderby'        => 'meta_value_num',
     'order'          => 'DESC',
     'meta_query'     => [
       'relation' => 'OR',
-      // year_end renseigné ET < année courante
       [
         'relation' => 'AND',
         [ 'key' => 'year_end', 'value' => $current_year, 'compare' => '<', 'type' => 'NUMERIC' ],
         [ 'key' => 'year_end', 'value' => '', 'compare' => '!=' ],
       ],
-      // ou year_start absent/vide
       [ 'key' => 'year_start', 'compare' => 'NOT EXISTS' ],
       [ 'key' => 'year_start', 'value' => '', 'compare' => '=' ],
+      // Projets manuellement marqués comme terminés (quelle que soit la date)
+      [ 'key' => 'is_completed', 'value' => '1', 'compare' => '=' ],
     ],
   ]);
+  $has_more_completed = $projects_completed->max_num_pages > 1;
 ?>
 <?php get_template_part('/components/header/markup', 'header', get_field('header', 'acf-options-global-fields')); ?>
 
 <main id="projects" js-ajax="project" class="relative overflow-hidden">
 
-  <div class="container @sm:pt-[120px] @md/lg:pt-[220px] @lg:pt-[144px] @@:pb-[78px]">
+  <div class="container @sm:pt-[120px] @md/lg:pt-[220px] @lg:pt-[144px] @@:pb-[42px]">
     <div class="w-full @md/lg:max-w-[945px]">
       <div class="flex flex-col @@:gap-y-[46px] autoscale-children">
-        <h1 class="heading heading-2xl heading-primary aos animate-fadeinup"><?= the_title(); ?></h1>
+        <h1 class="heading heading-2xl heading-primary aos animate-fadeinup">
+        <?= pll__('Ongoing projects', 'atelierdesign') ?>
+        </h1>
         <?php if ( $fields['content'] ) : ?><p class="paragraph paragraph-xl paragraph-primary text-balance aos animate-fadeinup animate-delay-200"><?= $fields['content'] ?></p><?php endif; ?>
       </div>
     </div>
@@ -140,38 +155,61 @@
     <?php endif; ?>
   </div><!-- /container -->
 
-  <!-- ══ VUE STATIQUE (deux sections, masquée quand un filtre est actif) ══ -->
-  <div js-projects-sections>
+  <!-- ══ Sections projects (rendu initial + remplacement AJAX) ══ -->
+  <div js-ajax-results>
 
     <!-- Section 1 : Projets en cours -->
-    <div class="container">
-      <?php if ( $projects_ongoing->have_posts() ) : ?>
+    <?php if ( $projects_ongoing->have_posts() ) : ?>
+      <div class="container @sm:pb-[32px] @md/lg:pb-[80px]">
         <div class="flex flex-col @sm:gap-y-[24px] @md/lg:gap-y-[32px]">
-          <h2 class="heading heading-xl heading-primary aos animate-fadeinup"><?= pll__('Ongoing projects', 'atelierdesign') ?></h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px] *:md:stagger-3">
-            <?php while ( $projects_ongoing->have_posts() ) : $projects_ongoing->the_post(); ?>
-              <div class="col-span-1 aos animate-fadeinup stagger-delay-200">
-                <?php echo get_template_part('/components/project', null, ['id' => get_the_ID()]); ?>
-              </div>
-            <?php endwhile; ?>
-          </div>
-        </div>
-      <?php endif; ?>
-      <?php wp_reset_postdata(); ?>
-    </div>
-
-    <!-- Section 2 : Projets terminés -->
-    <?php if ( $projects_completed->have_posts() ) : ?>
-      <div class="theme-dark-blue bg-layout-main @@:py-[80px] @@:mt-[80px]">
-        <div class="container">
-          <div class="flex flex-col @sm:gap-y-[24px] @md/lg:gap-y-[32px]">
-            <h2 class="heading heading-xl heading-primary aos animate-fadeinup"><?= pll__('Concluded projects', 'atelierdesign') ?></h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px] *:md:stagger-3">
-              <?php while ( $projects_completed->have_posts() ) : $projects_completed->the_post(); ?>
+          <!-- <h2 class="heading heading-xl heading-primary aos animate-fadeinup"><?= pll__('Ongoing projects', 'atelierdesign') ?></h2> -->
+          <div js-loadmore-section data-action="loadmore_section_projects" data-section="ongoing">
+            <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px] *:md:stagger-3" js-loadmore-grid>
+              <?php while ( $projects_ongoing->have_posts() ) : $projects_ongoing->the_post(); ?>
                 <div class="col-span-1 aos animate-fadeinup stagger-delay-200">
                   <?php echo get_template_part('/components/project', null, ['id' => get_the_ID()]); ?>
                 </div>
-              <?php endwhile; ?>
+              <?php endwhile; wp_reset_postdata(); ?>
+            </div>
+            <?php if ( $has_more_ongoing ) : ?>
+              <div class="flex justify-center @@:mt-[48px]">
+              <button type="button" class="button button-flat autoscale bg-yellow hover:bg-dark-blue border-yellow hover:border-dark-blue hover:text-white" js-loadmore-btn>
+                <span class="button-title"><?= pll__('Load more', 'atelierdesign') ?></span>
+                </button>
+              </div>
+            <?php endif; ?>
+          </div>
+        </div>
+      </div>
+    <?php else: ?>
+      <div class="container">
+        <p class="paragraph paragraph-lg paragraph-primary @sm:pb-[32px] @md/lg:pb-[42px]  aos animate-fadeinup">
+          <?= __('There are currently no ongoing projects.', 'atelierdesign'); ?>
+        </p>
+      </div>
+    <?php endif; ?>
+
+    <!-- Section 2 : Projets terminés -->
+    <?php if ( $projects_completed->have_posts() ) : ?>
+      <div class="theme-dark-blue bg-layout-main @@:py-[80px]">
+        <div class="container">
+          <div class="flex flex-col @sm:gap-y-[24px] @md/lg:gap-y-[32px]">
+            <h2 class="heading heading-xl heading-primary aos animate-fadeinup"><?= pll__('Concluded projects', 'atelierdesign') ?></h2>
+            <div js-loadmore-section data-action="loadmore_section_projects" data-section="completed">
+              <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px] *:md:stagger-3" js-loadmore-grid>
+                <?php while ( $projects_completed->have_posts() ) : $projects_completed->the_post(); ?>
+                  <div class="col-span-1 aos animate-fadeinup stagger-delay-200">
+                    <?php echo get_template_part('/components/project', null, ['id' => get_the_ID()]); ?>
+                  </div>
+                <?php endwhile; wp_reset_postdata(); ?>
+              </div>
+              <?php if ( $has_more_completed ) : ?>
+                <div class="flex justify-center @@:mt-[48px]">
+                <button type="button" class="button button-flat autoscale bg-yellow hover:bg-white border-yellow hover:border-white hover:text-dark-blue" js-loadmore-btn>
+                  <span class="button-title"><?= pll__('Load more', 'atelierdesign') ?></span>
+                  </button>
+                </div>
+              <?php endif; ?>
             </div>
           </div>
         </div>
@@ -179,14 +217,9 @@
       <?php wp_reset_postdata(); ?>
     <?php endif; ?>
 
-  </div><!-- /js-projects-sections -->
+  </div><!-- /js-ajax-results -->
 
-  <!-- ══ VUE AJAX (résultats filtrés, masquée par défaut) ══ -->
-  <div class="container" js-ajax-sections style="display:none">
-    <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[15px] @@:mt-[48px] *:md:stagger-3" js-ajax-results></div>
-  </div>
-
-  <!-- Pagination Load more (masquée par défaut, activée par l'AJAX) -->
+  <!-- Pagination (non utilisée pour les projets) -->
   <div class="flex items-center justify-center" js-ajax-pagination style="display:none">
     <button type="button" class="button button-flat autoscale @@:mt-[60px]">
       <span class="button-title">Load more</span>

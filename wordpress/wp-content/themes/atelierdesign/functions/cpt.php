@@ -172,19 +172,19 @@ add_action( 'init', 'cpt_authors' );
 
 function cpt_external_authors() {
   $labels = array(
-    'name'               => 'External Members',
-    'singular_name'      => 'External Member',
-    'menu_name'          => 'External Members',
-    'name_admin_bar'     => 'External Member',
+    'name'               => 'External people',
+    'singular_name'      => 'External people',
+    'menu_name'          => 'External people',
+    'name_admin_bar'     => 'External people',
     'add_new'            => 'Add New',
-    'add_new_item'       => 'Add New External Member',
-    'new_item'           => 'New External Member',
-    'edit_item'          => 'Edit External Member',
-    'view_item'          => 'View External Member',
-    'all_items'          => 'All External Members',
-    'search_items'       => 'Search External Members',
-    'not_found'          => 'No External Members found',
-    'not_found_in_trash' => 'No External Members found in Trash'
+    'add_new_item'       => 'Add New External people',
+    'new_item'           => 'New External people',
+    'edit_item'          => 'Edit External people',
+    'view_item'          => 'View External people',
+    'all_items'          => 'All External people',
+    'search_items'       => 'Search External people',
+    'not_found'          => 'No External people found',
+    'not_found_in_trash' => 'No External people found in Trash'
   );
 
   $args = array(

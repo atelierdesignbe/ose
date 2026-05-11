@@ -26,10 +26,12 @@ if ($date_end) {
 
     <p class="heading heading-md heading-primary"><?= get_the_title($id); ?> </p>
     <?php if($types): ?>
-        <span class=" badge badge-secondary badge-filled aos animate-fadeinup">
+        <span class=" badge badge-secondary badge-filled">
           <?= $types && $types[0] ? $types[0]->name : __('Event', 'atelierdesign'); ?>
         </span>      
       <?php endif; ?>
   </div>
-  <span class="button button-underline is-fake text-current"><span class="button-title">Read more</span></span>
+  <?php if(!$types): ?>
+    <span class="button button-underline is-fake text-current"><span class="button-title"><?= __('View details', 'atelierdesign'); ?></span></span>
+  <?php endif; ?>
 </a>
