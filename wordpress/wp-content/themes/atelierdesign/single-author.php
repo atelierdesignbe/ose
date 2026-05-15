@@ -226,7 +226,9 @@ if(!$cover) $cover = get_field('team-placeholder', 'acf-options-global-fields') 
     </section>
   <?php endif; ?>
 
+
 </main>
+<?php get_template_part('/components/cta-footer/markup', 'cta-footer', ['state' => $fields['cta_status'], 'cta' => $fields['cta']]); ?>
 
 <?php get_template_part('/components/footer/markup', 'footer', get_field('footer', 'acf-options-global-fields')); ?>
 <?php get_footer(); ?>

@@ -480,3 +480,23 @@ a {
     text-indent: calc((var(--badge-outlined-letter-spacing) / var(--tw-screen-lg)) * var(--tw-screen-max) * var(--tw-scale));
   }
 }
+
+
+main {
+  .custom-flex-grid-gap-y {
+    --gap-y-mobile-unit: 2.5 !important;
+    --gap-x-unit: .5 !important;
+
+    @screen md {
+      --gap-x-unit: 1 !important;
+    }
+    
+    @screen lg {
+      --gap-x-unit: .5 !important;
+
+      .thirds-layout-main {
+        @apply @md/lg:pl-[100px];
+      }
+    }
+  }
+}

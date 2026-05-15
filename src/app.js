@@ -146,3 +146,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 100)
 });
 window.addEventListener('resize', setPropertyContainer)
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[js-form]').forEach(formEl => {
+    const emails = [...new Set(
+      [formEl.dataset.email, formEl.dataset.emailCc]
+        .filter(Boolean)
+        .flatMap(s => s.split(','))
+        .map(s => s.trim())
+        .filter(Boolean)
+    )];
+
+    // Préfixe d'ID : couvre field_email-sender, field_email-sender2, etc.
+    const senderField = formEl.querySelector('[id^="field_email-sender"]');
+    if (senderField) senderField.value = emails.join(', ');
+  });
+});

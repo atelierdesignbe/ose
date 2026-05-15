@@ -64,23 +64,10 @@ $heroPublicationFields = [
     ]
   ],
   [
-    'key' => 'field-hero-publication-title',
-    'label' => 'Edit Title',
-    'instructions' => 'Only for the hero section',
-    'name' => 'title',
-    'type' => 'textarea',
-    'rows' => 1,
-    // 'required' => 1,
-    'new_lines' => 'br',
-    'conditional_logic' => [
-      [
-        [
-          'field' => 'field-hero-publication-auto',
-          'operator' => '==',
-          'value' => '1',
-        ]
-      ]
-    ]
+    'key' => 'field-hero-publication-subtitle',
+    'label' => 'Edit Subtitle',
+    'name' => 'subtitle',
+    'type' => 'text',
   ],
   [
     'key' => 'field-hero-publication-description',

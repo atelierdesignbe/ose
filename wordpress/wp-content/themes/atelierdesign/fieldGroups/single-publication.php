@@ -92,6 +92,12 @@ add_action('acf/include_fields', function () {
         // ],
       ],
       [
+        'key' => 'field-single-publication-template-subtitle',
+        'label' => 'Edit Subtitle',
+        'name' => 'subtitle',
+        'type' => 'text',
+      ],
+      [
         'key' => 'field-single-publication-template-description',
         'label' => 'Description',
         'type' => 'textarea',
@@ -107,6 +113,7 @@ add_action('acf/include_fields', function () {
         //   ],
         // ],
       ],
+      
       [
         'key' => 'field-single-publication-template-date',
         'label' => 'Date',

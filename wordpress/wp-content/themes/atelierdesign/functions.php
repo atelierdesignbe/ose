@@ -613,3 +613,44 @@ function menu_build_fields(
   return $fields;
 }
 
+
+
+// Logique admin JS — contact (email dynamique selon form sélectionné)
+add_action('acf/input/admin_enqueue_scripts', function () {
+  $js = get_template_directory() . '/components/contact/admin.js';
+  if (!file_exists($js)) return;
+
+  // Construit la map { form_id => email } pour tous les formulaires Formidable
+  $form_email_map = [];
+  if (class_exists('FrmForm')) {
+    $forms = FrmForm::getAll(['is_template' => 0, 'status' => 'published']);
+    foreach ($forms as $form) {
+      $form_email_map[$form->id] = [
+        'email' => resolve_form_email($form->id),
+        'label' => $form->name,
+      ];
+    }
+  }
+
+  // Email de fallback affiché quand aucun form n'est sélectionné
+  $global   = adui_options('form-contact-email');
+  $fallback = (!empty($global) && is_email($global))
+    ? sanitize_email($global)
+    : get_option('admin_email');
+
+  wp_enqueue_script(
+    'ad-contact-admin',
+    get_template_directory_uri() . '/components/contact/admin.js',
+    ['jquery', 'acf-input'],
+    filemtime($js),
+    true
+  );
+
+  wp_localize_script('ad-contact-admin', 'adContactAdmin', [
+    'formEmailMap'   => $form_email_map,
+    'fallback'       => $fallback,
+    'fieldKeySelect' => 'field-contact-formidable',
+    'fieldKeyEmail'  => 'field-contact-more-email-items',
+  ]);
+});
+

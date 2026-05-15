@@ -26,9 +26,10 @@ foreach ($forms as $form) {
             [
                 'key'          => 'field-' . $slug . '-email-items',
                 'label'        => '',
-                'instructions' => 'Erase email by default for this form.',
+                'instructions' => 'Replace email by default for this form.',
                 'name'         => $slug . '-email-items', 
                 'type'         => 'repeater',
+                'button_label' => 'Add Email',
                 'layout'       => 'table',
                 'sub_fields'   => [
                   [
@@ -212,7 +213,7 @@ acf_add_local_field_group([
       'key'           => 'field-form-contact-email',
       'label'         => 'Main Email',
       'name'          => 'form-contact-email',
-      'instructions'  => 'Used for all forms unless overridden below. Only one email address allowed.',
+      'instructions'  => 'Default email for all forms unless overridden below. Only one email address allowed here.',
       'type' => 'email',
       'required' => 1,
     ],

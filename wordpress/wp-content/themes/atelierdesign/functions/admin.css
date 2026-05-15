@@ -1,5 +1,13 @@
-.acf-flexible-content .layout > .acf-fields .acf-field-wysiwyg.wysiwyg-inline {
-  padding: 10px !important;
+.acf-flexible-content .layout > .acf-fields .acf-field-wysiwyg.wysiwyg-inline .acf-label,
+.acf-flexible-content .layout > .acf-fields .acf-field-wysiwyg.wysiwyg-inline .acf-input {
+  padding-inline: 10px !important;
+}
+
+.acf-flexible-content .layout > .acf-fields .acf-field-wysiwyg.wysiwyg-inline .acf-label {
+  padding-top: 10px !important;
+}
+.acf-flexible-content .layout > .acf-fields .acf-field-wysiwyg.wysiwyg-inline .acf-input {
+  padding-bottom: 10px !important;
 }
 
 .categorydiv .category-tabs {

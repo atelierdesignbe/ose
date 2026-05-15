@@ -2,6 +2,7 @@
 $title = get_the_title();
 $cover = get_field('cover');
 $description = get_field('description');
+$subtitle = get_field('subtitle');
 $date = get_field('date_start');
 $category = get_field('category');
 $authors   = get_field('author') ?: [];
@@ -36,6 +37,10 @@ ob_start();
 ob_start();
 ?>   
 
+<?php if($subtitle): ?>
+    <p class="paragraph paragraph-lg paragraph-primary aos animate-fadeinup animate-delay-100"><?= $subtitle ?></p>
+  <?php endif; ?>
+
   <?php if ($authors) : ?>
     <ul class="flex flex-wrap items-center @sm:gap-x-[8px] @md/lg:gap-x-[8px] @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children  ">
       <?php foreach ($authors as $i => $author) : ?>
@@ -52,6 +57,8 @@ ob_start();
       <?php endforeach; ?>
     </ul>
   <?php endif; ?>
+
+
 
 <?php $beforeDescription = ob_get_clean(); ?>
 <?php

@@ -17,7 +17,10 @@ $contactFields = [
   [
     ...wysiwyg('field-contact-content'),
     'name' => 'content',
-    'label' => 'Content'
+    'label' => 'Content',
+    'wrapper' => [
+      'class' => 'wysiwyg-inline'
+    ]
   ],
   [
     'key' => 'field-contact-formidable',
@@ -33,6 +36,7 @@ $contactFields = [
     'label' => 'Add other recipients emails ',
     'name' => 'contact-email',
     'type' => 'repeater',
+    'button_label' => 'Add Email',
     'sub_fields' => [
       [
         'key' => 'field-contact-more-email',
