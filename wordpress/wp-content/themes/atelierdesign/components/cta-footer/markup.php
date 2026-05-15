@@ -5,9 +5,8 @@ $state = $args['state'];
 
 if ($state === 'override') $cta = $args['cta'];
 
-if ($cta && $cta['items'] && $state !== 'disabled'):
+if ($cta && !empty($cta['items']) && $state !== 'disabled'):
 $size = sizeof($cta['items']);
-$link = $cta['link'];
 
 if ($size == 1) $cols = 'grid-cols-1 md:grid-cols-1';
 else $cols = 'grid-cols-1 md:grid-cols-2';

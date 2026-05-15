@@ -1,5 +1,5 @@
 <?php
-$override = $args['hero-override'];
+$override = $args['hero-override'] ?? null;
 $title = get_the_title();
 $cover = get_field('cover');
 $description = get_field('description');
@@ -24,7 +24,7 @@ ob_start();
   <div class="flex flex-row @@:gap-2 items-center  aos animate-fadeinup ">
     <?php if($year_start): ?><span class="badge badge-primary badge-outlined "><?= $year_start ?></span><?php endif; ?>
     <?php if($show_end): ?>
-      <span><?= icon('chevron', $theme === 'blue' ? 'stroke-white @@:h-[8px] w-auto -rotate-90' : 'stroke-dark-blue @@:h-[8px] w-auto -rotate-90', true); ?></span>
+      <span><?= icon('chevron', (isset($theme) && $theme === 'blue') ? 'stroke-white @@:h-[8px] w-auto -rotate-90' : 'stroke-dark-blue @@:h-[8px] w-auto -rotate-90', true); ?></span>
       <span class="badge badge-primary badge-outlined"><?= $year_end ?></span>
     <?php endif; ?>
   </div>

@@ -34,7 +34,9 @@
 
   foreach($allProjects->posts as $post):
     $author = get_field('author', $post->ID);
+    if (!is_array($author) && !is_object($author)) continue;
     foreach($author as $item):
+      if (!is_object($item) || empty($item->post_title)) continue;
       if (!in_array($item->post_title, $authors) && $item->post_type === 'author') {
         $authors[] = $item->post_title;
         $authors_ID[] = $item->ID;
@@ -147,7 +149,7 @@
   </div>
   <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute top-0 right-0 z-[-1] translate-x-[20%] md:translate-x-[40%] @sm:h-[770px] @md/lg:h-[800px] w-auto"/>
   <?php  wp_reset_postdata(); // ← Important ! ?>
-  <?php get_template_part('/components/cta-footer/markup', 'cta-footer', ['state' => $fields['cta_status'], 'cta' => $fields['cta']]); ?>
+  <?php get_template_part('/components/cta-footer/markup', 'cta-footer', ['state' => $fields['cta_status'] ?? null, 'cta' => $fields['cta'] ?? null]); ?>
 </main>
 <?php get_template_part('/components/footer/markup', 'footer', get_field('footer', 'acf-options-global-fields')); ?>
 <?php get_footer(); ?>
