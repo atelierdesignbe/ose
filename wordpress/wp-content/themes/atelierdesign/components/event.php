@@ -4,7 +4,7 @@ $date_start = get_field('date_start', $id);
 $date_end = get_field('date_end', $id);
 $cover = get_field('cover', $id);
 $catgory = get_field('category', $id);
-$theme = $args['theme'];
+$theme = $args['theme'] ?? '';
 
 $types = get_the_terms( get_the_ID(), 'event_type' );
 $themes = get_the_terms( get_the_ID(), 'themes' );

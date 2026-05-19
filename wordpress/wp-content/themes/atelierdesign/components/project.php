@@ -1,5 +1,6 @@
 <?php
 $id = $args['id'];
+$theme = $args['theme'] ?? '';
 $year_start = get_field('year_start', $id);
 $year_end   = get_field('year_end', $id);
 // N'affiche year_end que s'il est strictement supérieur à year_start

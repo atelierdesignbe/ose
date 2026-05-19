@@ -1,5 +1,5 @@
 <?php
-$override = $args['hero-override'];
+$override = $args['hero-override'] ?? null;
 $title = get_the_title();
 $cover = get_field('cover');
 $description = get_field('description');
@@ -26,7 +26,7 @@ ob_start();
 ?>
 <div class="flex items-center flex-wrap @@:gap-2 aos animate-fadeinup autoscale-children">
   <?php if($date_start): ?> <span class="badge badge-primary badge-outlined"><?= $date_start ?></span><?php endif; ?>
-  <?php if($date_end && $ts_end > $ts_start): ?><span><?= icon('chevron', $theme === 'blue' ? 'stroke-white @@:h-[8px] w-auto -rotate-90' : 'stroke-dark-blue @@:h-[8px] w-auto -rotate-90', true); ?></span><span class="badge badge-primary badge-outlined"><?= $date_end ?></span><?php endif; ?>
+  <?php if($date_end && $ts_end > $ts_start): ?><span><?= icon('chevron', (isset($theme) && $theme === 'blue') ? 'stroke-white @@:h-[8px] w-auto -rotate-90' : 'stroke-dark-blue @@:h-[8px] w-auto -rotate-90', true); ?></span><span class="badge badge-primary badge-outlined"><?= $date_end ?></span><?php endif; ?>
   <?php if($types): ?>
     <span class="badge badge-primary badge-filled">
       <?= $types && $types[0] ? $types[0]->name : __('Event', 'atelierdesign'); ?>

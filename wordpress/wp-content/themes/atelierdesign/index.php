@@ -11,8 +11,8 @@ $hero['social'] = true;
     'header', 
     [
       ...get_field('header', 'acf-options-global-fields'), 
-      'theme' => ($hero['cover-status'] ?? null) === 'default' ? 'text-white' : 'text-dark-blue', 
-      'isBlendMode' => $hero['cover-status'] === 'fill',
+      'theme' => ($hero['cover-status'] ?? null) === 'default' ? 'text-white' : 'text-dark-blue',
+      'isBlendMode' => ($hero['cover-status'] ?? null) === 'fill',
     ]
   );
 ?>
@@ -23,9 +23,9 @@ $hero['social'] = true;
   <article class="article relative">
     <!-- SOCIAL HERE -->
     
-    <?php $adwp->render_flexible_layout($fields['flexible-layout']); ?>
+    <?php $adwp->render_flexible_layout($fields['flexible-layout'] ?? []); ?>
   </article>
 </main>
-<?php get_template_part('/components/cta-footer/markup', 'cta-footer', ['state' => $fields['cta_status'], 'cta' => $fields['cta']]); ?>
+<?php get_template_part('/components/cta-footer/markup', 'cta-footer', ['state' => $fields['cta_status'] ?? null, 'cta' => $fields['cta'] ?? null]); ?>
 <?php get_template_part('/components/footer/markup', 'footer', get_field('footer', 'acf-options-global-fields')); ?>
 <?php get_footer(); ?>

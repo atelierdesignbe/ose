@@ -1,11 +1,12 @@
 <?php
   global $adwp;
-  $content = $args['content'];
-  $link = $args['link'];
-  $isCustom = $args['isCustom'];
-  $items = $args['items'];
-  $themes = $args['themes'];
-  $types = $args['types'];
+  $args = is_array($args ?? null) ? $args : [];
+  $content = $args['content'] ?? '';
+  $link = $args['link'] ?? null;
+  $isCustom = $args['isCustom'] ?? false;
+  $items = $args['items'] ?? [];
+  $themes = $args['themes'] ?? null;
+  $types = $args['types'] ?? null;
 
   $queryArgs = array(
     'post_type' => 'publication',

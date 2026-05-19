@@ -7,7 +7,7 @@ $isExternal = get_field('is-external', $id);
 $externalLink = get_field('external-link', $id);
 
 $theme = $args['theme'] ?? 'theme-light-blue';
-$types = get_the_terms( $ids, 'types' );
+$types = get_the_terms( $id, 'types' );
 
 
 $authors   = get_field('author', $id) ?: [];
