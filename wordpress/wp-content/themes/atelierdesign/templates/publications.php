@@ -54,7 +54,7 @@
   $args = array(
     'post_type'      => 'publication',
     'post_status'    => 'publish',
-    'posts_per_page' => 16,
+    'posts_per_page' => 12,
     'meta_key'       => 'date_start',
     'orderby'        => 'meta_value',
     'order'          => 'DESC',

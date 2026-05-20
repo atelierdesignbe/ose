@@ -57,43 +57,49 @@
       </p>
     <?php endif; ?>
   </div>
-  <?php  wp_reset_postdata(); // ← Important ! ?>
+  <?php wp_reset_postdata(); ?>
   <?php
-    /** PAST EVENT */
-    $args = array(
-      'post_type' => 'event',
-      'post_status' => 'publish',
-      'posts_per_page' => 18,
-      'meta_key' => 'date_start',
-      'orderby' => 'meta_value',
-      'order' => 'DESC',
-      'meta_query' => array(
-        array(
-          'key' => 'date_start',
-          'value' => date('Ymd'), // Date d'aujourd'hui au format YYYYMMDD
-          'compare' => '<',      // Supérieur ou égal à aujourd'hui
-          'type' => 'NUMERIC',
-        ),
-      ),
-    );
-    
-  $oldevents = new WP_Query($args);
+    /** PAST EVENTS */
+    $oldevents = new WP_Query([
+      'post_type'      => 'event',
+      'post_status'    => 'publish',
+      'posts_per_page' => 12,
+      'paged'          => 1,
+      'meta_key'       => 'date_start',
+      'orderby'        => 'meta_value',
+      'order'          => 'DESC',
+      'meta_query'     => [[
+        'key'     => 'date_start',
+        'value'   => date('Ymd'),
+        'compare' => '<',
+        'type'    => 'NUMERIC',
+      ]],
+    ]);
+    $has_more_past = $oldevents->max_num_pages > 1;
   ?>
-  <?php if($oldevents): ?>
+  <?php if ( $oldevents->have_posts() ) : ?>
     <div class="theme-dark-blue bg-layout-main py-section">
       <div class="px-container">
-        <h2 class="heading heading-2xl heading-primary aos animate-fadeinup">Past events</h1>
-        <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[54px] @@:mt-[48px] *:md:stagger-3">
-          <?php while ( $oldevents->have_posts() ) : $oldevents->the_post(); ?>
-            <div class="col-span-1 aos animate-fadeinup stagger-delay-200">
-              <?php echo get_template_part('/components/event', null, array('id' => get_the_ID(), 'theme' => 'blue')); ?>
+        <h2 class="heading heading-2xl heading-primary aos animate-fadeinup"><?= pll__('Past events', 'atelierdesign') ?></h2>
+        <div js-loadmore-section data-action="loadmore_past_events">
+          <div class="grid grid-cols-1 md:grid-cols-3 @@:gap-[54px] @@:mt-[48px] *:md:stagger-3" js-loadmore-grid>
+            <?php while ( $oldevents->have_posts() ) : $oldevents->the_post(); ?>
+              <div class="col-span-1 aos animate-fadeinup stagger-delay-200">
+                <?php echo get_template_part('/components/event', null, ['id' => get_the_ID(), 'theme' => 'blue']); ?>
+              </div>
+            <?php endwhile; wp_reset_postdata(); ?>
+          </div>
+          <?php if ( $has_more_past ) : ?>
+            <div class="flex justify-center @@:mt-[48px]">
+              <button type="button" class="button button-flat autoscale bg-yellow hover:bg-dark-blue border-yellow hover:border-dark-blue hover:text-white" js-loadmore-btn>
+                <span class="button-title"><?= pll__('Load more', 'atelierdesign') ?></span>
+              </button>
             </div>
-          <?php endwhile; ?>
+          <?php endif; ?>
         </div>
       </div>
     </div>
   <?php endif; ?>
-  <?php  wp_reset_postdata(); // ← Important ! ?>
   <img src="<?= get_template_directory_uri() ?>/assets/gradient.jpg" class="absolute top-0 right-0 z-[-1] translate-x-[20%] md:translate-x-[40%] @sm:h-[770px] @md/lg:h-[800px] w-auto"/>
   <?php get_template_part('/components/cta-footer/markup', 'cta-footer', ['state' => $fields['cta_status'], 'cta' => $fields['cta']]); ?>
 </main>

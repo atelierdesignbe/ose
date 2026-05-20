@@ -11,6 +11,9 @@ add_action('wp_ajax_nopriv_loadmore_author_items', 'ajax_loadmore_author_items')
 add_action('wp_ajax_loadmore_section_projects',        'ajax_loadmore_section_projects');
 add_action('wp_ajax_nopriv_loadmore_section_projects', 'ajax_loadmore_section_projects');
 
+add_action('wp_ajax_loadmore_past_events',        'ajax_loadmore_past_events');
+add_action('wp_ajax_nopriv_loadmore_past_events', 'ajax_loadmore_past_events');
+
 // ── Load More : items d'un author (projects ou publications) ─────────────────
 function ajax_loadmore_author_items() {
   $author_id = (int) ($_POST['authorId'] ?? 0);
@@ -60,57 +63,116 @@ function ajax_loadmore_author_items() {
 function ajax_loadmore_section_projects() {
   $section      = ( $_POST['section'] ?? '' ) === 'ongoing' ? 'ongoing' : 'completed';
   $page         = max(2, (int) ($_POST['page'] ?? 2));
-  $per_page     = 12; // ← modifiable pour la prod
+  $per_page     = 12;
   $current_year = (int) date('Y');
 
+  // IDs manuellement marqués terminés (évite NOT EXISTS dans meta_query)
+  $manually_completed_ids = get_posts([
+    'post_type'      => 'project',
+    'post_status'    => 'publish',
+    'posts_per_page' => -1,
+    'fields'         => 'ids',
+    'meta_query'     => [[ 'key' => 'is_completed', 'value' => '1', 'compare' => '=' ]],
+  ]);
+  $exclude_from_ongoing = ! empty( $manually_completed_ids ) ? array_map('intval', $manually_completed_ids) : [0];
+
   if ( $section === 'ongoing' ) {
-    $meta_query = [
-      'relation' => 'AND',
-      [ 'key' => 'year_start', 'compare' => 'EXISTS' ],
-      [ 'key' => 'year_start', 'value' => '', 'compare' => '!=' ],
-      [
-        'relation' => 'OR',
-        [ 'key' => 'year_end', 'compare' => 'NOT EXISTS' ],
-        [ 'key' => 'year_end', 'value' => '', 'compare' => '=' ],
-        [ 'key' => 'year_end', 'value' => $current_year, 'compare' => '>=', 'type' => 'NUMERIC' ],
+    $query = new WP_Query([
+      'post_type'      => 'project',
+      'posts_per_page' => $per_page,
+      'paged'          => $page,
+      'post_status'    => 'publish',
+      'meta_key'       => 'year_start',
+      'orderby'        => 'meta_value_num',
+      'order'          => 'DESC',
+      'post__not_in'   => $exclude_from_ongoing,
+      'meta_query'     => [
+        'relation' => 'AND',
+        [ 'key' => 'year_start', 'compare' => 'EXISTS' ],
+        [ 'key' => 'year_start', 'value' => '', 'compare' => '!=' ],
+        [
+          'relation' => 'OR',
+          [ 'key' => 'year_end', 'compare' => 'NOT EXISTS' ],
+          [ 'key' => 'year_end', 'value' => '', 'compare' => '=' ],
+          [ 'key' => 'year_end', 'value' => $current_year, 'compare' => '>=', 'type' => 'NUMERIC' ],
+        ],
       ],
-      // Exclure les projets manuellement marqués comme terminés
-      [
-        'relation' => 'OR',
-        [ 'key' => 'is_completed', 'compare' => 'NOT EXISTS' ],
-        [ 'key' => 'is_completed', 'value' => '1', 'compare' => '!=' ],
-      ],
-    ];
+    ]);
   } else {
-    $meta_query = [
-      'relation' => 'OR',
-      [
+    // IDs terminés par date
+    $date_completed_ids = get_posts([
+      'post_type'      => 'project',
+      'post_status'    => 'publish',
+      'posts_per_page' => -1,
+      'fields'         => 'ids',
+      'meta_query'     => [
         'relation' => 'AND',
         [ 'key' => 'year_end', 'value' => $current_year, 'compare' => '<', 'type' => 'NUMERIC' ],
         [ 'key' => 'year_end', 'value' => '', 'compare' => '!=' ],
       ],
-      [ 'key' => 'year_start', 'compare' => 'NOT EXISTS' ],
-      [ 'key' => 'year_start', 'value' => '', 'compare' => '=' ],
-      // Projets manuellement marqués comme terminés (quelle que soit la date)
-      [ 'key' => 'is_completed', 'value' => '1', 'compare' => '=' ],
-    ];
-  }
+    ]);
+    $all_completed_ids = array_unique( array_merge(
+      array_map('intval', $date_completed_ids ?: []),
+      array_map('intval', $manually_completed_ids ?: [])
+    ));
 
-  $query = new WP_Query([
-    'post_type'      => 'project',
-    'posts_per_page' => $per_page,
-    'paged'          => $page,
-    'post_status'    => 'publish',
-    'meta_key'       => 'year_start',
-    'orderby'        => 'meta_value_num',
-    'order'          => 'DESC',
-    'meta_query'     => $meta_query,
-  ]);
+    if ( empty( $all_completed_ids ) ) {
+      wp_send_json([ 'html' => '', 'hasMore' => false ]);
+      return;
+    }
+
+    $query = new WP_Query([
+      'post_type'      => 'project',
+      'posts_per_page' => $per_page,
+      'paged'          => $page,
+      'post_status'    => 'publish',
+      'meta_key'       => 'year_start',
+      'orderby'        => 'meta_value_num',
+      'order'          => 'DESC',
+      'post__in'       => $all_completed_ids,
+    ]);
+  }
 
   ob_start();
   while ( $query->have_posts() ) : $query->the_post();
     echo '<div class="col-span-1 aos animate-fadeinup stagger-delay-200">';
     get_template_part('/components/project', null, ['id' => get_the_ID()]);
+    echo '</div>';
+  endwhile;
+  wp_reset_postdata();
+  $html = ob_get_clean();
+
+  wp_send_json([
+    'html'    => $html,
+    'hasMore' => $query->max_num_pages > $page,
+  ]);
+}
+
+// ── Load More : past events ───────────────────────────────────────────────────
+function ajax_loadmore_past_events() {
+  $page     = max(2, (int) ($_POST['page'] ?? 2));
+  $per_page = 12;
+
+  $query = new WP_Query([
+    'post_type'      => 'event',
+    'post_status'    => 'publish',
+    'posts_per_page' => $per_page,
+    'paged'          => $page,
+    'meta_key'       => 'date_start',
+    'orderby'        => 'meta_value',
+    'order'          => 'DESC',
+    'meta_query'     => [[
+      'key'     => 'date_start',
+      'value'   => date('Ymd'),
+      'compare' => '<',
+      'type'    => 'NUMERIC',
+    ]],
+  ]);
+
+  ob_start();
+  while ( $query->have_posts() ) : $query->the_post();
+    echo '<div class="col-span-1 aos animate-fadeinup stagger-delay-200">';
+    get_template_part('/components/event', null, ['id' => get_the_ID(), 'theme' => 'blue']);
     echo '</div>';
   endwhile;
   wp_reset_postdata();
@@ -329,6 +391,16 @@ function ajax_filter_project() {
 
   $year_filter = ! empty( $filtersDecode->period ) ? (int) $filtersDecode->period : null;
 
+  // ── IDs manuellement marqués terminés (évite NOT EXISTS dans meta_query) ─
+  $manually_completed_ids = get_posts([
+    'post_type'      => 'project',
+    'post_status'    => 'publish',
+    'posts_per_page' => -1,
+    'fields'         => 'ids',
+    'meta_query'     => [[ 'key' => 'is_completed', 'value' => '1', 'compare' => '=' ]],
+  ]);
+  $exclude_from_ongoing = ! empty( $manually_completed_ids ) ? array_map('intval', $manually_completed_ids) : [0];
+
   // ── Meta query : section "En cours" ──────────────────────────────────────
   $meta_ongoing = [
     'relation' => 'AND',
@@ -340,22 +412,14 @@ function ajax_filter_project() {
       [ 'key' => 'year_end', 'value' => '', 'compare' => '=' ],
       [ 'key' => 'year_end', 'value' => $current_year, 'compare' => '>=', 'type' => 'NUMERIC' ],
     ],
-    // Exclure les projets manuellement marqués comme terminés
-    [
-      'relation' => 'OR',
-      [ 'key' => 'is_completed', 'compare' => 'NOT EXISTS' ],
-      [ 'key' => 'is_completed', 'value' => '1', 'compare' => '!=' ],
-    ],
   ];
   if ( $year_filter ) {
-    // Le projet doit avoir démarré avant ou pendant l'année filtrée
     $meta_ongoing[] = [
       'key'     => 'year_start',
       'value'   => $year_filter,
       'compare' => '<=',
       'type'    => 'NUMERIC',
     ];
-    // ET pas de fin, ou la fin est après ou pendant l'année filtrée
     $meta_ongoing[] = [
       'relation' => 'OR',
       [ 'key' => 'year_end', 'compare' => 'NOT EXISTS' ],
@@ -364,46 +428,50 @@ function ajax_filter_project() {
     ];
   }
 
-  // ── Meta query : section "Terminés" ──────────────────────────────────────
+  // ── IDs terminés : par date + manuellement ───────────────────────────────
+  $date_completed_meta = [
+    'relation' => 'AND',
+    [ 'key' => 'year_end', 'value' => $current_year, 'compare' => '<', 'type' => 'NUMERIC' ],
+    [ 'key' => 'year_end', 'value' => '', 'compare' => '!=' ],
+  ];
   if ( $year_filter ) {
-    // Projet actif pendant l'année filtrée ET terminé (year_end < current_year ou is_completed)
-    $meta_completed = [
-      'relation' => 'AND',
-      // démarré avant ou pendant l'année filtrée
-      [ 'key' => 'year_start', 'value' => $year_filter, 'compare' => '<=', 'type' => 'NUMERIC' ],
-      [ 'key' => 'year_start', 'value' => '', 'compare' => '!=' ],
-      [
-        'relation' => 'OR',
-        // terminé par la date (year_end >= year_filter ET year_end < current_year)
-        [
-          'relation' => 'AND',
-          [ 'key' => 'year_end', 'value' => $year_filter,    'compare' => '>=', 'type' => 'NUMERIC' ],
-          [ 'key' => 'year_end', 'value' => $current_year,   'compare' => '<',  'type' => 'NUMERIC' ],
-          [ 'key' => 'year_end', 'value' => '', 'compare' => '!=' ],
-        ],
-        // OU marqué manuellement comme terminé
-        [ 'key' => 'is_completed', 'value' => '1', 'compare' => '=' ],
-      ],
-    ];
-  } else {
-    // Sans filtre : (year_end < current_year AND year_end != '') OR year_start absent OR is_completed
-    $meta_completed = [
-      'relation' => 'OR',
-      [
-        'relation' => 'AND',
-        [ 'key' => 'year_end', 'value' => $current_year, 'compare' => '<', 'type' => 'NUMERIC' ],
-        [ 'key' => 'year_end', 'value' => '', 'compare' => '!=' ],
-      ],
-      [ 'key' => 'year_start', 'compare' => 'NOT EXISTS' ],
-      [ 'key' => 'year_start', 'value' => '', 'compare' => '=' ],
-      // Projets manuellement marqués comme terminés (quelle que soit la date)
-      [ 'key' => 'is_completed', 'value' => '1', 'compare' => '=' ],
-    ];
+    $date_completed_meta[] = [ 'key' => 'year_start', 'value' => $year_filter, 'compare' => '<=', 'type' => 'NUMERIC' ];
+    $date_completed_meta[] = [ 'key' => 'year_start', 'value' => '', 'compare' => '!=' ];
+    $date_completed_meta[] = [ 'key' => 'year_end',   'value' => $year_filter, 'compare' => '>=', 'type' => 'NUMERIC' ];
+  }
+  $date_completed_ids = get_posts([
+    'post_type'      => 'project',
+    'post_status'    => 'publish',
+    'posts_per_page' => -1,
+    'fields'         => 'ids',
+    'meta_query'     => $date_completed_meta,
+    'tax_query'      => count( $tax_query ) > 1 ? $tax_query : [],
+  ]);
+
+  // Filtered manually completed (apply tax + year filter)
+  $manually_completed_filtered = $manually_completed_ids;
+  if ( $year_filter && ! empty( $manually_completed_ids ) ) {
+    $manually_completed_filtered = array_filter( $manually_completed_ids, function($id) use ($year_filter) {
+      $ys = (int) get_field('year_start', $id);
+      return $ys && $ys <= $year_filter;
+    });
   }
 
+  $all_completed_ids = array_unique( array_merge(
+    array_map('intval', $date_completed_ids ?: []),
+    array_map('intval', $manually_completed_filtered ?: [])
+  ));
+
   // ── Requêtes ──────────────────────────────────────────────────────────────
-  $query_ongoing   = new WP_Query( array_merge( $base_args, ['meta_query' => $meta_ongoing] ) );
-  $query_completed = new WP_Query( array_merge( $base_args, ['meta_query' => $meta_completed] ) );
+  $query_ongoing = new WP_Query( array_merge( $base_args, [
+    'post__not_in' => $exclude_from_ongoing,
+    'meta_query'   => $meta_ongoing,
+  ]));
+
+  $query_completed = ! empty( $all_completed_ids ) ? new WP_Query( array_merge( $base_args, [
+    'post__in'   => $all_completed_ids,
+    'meta_query' => [],
+  ])) : null;
 
   // ── HTML deux sections ────────────────────────────────────────────────────
   ob_start();
@@ -430,7 +498,7 @@ function ajax_filter_project() {
   <?php endif;
   wp_reset_postdata();
 
-  if ( $query_completed->have_posts() ) : ?>
+  if ( $query_completed && $query_completed->have_posts() ) : ?>
     <div class="theme-dark-blue bg-layout-main @@:py-[80px]">
       <div class="container">
         <div class="flex flex-col @sm:gap-y-[24px] @md/lg:gap-y-[32px]">

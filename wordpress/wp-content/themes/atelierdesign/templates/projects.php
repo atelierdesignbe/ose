@@ -36,6 +36,16 @@
 
   $lm_per_page = 12; // ← items par page (load more)
 
+  // ── IDs des projets manuellement marqués terminés (évite NOT EXISTS dans meta_query) ──
+  $manually_completed_ids = get_posts([
+    'post_type'      => 'project',
+    'post_status'    => 'publish',
+    'posts_per_page' => -1,
+    'fields'         => 'ids',
+    'meta_query'     => [[ 'key' => 'is_completed', 'value' => '1', 'compare' => '=' ]],
+  ]);
+  $exclude_from_ongoing = ! empty( $manually_completed_ids ) ? array_map('intval', $manually_completed_ids) : [0];
+
   // ── Section 1 : projets en cours ────────────────────────────────────────
   $projects_ongoing = new WP_Query([
     'post_type'      => 'project',
@@ -45,6 +55,7 @@
     'meta_key'       => 'year_start',
     'orderby'        => 'meta_value_num',
     'order'          => 'DESC',
+    'post__not_in'   => $exclude_from_ongoing,
     'meta_query'     => [
       'relation' => 'AND',
       [ 'key' => 'year_start', 'compare' => 'EXISTS' ],
@@ -55,18 +66,29 @@
         [ 'key' => 'year_end', 'value' => '', 'compare' => '=' ],
         [ 'key' => 'year_end', 'value' => $current_year, 'compare' => '>=', 'type' => 'NUMERIC' ],
       ],
-      // Exclure les projets manuellement marqués comme terminés
-      [
-        'relation' => 'OR',
-        [ 'key' => 'is_completed', 'compare' => 'NOT EXISTS' ],
-        [ 'key' => 'is_completed', 'value' => '1', 'compare' => '!=' ],
-      ],
     ],
   ]);
   $has_more_ongoing = $projects_ongoing->max_num_pages > 1;
 
   // ── Section 2 : projets terminés ────────────────────────────────────────
-  $projects_completed = new WP_Query([
+  // IDs des projets terminés par date (year_end < current_year)
+  $date_completed_ids = get_posts([
+    'post_type'      => 'project',
+    'post_status'    => 'publish',
+    'posts_per_page' => -1,
+    'fields'         => 'ids',
+    'meta_query'     => [
+      'relation' => 'AND',
+      [ 'key' => 'year_end', 'value' => $current_year, 'compare' => '<', 'type' => 'NUMERIC' ],
+      [ 'key' => 'year_end', 'value' => '', 'compare' => '!=' ],
+    ],
+  ]);
+  $all_completed_ids = array_unique( array_merge(
+    array_map('intval', $date_completed_ids ?: []),
+    array_map('intval', $manually_completed_ids ?: [])
+  ));
+
+  $projects_completed = ! empty( $all_completed_ids ) ? new WP_Query([
     'post_type'      => 'project',
     'post_status'    => 'publish',
     'posts_per_page' => $lm_per_page,
@@ -74,20 +96,9 @@
     'meta_key'       => 'year_start',
     'orderby'        => 'meta_value_num',
     'order'          => 'DESC',
-    'meta_query'     => [
-      'relation' => 'OR',
-      [
-        'relation' => 'AND',
-        [ 'key' => 'year_end', 'value' => $current_year, 'compare' => '<', 'type' => 'NUMERIC' ],
-        [ 'key' => 'year_end', 'value' => '', 'compare' => '!=' ],
-      ],
-      [ 'key' => 'year_start', 'compare' => 'NOT EXISTS' ],
-      [ 'key' => 'year_start', 'value' => '', 'compare' => '=' ],
-      // Projets manuellement marqués comme terminés (quelle que soit la date)
-      [ 'key' => 'is_completed', 'value' => '1', 'compare' => '=' ],
-    ],
-  ]);
-  $has_more_completed = $projects_completed->max_num_pages > 1;
+    'post__in'       => $all_completed_ids,
+  ]) : null;
+  $has_more_completed = $projects_completed && $projects_completed->max_num_pages > 1;
 ?>
 <?php get_template_part('/components/header/markup', 'header', get_field('header', 'acf-options-global-fields')); ?>
 
@@ -190,7 +201,7 @@
     <?php endif; ?>
 
     <!-- Section 2 : Projets terminés -->
-    <?php if ( $projects_completed->have_posts() ) : ?>
+    <?php if ( $projects_completed && $projects_completed->have_posts() ) : ?>
       <div class="theme-dark-blue bg-layout-main @@:py-[80px]">
         <div class="container">
           <div class="flex flex-col @sm:gap-y-[24px] @md/lg:gap-y-[32px]">
