@@ -1,5 +1,7 @@
 const ajaxPage = document.querySelector('[js-ajax]')
 
+const filterLoaderSVG = `<svg class="filter-spinner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke-opacity=".25"/><path d="M12 2a10 10 0 0 1 10 10" /></svg>`
+
 function initHoverAnimation(selector, root = document) {
   root.querySelectorAll(selector + ':not([js-hover-ready])').forEach(el => {
     el.setAttribute('js-hover-ready', '')
@@ -48,7 +50,19 @@ if (ajaxPage) {
 
   const iconClose = `<svg class="@@:size-[12px] stroke-current stroke-[1px]" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><path d="M8.04289 0.5L0.5 8.04289M0.542893 0.5L8.08579 8.04289" stroke-linecap="round"></path></svg>`
 
+  function setFilterLoading(active) {
+    if (!resetWrapper) return
+    const existing = resetWrapper.querySelector('.filter-spinner')
+    if (active && !existing) {
+      resetWrapper.insertAdjacentHTML('beforeend', filterLoaderSVG)
+    } else if (!active && existing) {
+      existing.remove()
+    }
+  }
+
   function searchData(reload = false) {
+    setFilterLoading(true)
+
     if (reload) {
       results.style.transition = `all .3s ease-out`
       results.style.transform = `translateY(20px)`
@@ -112,6 +126,8 @@ if (ajaxPage) {
 
         // Ré-initialise les load more sur les sections injectées
         if (typeof window.initLoadMore === 'function') window.initLoadMore(results)
+
+        setFilterLoading(false)
     })
   }
 

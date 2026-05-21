@@ -490,7 +490,7 @@ main {
     @screen md {
       --gap-x-unit: 1 !important;
     }
-    
+
     @screen lg {
       --gap-x-unit: .5 !important;
 
@@ -499,4 +499,30 @@ main {
       }
     }
   }
+}
+
+// ── Spinners (load more + filter) ─────────────────────────────────────────────
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.lm-spinner,
+.filter-spinner {
+  display: inline-block;
+  flex-shrink: 0;
+  animation: spin .8s linear infinite;
+}
+
+.lm-spinner {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  margin-right: .4em;
+  stroke: var(--color-dark-blue, #011B48);
+}
+
+.filter-spinner {
+  width: 20px;
+  height: 20px;
+  stroke: var(--color-dark-blue, #011B48);
 }

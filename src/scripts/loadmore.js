@@ -6,6 +6,8 @@
 //   [js-loadmore-grid] → conteneur où injecter les items
 //   [js-loadmore-btn]  → bouton déclencheur
 
+const loaderSVG = `<svg class="lm-spinner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke-opacity=".25"/><path d="M12 2a10 10 0 0 1 10 10" /></svg>`
+
 export function initLoadMore(root = document) {
   root.querySelectorAll('[js-loadmore-section]:not([js-lm-ready])').forEach(section => {
     section.setAttribute('js-lm-ready', '')
@@ -19,6 +21,15 @@ export function initLoadMore(root = document) {
     btn.addEventListener('click', async () => {
       page++
       btn.disabled = true
+
+      // Show loader inside button
+      const btnTitle = btn.querySelector('.button-title')
+      const originalText = btnTitle ? btnTitle.innerHTML : btn.innerHTML
+      if (btnTitle) {
+        btnTitle.insertAdjacentHTML('beforebegin', loaderSVG)
+      } else {
+        btn.insertAdjacentHTML('afterbegin', loaderSVG)
+      }
 
       // FormData → multipart, PHP popule $_POST normalement
       const fd = new FormData()
@@ -47,10 +58,12 @@ export function initLoadMore(root = document) {
         if (!data.hasMore) {
           btn.style.display = 'none'
         } else {
+          btn.querySelector('.lm-spinner')?.remove()
           btn.disabled = false
         }
       } catch (e) {
         console.error('[LoadMore] error:', e)
+        btn.querySelector('.lm-spinner')?.remove()
         btn.disabled = false
       }
     })

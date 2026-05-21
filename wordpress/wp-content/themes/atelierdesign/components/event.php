@@ -9,10 +9,13 @@ $theme = $args['theme'] ?? '';
 $types = get_the_terms( get_the_ID(), 'event_type' );
 $themes = get_the_terms( get_the_ID(), 'themes' );
 
-$ts_start = DateTime::createFromFormat('d-m-Y', $date_start)->getTimestamp();
+$dt_start = $date_start ? DateTime::createFromFormat('d-m-Y', $date_start) : null;
+$ts_start = $dt_start instanceof DateTime ? $dt_start->getTimestamp() : 0;
 
+$ts_end = 0;
 if ($date_end) {
-  $ts_end = DateTime::createFromFormat('d-m-Y', $date_end)->getTimestamp();
+  $dt_end = DateTime::createFromFormat('d-m-Y', $date_end);
+  $ts_end = $dt_end instanceof DateTime ? $dt_end->getTimestamp() : 0;
 }
 
 ?>
