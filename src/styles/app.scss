@@ -482,24 +482,24 @@ a {
 }
 
 
-main {
-  .custom-flex-grid-gap-y {
-    --gap-y-mobile-unit: 2.5 !important;
-    --gap-x-unit: .5 !important;
+// main {
+//   .custom-flex-grid-gap-y {
+//     --gap-y-mobile-unit: 2.5 !important;
+//     --gap-x-unit: .5 !important;
 
-    @screen md {
-      --gap-x-unit: 1 !important;
-    }
+//     @screen md {
+//       --gap-x-unit: 1 !important;
+//     }
 
-    @screen lg {
-      --gap-x-unit: .5 !important;
+//     @screen lg {
+//       --gap-x-unit: .5 !important;
 
-      .thirds-layout-main {
-        @apply @md/lg:pl-[100px];
-      }
-    }
-  }
-}
+//       .thirds-layout-main {
+//         @apply @md/lg:pl-[100px];
+//       }
+//     }
+//   }
+// }
 
 // ── Spinners (load more + filter) ─────────────────────────────────────────────
 @keyframes spin {
@@ -525,4 +525,15 @@ main {
   width: 20px;
   height: 20px;
   stroke: var(--color-dark-blue, #011B48);
+}
+
+#publications {
+  [js-ajax-pagination] {
+    .button-flat {
+      &:hover {
+        background-color: var(--color-dark-blue);
+        border-color: var(--color-dark-blue);
+      }
+    }
+  }
 }

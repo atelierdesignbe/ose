@@ -1,7 +1,6 @@
 <?php global $adwp; ?>
 <?php get_header(); ?>
 <?php 
-  get_template_part('/components/header/markup', 'header', get_field('header', 'acf-options-global-fields'));
   $fields = get_fields();
   get_template_part(
     '/components/header/markup', 

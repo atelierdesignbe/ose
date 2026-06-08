@@ -81,3 +81,20 @@ add_filter( 'pll_get_post_types', function ( $post_types, $is_settings ) {
     unset( $post_types['external_author'] );
     return $post_types;
 }, 10, 2 );
+
+
+/**
+ * Fix ACF relationship field "author" (project) + Polylang.
+ *
+ * Quand le champ relationship inclut à la fois 'author' (type géré par Polylang)
+ * et 'external_author' (type non géré), Polylang ajoute un filtre lang=current
+ * sur la requête globale, ce qui exclut les external_author sans terme de langue.
+ *
+ * On désactive ce filtre de langue pour ce champ spécifique : les authors
+ * de toutes les langues apparaissent (comportement souhaité pour une équipe
+ * multilingue), et les external_author ne sont plus filtrés.
+ */
+add_filter( 'acf/fields/relationship/query/name=author', function ( $args ) {
+    $args['lang'] = ''; // désactive le filtre langue de Polylang pour cette requête
+    return $args;
+} );

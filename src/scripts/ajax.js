@@ -60,8 +60,25 @@ if (ajaxPage) {
     }
   }
 
+  function setPaginationLoading(active) {
+    const btn = pagination.querySelector('button')
+    if (!btn) return
+    if (active) {
+      btn.disabled = true
+      const btnTitle = btn.querySelector('.button-title')
+      if (!btn.querySelector('.lm-spinner')) {
+        if (btnTitle) btnTitle.insertAdjacentHTML('beforebegin', filterLoaderSVG.replace('filter-spinner', 'lm-spinner'))
+        else btn.insertAdjacentHTML('afterbegin', filterLoaderSVG.replace('filter-spinner', 'lm-spinner'))
+      }
+    } else {
+      btn.disabled = false
+      btn.querySelector('.lm-spinner')?.remove()
+    }
+  }
+
   function searchData(reload = false) {
     setFilterLoading(true)
+    if (!reload) setPaginationLoading(true)
 
     if (reload) {
       results.style.transition = `all .3s ease-out`
@@ -105,8 +122,8 @@ if (ajaxPage) {
         if (!pagination.querySelector('button')) { }
         else if (dataRes.hasPagination) {
           pagination.querySelector('button').style = ''
+          setPaginationLoading(false)
         } else {
-
           pagination.querySelector('button').style.display = 'none'
         }
 

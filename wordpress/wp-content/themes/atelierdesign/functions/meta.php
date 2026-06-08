@@ -4,7 +4,6 @@ function render_meta_tags() {
   $description = get_field('meta_description');
   $og_image    = get_field('og_image');
   $theme_uri   = get_template_directory_uri();
-  var_dump($title);
   ?>
 
   <title><?php echo esc_html($title); ?></title>
