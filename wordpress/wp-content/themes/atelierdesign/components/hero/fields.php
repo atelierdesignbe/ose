@@ -49,7 +49,7 @@ $heroFields = [
   ],
   [
     'key' => 'field-hero-image-state',
-    'label' => 'Cover style',
+    'label' => 'Layout',
     'name' => 'cover-status',
     'type' => 'button_group',
     'choices' => [
@@ -77,6 +77,31 @@ $heroFields = [
           'field' => 'field-hero-image-state',
           'operator' => '!=',
           'value' => 'none',
+        ]
+      ]
+    ]
+  ],
+  [
+    'key' => 'field-hero-size-choices',
+    'label' => 'Height',
+    'name' => 'size',
+    'type' => 'button_group',
+    'choices' => [
+      'fullscreen' => 'Match Screen Height',
+      'auto' => 'Match Content Height',
+    ],
+    'default_value' => "fullscreen",
+    'layout' => 'horizontal',
+    'return_format' => 'value',
+    'wrapper' => [
+      'width' => '50%'
+    ],
+    'conditional_logic' => [
+      [
+        [
+          'field'    => 'field-hero-media-image',
+          'operator' => '!=empty',
+           // ← '' et non '0'
         ]
       ]
     ]

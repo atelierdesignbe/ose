@@ -88,6 +88,7 @@ $heroEventFields = [
       ]
     ]
   ],
+  
 ];
 
 $heroEventFieldGroup = [

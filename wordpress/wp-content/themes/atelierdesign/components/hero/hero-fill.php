@@ -1,5 +1,8 @@
+<?php
+$isFullscreen = $args['size'] === 'fullscreen';
+?>
 
-<div class="hero hero-fill is-fullscreen">
+<div class="hero hero-fill <?= $isFullscreen ? 'is-fullscreen' : '' ?>">
   <div class="hero-grid">
     <div class="hero-fill-content">
       <?= $args['contentHTML']; ?>

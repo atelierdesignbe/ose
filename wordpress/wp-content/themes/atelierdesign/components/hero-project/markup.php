@@ -6,6 +6,7 @@ $description = get_field('description');
 $year_start = get_field('year_start');
 $year_end   = get_field('year_end');
 $show_end = $year_end && (int) $year_end > (int) $year_start;
+$size = get_field('size') ?? 'fullscreen';
 
 $coverState = get_field('cover-status');
 
@@ -50,17 +51,27 @@ ob_start();
 ?>   
 
   <?php if ($authors) : ?>
-    <ul class="flex flex-wrap items-center @sm:gap-x-[8px] @md/lg:gap-x-[8px] @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children ">
+    <ul class="flex flex-wrap items-center @sm:gap-x-[4px] @md/lg:gap-x-[4px] @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children ">
       <?php foreach ($authors as $i => $author) : ?>
         <li class="flex items-center aos animate-fadeinup" style="animation-delay: <?= ($i * 100) + 100 ?>ms">
-          <?php if($author->post_type == 'author'):  ?>
-            <a href="<?= esc_url(get_permalink($author->ID)) ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] link-underline"><?= esc_html($author->post_title) ?> </a>
-          <?php else:  ?>
-            <span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] "><?= esc_html($author->post_title) ?> </span>
-          <?php endif;  ?>
+          <?php
+            $is_member   = $author->post_type === 'author';
+            $is_archived = $is_member && has_term( 'archived', 'member_status', $author->ID );
+            $lastname = get_field('lastname', $author->ID);
+            $firstname = get_field('firstname', $author->ID);
+            $authorTitle = explode(' ',$author->post_title);
+
+            $display_name = $lastname && $firstname ? $lastname . ' ' .strtoupper(substr($firstname, 0, 1)).'.' : $authorTitle[1] . ' ' .strtoupper(substr($authorTitle[0], 0, 1)) .'.';
+              if (!$is_member) $display_name = $author->post_title;
+          ?>
+          <?php if ( $is_member && ! $is_archived ) : ?>
+            <a href="<?= esc_url(get_permalink($author->ID)) ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] link-underline"><?= esc_html($display_name) ?></a>
+          <?php else : ?>
+            <span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= esc_html($display_name) ?></span>
+          <?php endif; ?>
         </li>
         <?php if ($i < count($authors) - 1) : ?>
-          <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center aos animate-fadeinup"  style="animation-delay: <?= ($i * 125) + 100 ?>ms"><span>/</span></li>
+          <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center aos animate-fadeinup"  style="animation-delay: <?= ($i * 125) + 100 ?>ms"><span>,</span></li>
         <?php endif; ?>
       <?php endforeach; ?>
     </ul>
@@ -80,5 +91,6 @@ ob_start();
       'afterContent' => $afterContent,
       'beforeDescription' => $beforeDescription,
       'social'  => false,
+      'size'  => $size,
     ]);
 ?>

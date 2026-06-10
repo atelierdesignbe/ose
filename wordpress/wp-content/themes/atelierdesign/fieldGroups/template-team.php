@@ -144,3 +144,23 @@ add_action('acf/include_fields', function () {
     ],
   ]);
 }, 1000);
+
+
+/**
+ * Sur la page team template, les deux clones de flexible content n'ont pas de min.
+ * Le min:1 vient de la source (field-flexible-flexible-layout dans flexible.php).
+ * On l'écrase via acf/load_field uniquement sur la page qui utilise ce template.
+ */
+add_filter( 'acf/load_field/key=field-flexible-flexible-layout', function ( $field ) {
+    if ( ! is_admin() ) return $field;
+
+    $post_id = (int) ( $_GET['post'] ?? $_POST['post_ID'] ?? 0 );
+    if ( ! $post_id ) return $field;
+
+    $template = get_post_meta( $post_id, '_wp_page_template', true );
+    if ( $template === 'templates/team.php' ) {
+        $field['min'] = 0;
+    }
+
+    return $field;
+} );

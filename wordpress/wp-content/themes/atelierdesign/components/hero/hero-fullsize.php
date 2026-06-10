@@ -1,9 +1,12 @@
 
 <?php
 global $adwp;
+
+$isFullscreen = $args['size'] === 'fullscreen';
+
 ?>
 
-<div class="hero hero-fullsize is-fullscreen ">
+<div class="hero hero-fullsize <?= $isFullscreen ? 'is-fullscreen' : '' ?> ">
   <div class="hero-fullsize-wrapper theme-dark-blue">
     <div class="px-container relative w-full">
       <?= $args['contentHTML']; ?>

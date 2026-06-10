@@ -39,11 +39,20 @@ $cover_status = $fields['hero']['cover-status'] ?? 'default';
         'post_status'    => 'publish',
         'orderby'        => 'menu_order title',
         'order'          => 'ASC',
-        'tax_query'      => [[
-          'taxonomy' => 'member_type',
-          'field'    => 'term_id',
-          'terms'    => $type->term_id,
-        ]],
+        'tax_query'      => [
+          'relation' => 'AND',
+          [
+            'taxonomy' => 'member_type',
+            'field'    => 'term_id',
+            'terms'    => $type->term_id,
+          ],
+          [
+            'taxonomy' => 'member_status',
+            'field'    => 'slug',
+            'terms'    => [ 'archived' ],
+            'operator' => 'NOT IN',
+          ],
+        ],
       ]);
 
       if ( ! $members_query->have_posts() ) {

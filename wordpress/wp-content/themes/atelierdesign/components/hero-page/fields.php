@@ -81,6 +81,36 @@ $heroFields = [
       ]
     ]
   ],
+  [
+    'key' => 'field-hero-size-choices',
+    'label' => 'Height',
+    'name' => 'size',
+    'type' => 'button_group',
+    'choices' => [
+      'fullscreen' => 'Match Screen Height',
+      'auto' => 'Match Content Height',
+    ],
+    'default_value' => "fullscreen",
+    'layout' => 'horizontal',
+    'return_format' => 'value',
+    'wrapper' => [
+      'width' => '50%'
+    ],
+    'conditional_logic' => [
+      [
+        [
+          'field'    => 'field-hero-media-image',
+          'operator' => '!=empty',
+        ],
+        [
+          'field' => 'field-hero-image-state',
+          'operator' => '!=',
+          'value' => 'none',
+        ]
+      ]
+    ]
+  ]
+  
 ];
 
 $heroFieldGroup = [

@@ -1,7 +1,8 @@
 <?php
+$isFullscreen = $args['size'] === 'fullscreen';
 
 ?>
-<div class="hero hero-fit is-fullscreen <?= $args['social'] ? 'has-social' : ''?>">
+<div class="hero hero-fit <?= $isFullscreen ? 'is-fullscreen' : '' ?> <?= $args['social'] ? 'has-social' : ''?>">
   <div class="container relative z-10">
     <div class="grid grid-cols-1 md:grid-cols-24">
       <div class="hero-fit-content md:col-span-13">

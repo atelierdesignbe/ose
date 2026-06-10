@@ -34,13 +34,22 @@ if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fi
      
       <p class="heading heading-md heading-primary "><?= get_the_title($id); ?> </p>
       <?php if ($authors) : ?>
-        <ul class="flex flex-wrap items-center @sm:gap-x-[8px] @md/lg:gap-x-[8px] @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children">
-          <?php foreach ($authors as $i => $author) : ?>
+        <ul class="flex flex-wrap items-center @sm:gap-x-[4px] @md/lg:gap-x-[4px] @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children">
+          <?php foreach ($authors as $i => $author) :
+              $is_member   = $author->post_type === 'author';
+
+              $lastname = get_field('lastname', $author->ID);
+              $firstname = get_field('firstname', $author->ID);
+              $authorTitle = explode(' ',$author->post_title);
+  
+              $display_name = $lastname && $firstname ? $lastname . ' ' .strtoupper(substr($firstname, 0, 1)).'.' : $authorTitle[1] . ' ' .strtoupper(substr($authorTitle[0], 0, 1)) .'.';
+              if (!$is_member) $display_name = $author->post_title;
+            ?>
             <li class="flex items-center">
-              <span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= esc_html($author->post_title) ?></span>
+              <span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= esc_html($display_name) ?></span>
             </li>
             <?php if ($i < count($authors) - 1) : ?>
-              <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center"><span>/</span></li>
+              <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center"><span>,</span></li>
             <?php endif; ?>
           <?php endforeach; ?>
         </ul>

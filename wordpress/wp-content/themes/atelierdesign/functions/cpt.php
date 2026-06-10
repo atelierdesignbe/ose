@@ -375,6 +375,52 @@ add_action('init', function () {
     }
 }, 20); // priorité 20 → après l'enregistrement de la taxonomie (priorité défaut 10)
 
+
+// =============================================================================
+// Taxonomy: Member Status (Active / Archived)
+// =============================================================================
+
+function custom_taxonomy_member_status() {
+    register_taxonomy( 'member_status', [ 'author' ], [
+        'labels'            => [
+            'name'          => 'Member Status',
+            'singular_name' => 'Status',
+            'menu_name'     => 'Status',
+            'all_items'     => 'All Statuses',
+            'edit_item'     => 'Edit Status',
+            'add_new_item'  => 'Add New Status',
+        ],
+        'hierarchical'      => false,
+        'public'            => false,   // pas d'URL publique
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_nav_menus' => false,
+        'show_tagcloud'     => false,
+        'show_in_rest'      => false,
+        'rewrite'           => false,
+    ] );
+}
+add_action( 'init', 'custom_taxonomy_member_status' );
+
+// Seed Active / Archived (une seule fois)
+add_action( 'init', function () {
+    $version = '1.0';
+    if ( get_option( 'ose_member_status_terms_version' ) !== $version ) {
+        foreach ( [ 'Active' => 'active', 'Archived' => 'archived' ] as $name => $slug ) {
+            if ( ! term_exists( $slug, 'member_status' ) ) {
+                wp_insert_term( $name, 'member_status', [ 'slug' => $slug ] );
+            }
+        }
+        update_option( 'ose_member_status_terms_version', $version );
+    }
+}, 20 );
+
+// Supprimer la meta box native de la taxonomie member_status — remplacée par le toggle ACF.
+add_action( 'add_meta_boxes', function () {
+    remove_meta_box( 'member_statusdiv', 'author', 'side' );
+    remove_meta_box( 'member_statusdiv', 'author', 'normal' );
+} );
+
 // function create_taxonomies() {
 //     // Services
 //   register_taxonomy( 'services', array('post', 'case_study'), array(

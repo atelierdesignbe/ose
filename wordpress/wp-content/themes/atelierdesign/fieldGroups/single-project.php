@@ -54,6 +54,35 @@ add_action('acf/include_fields', function () {
           ]
         ]
       ],
+      [
+        'key' => 'field-single-project-size-choices',
+        'label' => 'Height',
+        'name' => 'size',
+        'type' => 'button_group',
+        'choices' => [
+          'fullscreen' => 'Match Screen Height',
+          'auto' => 'Match Content Height',
+        ],
+        'default_value' => "fullscreen",
+        'layout' => 'horizontal',
+        'return_format' => 'value',
+        'wrapper' => [
+          'width' => '50%'
+        ],
+        'conditional_logic' => [
+          [
+            [
+              'field'    => 'field-single-project-template-cover',
+              'operator' => '!=empty',
+            ],
+            [
+              'field' => 'field-hero-project-image-state',
+              'operator' => '!=',
+              'value' => 'none',
+            ]
+          ]
+        ]
+      ],
       // [
       //   'key' => 'field-single-project-template-description',
       //   'label' => 'Description',

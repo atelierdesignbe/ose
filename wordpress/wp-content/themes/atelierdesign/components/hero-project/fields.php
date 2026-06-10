@@ -121,6 +121,32 @@ $heroProjectFields = [
       ]
     ]
   ],
+  [
+    'key' => 'field-hero-event-size-choices',
+    'label' => 'Height',
+    'name' => 'size',
+    'type' => 'button_group',
+    'choices' => [
+      'fullscreen' => 'Match Screen Height',
+      'auto' => 'Match Content Height',
+    ],
+    'default_value' => "fullscreen",
+    'layout' => 'horizontal',
+    'return_format' => 'value',
+    'wrapper' => [
+      'width' => '50%'
+    ],
+    'conditional_logic' => [
+      [
+        [
+          'field'    => 'field-hero-event-media-image',
+          'operator' => '!=empty',
+           // ← '' et non '0'
+        ],
+        
+      ]
+    ]
+  ]
 ];
 
 $heroProjectFieldGroup = [

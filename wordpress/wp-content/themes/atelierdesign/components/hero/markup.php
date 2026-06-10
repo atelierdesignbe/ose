@@ -7,6 +7,7 @@ global $adwp;
 
 if (($args['label-status'] ?? null) === 'default') $args['label'] = get_the_title();
 
+$args['size'] = $args['size'] ?? 'fullscreen';
 ob_start(); ?>
 <div class="hero-content-wrapper">
   <div class="hero-content">

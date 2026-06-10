@@ -3,7 +3,7 @@
 global $adwp;
 ?>
 
-<div class="hero hero-none is-fullscreen relative overflow-hidden">
+<div class="hero hero-none relative overflow-hidden">
   <div class="container relative z-10">
     <?= $args['contentHTML']?>
   </div>

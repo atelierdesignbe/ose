@@ -37,7 +37,7 @@
     if (!is_array($author) && !is_object($author)) continue;
     foreach($author as $item):
       if (!is_object($item) || empty($item->post_title)) continue;
-      if (!in_array($item->post_title, $authors) && $item->post_type === 'author') {
+      if (!in_array($item->post_title, $authors) && $item->post_type === 'author' && !has_term('archived', 'member_status', $item->ID)) {
         $authors[] = $item->post_title;
         $authors_ID[] = $item->ID;
       }

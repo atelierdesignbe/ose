@@ -139,6 +139,7 @@ $heroPublicationFields = [
       ]
     ]
   ],
+  
 ];
 
 $heroPublicationFieldGroup = [

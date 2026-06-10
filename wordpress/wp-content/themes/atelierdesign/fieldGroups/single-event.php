@@ -48,6 +48,36 @@ add_action('acf/include_fields', function () {
           ]
         ]
       ],
+      [
+        'key' => 'field-single-event-size-choices',
+        'label' => 'Height',
+        'name' => 'size',
+        'type' => 'button_group',
+        'choices' => [
+          'fullscreen' => 'Match Screen Height',
+          'auto' => 'Match Content Height',
+        ],
+        'default_value' => "fullscreen",
+        'layout' => 'horizontal',
+        'return_format' => 'value',
+        'wrapper' => [
+          'width' => '50%'
+        ],
+        'conditional_logic' => [
+          [
+            [
+              'field'    => 'field-single-event-template-cover',
+              'operator' => '!=empty',
+               // ← '' et non '0'
+            ],
+            [
+              'field' => 'field-hero-event-image-state',
+              'operator' => '!=',
+              'value' => 'none',
+            ]
+          ]
+        ]
+      ],
 
       [
         'key' => 'field-single-event-template-description',

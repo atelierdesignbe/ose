@@ -8,6 +8,7 @@ $coverState = get_field('cover-status') ?? 'fill';
 $date_start = get_field('date_start');
 $date_end   = get_field('date_end');
 $coverState = get_field('cover-status') ?? 'fill';
+$size = get_field('size') ?? 'fullscreen';
 
 $ts_start = DateTime::createFromFormat('d-m-Y', $date_start)->getTimestamp();
 
@@ -63,5 +64,6 @@ if($themes): ?>
       'beforeContent' => $beforeContent,
       'afterContent' => $afterContent,
       'social'  => false,
+      'size' => $size,
     ]);
 ?>

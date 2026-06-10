@@ -17,6 +17,18 @@ add_action('acf/include_fields', function () {
       //   'type'  => 'tab',
       //   'no_preference' => 0,
       // ],
+      [
+        'key'   => 'field-single-member-firstname',
+        'label' => 'First name',
+        'name'  => 'firstname',
+        'type'  => 'text',
+      ],
+      [
+        'key'   => 'field-single-member-lastname',
+        'label' => 'Last name',
+        'name'  => 'lastname',
+        'type'  => 'text',
+      ],
 
       [
         'key' => 'field-single-member-cover',
@@ -27,7 +39,8 @@ add_action('acf/include_fields', function () {
         'library' => 'all',
         'mime_types' => 'jpg,jpeg,png,svg,webp',
       ],
-      
+
+
       [
         'key'   => 'field-single-member-role',
         'label' => 'Role / Position',
@@ -109,5 +122,43 @@ add_action('acf/include_fields', function () {
       // 10 => 'tags',
       11 => 'send-trackbacks',
     ],
+  ]);
+}, 1000);
+
+
+/**
+ * Champ Status (Active / Archived) — sidebar du CPT author.
+ * La valeur ACF est synchronisée avec la taxonomie member_status
+ * via les hooks dans functions/cpt-author-fix.php.
+ */
+add_action('acf/include_fields', function () {
+  acf_add_local_field_group([
+    'key'    => 'field-group-single-member-status',
+    'title'  => 'Status',
+    'fields' => [
+      [
+        'key'          => 'field-single-member-is-active',
+        'label'        => '',
+        'name'         => 'is_active_member',
+        'type'         => 'true_false',
+        'ui'           => 1,
+        'ui_on_text'   => 'Active',
+        'ui_off_text'  => 'Archived',
+        'default_value' => 1,
+      ],
+    ],
+    'location' => [
+      [
+        [
+          'param'    => 'post_type',
+          'operator' => '==',
+          'value'    => 'author',
+        ],
+      ],
+    ],
+    'menu_order' => 1,
+    'position'   => 'side',
+    'style'      => 'default',
+    'active'     => 1,
   ]);
 }, 1000);
