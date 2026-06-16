@@ -141,7 +141,7 @@
 
     <div class="flex items-center justify-center" js-ajax-pagination>
       <?php if($publications->found_posts > $publications->post_count): ?>
-        <button type="button" class="button button-flat autoscale @@:mt-[60px]">
+        <button type="button" class="button button-flat autoscale @@:mt-[60px] hover:text-white">
           <span class="button-title">Load more</span>
         </button>
       <?php endif; ?>

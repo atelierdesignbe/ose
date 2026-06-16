@@ -225,7 +225,7 @@
 
   <!-- Pagination (non utilisée pour les projets) -->
   <div class="flex items-center justify-center" js-ajax-pagination style="display:none">
-    <button type="button" class="button button-flat autoscale @@:mt-[60px]">
+    <button type="button" class="button button-flat autoscale @@:mt-[60px] hover:text-white">
       <span class="button-title">Load more</span>
     </button>
   </div>

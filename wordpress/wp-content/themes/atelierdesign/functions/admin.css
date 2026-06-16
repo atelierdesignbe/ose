@@ -17,3 +17,7 @@
 .categorydiv div.tabs-panel {
   border: 0;
 }
+
+.acf-input .wp-editor-wrap .mce-widget[aria-label="Heading Highlight"] {
+  display: none;
+}

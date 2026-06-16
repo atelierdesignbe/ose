@@ -518,7 +518,7 @@ a {
   height: 1em;
   vertical-align: middle;
   margin-right: .4em;
-  stroke: var(--color-dark-blue, #011B48);
+  stroke: currentColor;
 }
 
 .filter-spinner {
@@ -537,3 +537,9 @@ a {
     }
   }
 }
+
+// [js-loadmore-btn] {
+//   svg {
+//     @apply fill-current;
+//   }
+// }

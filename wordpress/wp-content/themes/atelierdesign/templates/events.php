@@ -91,7 +91,7 @@
           </div>
           <?php if ( $has_more_past ) : ?>
             <div class="flex justify-center @@:mt-[48px]">
-              <button type="button" class="button button-flat autoscale bg-yellow hover:bg-dark-blue border-yellow hover:border-dark-blue hover:text-white" js-loadmore-btn>
+              <button type="button" class="button button-flat autoscale bg-yellow hover:bg-dark-blue border-yellow hover:border-dark-blue hover:text-dark-blue" js-loadmore-btn>
                 <span class="button-title"><?= pll__('Load more', 'atelierdesign') ?></span>
               </button>
             </div>
