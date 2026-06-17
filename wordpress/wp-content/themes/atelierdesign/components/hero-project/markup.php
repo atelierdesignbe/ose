@@ -71,7 +71,7 @@ ob_start();
           <?php endif; ?>
         </li>
         <?php if ($i < count($authors) - 1) : ?>
-          <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center aos animate-fadeinup"  style="animation-delay: <?= ($i * 125) + 100 ?>ms"><span>, </span></li>
+          <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center aos animate-fadeinup"  style="animation-delay: <?= ($i * 125) + 100 ?>ms"><span>,&nbsp;</span></li>
         <?php endif; ?>
       <?php endforeach; ?>
     </ul>

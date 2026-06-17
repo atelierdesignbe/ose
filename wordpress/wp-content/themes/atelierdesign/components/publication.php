@@ -49,7 +49,7 @@ if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fi
               <span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= esc_html($display_name) ?></span>
             </li>
             <?php if ($i < count($authors) - 1) : ?>
-              <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center"><span>, </span></li>
+              <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center"><span>,&nbsp;</span></li>
             <?php endif; ?>
           <?php endforeach; ?>
         </ul>
