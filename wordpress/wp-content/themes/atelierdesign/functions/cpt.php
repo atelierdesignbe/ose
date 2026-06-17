@@ -74,7 +74,7 @@ function cpt_publications() {
         'capability_type'    => 'post',
         'has_archive'        => false,
         'hierarchical'       => false,
-        'menu_position'      => 22,
+        'menu_position'      => 21,
         'show_in_rest'       => true,
         'supports'           => array( 'title', 'editor', 'revisions' ),
         'taxonomies'         => array( 'themes', 'types', 'post_tag' )
@@ -114,7 +114,7 @@ function cpt_projects() {
         'capability_type'    => 'post',
         'has_archive'        => false,
         'hierarchical'       => false,
-        'menu_position'      => 23,
+        'menu_position'      => 21,
         'show_in_rest'       => true,
         'supports'           => array( 'title', 'editor', 'revisions' ),
         'taxonomies'         => array( 'themes', 'post_tag' )
@@ -199,7 +199,7 @@ function cpt_external_authors() {
       'capability_type'     => 'post',
       'has_archive'         => false,
       'hierarchical'        => false,
-      'menu_position'       => 22,
+      'menu_position'       => 21,
       'show_in_rest'        => true,
       'supports'            => array( 'title' ),
       'exclude_from_search' => false,

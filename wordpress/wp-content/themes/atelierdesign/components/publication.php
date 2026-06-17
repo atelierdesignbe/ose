@@ -34,7 +34,7 @@ if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fi
      
       <p class="heading heading-md heading-primary "><?= get_the_title($id); ?> </p>
       <?php if ($authors) : ?>
-        <ul class="flex flex-wrap items-center @sm:gap-x-[4px] @md/lg:gap-x-[4px] @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children">
+        <ul class="flex flex-wrap items-center @sm:gap-x-0 @md/lg:gap-x-0 @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children">
           <?php foreach ($authors as $i => $author) :
               $is_member   = $author->post_type === 'author';
 
@@ -49,7 +49,7 @@ if(!$cover) $cover = get_field('publication-placeholder', 'acf-options-global-fi
               <span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= esc_html($display_name) ?></span>
             </li>
             <?php if ($i < count($authors) - 1) : ?>
-              <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center"><span>,</span></li>
+              <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center"><span>, </span></li>
             <?php endif; ?>
           <?php endforeach; ?>
         </ul>

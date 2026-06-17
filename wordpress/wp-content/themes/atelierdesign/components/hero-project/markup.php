@@ -51,7 +51,7 @@ ob_start();
 ?>   
 
   <?php if ($authors) : ?>
-    <ul class="flex flex-wrap items-center @sm:gap-x-[4px] @md/lg:gap-x-[4px] @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children ">
+    <ul class="flex flex-wrap items-center @sm:gap-x-0 @md/lg:gap-x-0px @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children ">
       <?php foreach ($authors as $i => $author) : ?>
         <li class="flex items-center aos animate-fadeinup" style="animation-delay: <?= ($i * 100) + 100 ?>ms">
           <?php
@@ -71,7 +71,7 @@ ob_start();
           <?php endif; ?>
         </li>
         <?php if ($i < count($authors) - 1) : ?>
-          <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center aos animate-fadeinup"  style="animation-delay: <?= ($i * 125) + 100 ?>ms"><span>,</span></li>
+          <li class="@@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] flex items-center aos animate-fadeinup"  style="animation-delay: <?= ($i * 125) + 100 ?>ms"><span>, </span></li>
         <?php endif; ?>
       <?php endforeach; ?>
     </ul>
