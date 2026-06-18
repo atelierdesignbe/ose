@@ -1,7 +1,7 @@
 {
   "default": {
     "depth": 1,
-    "max": 4,
+    "max": 99,
     "hasAppearance": true,
     "appearance": "default",
     "appearances": ["default:Default", "flat:Flat", "outline:Outline"],

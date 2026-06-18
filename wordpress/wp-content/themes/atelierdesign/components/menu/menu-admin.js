@@ -100,10 +100,16 @@
       var desc    = ldIn !== null ? ldIn.value.trim() : (layout.dataset.menuLinkDesc || '');
       if (ldIn)   layout.dataset.menuLinkDesc = desc;
 
-      var h = '<span class="acf-field-ad-menu">Link</span>';
-      if (lText) h += ' \u2014 ' + esc(lText);
-      if (desc)  h += ' <small class="acf-field-ad-desc">' + esc(desc) + '</small>';
-      return h;
+      var h, hasContent;
+      if (lText) {
+        h          = esc(lText) + ' \u2014 <span class="acf-field-ad-menu">link</span>';
+        hasContent = true;
+      } else {
+        h          = '<span class="acf-field-ad-menu">Link</span>';
+        hasContent = false;
+      }
+      if (desc) h += ' <small class="acf-field-ad-desc">' + esc(desc) + '</small>';
+      return { html: h, hasContent: hasContent };
     }
 
     var labf    = getOwnField(layout, 'label');
@@ -116,10 +122,16 @@
     var desc2   = dIn !== null ? dIn.value.trim() : (layout.dataset.menuDesc || '');
     if (dIn)    layout.dataset.menuDesc = desc2;
 
-    var h2 = '<span class="acf-field-ad-menu">Submenu</span>';
-    if (label) h2 += ' \u2014 ' + esc(label);
+    var h2, hasContent2;
+    if (label) {
+      h2          = esc(label) + ' \u2014 <span class="acf-field-ad-menu">submenu</span>';
+      hasContent2 = true;
+    } else {
+      h2          = '<span class="acf-field-ad-menu">Submenu</span>';
+      hasContent2 = false;
+    }
     if (desc2) h2 += ' <small class="acf-field-ad-desc">' + esc(desc2) + '</small>';
-    return h2;
+    return { html: h2, hasContent: hasContent2 };
   }
 
   // ── Injection ────────────────────────────────────────────────────────────────
@@ -137,7 +149,15 @@
       info.className = 'acf-field-ad-info';
       handle.appendChild(info);
     }
-    info.innerHTML = buildHTML(layout);
+
+    var result = buildHTML(layout);
+    info.innerHTML = result.html;
+
+    // Masque le titre ACF par défaut ("Nav item") quand le champ est rempli
+    var title = handle.querySelector('.acf-fc-layout-title');
+    if (title) {
+      title.style.display = result.hasContent ? 'none' : '';
+    }
   }
 
   function initLayout(layout) {

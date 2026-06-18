@@ -588,7 +588,7 @@ function menu_build_fields(
       'label'             => 'Items',
       'name'              => 'items',
       'type'              => 'flexible_content',
-      'max'               => 1,
+      'max'               => 99,
       'button_label'      => 'Add nav item',
       'layouts'           => [
         [
@@ -654,3 +654,8 @@ add_action('acf/input/admin_enqueue_scripts', function () {
   ]);
 });
 
+
+
+add_filter('upload_per_page', function() {
+  return 200;
+});
