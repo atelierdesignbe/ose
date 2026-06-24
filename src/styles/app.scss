@@ -543,3 +543,15 @@ a {
 //     @apply fill-current;
 //   }
 // }
+
+@screen md {
+  .py-section {
+    @for $col from 1 through 24 {
+
+      .md\:flex-grid-col-span-#{$col} {
+        width: calc((100% / (var(--tw-flex-grid-cols) / #{$col})) - ((var(--tw-flex-grid-cols) / #{$col} - 1) * var(--tw-flex-grid-gap-x)) / (var(--tw-flex-grid-cols) / #{$col}) - .1px)
+      }
+    
+    }
+  }
+}

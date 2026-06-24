@@ -192,8 +192,15 @@ add_action( 'acf/input/admin_footer', function () {
 
     if ( empty( $languages ) ) return;
 
+    // Priorité : 1) langue explicitement choisie via ?lang=, 2) langue admin courante de Polylang
+    // (filtre "All languages" → false), 3) langue par défaut/active du site, 4) première langue dispo.
     $current_lang = isset( $_GET['lang'] ) ? sanitize_key( $_GET['lang'] ) : pll_current_language( 'slug' );
-    $current      = $languages[ $current_lang ] ?? reset( $languages );
+
+    if ( empty( $current_lang ) || ! isset( $languages[ $current_lang ] ) ) {
+        $current_lang = function_exists( 'pll_default_language' ) ? pll_default_language( 'slug' ) : $current_lang;
+    }
+
+    $current = $languages[ $current_lang ] ?? reset( $languages );
 
     $query = $_GET;
     unset( $query['lang'] );
