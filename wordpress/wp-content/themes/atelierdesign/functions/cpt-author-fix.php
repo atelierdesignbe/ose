@@ -146,6 +146,60 @@ function ose_member_status_term_ids( $search ) {
 
 
 /**
+ * Récupération des external_author filtrés par Polylang lors du format_value ACF.
+ *
+ * Polylang hook sur `parse_query` (priorité 6) et considère la query ACF comme
+ * "translated" dès qu'`author` est dans post_type[] (array_intersect).
+ * Résultat : les external_author (sans terme de langue) disparaissent de get_field('author').
+ *
+ * Fix : après qu'ACF ait construit le tableau d'objets (format_value priority 10),
+ * on détecte les IDs manquants et on les recharge en neutralisant Polylang.
+ */
+/**
+ * Récupération des external_author filtrés par Polylang lors du format_value ACF.
+ *
+ * Polylang considère la query ACF comme "traduite" dès qu'`author` est dans post_type[]
+ * (via array_intersect dans is_translated_object_type). Il ajoute une tax_query `language`
+ * qui exclut les external_author (sans terme de langue). get_posts() est donc bloqué.
+ *
+ * Fix : après le format_value ACF (priority 10), on détecte les IDs manquants et on les
+ * recharge via $wpdb direct — sans passer par WP_Query ni aucun filtre.
+ */
+add_filter( 'acf/format_value/name=author', function ( $value, $post_id, $field ) {
+    if ( is_admin() || ! function_exists( 'pll_current_language' ) ) return $value;
+
+    $raw = get_post_meta( $post_id, 'author', true );
+    if ( ! is_array( $raw ) || empty( $raw ) ) return $value;
+
+    $raw_ids      = array_map( 'intval', $raw );
+    $returned_ids = is_array( $value ) ? array_map( fn( $p ) => (int) $p->ID, $value ) : [];
+    $missing_ids  = array_diff( $raw_ids, $returned_ids );
+
+    if ( empty( $missing_ids ) ) return $value;
+
+    global $wpdb;
+    $ids_in    = implode( ',', array_map( 'intval', array_values( $missing_ids ) ) );
+    $raw_posts = $wpdb->get_results(
+        "SELECT * FROM {$wpdb->posts} WHERE ID IN ({$ids_in}) AND post_status = 'publish'"
+    );
+
+    if ( empty( $raw_posts ) ) return $value;
+
+    $missing = array_map( fn( $row ) => new WP_Post( $row ), $raw_posts );
+
+    // Fusionne et réordonne selon l'ordre de sauvegarde original
+    $all = array_merge( is_array( $value ) ? $value : [], $missing );
+    usort( $all, function ( $a, $b ) use ( $raw_ids ) {
+        $pa = array_search( $a->ID, $raw_ids );
+        $pb = array_search( $b->ID, $raw_ids );
+        return ( $pa === false ? 999 : $pa ) - ( $pb === false ? 999 : $pb );
+    } );
+
+    return $all;
+}, 20, 3 );
+
+
+/**
  * Fix ACF relationship field "author" (project) : members par langue + external_author sans langue.
  *
  * Polylang applique son filtre langue globalement sur la WP_Query principale.
@@ -225,15 +279,22 @@ add_filter( 'acf/fields/relationship/query/name=author', function ( $args ) {
  * Règle : on retire la clause langue UNIQUEMENT si :
  *   a) la requête cible exclusivement external_author (sous-requête interne), OU
  *   b) un post__in est déjà défini (chargement de valeurs sauvegardées : les IDs
- *      sont déjà les bons, pas besoin du filtre langue pour les restreindre).
+ *      sont déjà les bons, pas besoin du filtre langue pour les restreindre), OU
+ *   c) post_type = 'any' avec post__in (ACF format_value qui charge les objets du
+ *      champ relationship : les IDs sont connus, Polylang ne doit pas re-filtrer).
  */
 add_action( 'pre_get_posts', function ( WP_Query $query ) {
     $post_types = (array) $query->get( 'post_type' );
-    if ( ! in_array( 'external_author', $post_types, true ) ) return;
+    $post_in    = $query->get( 'post__in' );
 
-    $post_in = $query->get( 'post__in' );
+    $targets_external   = in_array( 'external_author', $post_types, true );
+    // post_type='any' + post__in = ACF format_value chargeant des IDs précis
+    $is_any_with_ids    = in_array( 'any', $post_types, true ) && ! empty( $post_in );
 
-    if ( $post_types !== [ 'external_author' ] && empty( $post_in ) ) return;
+    if ( ! $targets_external && ! $is_any_with_ids ) return;
+
+    // Pour les requêtes mixtes (author + external_author sans 'any'), n'agir que si post__in est défini
+    if ( $targets_external && $post_types !== [ 'external_author' ] && ! $is_any_with_ids && empty( $post_in ) ) return;
 
     $tax_query = $query->get( 'tax_query' );
     if ( ! is_array( $tax_query ) ) return;

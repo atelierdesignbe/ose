@@ -42,7 +42,8 @@ ob_start();
     <p class="paragraph paragraph-lg paragraph-primary aos animate-fadeinup animate-delay-100"><?= $subtitle ?></p>
   <?php endif; ?>
 
-  <?php if ($authors) : ?>
+  <?php if ($authors) :
+    ?>
     <ul class="flex flex-wrap items-center @sm:gap-x-0 @md/lg:gap-x-0 @sm:gap-y-[4px] @md/lg:gap-y-[4px] autoscale-children  ">
       <?php foreach ($authors as $i => $author) : ?>
         <li class="flex items-center aos animate-fadeinup" style="animation-delay: <?= ($i * 100) + 200 ?>ms">
@@ -54,9 +55,9 @@ ob_start();
             $authorTitle = explode(' ',$author->post_title);
 
             $display_name = $lastname && $firstname ? $lastname . ' ' .strtoupper(substr($firstname, 0, 1)).'.' : $authorTitle[1] . ' ' .strtoupper(substr($authorTitle[0], 0, 1)) .'.';
-              if (!$is_member) $display_name = $author->post_title;
+            if (!$is_member) $display_name = $author->post_title;
           ?>
-          <?php if ( $is_member && ! $is_archived ) : ?>
+          <?php if ( $is_member && !$is_archived ) : ?>
             <a href="<?= esc_url(get_permalink($author->ID)) ?>" class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px] link-underline"><?= esc_html($display_name) ?> </a>
           <?php else : ?>
             <span class="uppercase @@:text-[13px] font-bold text-dark-blue @@:tracking-[1px]"><?= esc_html($display_name) ?> </span>

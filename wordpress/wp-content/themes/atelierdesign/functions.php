@@ -659,3 +659,5 @@ add_action('acf/input/admin_enqueue_scripts', function () {
 add_filter('upload_per_page', function() {
   return 200;
 });
+
+require_once get_template_directory().'/functions/polylang/polylang-slug.php';

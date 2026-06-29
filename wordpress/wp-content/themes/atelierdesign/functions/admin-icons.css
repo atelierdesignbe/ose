@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,100,0,0');
+
+.menu-top .wp-menu-image::before,
+#collapse-menu .collapse-button-icon::after,
+#wp-admin-bar-root-default .ab-item::before,
+#wp-admin-bar-root-default .ab-icon::before {
+  font-family: 'Material Symbols Outlined' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20sspx;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#menu-pages .wp-menu-image::before {
+  content: "\e6fa" !important;
+}
+
+#menu-media .wp-menu-image::before {
+  content: "\f49a" !important;
+}
+#menu-users .wp-menu-image::before {
+  content: "\e853" !important;
+}
+#menu-plugins .wp-menu-image::before {
+  content: "\e87b" !important;
+}
+#menu-settings .wp-menu-image::before {
+  content: "\e429" !important;
+}
+#menu-dashboard .wp-menu-image::before {
+  content: "\e871" !important;
+}
+
+#toplevel_page_acf-options-global-fields .wp-menu-image::before {
+  content: "\e5c3" !important;
+}
+
+#toplevel_page_edit-post_type-acf-field-group .wp-menu-image::before {
+  content: "\e42a" !important;
+}
+
+#toplevel_page_formidable .wp-menu-image {
+  background: none !important;
+}
+#toplevel_page_formidable .wp-menu-image::before {
+  content: "\e168" !important;
+  text-decoration: inherit;
+  text-transform: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  vertical-align: top;
+  text-align: center;
+  display: inline-block !important;
+}
+
+#collapse-menu .collapse-button-icon::after  {
+  content: "\f591" !important;
+  transform: scaleX(-1);
+}
+
+#wp-admin-bar-site-name .ab-item::before  {
+  content: "\e295" !important;
+
+}
+#wp-admin-bar-updates .ab-icon::before  {
+  content: "\e394" !important;
+
+}
+#wp-admin-bar-command-palette .ab-icon::before  {
+  content: "\e8b6" !important;
+
+}
+#wp-admin-bar-new-content .ab-icon::before  {
+  content: "\f563" !important;
+}
